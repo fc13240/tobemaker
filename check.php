@@ -1,21 +1,25 @@
 <?php
-
+session_start ();
 require 'config.php';
 require ROOT_PATH.'include/ez_sql_core.php';
 include ROOT_PATH.'include/ez_sql_mysql.php';
 
-
 // 鉴别身份
-function checkeruser(){
+function checkeruser($username="",$passcode=""){
 	//code
-
-};
-if (checkeruser()=='root') {
-	//管理控制器
-	show_idea_data();
-}
-else{
-	exit("you are not allowed to do this");
+	if(user_manager::check_user_login()){
+		$group=$_SESSION['group'];
+		if($group=='admin'){
+			show_idea_data();
+		}
+		elseif ($group='formal_user') {
+			# code...
+			header("other");
+		}
+	}
+	else{
+		header("error_log");
+	}
 }
 
 function show_idea_data(){
