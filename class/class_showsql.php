@@ -77,20 +77,19 @@ set函数：__set()
  function read_data()
  { 
     $psql=$this->sql; 
-    
+
     //查询数据，数据库链接等信息应在类调用的外部实现
-    $result=mysql_query($psql) or die(mysql_error()); 
+    $result=mysql_query($psql) or die(mysql_error());
+
     $this->total_records=mysql_num_rows($result); 
-    
     //利用LIMIT关键字获取本页所要显示的记录
     if($this->total_records>0) 
     {
         $this->start_index = ($this->current_page-1)*$this->page_size;
-        $psql=$psql.    " LIMIT ".$this->start_index." , ".$this->page_size; 
-        
+        $psql=$psql." LIMIT ".$this->start_index." , ".$this->page_size; 
         $result=mysql_query($psql) or die(mysql_error()); 
+
         $this->current_records=mysql_num_rows($result); 
-        
         //将查询结果放在result数组中
         $i=0; 
         while($row=mysql_fetch_Array($result))

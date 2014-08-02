@@ -39,7 +39,7 @@ function show_idea_data(){
 
     $pageSupport = new PageSupport($PAGE_SIZE); //实例化PageSupport对象
     
-    $current_page="";//分页当前页数
+    $current_page=$_GET['current_page'];//分页当前页数
     
     if (isset($current_page)) {
         
@@ -51,10 +51,8 @@ function show_idea_data(){
         
     }
 
-    
     $pageSupport->__set("sql","SELECT `info`.`name`, `st`.`status_name`, `manage`.`idea_ID` FROM `idea_manage` as `manage`, `idea_info` as `info`, `idea_status` as `st` where `manage`.`idea_status` = `st`.`status_ID` and `manage`.`idea_ID` = `info`.`idea_ID`");     
     $pageSupport->read_data();//读数据
-    echo $pageSupport->sql;
     
     if ($pageSupport->current_records > 0) //如果数据不为空，则组装数据
     {
@@ -65,18 +63,16 @@ function show_idea_data(){
             
             $part=substr($content,0,400);
             //循环输出每条数据
-            echo '<div class="index_side">        
-                <div class="index_title">'.$title.'</div>
-                <div class="index_content">'.$part.'</div>
-                <div class="index_button">
-                   <a href="#">update</a>&nbsp;&nbsp;&nbsp;<a href="#">delet</a>
+            echo '<div class="index_side" align=center>        
+                <div class="index_title">名称:'.$title.'</div>
+                <div class="index_content">状态：'.$content.'</div>
                 </div>
             </div>';
                }
     }
     $pageSupport->standard_navigate(); //调用类里面的这个函数，显示出分页HTML
     //关闭数据库
-    mysql_close($con);
+    mysql_close($sqlcon);
 }
 show_idea_data();
 ?>
