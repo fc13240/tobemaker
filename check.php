@@ -20,6 +20,16 @@ function checkeruser($username="",$passcode=""){
 		header("error_log");
 	}
 }
+function manage_post()
+{
+	# code...
+	$idea_id=$_POST['idea_id'];
+	$idea_ch_status=$_POST['idea_ch'];
+	$admin_id=$_SESSION['user_id'];
+	$reason=$_POST['reson'];
+	$sql="update table idea_manage set idea_status=".$idea_ch_status.",checker_id=".$user_id.",reason=".$reason."where idea_ID=".$idea_id;
+	mysql_query($sql);
+}
 show_idea_data();
 ?>
 
