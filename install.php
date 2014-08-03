@@ -65,6 +65,21 @@ $sql = "INSERT INTO `".TABLENAME_USER."` (`id`, `username`, `password`, `create_
 (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '2014-06-16 06:52:03');";
 
 mysql_query($sql, $con);
+$sql="create table user_info(
+    user_id int not null primary key,
+    user_name varchar(20) not null,
+    user_passcode varchar(40) not null,
+    user_email varchar(20) not null,
+    user_sex varchar(4),
+    user_age int,
+    user_birth date,
+    user_img_url varchar(30),
+    user_ture_name varchar(10),
+    user_skill text(100),
+    user_edu text(20),
+    user_group varchar(10) default 'normal'
+    )ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+    mysql_query($sql,$con);
 echo "Data Created! - ". TABLENAME_USER. "<br/>";
         
 // close database connection
