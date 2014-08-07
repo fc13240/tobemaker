@@ -161,45 +161,5 @@ class class_idea
         $sql="update idea_manage set `idea_status`=3 ,`reason`=".$reason.",`last_change_time`=now() where `idea_id`=".$idea_id;
         $result = $this->db->query($sql);
     }
-     //  点赞
-    public function add_like($idea_id,$user_id)
-    {
-        //先查询是是否有点赞记录，如果有则直接返回true
-        //如果没有 修改两张表  idea_like——点赞关系表 和 和idea_info中的sum_like字段
-        $sql="select * from idea_like where `idea_id`=".$idea_id." and `user_id`=".$liker_id;
-        // 有过点赞记录直接返回
-        if(count($this->db->get_results($sql))>0)
-        {
-            return true;
-        }
-        //增加点赞
-        else{
-            $tmp=$this->db->get_results("SELECT * FROM idea_info WHERE `idea_id` = ".$idea_id,ARRAY_A);
-            $idea_name=$tmp[0]["name"];
-            $sql="insert into idea_like(`idea_id`,`liker_id`,`idea_name`,`like_time`) values (".$idea_id.",".$user_id.",".$idea_name.", now()";
-            $this->db->query($sql);
-            $sql="update idea_info set sum_like=sumlike+1";
-            $this->db->query($sql);
-            return true;
-        }
-    }
-
-    // 添加评论记录，返回是否添加成功
-    public function add_comment($user_id,$idea_id,$comment_text){
-      //  修改两张表：idea_comment
-      //  idea_info 中的sum_count 字段
-      $sql="update idea_info set sum_commment=sum_comment+1";
-      $this->db->query($sql);
-      $sql="insert into idea_comment values(".$idea_id.",".$user_id.",".$comment_text.",0,now(),null)";
-      $this->db->query($sql);
-
-
-    }
-    //  获取某个想法所有评论 按时间排序
-    public function get_comment($idea_id){
-      $sql="select * from idea_comment where idea_id=".$idea_id."order by comment_time";
-      $res=$this->db->get_results($sql,ARRAY_A);
-      return $res;
-    }
 
 }
