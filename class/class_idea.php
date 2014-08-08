@@ -147,6 +147,8 @@ class class_idea
     // 标记想法为审核通过
     public function mark_pass($idea_id,$reason){
         // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
+      $idea_id = $this->db->escape($idea_id);
+      $reason=$this->db->escape($reason);
         $sql="update idea_info set `idea_status`=2 where `idea_id`=".$idea_id;
         $result = $this->db->query($sql);
         $sql="update idea_manage set `idea_status`=2 ,`reason`=".$reason.",`last_change_time`=now() where `idea_id`=".$idea_id;
@@ -156,6 +158,8 @@ class class_idea
     // 标记审核不通过
     public function mark_fail($idea_id,$reason){
         // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
+      $idea_id = $this->db->escape($idea_id);
+      $reason=$this->db->escape($reason);
         $sql="update idea_info set `idea_status`=3 where `idea_id`=".$idea_id;
         $result = $this->db->query($sql);
         $sql="update idea_manage set `idea_status`=3 ,`reason`=".$reason.",`last_change_time`=now() where `idea_id`=".$idea_id;

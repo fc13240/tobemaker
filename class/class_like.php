@@ -19,6 +19,8 @@ class class_like
     {
         //先查询是是否有点赞记录，如果有则直接返回true
         //如果没有 修改两张表  idea_like——点赞关系表 和 和idea_info中的sum_like字段
+        $idea_id = $this->db->escape($idea_id);
+      $user_id=$this->db->escape($user_id);
         $sql="select * from idea_like where `idea_id`=".$idea_id." and `user_id`=".$liker_id;
         // 有过点赞记录直接返回
         if(count($this->db->get_results($sql))>0)
@@ -42,6 +44,8 @@ class class_like
     {
         //先查询是是否有点赞记录，如果有则直接返回true
         //如果没有 修改两张表  idea_like——点赞关系表 和 和idea_info中的sum_like字段
+        $idea_id = $this->db->escape($idea_id);
+        $user_id=$this->db->escape($user_id);
         $sql="select * from idea_like where `idea_id`=".$idea_id." and `user_id`=".$liker_id;
         // 没有过点赞记录直接返回
         if(count($this->db->get_results($sql))==0)
@@ -60,13 +64,14 @@ class class_like
         }
     }
     public function get_sum_like($idea_id){
+        $idea_id = $this->db->escape($idea_id);
     	$sql="select sum_like from idea_info where `idea_id`=".$idea_id;
     	$result=$this->db->get_results($sql,ARRAY_A);
     	if($result[0]["sum_like"]>0){
     		return $result[0]["sum_like"];
     	}
     	else {
-    		return $result[0]["sum_like"];
+    		return 0;
     	}
     }
 }

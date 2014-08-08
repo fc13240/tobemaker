@@ -27,6 +27,7 @@ class class_comment
     //根据某个评论，获得其回复的评论对象，若没有，则返回0
     ///  有评论时候返回的是二维数组，result[i]['aa']表示第i条记录的aa字段值
     public function get_all_comment_by_ideaid($idea_id){
+         $idea_id = $this->db->escape($idea_id);
     	
     	$sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`receiver_id`=`user_info`.`user_id` order by `idea_comment`.`commnet_time` desc";
     	$result=$this->db->get_results($sql);
@@ -42,6 +43,10 @@ class class_comment
     // 一级评价  传进idea_id，评论者id和评论类容
     //  修改两张表： idea_info 和 idea_comment
     public function add_comment($idea_id,$user_id,$context){
+         $idea_id = $this->db->escape($idea_id);
+        $user_id = $this->db->escape($user_id);
+        $context=$this->db->escape($context);
+
     	$sql="update idea_info set sum_comment=sum_comment+1";
         $this->db->query($sql);
     	$sql="select user_id from idea_info where idea_id=".$idea_id;
@@ -58,6 +63,9 @@ class class_comment
   //    修改一张表：idea_comment 
     public function add_reply($comment_id,$user_id,$context){
     	// 第一步，获取主题id
+         $comment_id = $this->db->escape($comment_id);
+        $user_id = $this->db->escape($user_id);
+        $context=$this->db->escape($context);
     	$sql="select idea_id from idea_comment where id=".$comment_id;
     	$result=$this->db->get_results($sql);
     	$idea_id=$result['idea_id'];

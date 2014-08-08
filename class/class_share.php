@@ -25,7 +25,7 @@ class class_share
     }
     //获取分享信息，传入查看的idea_ id,有结果输出结果，没有结果返回0
     public function get_share_info_by_id($idea_id){
-
+        $idea_id = $this->db->escape($idea_id);
     	$sql="SELECT * FROM idea_share where idea_id=".$idea_id." order by share_time desc";
     	$result=$this->db->get_results($sql,ARRAY_A);
     	if(count($result)>0){
@@ -52,7 +52,10 @@ class class_share
 
 
     public function share_by_wechat($idea_id,$user_id){
+        $idea_id = $this->db->escape($idea_id);
+        $user_id = $this->db->escape($user_id);
     	// 第一步，取得idea_id 对应的想法名称
+
     	$sql_query="select * from idea_info where idea_id=".$idea_id;
     	$result=$this->db->get_results($sql_query,ARRAY_A);
     	$idea_name=$result[0]["name"];
@@ -64,7 +67,8 @@ class class_share
     }
     //微博分享修改数据
     public function share_by_weibo($idea_id,$user_id){
-
+        $idea_id = $this->db->escape($idea_id);
+        $user_id = $this->db->escape($user_id);
     	//
     	$sql_query="select * from idea_info where idea_id=".$idea_id;
     	$result=$this->db->get_results($sql_query,ARRAY_A);
