@@ -29,12 +29,11 @@
 <script src="assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
 <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
-<script src="assets/scripts/core/app.js"></script>
-<script>
-      jQuery(document).ready(function() {
-         App.init();
-      });
-   </script>
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<?=$page_level_plugins?>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<?=$page_level_script?>
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->

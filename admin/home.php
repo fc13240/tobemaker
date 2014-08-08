@@ -13,6 +13,18 @@ $a = new class_ad();
 $current_page = 'dashboard';
 $page_level = explode('-', $current_page);
 
+$page_level_style = '';
+
+$page_level_plugins = '';
+
+$page_level_script = '<script src="assets/scripts/core/app.js"></script>
+<script>
+jQuery(document).ready(function() {       
+   App.init();
+});
+</script>
+';
+
 include 'view/header.php';
 
 include 'view/leftnav.php';
