@@ -1,105 +1,60 @@
 
 	<!-- BEGIN SIDEBAR -->
 	<div class="page-sidebar-wrapper">
+		<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+		<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
 		<div class="page-sidebar navbar-collapse collapse">
 			<!-- BEGIN SIDEBAR MENU -->
-			<ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
+			<ul class="page-sidebar-menu " data-auto-scroll="true" data-slide-speed="200">
+				<!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
 				<li class="sidebar-toggler-wrapper">
 					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-					<div class="sidebar-toggler hidden-phone">
+					<div class="sidebar-toggler">
 					</div>
-					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+					<!-- END SIDEBAR TOGGLER BUTTON -->
 				</li>
+				<!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
 				<li class="sidebar-search-wrapper">
 					<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-					<form class="sidebar-search" action="" method="POST">
-						<div class="form-container">
-							<div class="input-box">
-								<a href="javascript:;" class="remove">
-								</a>
-								<input type="text" placeholder="Search..."/>
-								<input type="button" class="submit" value=" "/>
-							</div>
+					<!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+					<!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+					<form class="sidebar-search " action="extra_search.html" method="POST">
+						<a href="javascript:;" class="remove">
+						<i class="icon-close"></i>
+						</a>
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search...">
+							<span class="input-group-btn">
+							<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+							</span>
 						</div>
 					</form>
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				</li>
-                                <li class="start <?= @$page_level[0] == 'dashboard' ? 'active' : '' ?> ">
+				<li class="start <?= @$page_level[0] == 'dashboard' ? 'active' : '' ?>">
 					<a href="home.php">
-						<i class="fa fa-home"></i>
-						<span class="title">
-							控制台
-						</span>
+					<i class="icon-home"></i>
+					<span class="title">控制台</span>
 					</a>
 				</li>
-                                <li class="<?= @$page_level[0] == 'idea' ? 'active' : '' ?>">
+                                <li class="last <?= @$page_level[0] == 'idea' ? 'active open' : '' ?>">
 					<a href="javascript:;">
-						<i class="fa fa-shopping-cart"></i>
-						<span class="title">
-							项目
-						</span>
-						<span class="arrow ">
-						</span>
+					<i class="icon-basket"></i>
+					<span class="title">项目</span>
+					<span class="arrow <?= @$page_level[0] == 'idea' ? 'open' : '' ?>"></span>
 					</a>
-					<ul class="sub-menu">
+                                        <ul class="sub-menu">
                                                 <li class="<?= @$page_level[1] == 'idea_list' ? 'active' : '' ?>">
-							<a href="idea_list.php">
-								项目列表
-							</a>
-						</li>
-                                                <li class="<?= @$page_level[1] == '11' ? 'active' : '' ?>">
-							<a href="#">
-								审核项目
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								推荐项目
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								待产项目
-							</a>
+                                                        <a href="idea_list.php">
+							<i class="icon-home"></i>
+							项目列表</a>
 						</li>
 					</ul>
-				</li>
-				<li>
-					<a href="javascript:;">
-						<i class="fa fa-shopping-cart"></i>
-						<span class="title">
-							商品
-						</span>
-						<span class="arrow ">
-						</span>
-					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="#">
-								商品列表
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;">
-						<i class="fa fa-user"></i>
-						<span class="title">
-							用户
-						</span>
-						<span class="arrow ">
-						</span>
-					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="#">
-								用户列表
-							</a>
-						</li>
-					</ul>
+					
 				</li>
 			</ul>
 			<!-- END SIDEBAR MENU -->
 		</div>
 	</div>
 	<!-- END SIDEBAR -->
+        
