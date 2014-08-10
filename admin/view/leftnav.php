@@ -49,6 +49,11 @@
 							<i class="icon-home"></i>
 							项目列表</a>
 						</li>
+                                                <li class="<?= @$page_level[1] == 'idea_detail' ? 'active' : '' ?>">
+                                                        <a href="idea_detail.php">
+							<i class="icon-home"></i>
+							项目详情</a>
+						</li>
 					</ul>
 					
 				</li>
