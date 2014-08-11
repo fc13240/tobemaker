@@ -25,7 +25,7 @@ Version: 3.1.3
 <link href="./assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
-<?=$page_level_style?>
+<?=@$page_level_style?>
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="./assets/global/css/components.css" rel="stylesheet" type="text/css"/>
