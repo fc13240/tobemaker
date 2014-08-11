@@ -52,8 +52,10 @@ class class_comment
         $this->db->query($sql);
     	$sql="select user_id from idea_info where idea_id=".$idea_id;
     	$result=$this->db->get_results($sql);
-    	$receiver_id=$result['user_id'];
-    	$sql="insert into idea_comment values('$idea_id','$context','0',now(),null,'','$user_id','$receiver_id',0)";
+    	$receiver_id=$result[0]->user_id;
+        // $this->db->vardump($result);
+    	$sql="insert into idea_comment(`idea_id`,`context`,`comment_time`,`sender_id`) values(".$idea_id.",\"".$context."\",now(),".$user_id.")";
+        //echo $sql;
     	$result=$this->db->query($sql);
 
     }
@@ -71,6 +73,8 @@ class class_comment
     	$result=$this->db->get_results($sql);
     	$idea_id=$result['idea_id'];
 
+
+
     	// 第二步：添加回复记录
     	$sql="insert into idea_comment values('$idea_id','$context','1',now(),null,'','$user_id','$receiver_id',0)";
     	$result=$this->db->query($sql);
@@ -80,14 +84,11 @@ class class_comment
     	$id=$result[0]["id"];
     	$sql="update idea_comment set son_id=".$id;
         $this->db->query($sql);
-
     }
 
     public function delete_comment(){
 
     }
-
-
 }
 
 

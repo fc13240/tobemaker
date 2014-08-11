@@ -1,6 +1,6 @@
 <?php if ( ! defined('ROOT_PATH')) exit('No direct script access allowed');
 
-/**********************************************************************
+/****************************************************************
 *  ezSQL initialisation for mySQL
 */
 include_once ROOT_PATH."include/ez_sql_core.php";
