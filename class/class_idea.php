@@ -5,7 +5,7 @@
 */
 include_once ROOT_PATH."include/ez_sql_core.php";
 include_once ROOT_PATH."include/ez_sql_mysql.php";
-include_once ROOT_PATH."class/class_page_support.php";
+include_once ROOT_PATH."class/class_pagesurpport.php";
 
 class class_idea
 {
@@ -16,6 +16,7 @@ class class_idea
         // Initialise database object and establish a connection
         // at the same time - db_user / db_password / db_name / db_host
         $this->db = new ezSQL_mysql(DATABASE_USER,DATABASE_PASSWORD, DATABASE_NAME, DATABASE_HOST);
+        $this->db->query("SET NAMES utf8");
     }
 
     // ---------  增删改查基本操作 - 开始
@@ -55,6 +56,17 @@ class class_idea
     public function delete(){
     }
     
+    public function get_idea_by_id($idea_id){
+      $sql="SELECT * from idea_info where idea_id=".$idea_id;
+      $result = $this->db->get_results($sql, ARRAY_A);  
+        if(count($result)>0) 
+        {return $result;
+        }
+        else{
+          return false;
+        }
+
+    }
     // ---------  增删改查基本操作 - 结束
     
     // ---------  审核相关操作 - 开始

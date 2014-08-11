@@ -19,6 +19,7 @@ class class_comment
         // Initialise database object and establish a connection
         // at the same time - db_user / db_password / db_name / db_host
         $this->db = new ezSQL_mysql(DATABASE_USER,DATABASE_PASSWORD, DATABASE_NAME, DATABASE_HOST);
+        $this->db->query("SET NAMES utf8");
     }
 
     public function get_reply_by_comment_id($comment_id){
@@ -29,7 +30,7 @@ class class_comment
     public function get_all_comment_by_ideaid($idea_id){
          $idea_id = $this->db->escape($idea_id);
     	
-    	$sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`receiver_id`=`user_info`.`user_id` order by `idea_comment`.`commnet_time` desc";
+    	$sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc";
     	$result=$this->db->get_results($sql);
     	if(count($result)>0)
     	{
