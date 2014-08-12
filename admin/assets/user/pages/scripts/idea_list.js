@@ -1,5 +1,7 @@
 var TableManaged = function () {
 
+    var ideaProcessUrl = "http://localhost/tobemaker/api/idea.php";
+
     var initTable = function () {
 
         
@@ -9,7 +11,7 @@ var TableManaged = function () {
         table.dataTable({
             "serverSide": true,
             "ajax": {
-                "url": 'http://localhost/tobemaker/api/idea.php',
+                "url": ideaProcessUrl,
                 "type": 'post',
                 "timeout": 20000,
                 "data": function (data) { // add request parameters before submit
@@ -72,8 +74,46 @@ var TableManaged = function () {
 //                    tableInitialized = true; // set table initialized
                     table.show(); // display table
 //                }
-                Metronic.initUniform($('input[type="checkbox"]', table)); // reinitialize uniform checkboxes on each table reload
+                
+                Metronic.initUniform($('input[type="checkbox"]', table)); // reinitialize uniform checkboxes on each table reload                
 //                countSelectedRecords(); // reset selected records indicator
+
+                // 注册操作回调函数
+                table.find('.idea-pass').click(function(){
+                    var $tr = $(this).parents('tr');
+                    var ideaId = $tr.find('input[type="checkbox"]').val();
+//                    alert("批准 "+ideaId);
+                    $.post(ideaProcessUrl, $.param({'action':'idea_pass', 'ideaId':ideaId}), function(data, textStatus){
+                        if (data.status == "success"){
+                            $status = $tr.find('.idea-status');
+                            $status.removeClass();
+                            $status.addClass('label label-sm label-success idea-status');
+                            $status.text('已批准');
+                        }else{
+                            alert("状态修改失败");                            
+                        }
+                    });
+                });
+                
+                table.find('.idea-reject').click(function(){
+                    var $tr = $(this).parents('tr');
+                    var ideaId = $tr.find('input[type="checkbox"]').val();
+//                    alert("拒绝 "+ideaId);
+                    $.post(ideaProcessUrl, $.param({'action':'idea_reject', 'ideaId':ideaId}), function(data, textStatus){
+                        if (data.status == "success"){
+                            $status = $tr.find('.idea-status');
+                            $status.removeClass();
+                            $status.addClass('label label-sm label-danger idea-status');
+                            $status.text('已拒绝');
+                        }else{
+                            alert("状态修改失败");                            
+                        }
+                    });
+                });
+                
+                table.find('.idea-view').click(function(){
+                    var ideaId = $(this).parents('tr').find('input[type="checkbox"]').val();
+                });
             },
         });
 

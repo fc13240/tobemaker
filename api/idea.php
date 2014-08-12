@@ -31,10 +31,9 @@ $end = $end > $iTotalRecords ? $iTotalRecords : $end;
 
 // 随机生成数据
 $status_list = array(
-  array("success" => "Pending"),
-  array("info" => "Closed"),
-  array("danger" => "On Hold"),
-  array("warning" => "Fraud")
+  array("success" => "已批准"),
+  array("danger" => "已拒绝"),
+  array("warning" => "等待审核")
 );
 
 for($i = $iDisplayStart; $i < $end; $i++) {
@@ -46,10 +45,10 @@ for($i = $iDisplayStart; $i < $end; $i++) {
     '12/09/2013',
     'Jhon Doe',
     'Jhon Doe',
-    '<span class="label label-sm label-'.(key($status)).'">'.(current($status)).'</span>',
-    '<a href="javascript:;" class="btn btn-xs blue"><i class="fa fa-search"></i>批准</a>'
-      . '<a href="javascript:;" class="btn btn-xs red"><i class="fa fa-search"></i>拒绝</a>'
-      . '<a href="javascript:;" class="btn btn-xs default"><i class="fa fa-search"></i>查看</a>',
+    '<span class="label label-sm label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
+    '<a href="javascript:;" class="btn btn-xs blue idea-pass"><i class="fa fa-search"></i>批准</a>'
+      . '<a href="javascript:;" class="btn btn-xs red idea-reject"><i class="fa fa-search"></i>拒绝</a>'
+      . '<a href="./idea_detail.php?ideaId='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>查看</a>',
   );
 }
 
