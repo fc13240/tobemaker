@@ -139,7 +139,7 @@ var TableManaged = function () {
             });
 //            console.log(ideaIds);
             $.post(ideaProcessUrl, $.param({'action':'idea_pass', 'ideaId':ideaIds }), function(data, textStatus){
-                if (data.status != "success"){
+                if (data.status == "success"){
                     $rows.each(function(){
                         $status = $(this).parents('tr').find('.idea-status');
                         $status.removeClass();
@@ -161,7 +161,7 @@ var TableManaged = function () {
             });
 //            console.log(ideaIds);
             $.post(ideaProcessUrl, $.param({'action':'idea_reject', 'ideaId':ideaIds }), function(data, textStatus){
-                if (data.status != "success"){
+                if (data.status == "success"){
                     $rows.each(function(){
                         $status = $(this).parents('tr').find('.idea-status');
                         $status.removeClass();
