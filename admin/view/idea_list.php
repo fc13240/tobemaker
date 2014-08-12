@@ -159,7 +159,7 @@
 					<div class="portlet box grey-cascade">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-globe"></i>Managed Table
+								<i class="fa fa-globe"></i>项目列表
 							</div>
 							<div class="tools">
 								<a href="javascript:;" class="collapse">
@@ -188,7 +188,7 @@
 											</button>
                                                                                 </div>
                                                                                 <div class="btn-group">
-                                                                                        <button id="sample_editable_1_fail" class="btn red">
+                                                                                        <button id="sample_editable_1_reject" class="btn red">
 											拒绝项目 <i class="fa fa-plus"></i>
 											</button>
                                                                                 </div>
@@ -215,11 +215,11 @@
 									</div>
 								</div>
 							</div>
-							<table class="table table-striped table-bordered table-hover" id="sample_1">
+							<table class="table table-striped table-bordered table-hover" id="idea_list_table">
 							<thead>
 							<tr>
 								<th class="table-checkbox">
-									<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/>
+									<input type="checkbox" class="group-checkable" data-set="#idea_list_table .checkboxes"/>
 								</th>
 								<th>
 									 Username
