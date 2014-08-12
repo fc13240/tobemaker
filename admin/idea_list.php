@@ -21,7 +21,6 @@ $page_level_script = '<script src="./assets/global/scripts/metronic.js" type="te
 <script src="./assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="./assets/global/scripts/datatable.js"></script>
 <script src="./assets/user/pages/scripts/idea_list.js"></script>
 <script>
 jQuery(document).ready(function() {       

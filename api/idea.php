@@ -45,7 +45,7 @@ for($i = $iDisplayStart; $i < $end; $i++) {
   $status = $status_list[rand(0, 2)];
   $id = ($i + 1);
   $records["data"][] = array(
-    '<input type="checkbox" name="id[]" value="'.$id.'"/>',
+    '<input class="checkboxes" type="checkbox" name="id[]" value="'.$id.'"/>',
     $id,
     '12/09/2013',
     'Jhon Doe',
