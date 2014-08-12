@@ -83,7 +83,7 @@ var TableManaged = function () {
                     var $tr = $(this).parents('tr');
                     var ideaId = $tr.find('input[type="checkbox"]').val();
 //                    alert("批准 "+ideaId);
-                    $.post(ideaProcessUrl, $.param({'action':'idea_pass', 'ideaId':ideaId}), function(data, textStatus){
+                    $.post(ideaProcessUrl, $.param({'action':'idea_pass', 'ideaId':[ideaId]}), function(data, textStatus){
                         if (data.status == "success"){
                             $status = $tr.find('.idea-status');
                             $status.removeClass();
@@ -99,7 +99,7 @@ var TableManaged = function () {
                     var $tr = $(this).parents('tr');
                     var ideaId = $tr.find('input[type="checkbox"]').val();
 //                    alert("拒绝 "+ideaId);
-                    $.post(ideaProcessUrl, $.param({'action':'idea_reject', 'ideaId':ideaId}), function(data, textStatus){
+                    $.post(ideaProcessUrl, $.param({'action':'idea_reject', 'ideaId':[ideaId]}), function(data, textStatus){
                         if (data.status == "success"){
                             $status = $tr.find('.idea-status');
                             $status.removeClass();

@@ -2,6 +2,11 @@
   /* 
    * Paging
    */
+//if (array_key_exists('action', $_REQUEST)){
+//
+//    var_dump($_REQUEST);
+//    exit();
+//}
 
 // 总项目数
 $iTotalRecords = 208;
