@@ -32,10 +32,10 @@
 <script src="./assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<?=$page_level_plugins?>
+<?=@$page_level_plugins?>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<?=$page_level_script?>
+<?=@$page_level_script?>
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
