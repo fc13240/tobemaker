@@ -19,6 +19,7 @@ class class_comment
         // Initialise database object and establish a connection
         // at the same time - db_user / db_password / db_name / db_host
         $this->db = new ezSQL_mysql(DATABASE_USER,DATABASE_PASSWORD, DATABASE_NAME, DATABASE_HOST);
+        $this->db->query("SET NAMES utf8");
     }
 
     public function get_reply_by_comment_id($comment_id){
@@ -29,7 +30,7 @@ class class_comment
     public function get_all_comment_by_ideaid($idea_id){
          $idea_id = $this->db->escape($idea_id);
     	
-    	$sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`receiver_id`=`user_info`.`user_id` order by `idea_comment`.`commnet_time` desc";
+    	$sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc";
     	$result=$this->db->get_results($sql);
     	if(count($result)>0)
     	{
@@ -51,8 +52,10 @@ class class_comment
         $this->db->query($sql);
     	$sql="select user_id from idea_info where idea_id=".$idea_id;
     	$result=$this->db->get_results($sql);
-    	$receiver_id=$result['user_id'];
-    	$sql="insert into idea_comment values('$idea_id','$context','0',now(),null,'','$user_id','$receiver_id',0)";
+    	$receiver_id=$result[0]->user_id;
+        // $this->db->vardump($result);
+    	$sql="insert into idea_comment(`idea_id`,`context`,`comment_time`,`sender_id`) values(".$idea_id.",\"".$context."\",now(),".$user_id.")";
+        //echo $sql;
     	$result=$this->db->query($sql);
 
     }
@@ -70,6 +73,8 @@ class class_comment
     	$result=$this->db->get_results($sql);
     	$idea_id=$result['idea_id'];
 
+
+
     	// 第二步：添加回复记录
     	$sql="insert into idea_comment values('$idea_id','$context','1',now(),null,'','$user_id','$receiver_id',0)";
     	$result=$this->db->query($sql);
@@ -79,14 +84,11 @@ class class_comment
     	$id=$result[0]["id"];
     	$sql="update idea_comment set son_id=".$id;
         $this->db->query($sql);
-
     }
 
     public function delete_comment(){
 
     }
-
-
 }
 
 
