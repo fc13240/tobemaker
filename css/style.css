@@ -67,17 +67,15 @@ ul li{
     width: 100%;
     min-width: 1000px;
 }
-#top iframe{
-    height: 84px;
+#top{
+    height: 64px;
 }
 #center{
 
 }
 #footer{
-
-}
-#footer iframe{
     height: 80px;
+    overflow: hidden;
 }
 
 .top{
