@@ -26,14 +26,24 @@ function get_detail_by_idea_id($idea_id)
   echo json_encode($cords);
 }
 
+function update_one_idea( $idea_id,$arr){
+  $class_idea->update_idea($idea_id,$arr);
+  // 返回数据
+  $res= array();
+  $res['status']='success';
+  echo json_encode($res);
+}
+
 $status_list = array(
+  array("notready" => "等待完善"),
+  array("warning" => "等待审核"),
   array("success" => "已批准"),
-  array("danger" => "已拒绝"),
-  array("warning" => "等待审核")
+  array("danger" => "已拒绝")
+  
 );
 //如果是修改请求
 //则做出相应修改
-if(isset($_POST["action"])){
+if(isset($_POST["action"])&&isset($_POST["ideaId"])){
   $act=$_POST["action"];
   $idea_id=$_POST["ideaId"];
   $num=count($idea_id);
@@ -48,7 +58,7 @@ if(isset($_POST["action"])){
     }
       $res= array();
       $res['status']='success';
-     echo json_encode($res);
+      echo json_encode($res);
      // exit();
   }
   elseif ($act=="idea_reject") {
@@ -63,11 +73,16 @@ if(isset($_POST["action"])){
      echo json_encode($res);
   }
 }
+
+elseif(isset($_POST["action"])&&empty($_POST["ideaId"])){
+  $res= array();
+     $res['status']='error';
+     echo json_encode($res);
+}
+
 else {
   # code...
 // 总项目数
-
-
 // 当前显示数量
 $iDisplayLength = intval($_REQUEST['length']);
 $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength; 
@@ -97,15 +112,15 @@ $datalist=$class_idea->get_waiting($iDisplayStart,$real_length);
 for($i = 0; $i < $real_length; $i++) {
   if($datalist[$i]["idea_status"]==1)
   {
-    $status = $status_list[2];
+    $status = $status_list[1];
   }
   elseif($datalist[$i]["idea_status"]==2)
   {
-    $status = $status_list[0];
+    $status = $status_list[2];
   }
   elseif($datalist[$i]["idea_status"]==3)
   {
-    $status = $status_list[1];
+    $status = $status_list[3];
   }
   $id = $datalist[$i]["idea_id"];
   $records["data"][] = array(
@@ -120,6 +135,7 @@ for($i = 0; $i < $real_length; $i++) {
       . '<a href="./idea_detail.php?ideaId='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>查看</a>',
   );
 }
+
 
 if (isset($_REQUEST["customActionType"]) && $_REQUEST["customActionType"] == "group_action") {
   $records["customActionStatus"] = "OK"; // pass custom message(useful for getting status of group actions)

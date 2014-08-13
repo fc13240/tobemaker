@@ -11,9 +11,9 @@
       include_once ROOT_PATH."include/ez_sql_mysql.php";
       $db = new ezSQL_mysql(DATABASE_USER,DATABASE_PASSWORD, DATABASE_NAME, DATABASE_HOST);
       $db->query("SET NAMES 'utf8'");
-      $sql_query="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=1 order by `idea_comment`.`comment_time` desc";
-      $res=$db->get_results($sql_query);
-      $db->vardump($res);
+    //  $sql_query="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=1 order by `idea_comment`.`comment_time` desc";
+    //  $res=$db->get_results($sql_query);
+      //$db->vardump($res);
       /*$i=2;
       while ($i<20) {
             $cont="不是沙发".$i;
@@ -25,5 +25,11 @@
              $db->query($ins);
              $i++;
       }
-      */ 
+      */
+      $arry=array(
+        "kk"=>"ff",
+        "iiii"=>"asfads"
+        );
+      $aa=array_values($arry);
+      echo $aa[0];
 ?>
