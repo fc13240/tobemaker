@@ -110,21 +110,21 @@
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			Form Wizard <small>form wizard sample</small>
+			项目详情
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
 						<i class="fa fa-home"></i>
-						<a href="index.html">Home</a>
+						<a href="index.php">首页</a>
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">Form Stuff</a>
+						<a href="#">项目</a>
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">Form Wizard</a>
+						<a href="#">项目详情</a>
 					</li>
 				</ul>
 				<div class="page-toolbar">
@@ -158,7 +158,7 @@
 					<div class="portlet box blue" id="form_wizard_1">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-gift"></i> Form Wizard - <span class="step-title">
+								<i class="fa fa-gift"></i> 项目详情 - <span class="step-title">
 								Step 1 of 4 </span>
 							</div>
 							<div class="tools hidden-xs">
@@ -182,7 +182,7 @@
 												<span class="number">
 												1 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> Account Setup </span>
+												<i class="fa fa-check"></i> 新建项目 </span>
 												</a>
 											</li>
 											<li>
@@ -190,7 +190,7 @@
 												<span class="number">
 												2 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> Profile Setup </span>
+												<i class="fa fa-check"></i> 等待审核 </span>
 												</a>
 											</li>
 											<li>
@@ -198,7 +198,7 @@
 												<span class="number">
 												3 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> Billing Setup </span>
+												<i class="fa fa-check"></i> 集赞中 </span>
 												</a>
 											</li>
 											<li>
@@ -206,7 +206,15 @@
 												<span class="number">
 												4 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> Confirm </span>
+												<i class="fa fa-check"></i> 等待生产 </span>
+												</a>
+											</li>
+                                                                                        <li>
+												<a href="#tab5" data-toggle="tab" class="step">
+												<span class="number">
+												5 </span>
+												<span class="desc">
+												<i class="fa fa-check"></i> 完成生产/下线 </span>
 												</a>
 											</li>
 										</ul>

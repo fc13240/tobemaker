@@ -32,7 +32,7 @@
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				</li>
 				<li class="start <?= @$page_level[0] == 'dashboard' ? 'active' : '' ?>">
-					<a href="home.php">
+					<a href="index.php">
 					<i class="icon-home"></i>
 					<span class="title">控制台</span>
 					</a>

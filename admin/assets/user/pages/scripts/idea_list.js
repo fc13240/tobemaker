@@ -1,6 +1,6 @@
 var TableManaged = function () {
 
-    var ideaProcessUrl = "http://www.cc.com/api/idea.php";
+    var ideaProcessUrl = "http://localhost/tobemaker/api/idea.php";
 
     var countSelected = function(){
         var $table = $('#idea_list_table');

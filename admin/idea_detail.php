@@ -22,15 +22,15 @@ $page_level_script = '<script src="./assets/global/scripts/metronic.js" type="te
 <script src="./assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="./assets/admin/pages/scripts/form-wizard.js"></script>
+<script src="./assets/user/pages/scripts/idea_detail.js"></script>
 <script>
 jQuery(document).ready(function() {       
-   // initiate layout and plugins
-   Metronic.init(); // init metronic core components
-Layout.init(); // init current layout
-QuickSidebar.init(); // init quick sidebar
-Demo.init(); // init demo features
-   FormWizard.init();
+    // initiate layout and plugins
+    Metronic.init(); // init metronic core components
+    Layout.init(); // init current layout
+    QuickSidebar.init(); // init quick sidebar
+    Demo.init(); // init demo features
+    FormWizard.init();
 });
 </script>
 ';
