@@ -1,15 +1,71 @@
 <?php
   /* 
    * Paging
+
    */
+include_once "../config.php";
+include_once ROOT_PATH."class/class_idea.php";
+$class_idea=new class_idea();
+$iTotalRecords =$class_idea->get_num_of_waiting();
+
 //if (array_key_exists('action', $_REQUEST)){
 //
 //    var_dump($_REQUEST);
 //    exit();
 //}
+function get_detail_by_idea_id($idea_id)
+{
 
+  //获取数据
+  $requests=$class_idea->get_idea_by_id($idea_id);
+
+  //组织数据
+  $cords = array();
+
+  //返回数据
+  echo json_encode($cords);
+}
+
+$status_list = array(
+  array("success" => "已批准"),
+  array("danger" => "已拒绝"),
+  array("warning" => "等待审核")
+);
+//如果是修改请求
+//则做出相应修改
+if(isset($_POST["action"])){
+  $act=$_POST["action"];
+  $idea_id=$_POST["ideaId"];
+  $num=count($idea_id);
+  $i=0;
+
+  if($act=="idea_pass")
+  {
+    while ( $i< $num) {
+      # code...
+      $class_idea->mark_pass($idea_id[$i]);
+      $i=$i+1;
+    }
+      $res= array();
+      $res['status']='success';
+     echo json_encode($res);
+     // exit();
+  }
+  elseif ($act=="idea_reject") {
+    # code...
+    while ( $i< $num) {
+      # code...
+      $class_idea->mark_fail($idea_id[$i]);
+      $i=$i+1;
+    }
+     $res= array();
+     $res['status']='success';
+     echo json_encode($res);
+  }
+}
+else {
+  # code...
 // 总项目数
-$iTotalRecords = 208;
 
 
 // 当前显示数量
@@ -17,6 +73,7 @@ $iDisplayLength = intval($_REQUEST['length']);
 $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength; 
 
 // 开始位置
+
 $iDisplayStart = intval($_REQUEST['start']);
 
 // Draw counter. 
@@ -32,24 +89,31 @@ $records["data"] = array();
 
 $end = $iDisplayStart + $iDisplayLength;
 $end = $end > $iTotalRecords ? $iTotalRecords : $end;
+$real_length=$end-$iDisplayStart;
 
+ // 获取数据
 
-// 随机生成数据
-$status_list = array(
-  array("success" => "已批准"),
-  array("danger" => "已拒绝"),
-  array("warning" => "等待审核")
-);
-
-for($i = $iDisplayStart; $i < $end; $i++) {
-  $status = $status_list[rand(0, 2)];
-  $id = ($i + 1);
+$datalist=$class_idea->get_waiting($iDisplayStart,$real_length);
+for($i = 0; $i < $real_length; $i++) {
+  if($datalist[$i]["idea_status"]==1)
+  {
+    $status = $status_list[2];
+  }
+  elseif($datalist[$i]["idea_status"]==2)
+  {
+    $status = $status_list[0];
+  }
+  elseif($datalist[$i]["idea_status"]==3)
+  {
+    $status = $status_list[1];
+  }
+  $id = $datalist[$i]["idea_id"];
   $records["data"][] = array(
     '<input class="checkboxes" type="checkbox" name="id[]" value="'.$id.'"/>',
     $id,
-    '12/09/2013',
-    'Jhon Doe',
-    'Jhon Doe',
+    $datalist[$i]["name"],
+    $datalist[$i]["user_name"],
+    $datalist[$i]["brief"],
     '<span class="label label-sm label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
     '<a href="javascript:;" class="btn btn-xs blue idea-pass"><i class="fa fa-search"></i>批准</a>'
       . '<a href="javascript:;" class="btn btn-xs red idea-reject"><i class="fa fa-search"></i>拒绝</a>'
@@ -61,9 +125,8 @@ if (isset($_REQUEST["customActionType"]) && $_REQUEST["customActionType"] == "gr
   $records["customActionStatus"] = "OK"; // pass custom message(useful for getting status of group actions)
   $records["customActionMessage"] = "Group action successfully has been completed. Well done!"; // pass custom message(useful for getting status of group actions)
 }
-
 $records["draw"] = $sEcho;
 $records["recordsTotal"] = $iTotalRecords;
 $records["recordsFiltered"] = $iTotalRecords;
-
 echo json_encode($records);
+}

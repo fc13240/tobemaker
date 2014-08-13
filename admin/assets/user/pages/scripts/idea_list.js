@@ -1,6 +1,6 @@
 var TableManaged = function () {
 
-    var ideaProcessUrl = "http://localhost/tobemaker/api/idea.php";
+    var ideaProcessUrl = "http://www.cc.com/api/idea.php";
 
     var countSelected = function(){
         var $table = $('#idea_list_table');
@@ -110,14 +110,14 @@ var TableManaged = function () {
                 }else{
                     alert("状态修改失败");                            
                 }
-            });
+            },'json');
         });
         
         // 注册点击拒绝事件
         table.on('click', 'tbody tr .idea-reject', function(){
             var $tr = $(this).parents('tr');
             var ideaId = $tr.find('input[type="checkbox"]').val();
-//            alert("拒绝 "+ideaId);
+//         alert("拒绝 "+ideaId);
             $.post(ideaProcessUrl, $.param({'action':'idea_reject', 'ideaId':[ideaId]}), function(data, textStatus){
                 if (data.status == "success"){
                     $status = $tr.find('.idea-status');
@@ -127,7 +127,7 @@ var TableManaged = function () {
                 }else{
                     alert("状态修改失败");                            
                 }
-            });
+            },'json');
         });
         
         // 注册多选通过事件
@@ -149,7 +149,7 @@ var TableManaged = function () {
                 }else{
                     alert("状态修改失败");
                 }
-            });
+            },'json');
         });
         
         // 注册多选拒绝事件
@@ -171,7 +171,7 @@ var TableManaged = function () {
                 }else{
                     alert("状态修改失败");
                 }
-            });
+            },'json');
         });
 
         // 注册全选事件
