@@ -110,21 +110,21 @@
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			Blank Page <small>blank page</small>
+			项目列表
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
 					<li>
 						<i class="fa fa-home"></i>
-						<a href="index.html">Home</a>
+						<a href="index.php">首页</a>
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">Page Layouts</a>
+						<a href="#">项目</a>
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">Blank Page</a>
+						<a href="#">项目列表</a>
 					</li>
 				</ul>
 				<div class="page-toolbar">
