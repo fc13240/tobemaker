@@ -222,21 +222,21 @@
 									<input type="checkbox" class="group-checkable" data-set="#idea_list_table .checkboxes"/>
 								</th>
 								<th>
-									 Username
+									 想法id
 								</th>
 								<th>
-									 Email
+									 想法名称
 								</th>
 								<th>
-									 Points
+									 想法作者
 								</th>
 								<th>
-									 Joined
+									 简介
 								</th>
 								<th>
 									 状态
 								</th>
-                                                                <th>
+                                <th>
 									 操作
 								</th>
 							</tr>
