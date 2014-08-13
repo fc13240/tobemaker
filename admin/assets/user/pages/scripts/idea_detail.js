@@ -15,6 +15,9 @@ var FormWizard = function () {
             var success = $('.alert-success', form);
             var navigation = $('.steps', form);
             var bar = $('.progress-bar', form);
+            
+            // ajax 获取项目当前状态
+            var currentStepId = 0;
 
             form.validate({
                 doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
@@ -159,23 +162,29 @@ var FormWizard = function () {
             }
 
             // index: 0 ~ total-1
-            var handleTitle = function(tab, navigation, index) {
+            var handleTitle = function(navigation, index, glanceIndex) {
                 var total = navigation.find('li').length;
                 // current: 1 ~ total
                 var current = index + 1;
+                var glanceId = glanceIndex + 1;
                 // set wizard title
                 $('.step-title', $('#form_wizard_1')).text('Step ' + (current) + ' of ' + total);
                 // set done steps
                 var li_list = navigation.find('li');
+                
+//                alert(glance);
+                
                 li_list.removeClass("done");
                 li_list.removeClass("active");
                 for (var i = 0; i < index; i++) {
-                    jQuery(li_list[i]).addClass("done");
+                    $(li_list[i]).addClass("done");
                 }
-                jQuery(li_list[index]).addClass("active");
+                $('a' , $(li_list[index])).tab('show');
+//                $(li_list[index]).addClass("active");
+//                $('a' , $(li_list[index])).tab('show');
                 
                 // set up progress bar
-                var percent = Math.round((current)/total*100).toString();
+                var percent = Math.round((glanceId)/total*100).toString();
                 bar.css('width', percent+"%");
                 
 //                
@@ -199,36 +208,11 @@ var FormWizard = function () {
             
             $('li', navigation).on('click', function(){
                 var clickIndex = $('li', navigation).index($(this));
-                handleTitle('','', clickIndex);
+                handleTitle(navigation, currentStepId, clickIndex);
             });
             
-            $('#form_wizard_1').bootstrapWizard({
-                onTabClick: function (tab, navigation, index, clickedIndex) {
-                    success.hide();
-                    error.hide();
-                    
-                    handleTitle(tab, navigation, clickedIndex);
-                },
-                onTabShow: function (tab, navigation, index) {
-                    var total = navigation.find('li').length;
-                    var current = index + 1;
-                    var $percent = (current / total) * 100;
-                    $('#form_wizard_1').find('.progress-bar').css({
-                        width: $percent + '%'
-                    });
-                }
-            });
-            
-//            var goToStep = function (stepId){
-//                handleTitle(stepId);
-//            }
-//            
-//            // 获取数据
-//            var currentStep = 1;
-//            
-//            // 执行操作
-//            goToStep(currentStep);
-
+            handleTitle(navigation, currentStepId, currentStepId);
+           
         }
 
     };
