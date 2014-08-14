@@ -1,6 +1,6 @@
 <div class="top">
     <div class="middle">
-        <a href="index.html" target="_top" class="logo"><img src="asset/6.png" alt=""></a>
+        <a href="index.php" target="_top" class="logo"><img src="asset/6.png" alt=""></a>
         <div class="nav">
             <ul>
                 <li><a class=" <?= @$page_level[0] == 'share' ? 'active' : '' ?> " href="share.php" target="_top">分享</a></li>

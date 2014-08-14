@@ -3,3 +3,4 @@ tmp/*
 -tmp/index.php
 upload/*
 -upload/index.php
+.project
