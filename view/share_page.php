@@ -51,21 +51,21 @@
 
             </div>
             <div class="form">
-                <form action="javascript:void 0">
+                <form id="idea-form" method="GET" action="">
                     <label>标题</label>
-                    <input type="text">
+                    <input name="title" type="text">
                     <label>作者<span>（选填）</span></label>
-                    <input type="text">
+                    <input name="author" type="text">
                     <label>封面<span>（大图片建议尺寸 900像素*500像素）</span></label>
                     <div class="fileupload">
                         <div>上传</div>
                         <input type="file">
                     </div>
-                    <input type="checkbox"><span>封面图片显示在正文中</span>
+                    <input name="cover-display" type="checkbox"><span>封面图片显示在正文中</span>
                     <a href="javascript:void 0" class="a1">添加摘要</a>
                     <label class="last">正文</label>
                     <div class="textdiv">
-                        <textarea id="content"></textarea>
+                        <textarea name="content" id="content"></textarea>
                     </div>
 
                 </form>
@@ -88,7 +88,15 @@
     <?php include "footer.php" ?>
 </div>
 <script>
-
+$(document).ready(function(){
+    $('button.save').click(function(){
+        $('#idea-form').submit();
+    });
+    
+    $('button.view').click(function(){
+        alert('结果预览');
+    });
+});
 
 </script>
 </body>
