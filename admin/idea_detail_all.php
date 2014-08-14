@@ -11,28 +11,26 @@ $page_level_style = '
 ';
 
 $page_level_plugins = '
-<script type="text/javascript" src="./assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="./assets/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
-<script type="text/javascript" src="./assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script type="text/javascript" src="./assets/global/plugins/select2/select2.min.js"></script>
-
 ';
 
-$page_level_script = '<script src="./assets/global/scripts/metronic.js" type="text/javascript"></script>
+$page_level_script = '
+<script src="./assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="./assets/user/pages/scripts/idea_detail.js"></script>
+<script src="./assets/admin/pages/scripts/form-samples.js"></script>
 <script>
-jQuery(document).ready(function() {       
-    // initiate layout and plugins
-    Metronic.init(); // init metronic core components
+jQuery(document).ready(function() {    
+   // initiate layout and plugins
+   Metronic.init(); // init metronic core components
     Layout.init(); // init current layout
     QuickSidebar.init(); // init quick sidebar
     Demo.init(); // init demo features
-    FormWizard.init();
+   FormSamples.init();
 });
 </script>
+
 ';
 
 include 'view/header.php';
