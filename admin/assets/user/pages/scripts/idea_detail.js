@@ -17,7 +17,7 @@ var FormWizard = function () {
             var bar = $('.progress-bar', form);
             
             // ajax 获取项目当前状态
-            var currentStepId = 0;
+            var currentStepId = 1;
 
             form.validate({
                 doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
