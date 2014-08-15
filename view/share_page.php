@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>share</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <?php include "top_css.php" ?>
     <link rel="stylesheet" type="text/css" href="css/redactor.css">
 
     <script src="js/jquery.min.js"></script>
