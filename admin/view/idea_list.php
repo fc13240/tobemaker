@@ -215,7 +215,7 @@
 									</div>
 								</div>
 							</div>
-							<table class="table table-striped table-bordered table-hover" id="idea_list_table">
+                                                    <table class="table table-striped table-bordered table-hover" id="idea_list_table" data-url="<?=BASE_URL?>api/idea.php">
 							<thead>
 							<tr>
 								<th class="table-checkbox">
