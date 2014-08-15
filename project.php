@@ -13,7 +13,7 @@ $class_comment=new class_comment();
     if(isset($_POST["saytext"])){
        
        $class_comment->add_comment($_POST["idea_id"],$_POST["user_id"],$_POST["saytext"]);
-       $url="Location:http://www.cc.com/project.php?idea_id=".$_POST["idea_id"];
+       $url="Location:".BASE_URL."project.php?idea_id=".$_POST["idea_id"];
 
        header($url);
        exit();
@@ -21,7 +21,7 @@ $class_comment=new class_comment();
     else{
     }
     if(empty($_GET["idea_id"])){   // 默认显示主页
-    	header('Location: http://www.cc.com');
+    	header('Location: '.BASE_URL);
     }
     else{
     	$idea_id=$_GET["idea_id"]; //有请求的idea

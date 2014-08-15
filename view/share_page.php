@@ -115,6 +115,10 @@ $(document).ready(function(){
     
     $('button.view').click(function(){
         alert('结果预览');
+        $.post('project.php', {'author':$('#author').val()}, function(data, textStatus){
+            var win=window.open("about blank");
+            win.document.write(data);
+        });
     });
     
 });
