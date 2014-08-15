@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-mine</title>
     <?php include "top_css.php" ?>
-
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css"/>
 </head>
 <body>
 <div id="top">
@@ -21,8 +21,9 @@
             <br/>
             <p>从来不在意朋友不帅 因为都没我帅</p>
             <br/>
-            <a href="javascript:void 0"><img src="asset/10.png" alt=""></a>
-            <a href="javascript:void 0"><img src="asset/11.png" alt=""></a>
+            <a><i class="fa fa-plus"></i></a>
+            <a><i class="fa fa-envelope-o"></i></a>
+            <a><i class="fa fa-pencil"></i></a>
 
         </div>
 

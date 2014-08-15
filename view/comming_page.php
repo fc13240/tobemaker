@@ -144,6 +144,24 @@
     <?php include "footer.php" ?>
 </div>
 
+<!--换页按钮定位相关js-->
+<!--需要jQuery-->
+<!--监听浏览器长宽改变-->
+
+<script type="text/javascript" charset="utf-8">
+	function a(){
+		$(".prev").height( $(window).height() );
+		$(".prev").css("line-height" , $(window).height()+"px");
+		$(".prev").css("left" , ($(window).width() - 1020)/2 - 70 +"px");
+		$(".next").height( $(window).height() );
+		$(".next").css("line-height" , $(window).height()+"px");
+		$(".next").css("left" , ($(window).width() - 1020)/2 + 1040 +"px");
+	}
+	window.onload=function(){  
+		window.onresize= a;
+		a();
+	}
+</script>
 
 </body>
 </html>
