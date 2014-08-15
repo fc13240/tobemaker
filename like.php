@@ -5,6 +5,7 @@
       include ROOT_PATH."/class/class_comment.php";
         //获取数据
 
+
       //  执行相关操作
       header("Content-type: text/html; charset=utf-8"); 
       include_once ROOT_PATH."include/ez_sql_core.php";
@@ -26,10 +27,12 @@
              $i++;
       }
       */
+      $idea_id=3;
       $arry=array(
         "kk"=>"ff",
         "iiii"=>"asfads"
         );
-      $aa=array_values($arry);
-      echo $aa[0];
+      $idea=new class_idea();
+      $idea->update_idea($idea_id,$arry);
+
 ?>

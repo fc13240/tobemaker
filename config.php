@@ -5,7 +5,7 @@ define('HOSTNAME','http://localhost/');
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
 
-define('BASE_URL', HOSTNAME.'designmg/');
+define('BASE_URL', HOSTNAME.'tobemaker/');
 
 /*
  * MySQL
