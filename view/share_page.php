@@ -24,9 +24,16 @@
             }
         }
     </script>
-
-
-
+    <script>
+    function finish_submit(){ 
+        document.idea-form.action="../share.php";
+        document.idea-form.submit();
+    }
+    function preview(){
+        document.idea-form.action="../project.php";
+        document.idea-form.submit();
+    }
+    </script>
 </head>
 <body>
 <div id="top">
@@ -46,7 +53,7 @@
 
             </div>
             <div class="form">
-                <form id="idea-form" method="GET" action="">
+                <form id="idea-form" method="POST">
                     <label>标题</label>
                     <input name="title" type="text">
                     <label>作者<span>（选填）</span></label>
@@ -63,6 +70,8 @@
                     <div class="textdiv">
                         <textarea name="content" id="content"></textarea>
                     </div>
+                    <input type="hidden" name="act" value="create_share" />
+                    <input type="hidden" name="user_id" value="2" />
 
                 </form>
             </div>
@@ -110,11 +119,14 @@ $(document).ready(function(){
     });
     
     $('button.save').click(function(){
+        //$('#idea-form').submit();
+        $('#idea-form').action="../share.php";
         $('#idea-form').submit();
     });
     
     $('button.view').click(function(){
-        alert('结果预览');
+        $('#idea-form').action="../project.php";
+        $('#idea-form').submit();
     });
     
 });

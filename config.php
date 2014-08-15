@@ -1,11 +1,11 @@
 <?php
 
-define('HOSTNAME','http://localhost/');
+define('HOSTNAME','http://www.cc.com/');
 
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
 
-define('BASE_URL', HOSTNAME.'tobemaker/');
+define('BASE_URL', 'http://www.cc.com/');
 
 /*
  * MySQL
@@ -15,7 +15,7 @@ define('BASE_URL', HOSTNAME.'tobemaker/');
 define('DATABASE_HOST', '127.0.0.1');
 define('DATABASE_NAME', 'idea');
 define('DATABASE_USER', 'root');
-define('DATABASE_PASSWORD', '');
+define('DATABASE_PASSWORD', '123456');
 
 /*
  * Database Tables
