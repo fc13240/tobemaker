@@ -86,17 +86,17 @@ ul li{
 .top .logo{
     display: block;
     float: left;
-    width: 15%;
+    width: 150px;
 }
 .top .nav{
     float: left;
-    width: 70%;
+    width: 550px;
     height: 60px;
     display: inline;
 }
 .top .nav ul{
     width: 400px;
-    margin: 0 auto;
+    margin: 0 0 0 150px;
 }
 .top .nav ul li{
     width: 60px;
@@ -115,7 +115,7 @@ ul li{
 }
 .top .lgn{
     float: left;
-    width: 15%;
+    width: 300px;
     height: 60px;
 }
 .top .lgn a{
@@ -125,6 +125,9 @@ ul li{
 .top .lgn a img{
     width: 22px;
     margin: 19px;
+}
+form.lgn {
+	float: right;
 }
 .footer{
     width: 100%;
@@ -170,7 +173,6 @@ ul li{
     margin: 10px;
 }
 .content.list .prev,.content.list .next{
-    height: 1034px;
 }
 .share{
     padding-top: 20px;
@@ -548,6 +550,15 @@ ul li{
 .mine p{
     margin-bottom: 0;
 }
+.mine a {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	font-size: 14px;
+	line-height: 40px;
+	font-weight: 100;
+}
+
 .mine a img{
     width: 40px;
     height: 40px;
@@ -711,18 +722,15 @@ ul li{
     padding:0 5px;
 }
 .list div.prev{
-    position: absolute;
+    position: fixed;
     width: 100px;
-    left: -100px;
-    top: 0;
-    display:table;
+    /*left: 100px;*/
+    top: 0;    
 }
 .list div.next{
-    position: absolute;
+    position: fixed;
     width: 100px;
-    right: -100px;
     top: 0;
-    display:table;
 }
 .list div.prev div,.list div.next div{
     vertical-align:middle;
@@ -730,9 +738,11 @@ ul li{
     text-align: center;
 }
 .list div.prev a,.list div.next a{
+	display: block;
     font-size: 80px;
     font-family: Lantingchaoxi;
     color: #d1cfdc;
+    transform:scale(0.5,2);
 }
 .list div.prev a:hover,.list div.next a:hover{
     color: #ff1400;

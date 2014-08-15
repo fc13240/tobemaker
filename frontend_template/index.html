@@ -3,8 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-idea</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    
+    <link rel="stylesheet" href="../fonts/Font-Awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div id="top">
@@ -17,11 +20,11 @@
         </div>
         <div class="content list">
             <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                <dd><a href="item.html"><img src="../asset/13.png" alt=""></a></dd>
                 <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
                 <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
                 <dd>
-                    <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                    <a href="#" class="avatar"><img src="../asset/12.png" alt=""></a>
                     <a href="#" class="author">糯米团子</a>
                     <span>发布</span>
                 </dd>
@@ -33,11 +36,11 @@
 
             </dl>
             <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                <dd><a href="item.html"><img src="../asset/13.png" alt=""></a></dd>
                 <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
                 <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
                 <dd>
-                    <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                    <a href="#" class="avatar"><img src="../asset/12.png" alt=""></a>
                     <a href="#" class="author">糯米团子</a>
                     <span>发布</span>
                 </dd>
@@ -49,11 +52,11 @@
 
             </dl>
             <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                <dd><a href="item.html"><img src="../asset/13.png" alt=""></a></dd>
                 <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
                 <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
                 <dd>
-                    <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                    <a href="#" class="avatar"><img src="../asset/12.png" alt=""></a>
                     <a href="#" class="author">糯米团子</a>
                     <span>发布</span>
                 </dd>
@@ -65,11 +68,11 @@
 
             </dl>
             <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                <dd><a href="item.html"><img src="../asset/13.png" alt=""></a></dd>
                 <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
                 <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
                 <dd>
-                    <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                    <a href="#" class="avatar"><img src="../asset/12.png" alt=""></a>
                     <a href="#" class="author">糯米团子</a>
                     <span>发布</span>
                 </dd>
@@ -81,11 +84,11 @@
 
             </dl>
             <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                <dd><a href="item.html"><img src="../asset/13.png" alt=""></a></dd>
                 <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
                 <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
                 <dd>
-                    <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                    <a href="#" class="avatar"><img src="../asset/12.png" alt=""></a>
                     <a href="#" class="author">糯米团子</a>
                     <span>发布</span>
                 </dd>
@@ -97,11 +100,11 @@
 
             </dl>
             <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                <dd><a href="item.html"><img src="../asset/13.png" alt=""></a></dd>
                 <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
                 <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
                 <dd>
-                    <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                    <a href="#" class="avatar"><img src="../asset/12.png" alt=""></a>
                     <a href="#" class="author">糯米团子</a>
                     <span>发布</span>
                 </dd>
@@ -114,7 +117,7 @@
             </dl>
 
             <div class="prev">
-                <div><a href="#"><</a></div>
+                <a href="#"><</a>
             </div>
             <div class="next">
                 <div><a href="#">></a></div>
@@ -146,4 +149,24 @@
 
 
 </body>
+
+<!--换页按钮定位相关js-->
+<!--需要jQuery-->
+<!--监听浏览器长宽改变-->
+
+<script type="text/javascript" charset="utf-8">
+	function a(){
+		$(".prev").height( $(window).height() );
+		$(".prev").css("line-height" , $(window).height()+"px");
+		$(".prev").css("left" , ($(window).width() - 1020)/2 - 70 +"px");
+		$(".next").height( $(window).height() );
+		$(".next").css("line-height" , $(window).height()+"px");
+		$(".next").css("left" , ($(window).width() - 1020)/2 + 1040 +"px");
+	}
+	window.onload=function(){  
+		window.onresize= a;
+		a();
+	}
+</script>
+
 </html>
