@@ -32,6 +32,8 @@ class class_idea
     }
    
 
+   // 在表中增加数据  输入表名和数组字段
+
     public function insert($table_name,$array){
         $num=count($array);
         $value=null;
@@ -49,7 +51,7 @@ class class_idea
         return $result;
     }
     
-    
+    // 更新表中某个字段
     private function update_one($table_name,$col_name,$value){
         $sql_query="update ".$table_name." set ".$col_name."=".$value;
         $this->db->query($sql_query);
@@ -57,9 +59,9 @@ class class_idea
     
     public function delete(){
     }
-    
+    // 获取某个id详细信息
     public function get_idea_by_id($idea_id){
-      $sql="SELECT * from idea_info where idea_id=".$idea_id;
+      $sql="SELECT * from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_id`=".$idea_id;
       $result = $this->db->get_results($sql, ARRAY_A);  
       return $result;
     }
@@ -91,7 +93,7 @@ class class_idea
     }
     
 
-    //获取待审核的数目
+    //获取待审核项目的数目
     public function get_num_of_waiting(){
       $sql="SELECT * from idea_manage where idea_status=1";
       $result = $this->db->get_results($sql, ARRAY_A);
@@ -123,8 +125,10 @@ class class_idea
         return $result;
     }
 
+
+     //显示部分审核通过的项目
     public function get_part_passed($begin,$num){
-        // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
+        
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
         $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
@@ -145,7 +149,7 @@ class class_idea
         $result = $this->db->query($sql);
     }
 
-
+     //通过字段更新数据
     public function update_idea($idea_id,$arr)
     {
       $keys=array_keys($arr);
@@ -154,13 +158,18 @@ class class_idea
       $i=0;
       $aa="";
       $bb="";
-      while ($i<$keys) {
+      while ($i<$num_a) {
         # code...
-        $aa=$aa."`".$keys[$i]."`＝\"".$values[$i]."\",";
+        if($arr[$keys[$i]]!=""){
+        $aa=$aa."`".$keys[$i]."`='".$values[$i]."',";
+      }
         $i++;
       }
       $aa=rtrim($aa,",");
-      $sql="UPDATE  idea_info set ".$aa." where idea_id=".$idea_id;
+      $sql="UPDATE idea_info SET ".$aa." where idea_id=".$idea_id;
       $this->db->query($sql);
+     // echo $sql;
     }
+
+    //
 }

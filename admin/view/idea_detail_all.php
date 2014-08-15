@@ -156,102 +156,181 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="portlet light bordered">
-                                                <div class="portlet-title">
-                                                        <div class="caption">
-                                                                <i class="icon-equalizer font-red-sunglo"></i>
-                                                                <span class="caption-subject font-red-sunglo bold uppercase">Form Sample</span>
-                                                                <span class="caption-helper">form actions without bg color</span>
-                                                        </div>
-                                                        <div class="actions">
-                                                                <div class="portlet-input input-inline input-small">
-                                                                        <div class="input-icon right">
-                                                                                <i class="icon-magnifier"></i>
-                                                                                <input type="text" class="form-control input-circle" placeholder="search...">
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                                <div class="portlet-body form">
-                                                        <!-- BEGIN FORM-->
-                                                        <form action="#" class="form-horizontal">
-                                                                <div class="form-body">
-                                                                        <div class="form-group">
-                                                                                <label class="col-md-3 control-label">Text</label>
-                                                                                <div class="col-md-4">
-                                                                                        <input type="text" class="form-control" placeholder="Enter text">
-                                                                                        <span class="help-block">
-                                                                                        A block of help text. </span>
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                                <label class="col-md-3 control-label">Email Address</label>
-                                                                                <div class="col-md-4">
-                                                                                        <div class="input-group">
-                                                                                                <span class="input-group-addon">
-                                                                                                <i class="fa fa-envelope"></i>
-                                                                                                </span>
-                                                                                                <input type="email" class="form-control" placeholder="Email Address">
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                                <label class="col-md-3 control-label">Password</label>
-                                                                                <div class="col-md-4">
-                                                                                        <div class="input-group">
-                                                                                                <input type="password" class="form-control" placeholder="Password">
-                                                                                                <span class="input-group-addon">
-                                                                                                <i class="fa fa-user"></i>
-                                                                                                </span>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                                <label class="col-md-3 control-label">Left Icon</label>
-                                                                                <div class="col-md-4">
-                                                                                        <div class="input-icon">
-                                                                                                <i class="fa fa-bell-o"></i>
-                                                                                                <input type="text" class="form-control" placeholder="Left icon">
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                                <label class="col-md-3 control-label">Right Icon</label>
-                                                                                <div class="col-md-4">
-                                                                                        <div class="input-icon right">
-                                                                                                <i class="fa fa-microphone"></i>
-                                                                                                <input type="text" class="form-control" placeholder="Right icon">
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                                <label class="col-md-3 control-label">Input With Spinner</label>
-                                                                                <div class="col-md-4">
-                                                                                        <input type="password" class="form-control spinner" placeholder="Password">
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="form-group last">
-                                                                                <label class="col-md-3 control-label">Static Control</label>
-                                                                                <div class="col-md-4">
-                                                                                        <p class="form-control-static">
-                                                                                                 email@example.com
-                                                                                        </p>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                                <div class="form-actions">
-                                                                        <div class="row">
-                                                                                <div class="col-md-offset-3 col-md-9">
-                                                                                    <input type="submit" class="btn red"/>
-                                                                                        <button type="submit" class="btn green">Submit</button>
-                                                                                        <button type="button" class="btn default">Cancel</button>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                        </form>
-                                                        <!-- END FORM-->
-                                                </div>
+                        <div class="portlet-title">
+                            <div class="caption">
+                            <i class="icon-equalizer font-red-sunglo"></i>
+                            <span class="caption-subject font-red-sunglo bold uppercase">Form Sample</span>
+                            <span class="caption-helper">form actions without bg color</span>
+                            </div>
+                            <div class="actions">
+                            	<div class="portlet-input input-inline input-small">
+                                    <div class="input-icon right">
+                                    	<i class="icon-magnifier"></i>
+                                    	<input type="text" class="form-control input-circle" placeholder="search...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                            <form action="idea_detail_all.php" method="post" class="form-horizontal">
+                            	<div class="form-body">
+                                    <!--自定义项目 开始-->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">标题</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="name" value=<?php echo "\"".$idea_list[0]["name"]."\"/>";?>
+                                            </div>
                                         </div>
-				</div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">简介</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="brief" value=<?php echo "\"".$idea_list[0]["brief"]."\"/>";?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">内容</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" name="content" value=<?php echo "\"".$idea_list[0]["content"]."\"/>";?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">作者</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="user_name" value=<?php echo "\"".$idea_list[0]["user_name"]."\"/>";?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">标签</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" name="tags" value=<?php echo "\"".$idea_list[0]["tags"]."\"/>";?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                    	<label class="col-md-3 control-label">相关信息</label>
+                                        <div class="col-md-4">
+                                        	<table border="1">
+                                        	<tr>
+                                        		<th>创建时间</th><th>评价数目</th><th>喜欢数目</th><th>想买数目</th><th>分享数目</th>
+                                        	</tr>
+                                        	<tr>
+                                        		<td><input type="text" name="create_time" value=<?php echo "\"".$idea_list[0]["create_time"]."\"/>";?></td>
+                                        		<td><input type="text" name="create_time" value=<?php echo "\"".$idea_list[0]["sum_comment"]."\"/>";?></td>
+                                        		<td>
+                                        			<input type="text" name="sum_like" value=<?php echo "\"".$idea_list[0]["sum_like"]."\"/>";?>
+                                        		</td>
+                                        		<td>
+                                        			<input type="text" name="sum_buy" value=<?php echo "\"".$idea_list[0]["sum_buy"]."\"/>";?>
+                                        		</td>
+                                        		<td>
+                                        			<input type="text" name="sum_share" value=<?php echo "\"".$idea_list[0]["sum_share"]."\"/>";?>
+                                        		</td>
+                                        	</tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">目前状态及修改</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" value=<?php echo "\"".$idea_list[0]["status_name"]."\"/>";?>
+                                            <select name="idea_status">
+                                            	<option value ="1">待审核</option>
+                                            	<option value ="2">审核通过</option>
+                                            	<option value="3">拒绝</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">管理员评语</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" name="reason" placeholder="内容">
+                                            </div>
+                                        </div>
+                                    </div>
+                                  -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">是否首页推荐</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" placeholder="内容">
+
+                                            <select name="is_recommend">
+                                            	<option value ="0">不推荐</option>
+                                            	<option value ="1">推荐</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">筹赞开始时间</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" name="begin_time" value=<?php echo "\"".$idea_list[0]["begin_time"]."\"/>";?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">筹赞结束时间</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" name="end_time" value=<?php echo "\"".$idea_list[0]["end_time"]."\"/>";?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">筹赞目标</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" name="target" value=<?php echo "\"".$idea_list[0]["target"]."\"/>";?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">定价</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="textarea" class="form-control" name="price" value=<?php echo "\"".$idea_list[0]["price"]."\"/>";?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="idea_id" value=<?php echo "\"".$idea_list[0]["idea_id"]."\"/>";?>
+                                    <!-- 自定义项目结束-->
+                </div>
+            </div>
+            <div class="form-actions">
+            	<div class="row">
+            		<div class="col-md-offset-3 col-md-9">
+            			<input type="submit" class="btn red"/>
+            			<button type="submit" class="btn green">Submit</button>
+            			<button type="button" class="btn default">Cancel</button>
+            		</div>
+            	</div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+</div>
 			</div>
 			<!-- END PAGE CONTENT-->
 		</div>

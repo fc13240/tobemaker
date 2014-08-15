@@ -1,10 +1,10 @@
 <?php
 
-include 'config.php';
+
 
 // 导航 当前页面控制
-$current_page = 'share';
+$current_page = 'contact';
 $page_level = explode('-', $current_page);
 
 
-include 'view/share_page.php';
+include 'view/contact_page.php';
