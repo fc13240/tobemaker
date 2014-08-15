@@ -575,6 +575,21 @@ form.lgn {
 .minepro.list .prev,.minepro.list .next{
     height: 222px;
 }
+#minelistprev {
+	position: absolute;
+	width: 100px;
+	left: -100px;
+	top:0;
+	display: table;
+}
+#minelistnext {
+	position: absolute;
+	width: 100px;
+	right: -100px;
+	top:0;
+	display: table;
+}
+
 .shop{
     background: #ffffff;
 }
