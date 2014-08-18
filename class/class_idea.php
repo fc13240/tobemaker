@@ -101,14 +101,14 @@ class class_idea
 
     //获取待审核项目的数目
     public function get_num_of_waiting(){
-      $sql="SELECT * from idea_manage where idea_status=2";
+      $sql="SELECT * from idea_info where idea_status=2";
       $result = $this->db->get_results($sql, ARRAY_A);
       $num=count($result);
       return $num;
     }
 
     public function get_num_of_passed(){
-      $sql="SELECT * from idea_manage where idea_status=4";
+      $sql="SELECT * from idea_info where idea_status=4";
       $result = $this->db->get_results($sql, ARRAY_A);
       $num=count($result);
       return $num;

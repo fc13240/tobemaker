@@ -1,24 +1,17 @@
 <?php
-
-      include "./config.php";
-      include ROOT_PATH."/class/class_idea.php";
-      include ROOT_PATH."/class/class_comment.php";
-      include ROOT_PATH."/class/class_file.php";
-
-        //获取数据
-
-
-      //  执行相关操作
-      header("Content-type: text/html; charset=utf-8"); 
-      include_once ROOT_PATH."include/ez_sql_core.php";
-      include_once ROOT_PATH."include/ez_sql_mysql.php";
-
-      static $aa=2;
-      function sss()
-      {
-        # code...
-        echo $aa;
-      }
-
-      sss();
+include_once "./config.php";
+include_once ROOT_PATH."class/class_like.php";
+header("Content-type: text/html; charset=utf-8");
+  $class_idea=new class_idea();
+  $num=$class_idea->get_num_of_passed();
+  echo $num;
+  $current_page=$_POST['current_page'];
+  $start=($current_page-1)*6;
+  $res=$class_idea->get_part_passed($start,6);
+  $records=array();
+  $records['data']=array();
+  $records['data']=$res;
+  $records['current_page']=$current_page;
+  $records['num_of_currentpage']=count($res);
+  echo json_encode($records);
 ?>
