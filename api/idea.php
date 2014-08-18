@@ -6,7 +6,7 @@
 include_once "../config.php";
 include_once ROOT_PATH."class/class_idea.php";
 $class_idea=new class_idea();
-$iTotalRecords =$class_idea->get_num_of_waiting();
+$iTotalRecords =$class_idea->get_all_idea_num();
 
 //if (array_key_exists('action', $_REQUEST)){
 //
@@ -35,11 +35,12 @@ function update_one_idea( $idea_id,$arr){
 }
 
 $status_list = array(
+
   array("notready" => "等待完善"),
+  array("newidea" => "新建想法"),
   array("warning" => "等待审核"),
-  array("success" => "已批准"),
-  array("danger" => "已拒绝")
-  
+  array("danger" => "已拒绝"),
+  array("success" => "已批准")
 );
 //如果是修改请求
 //则做出相应修改
@@ -108,20 +109,10 @@ $real_length=$end-$iDisplayStart;
 
  // 获取数据
 
-$datalist=$class_idea->get_waiting($iDisplayStart,$real_length);
+$datalist=$class_idea->get_part_ideas($iDisplayStart,$real_length);
+$real_length= count($datalist);
 for($i = 0; $i < $real_length; $i++) {
-  if($datalist[$i]["idea_status"]==1)
-  {
-    $status = $status_list[1];
-  }
-  elseif($datalist[$i]["idea_status"]==2)
-  {
-    $status = $status_list[2];
-  }
-  elseif($datalist[$i]["idea_status"]==3)
-  {
-    $status = $status_list[3];
-  }
+    $status = $status_list[$datalist[$i]["idea_status"]];
   $id = $datalist[$i]["idea_id"];
   $records["data"][] = array(
     '<input class="checkboxes" type="checkbox" name="id[]" value="'.$id.'"/>',

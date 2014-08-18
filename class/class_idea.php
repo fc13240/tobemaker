@@ -71,100 +71,10 @@ class class_idea
       $result = $this->db->get_results($sql, ARRAY_A);  
       return $result;
     }
-    // ---------  增删改查基本操作 - 结束
-    
-    // ---------  审核相关操作 - 开始
-    
 
-    // 获取所有待审核项目
-    public function get_all_waiting(){
-        // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
-      $begin = $this->db->escape($begin);
-      $num=$this->db->escape($num);
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`";
-        $result = $this->db->get_results($sql,ARRAY_A);
-        return $result;
-    }
-
-
-    // 获取部分待审核想法
-    public function get_waiting($begin,$num){
-        // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
-      $begin = $this->db->escape($begin);
-      $num=$this->db->escape($num);
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
-        $result = $this->db->get_results($sql,ARRAY_A);
-       // $res = json_encode($result);
-        return $result;
-    }
-    
-
-    //获取待审核项目的数目
-    public function get_num_of_waiting(){
-      $sql="SELECT * from idea_info where idea_status=2";
-      $result = $this->db->get_results($sql, ARRAY_A);
-      $num=count($result);
-      return $num;
-    }
-
-    public function get_num_of_passed(){
-      $sql="SELECT * from idea_info where idea_status=4";
-      $result = $this->db->get_results($sql, ARRAY_A);
-      $num=count($result);
-      return $num;
-    }
-    
-    
- 
-
-
-    // 显示审核通过想法
-    public function get_passed($num_of_eachpage){
-             //引入类   
-    //////////////////////////////////////////////////////////////////////
-      $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=4 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`)";
-      $result = $this->db->get_results($sql, ARRAY_A);
-    }
-    
-
-    // 标记想法为审核通过
-    public function mark_pass($idea_id,$reason=""){
-        // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
-      $idea_id = $this->db->escape($idea_id);
-      $reason=$this->db->escape($reason);
-        $sql="update idea_info set `idea_status`=4 where `idea_id`=".$idea_id;
-        $result = $this->db->query($sql);
-        $sql="update idea_manage set `idea_status`=4 ,`reason`=\"".$reason."\",`last_change_time`=now() where `idea_id`=".$idea_id;
-        $result = $this->db->query($sql);
-        return $result;
-    }
-
-
-     //显示部分审核通过的项目
-    public function get_part_passed($begin,$num){
-        
-      $begin = $this->db->escape($begin);
-      $num=$this->db->escape($num);
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=4 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
-        $result = $this->db->get_results($sql,ARRAY_A);
-       // $res = json_encode($result);
-        return $result;
-    }
-    
-
-    // 标记审核不通过
-    public function mark_fail($idea_id,$reason=""){
-        // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
-      $idea_id = $this->db->escape($idea_id);
-      $reason=$this->db->escape($reason);
-        $sql="UPDATE idea_info set `idea_status`=3 where `idea_id`=".$idea_id;
-        $result = $this->db->query($sql);
-        $sql="UPDATE idea_manage set `idea_status`=3 ,`reason`=\"".$reason."\",`last_change_time`=now() where `idea_id`=".$idea_id;
-        $result = $this->db->query($sql);
-    }
-
-     //通过字段更新数据
-    public function update_idea($idea_id,$arr)
+   //通过idea_info字段更新数据  传入修改的id和字段=》值 数组实现更新 
+   
+     public function update_idea($idea_id,$arr)
     {
       $keys=array_keys($arr);
       $values=array_values($arr);
@@ -184,6 +94,120 @@ class class_idea
       $this->db->query($sql);
      // echo $sql;
     }
+    // ---------  增删改查基本操作 - 结束
+    
+    // ---------  审核相关操作 - 开始
+    
+//---------------所有idea操作
+
+    
+    //获取所有项目数量
+    public function get_all_idea_num(){
+       
+        $sql="SELECT * from `idea_info`";
+        $result = $this->db->get_results($sql,ARRAY_A);
+        return count($result);
+    }
+
+   //获取部分项目
+     public function get_part_ideas($begin,$num){
+        
+      $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
+        $result = $this->db->get_results($sql,ARRAY_A);
+       // $res = json_encode($result);
+        return $result;
+    }
+     // 获取所有待审核项目
+    public function get_all_waiting(){
+      $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`";
+        $result = $this->db->get_results($sql,ARRAY_A);
+        return $result;
+    }
+
+   
+
+   //------------------- 待审核项目操作
+
+    //获取待审核项目的数目
+    public function get_num_of_waiting(){
+      $sql="SELECT * from idea_info where idea_status=2";
+      $result = $this->db->get_results($sql, ARRAY_A);
+      $num=count($result);
+      return $num;
+    }
+    // 获取部分待审核想法
+    //传入起点和读取的数目
+    //
+    public function get_waiting($begin,$num){
+      $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
+        $result = $this->db->get_results($sql,ARRAY_A);
+        return $result;
+    }
+    
+
+    //------------------- 审核通过项目操作
+
+    //获取审核通过项目的数目
+    public function get_num_of_passed(){
+      $sql="SELECT * from idea_info where idea_status=4";
+      $result = $this->db->get_results($sql, ARRAY_A);
+      $num=count($result);
+      return $num;
+    }
+    
+    //显示部分审核通过的项目
+    public function get_part_passed($begin,$num){
+        
+      $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=4 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
+        $result = $this->db->get_results($sql,ARRAY_A);
+       // $res = json_encode($result);
+        return $result;
+    }
+
+    // 显示审核通过想法
+    public function get_passed($num_of_eachpage){
+      $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=4 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`)";
+      $result = $this->db->get_results($sql, ARRAY_A);
+    }
+    
+
+
+//--------------------------几类标记
+
+    // 标记想法为审核通过
+    public function mark_pass($idea_id,$reason=""){
+        // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
+      $idea_id = $this->db->escape($idea_id);
+      $reason=$this->db->escape($reason);
+        $sql="update idea_info set `idea_status`=4 where `idea_id`=".$idea_id;
+        $result = $this->db->query($sql);
+        $sql="update idea_manage set `idea_status`=4 ,`reason`=\"".$reason."\",`last_change_time`=now() where `idea_id`=".$idea_id;
+        $result = $this->db->query($sql);
+        return $result;
+    }
+
+
+
+    // 标记审核不通过
+    public function mark_fail($idea_id,$reason=""){
+        // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
+      $idea_id = $this->db->escape($idea_id);
+      $reason=$this->db->escape($reason);
+        $sql="UPDATE idea_info set `idea_status`=3 where `idea_id`=".$idea_id;
+        $result = $this->db->query($sql);
+        $sql="UPDATE idea_manage set `idea_status`=3 ,`reason`=\"".$reason."\",`last_change_time`=now() where `idea_id`=".$idea_id;
+        $result = $this->db->query($sql);
+    }
+
+     
 
     //
 }
