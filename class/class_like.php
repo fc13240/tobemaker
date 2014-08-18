@@ -48,7 +48,6 @@ class class_like
        
         $this->db->query($sql);
         $sql="update idea_info set sum_like=sum_like+1 where idea_id=".$idea_id;
-         echo $sql;
         $this->db->query($sql);
             return 1;
        

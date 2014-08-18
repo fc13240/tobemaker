@@ -12,8 +12,6 @@ function addlike($user_id,$idea_id){
 	$class_idea=new class_idea();
 
 	$res=$class_like->get_like_info($idea_id,$user_id);
-	echo "ooooo";
-	echo $res;
 	if($res==1)
 	{
 		return return_result(1);
