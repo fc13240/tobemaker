@@ -81,7 +81,7 @@ class class_idea
         // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=1 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`";
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`";
         $result = $this->db->get_results($sql,ARRAY_A);
         return $result;
     }
@@ -92,7 +92,7 @@ class class_idea
         // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=1 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
         $result = $this->db->get_results($sql,ARRAY_A);
        // $res = json_encode($result);
         return $result;
@@ -101,11 +101,19 @@ class class_idea
 
     //获取待审核项目的数目
     public function get_num_of_waiting(){
-      $sql="SELECT * from idea_manage where idea_status=1";
+      $sql="SELECT * from idea_manage where idea_status=2";
       $result = $this->db->get_results($sql, ARRAY_A);
       $num=count($result);
       return $num;
     }
+
+    public function get_num_of_passed(){
+      $sql="SELECT * from idea_manage where idea_status=4";
+      $result = $this->db->get_results($sql, ARRAY_A);
+      $num=count($result);
+      return $num;
+    }
+    
     
  
 
@@ -114,7 +122,7 @@ class class_idea
     public function get_passed($num_of_eachpage){
              //引入类   
     //////////////////////////////////////////////////////////////////////
-      $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`)";
+      $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=4 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`)";
       $result = $this->db->get_results($sql, ARRAY_A);
     }
     
@@ -124,9 +132,9 @@ class class_idea
         // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage
       $idea_id = $this->db->escape($idea_id);
       $reason=$this->db->escape($reason);
-        $sql="update idea_info set `idea_status`=2 where `idea_id`=".$idea_id;
+        $sql="update idea_info set `idea_status`=4 where `idea_id`=".$idea_id;
         $result = $this->db->query($sql);
-        $sql="update idea_manage set `idea_status`=2 ,`reason`=\"".$reason."\",`last_change_time`=now() where `idea_id`=".$idea_id;
+        $sql="update idea_manage set `idea_status`=4 ,`reason`=\"".$reason."\",`last_change_time`=now() where `idea_id`=".$idea_id;
         $result = $this->db->query($sql);
         return $result;
     }
@@ -137,7 +145,7 @@ class class_idea
         
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=4 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
         $result = $this->db->get_results($sql,ARRAY_A);
        // $res = json_encode($result);
         return $result;
