@@ -86,6 +86,13 @@ class class_idea
         return $result;
     }
 
+//显示所有项目
+    public function get_all_idea_num(){
+       
+        $sql="SELECT * from `idea_info`";
+        $result = $this->db->get_results($sql,ARRAY_A);
+        return count($result);
+    }
 
     // 获取部分待审核想法
     public function get_waiting($begin,$num){
@@ -151,6 +158,16 @@ class class_idea
         return $result;
     }
     
+
+    public function get_part_ideas($begin,$num){
+        
+      $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` limit ".$begin.",".$num;
+        $result = $this->db->get_results($sql,ARRAY_A);
+       // $res = json_encode($result);
+        return $result;
+    }
 
     // 标记审核不通过
     public function mark_fail($idea_id,$reason=""){
