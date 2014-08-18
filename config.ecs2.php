@@ -15,7 +15,7 @@ define('BASE_URL', HOSTNAME.'');
    define('DATABASE_HOST', '127.0.0.1');
    define('DATABASE_NAME', 'idea');
    define('DATABASE_USER', 'root');
-   define('DATABASE_PASSWORD', '');
+   define('DATABASE_PASSWORD', 'qazwsxedc');
 
    /*
     * Database Tables
