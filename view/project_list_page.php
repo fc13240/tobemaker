@@ -123,7 +123,7 @@
             <br class="clear"/>
 
         </div>
-        <div class="pagenum">
+        <div id="project-pagenum" class="pagenum" data-url="<?=BASE_URL."api/project_list.php"?>">
             <a href="#">1</a>
             <a href="#">2</a>
             <a href="#">3</a>
@@ -143,7 +143,15 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
-
-
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script>
+    $("#project-pagenum").on("click","a",function(){
+        var current_page = $(this).text();
+        var url = $(this).data("url");
+        $.post(url, {"current_page":current_page}, function(data, textStatus){
+            console.log(data);
+        });
+    });
+    </script>
 </body>
 </html>
