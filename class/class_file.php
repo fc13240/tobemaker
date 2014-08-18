@@ -38,6 +38,7 @@ class class_file
                 || ($_FILES["file"]["type"] == "image/jpeg")
                 || ($_FILES["file"]["type"] == "image/pjpeg")
                 || ($_FILES["file"]["type"] == "image/png")
+                || ($_FILES["file"]["type"] == "image/jpg")
             )
             && 
             (
@@ -89,8 +90,8 @@ class class_file
         $name = $name_array[0];
         $ext = $name_array[1];
         
-        $new_name = substr(md5($name),2,10) . rand(1,10000);
-        
+        $new_name =substr(md5($name),2,10) . rand(1,10000);
+
         return $new_name . '.' . $ext;
     }
     

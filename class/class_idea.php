@@ -36,19 +36,25 @@ class class_idea
 
     public function insert($table_name,$array){
         $num=count($array);
-        $value=null;
+        $keys=array_keys($array);
+        $values=array_values($array);
+        $aa=null;
+        $bb=null;
         $i=0;
-        while ($num>0) {
+        while ($i<$num) {
                         # code...
-                 $value=$value.$array[$i].",";
-                          $i=$i+1;
-                 $num=$num-1;
-                                           
+                 $aa=$aa."`".$keys[$i]."`,";
+                 $bb=$bb."'".$values[$i]."',";
+                          $i=$i+1;         
         }
-        $value=rtrim($value,",");
-        $sql="insert into".$table_name." values (".$value.")";
-        $result = $this->db->query($sql);
-        return $result;
+        $aa=rtrim($aa,",");
+        $bb=rtrim($bb,",");
+        $sql="insert into ".$table_name."(".$aa.") values(".$bb.")";
+        $sql;
+        $this->db->query($sql);
+        $res=$this->db->get_results("SELECT LAST_INSERT_ID()",ARRAY_A);
+        return $res[0]['LAST_INSERT_ID()'];
+        //return $result;
     }
     
     // 更新表中某个字段

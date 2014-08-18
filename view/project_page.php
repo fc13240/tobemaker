@@ -58,7 +58,8 @@
             </div>
             <div class="atc">
                 <p><?php echo $item[0]['content'];?></p>
-                <img src="asset/16.png" alt="">
+
+                <img src=<?php echo "\"".$item[0]['picture_url']."\""?> alt="图挂了">
             </div>
             <div class="commentbox">
                 <form action="../project.php" method="POST" >
