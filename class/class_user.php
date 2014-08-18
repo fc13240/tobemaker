@@ -28,9 +28,13 @@ class class_user
     
     // 添加用户
     function insert($data){
-        $result = $this->db->query("INSERT INTO `user_info` (`img_url`, `link`, `ad_show`) VALUES ('$img_url', '$link', $ad_show) ");
         
-        $result = $this->db->get_results();
+        $username = $this->db->escape($data['username']);
+        $password = $this->db->escape($data['password']);
+        
+        $result = $this->db->query("INSERT INTO `user_info` (`user_name`, `user_passcode`, `user_group`) VALUES ('$username', md5('$password'), 'default') ");
+        
+        return true;
     }
      
     // 删除用户
@@ -46,22 +50,31 @@ class class_user
     function update($userid, $data){
         
         
-        
     }
     
     // 获取用户信息
     function select($userid){
         
-        $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_id` = $userid ORDER BY `create_datetime` DESC LIMIT "
-                .intval($max_num), ARRAY_A);
+        $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_id` = $userid ", ARRAY_A);
         
         return $result;
     }
     
     // 获取用户列表
-    function get_user_list(){
+    function get_user_list($start, $length){
+        
+        $result = $this->db->get_results("select * from `user_info` limit $start,$length", ARRAY_A);
+        
+        return $result;
         
     }    
     
+    
+    function get_num_of_user(){
+        
+        $result = $this->db->get_results("select count(`user_id`) from `user_info`", ARRAY_N);
+        return $result[0][0];
+        
+    }
     
 }
