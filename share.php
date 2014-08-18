@@ -16,14 +16,15 @@ if(array_key_exists('img_url',$_POST))
 	$tmp_url=$_POST['img_url'];
 	$file_instance = new class_file();
 	$pic_url=$file_instance->save($tmp_url);
-
-	// 保存其他
+	// 保存其他信息  预留字段user_id 和user_name
 	$arr= array();
 	$arr['name']=$_POST['title'];
 	$arr['content']=$_POST['content'];
 	$arr['picture_url']=$pic_url;
-	//$arr['user_id']=$_POST['user_id'];
+
+	//$arr['user_name']=$_POST['user_id'];
 	$arr['user_id']=3;
+	$arr['cover_display']=$_POST['cover_display'];
 
 	$new_idea= new class_idea();
 	$new_idea_id=$new_idea->insert("idea_info",$arr);

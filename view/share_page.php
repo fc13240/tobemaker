@@ -24,16 +24,6 @@
             }
         }
     </script>
-    <script>
-    function finish_submit(){ 
-        document.idea-form.action="../share.php";
-        document.idea-form.submit();
-    }
-    function preview(){
-        document.idea-form.action="../project.php";
-        document.idea-form.submit();
-    }
-    </script>
 </head>
 <body>
 <div id="top">
@@ -118,6 +108,7 @@ $(document).ready(function(){
         },
     });
     
+    
     $('button.save').click(function(){
         //$('#idea-form').submit();
         $('#idea-form').action="../share.php";
@@ -125,8 +116,12 @@ $(document).ready(function(){
     });
     
     $('button.view').click(function(){
-        $('#idea-form').action="../project.php";
-        $('#idea-form').submit();
+       // alert('结果预览');
+       var formData = $('#idea-form').serialize();
+        $.post('project.php', formData, function(data, textStatus){
+            var win=window.open("about blank");
+            win.document.write(data);
+        });
     });
     
 });

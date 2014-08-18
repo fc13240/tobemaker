@@ -49,6 +49,7 @@ class class_file
             if ($_FILES["file"]["error"] > 0){
                 // 上传文件失败
                 $this->error_msg = "上传失败，错误代码：". $_FILES["file"]["error"] . "";
+		return "";
             }else{
                 // 上传成功，转存文件
                 
@@ -65,6 +66,7 @@ class class_file
             }
         }else{
             $this->error_msg = "文件格式错误或文件大于1MB";
+	    return "";
         }
     }
     
@@ -89,7 +91,7 @@ class class_file
         $ext = $name_array[1];
         
         $new_name =substr(md5($name),2,10) . rand(1,10000);
-        
+
         return $new_name . '.' . $ext;
     }
     

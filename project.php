@@ -20,22 +20,29 @@ $class_comment=new class_comment();
     }
 
     //预览页面
-    elseif(array_key_exists('img_url', $_POST)){
-      var_dump($_POST);
+    elseif(array_key_exists('title', $_POST)){
       $item[0]['name']=$_POST['title'];
       $item[0]['content']=$_POST['content'];
       $item[0]['picture_url']=$_POST['img_url'];
       $item[0]['user_id']=3;
+
+      //brief暂时无需获取
+      // $$item[0]['user_name']通过session或者cookie获取，预留
+      $item[0]['brief']="123123";
+      $item[0]['user_name']="asdf";
       $comment_list=array();
+
 
       include 'view/project_page.php';
       exit();
 
     }
     if(empty($_GET["idea_id"])){   // 默认显示主页
-      $url="Location: ".BASE_URL;
-    	header($url);
+
+    	header('Location: '.BASE_URL);
     }
+
+
     //有id 则请求id对应详细
     else{
     	$idea_id=$_GET["idea_id"]; //有请求的idea
