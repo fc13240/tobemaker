@@ -147,7 +147,7 @@
     <script>
     $("#project-pagenum").on("click","a",function(){
         var current_page = $(this).text();
-        var url = $(this).data("url");
+        var url = $(this).parent("div").data("url");
         $.post(url, {"current_page":current_page}, function(data, textStatus){
             console.log(data);
         });
