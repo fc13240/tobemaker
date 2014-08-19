@@ -306,33 +306,10 @@
                                         <label class="col-md-3 control-label">是否首页推荐</label>
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input type="textarea" class="form-control" placeholder=<?php 
-                                                if($idea_list[0]["is_recommend"]==1)
-                                                {
-                                                    echo "\"是\"/>";
-                                                }
-                                                else{
-                                                    echo "\"否\"/>";
-                                                }
-                                                ?>
-                                            <select name="is_recommend">
-                                            	<option value ="0" <?php 
-                                                if($idea_list[0]["is_recommend"]==0)
-                                                {
-                                                    echo 'selected="selected"';
-                                                }
-
-                                                ?>>不推荐</option>
-
-                                            	<option value ="1" <?php 
-                                                if($idea_list[0]["is_recommend"]==1)
-                                                {
-                                                    echo 'selected="selected"';
-                                                }
-
-                                                ?>>推荐</option>
-                                            </select>
+                                                <input type="text" class="form-control" name="is_recommend" value=<?php echo "\"".$idea_list[0]["is_recommend"]."\"/>";?>
                                             </div>
+
+                                             说明：0表示不推荐，值越大，排名越靠前
                                         </div>
                                     </div>
 
