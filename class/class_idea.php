@@ -92,7 +92,24 @@ class class_idea
       $aa=rtrim($aa,",");
       $sql="UPDATE idea_info SET ".$aa." where idea_id=".$idea_id;
       $this->db->query($sql);
-     // echo $sql;
+    }
+
+
+    function search_by_key_word($key_word,$start,$length)
+    {
+      $key_word="%".$key_word."%";
+      $sql="SELECT * from `idea_info` where `idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `user_name` like '".$key_word."' limit ".$start.",".$length;
+      //echo $sql;
+      $result = $this->db->get_results($sql, ARRAY_A);  
+      return $result;
+    }
+
+    function search_all_by_key_word($key_word)
+    {
+      $key_word="%".$key_word."%";
+      $sql="SELECT * from `idea_info` where `idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `user_name` like '".$key_word."'";
+      $result = $this->db->get_results($sql, ARRAY_A);  
+      return $result;
     }
     // ---------  增删改查基本操作 - 结束
     
