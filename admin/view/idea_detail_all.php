@@ -191,7 +191,8 @@
                                         <label class="col-md-3 control-label">简介</label>
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="brief" value=<?php echo "\"".$idea_list[0]["brief"]."\"/>";?>
+                                                <input type="text" class="form-control" name="brief" value=<?php echo "\"".$idea_list[0]["brief"]."\"/>";
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -223,18 +224,16 @@
                                     	<label class="col-md-3 control-label">相关信息</label>
                                         <div class="col-md-4">
                                         	<table border="1">
-                                        	<tr>
-                                        		<th>创建时间</th><th>评价数目</th><th>喜欢数目</th><th>想买数目</th><th>分享数目</th>
+                                        	<tr style="color: red;width:100px">
+                                        		<th>创建时间</th><th>评价数目</th><th>喜欢数目</th><th>分享数目</th>
                                         	</tr>
                                         	<tr>
-                                        		<td><input type="text" name="create_time" value=<?php echo "\"".$idea_list[0]["create_time"]."\"/>";?></td>
-                                        		<td><input type="text" name="create_time" value=<?php echo "\"".$idea_list[0]["sum_comment"]."\"/>";?></td>
+                                        		<td><input type="datetime" name="create_time" value=<?php echo "\"".$idea_list[0]["create_time"]."\"/>";?></td>
+                                        		<td><input type="text" name="sum_comment" value=<?php echo "\"".$idea_list[0]["sum_comment"]."\"/>";?></td>
                                         		<td>
                                         			<input type="text" name="sum_like" value=<?php echo "\"".$idea_list[0]["sum_like"]."\"/>";?>
                                         		</td>
-                                        		<td>
-                                        			<input type="text" name="sum_buy" value=<?php echo "\"".$idea_list[0]["sum_buy"]."\"/>";?>
-                                        		</td>
+                                        		
                                         		<td>
                                         			<input type="text" name="sum_share" value=<?php echo "\"".$idea_list[0]["sum_share"]."\"/>";?>
                                         		</td>
@@ -248,9 +247,47 @@
                                             <div class="input-group">
                                                 <input type="textarea" class="form-control" value=<?php echo "\"".$idea_list[0]["status_name"]."\"/>";?>
                                             <select name="idea_status">
-                                            	<option value ="1">待审核</option>
-                                            	<option value ="2">审核通过</option>
-                                            	<option value="3">拒绝</option>
+                                            	<option value ="2" <?php 
+                                                if($idea_list[0]["idea_status"]==2)
+                                                {
+                                                    echo 'selected="selected"';
+                                                }
+
+                                                ?>>待审核</option>
+                                                
+                                                <option value ="3" <?php 
+                                                if($idea_list[0]["idea_status"]==3)
+                                                {
+                                                    echo 'selected="selected"';
+                                                }
+
+                                                ?>>拒绝</option>
+                                                <option value ="4" <?php 
+                                                if($idea_list[0]["idea_status"]==4)
+                                                {
+                                                    echo 'selected="selected"';
+                                                }
+                                                ?>>审核通过集赞中</option>
+                                                <option value ="5" <?php 
+                                                if($idea_list[0]["idea_status"]==5)
+                                                {
+                                                    echo 'selected="selected"';
+                                                }
+                                                ?>>待产</option>
+                                                <option value ="6" <?php 
+                                                if($idea_list[0]["idea_status"]==6)
+                                                {
+                                                    echo 'selected="selected"';
+                                                }
+                                                ?>>生产完成</option>
+
+                                                <option value ="7" <?php 
+                                                if($idea_list[0]["idea_status"]==7)
+                                                {
+                                                    echo 'selected="selected"';
+                                                }
+                                                ?>>下线</option>
+                                            	
                                             </select>
                                             </div>
                                         </div>
@@ -269,11 +306,31 @@
                                         <label class="col-md-3 control-label">是否首页推荐</label>
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input type="textarea" class="form-control" placeholder="内容">
-
+                                                <input type="textarea" class="form-control" placeholder=<?php 
+                                                if($idea_list[0]["is_recommend"]==1)
+                                                {
+                                                    echo "\"是\"/>";
+                                                }
+                                                else{
+                                                    echo "\"否\"/>";
+                                                }
+                                                ?>
                                             <select name="is_recommend">
-                                            	<option value ="0">不推荐</option>
-                                            	<option value ="1">推荐</option>
+                                            	<option value ="0" <?php 
+                                                if($idea_list[0]["is_recommend"]==0)
+                                                {
+                                                    echo 'selected="selected"';
+                                                }
+
+                                                ?>>不推荐</option>
+
+                                            	<option value ="1" <?php 
+                                                if($idea_list[0]["is_recommend"]==1)
+                                                {
+                                                    echo 'selected="selected"';
+                                                }
+
+                                                ?>>推荐</option>
                                             </select>
                                             </div>
                                         </div>
@@ -283,7 +340,7 @@
                                         <label class="col-md-3 control-label">筹赞开始时间</label>
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input type="textarea" class="form-control" name="begin_time" value=<?php echo "\"".$idea_list[0]["begin_time"]."\"/>";?>
+                                                <input type="date" class="form-control" name="begin_time" value=<?php echo "\"".$idea_list[0]["begin_time"]."\"/>";?>
                                             </div>
                                         </div>
                                     </div>
@@ -291,7 +348,7 @@
                                         <label class="col-md-3 control-label">筹赞结束时间</label>
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input type="textarea" class="form-control" name="end_time" value=<?php echo "\"".$idea_list[0]["end_time"]."\"/>";?>
+                                                <input type="date" class="form-control" name="end_time" value=<?php echo "\"".$idea_list[0]["end_time"]."\"/>";?>
                                             </div>
                                         </div>
                                     </div>
