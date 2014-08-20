@@ -22,6 +22,13 @@
         <div class="shop">
             <div class="menu">
                 <ul>
+				<?php 
+				
+				for($i=0;$i<count($categoryList);$i++)
+                      {
+					  echo '<li><div>'.$categoryList[$i]["pc_name"].'</div></li>';
+					  }				
+			    ?>
                     <li class="active"><div>家居</div></li>
                     <li><div>手工艺课程</div></li>
                     <li><div>T恤</div></li>
@@ -29,7 +36,31 @@
             </div>
             <div class="goods">
                 <div class="left">
-                    <div><a href="javascript:void 0"><img src="asset/19.png" alt=""><span>$199.00</span></a></div>
+				<?php
+                for($i=0;$i<count($productList)/2;$i++)
+                {
+				$strProduct='<div><a href="javascript:void 0"><img src="';
+				$strProduct=$strProduct.$productList[$i]["pf_image"].'" alt="">';
+				if(empty($productList[$i]["pf_label"]))
+				{
+				$strProduct=$strProduct.'<span>'.$productList[$i]["pf_discount"];
+				}
+				else
+				{
+				$strProduct=$strProduct.'<label>'.$productList[$i]["pf_label"].'</label><span>'.$productList[$i]["pf_discount"];
+				}
+				if(empty($productList[$i]["pf_price"]))
+				{
+				$strProduct=$strProduct.'</span></a></div>';
+				}
+				else
+				{
+				$strProduct=$strProduct.'<b>'.$productList[$i]["pf_price"].'</b></span></a></div>';
+				}
+				echo $strProduct;
+				}				
+				?>
+                    
                     <div><a href="javascript:void 0"><img src="asset/20.png" alt=""><label>SALE</label><span>$56.00<b>$70.00</b></span></a></div>
                     <div><a href="javascript:void 0"><img src="asset/19.png" alt=""><span>$199.00</span></a></div>
                 </div>
