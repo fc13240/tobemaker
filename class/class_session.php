@@ -33,6 +33,7 @@ class class_session
         
     }
     
+    // 判断是否登录
     public function check_login(){
         
         if ( array_key_exists('is_login', $_SESSION) && $_SESSION['is_login'] === true ){
@@ -43,19 +44,17 @@ class class_session
         
     }
     
+    // 登录
     public function login(){
         $username = $this->db->escape($_POST['username']);
         $password = $this->db->escape(MD5($_POST['password']));
         
         $result = $this->db->get_row("SELECT * FROM `user_info` WHERE `user_name` = '$username' AND `user_passcode` = '$password'", ARRAY_A);
         
-        // debug
-        var_dump($result);
-        
         if ( !is_null($result) && count($result) > 0){
             
             $_SESSION['is_login'] = true;
-            $_SESSION['userid'] = $result['user_id'];
+            $_SESSION['user_id'] = $result['user_id'];
             $_SESSION['group'] = $result['user_group'];
             
             return true;
@@ -65,6 +64,7 @@ class class_session
         }
     }
     
+    // 登出
     public function logout(){
         
         session_destroy();
@@ -72,4 +72,41 @@ class class_session
         return true;
         
     }
+
+    // 检查权限
+    // 判断当前用户是否具备执行操作action_name的权限
+    // 权限管理采用用户组+权限矩阵的方式实现
+    public function check_auth($action_name, $return_bool = true){
+
+        // ------- 获取用户所在的权限组 -------
+        // 权限组类型：anonymous / none / "group name"
+
+        $user_group = "anonymous";
+
+        // 判断用户是否登录
+        if (!$this->check_login()){
+            // 用户未登录，标记未匿名
+            $user_group = "anonymous";
+        }else{
+            //用户已登录，获取系统中的分组
+            if (array_key_exists('group', $_SESSION) && $_SESSION['group'] != ""){
+                $user_group = $_SESSION['group'];
+            }else{
+                $user_group = 'none';
+            }
+        }
+
+        // 判断用户所在组是否具有该权限
+        // 查询二元组（用户组，权限）是否在数据库中
+        $result = $this->db->get_row("SELECT * FROM `group_auth` WHERE `group_name` = '$user_group' AND `action_name` = '$action_name'", ARRAY_A);     
+        
+        if ( !is_null($result) && count($result) > 0){
+            
+            return true;
+        }else{
+            
+            return false;
+        }
+    }
+
 }
