@@ -77,9 +77,12 @@ class class_file
         
         $filename = end($url_array);
         
-        move_uploaded_file($this->tmp_path . $filename,
+        $result=copy($this->tmp_path . $filename,
                 $this->file_path . $filename);
-        
+        if($result)
+		{
+		unlink($this->tmp_path . $filename);
+		}
         return BASE_URL . $this->file_folder . $filename;
         
     }

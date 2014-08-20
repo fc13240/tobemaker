@@ -1,7 +1,7 @@
-
-	<!-- BEGIN CONTENT -->
+<!-- BEGIN CONTENT -->
 	<div class="page-content-wrapper">
 		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -124,7 +124,7 @@
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">商品列表</a>
+						<a href="#">商品添加</a>
 					</li>
 				</ul>
 				<div class="page-toolbar">
@@ -153,115 +153,112 @@
 			</div>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
-			<div class="row">
-				<div class="col-md-12">
-					 <!-- BEGIN EXAMPLE TABLE PORTLET-->
-					<div class="portlet box grey-cascade">
-						<div class="portlet-title">
-							<div class="caption">
-								<i class="fa fa-globe"></i>商品列表
-							</div>
-							<div class="tools">
-								<a href="javascript:;" class="collapse">
-								</a>
-								<a href="#portlet-config" data-toggle="modal" class="config">
-								</a>
-								<a href="javascript:;" class="reload">
-								</a>
-								<a href="javascript:;" class="remove">
-								</a>
-							</div>
-						</div>
-						<div class="portlet-body">
-							<div class="table-toolbar">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="btn-group">
-											<a href="product_add.php"><button id="sample_editable_1_new" class="btn green">
-											添加商品 <i class="fa fa-plus"></i>
-											</button></a>
-                                                                                        
+                        <div class="tab-content">
+							<div class="tab-pane active" id="tab_0">
+								<div class="portlet box green">
+									<div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-gift"></i>商品添加
 										</div>
-                                           <div class="btn-group">
-                                                                                        <button id="sample_editable_1_pass" class="btn blue">
-											添加商品目录 <i class="fa fa-plus"></i>
-											</button>
-                                                                                </div>                                      
+										<div class="tools">
+											<a href="javascript:;" class="collapse">
+											</a>
+											<a href="#portlet-config" data-toggle="modal" class="config">
+											</a>
+											<a href="javascript:;" class="reload">
+											</a>
+											<a href="javascript:;" class="remove">
+											</a>
+										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="btn-group pull-right">
-										<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-										</button>
-										<ul class="dropdown-menu pull-right">
-											<li>
-												<a href="#">
-												Print </a>
-											</li>
-											<li>
-												<a href="#">
-												Save as PDF </a>
-											</li>
-											<li>
-												<a href="#">
-												Export to Excel </a>
-											</li>
-										</ul>
-										</div>
+									<div class="portlet-body form">
+										<!-- BEGIN FORM-->
+										<form  class="form-horizontal"  id="form1" method="POST"> 
+											<div class="form-body">
+											<div class="form-group">
+													<label class="col-md-3 control-label">商品目录</label>
+													<div class="col-md-4">
+													
+														<select class="form-control select-circle" id="category" name="category">
+														<?php
+														for($i=0;$i<count($categoryList);$i++)
+														{
+														echo '<option value="'.$categoryList[$i]["pc_id"].'">'.$categoryList[$i]["pc_name"].'</option>';
+														}
+														?>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">商品名称</label>
+													<div class="col-md-4">
+														<input id="name" name="name" type="text" class="form-control input-circle" placeholder="输入商品名称">
+														
+														<span class="help-block">
+														 </span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">上传图片</label>
+													<div class="col-md-4">
+														<!--<div class="input-group">
+															<span class="input-group-addon input-circle-left">
+															<i class="fa fa-envelope"></i>
+															</span>-->
+															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="<?= BASE_URL ?>api/tmpfileupload.php">
+															<p id="fileurl_display" name="fileurl_display"></p>
+															<input id="fileurl" type="hidden" name="img_url" value=""/>
+														<!--</div>-->
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">商品链接</label>
+													<div class="col-md-4">
+														
+															<input id="link" name="link" type="text" class="form-control input-circle" placeholder="链接地址">
+															
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">商品标签</label>
+													<div class="col-md-4">
+														
+															<input id="label" name="label" type="text" class="form-control input-circle" placeholder="不填则不显示">
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">原价</label>
+													<div class="col-md-4">
+														
+															<input id="price" name="price" type="number" class="form-control input-circle" placeholder="不填则不显示">
+														
+													</div>
+												</div>
+												<div class="form-group last">
+													<label class="col-md-3 control-label">现价</label>
+													<div class="col-md-4">
+														<input id="discount" name="discount" type="number" class="form-control  input-circle" placeholder="现价">
+													</div>
+												</div>
+												
+											</div>
+											<div class="form-actions">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<button type="submit" class="btn btn-circle blue">添加</button>
+														
+													</div>
+												</div>
+											</div>
+										</form>
+										<!-- END FORM-->
 									</div>
 								</div>
 							</div>
-                                                    <table class="table table-striped table-bordered table-hover" id="idea_list_table" data-url="<?=BASE_URL?>api/product.php">
-							<thead>
-							<tr>
-								<th class="table-checkbox">
-									<input type="checkbox" class="group-checkable" data-set="#idea_list_table .checkboxes"/>
-								</th>
-								<th>
-									 商品id
-								</th>
-								<th>
-									 商品名称
-								</th>
-								
-								<th>
-								     标签文字
-								</th>
-								<th>
-								     原价
-								</th>
-								<th>
-								     折扣价
-								</th>
-								<th>
-								     商品目录
-								</th>
-								<th>
-								     添加人
-								</th>
-								<th>
-								     添加时间
-								</th>
-								
-								<th>
-								     推荐内容
-								</th>
-								<th>
-									 状态
-								</th>
-                                <th>
-									 操作
-								</th>
-							</tr>
-							</thead>
-							
-							</table>
 						</div>
-					</div>
-					<!-- END EXAMPLE TABLE PORTLET-->
-				</div>
-			</div>
 
-			<!-- END PAGE CONTENT-->
+<!-- END PAGE CONTENT-->
 		</div>
 	</div>
 	<!-- END CONTENT -->
