@@ -122,7 +122,7 @@
             <br class="clear"/>
 
         </div>
-        <div class="pagenum">
+        <div id="project-pagenum" class="pagenum" data-url="<?=BASE_URL."api/project_list.php"?>">
             <a href="#">1</a>
             <a href="#">2</a>
             <a href="#">3</a>
@@ -162,6 +162,13 @@
 		window.onresize= a;
 		a();
 	}
+    $("#project-pagenum").on("click","a",function(){
+        var current_page = $(this).text();
+        var url = $(this).parent("div").data("url");
+        $.post(url, {"current_page":current_page}, function(data, textStatus){
+            console.log(data);
+        });
+    });
 </script>
 
 </body>

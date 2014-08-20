@@ -30,7 +30,8 @@
             </div>
             <div class="atc">
                 <p><?php echo $item[0]['content'];?></p>
-                <img src="asset/16.png" alt="">
+
+                <img src=<?php echo "\"".$item[0]['picture_url']."\""?> alt="图挂了">
             </div>
             <div class="commentbox">
                 <form action="../project.php" method="POST" >
@@ -96,7 +97,7 @@
             <ul>
                 <li><a href="javascript:void 0" class="red">分&nbsp;&nbsp;&nbsp;&nbsp;享</a></li>
                 <li><a href="javascript:void 0">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
-                <li><a href="javascript:void 0">超喜欢</a></li>
+                <li><a id="like_btn" href="javascript:void 0" data-idea_id="1" data-url="<?=BASE_URL."api/like.php"?>">超喜欢</a></li>
             </ul>
         </div>
         <div class="pendant right">
@@ -128,6 +129,23 @@
         });
         $(".pendant").pin({
             minWidth : 1220
+        });
+
+        $("#like_btn").click(function(){
+            var url = $(this).data("url");
+            var idea_id = $(this).data("idea_id");
+            //TODO:从当前登录用户信息中获取用户id
+            var user_id = 1;
+            $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
+                var status = data['status'];
+                if (status == "success"){
+                    $("#like_btn").addClass("red");
+                }else if (status == "error"){
+                    alert("系统错误，请联系管理员");
+                }else if (status == "like_already"){
+                    alert("已标记喜欢，请勿重复提交");
+                }
+            },'json');
         });
 
     });

@@ -1,6 +1,6 @@
 var TableManaged = function () {
 
-    var ideaProcessUrl = "http://localhost/tobemaker/api/idea.php";
+    var ideaProcessUrl;
 
     var countSelected = function(){
         var $table = $('#idea_list_table');
@@ -21,9 +21,10 @@ var TableManaged = function () {
     };
 
     var initTable = function () {
-
         
         var table = $('#idea_list_table');
+        
+        ideaProcessUrl = table.data('url');
 
         table.dataTable({
             "serverSide": true,

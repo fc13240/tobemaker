@@ -24,7 +24,7 @@
 
             </div>
             <div class="form">
-                <form id="idea-form" method="GET" action="">
+                <form id="idea-form" method="POST">
                     <label>标题</label>
                     <input name="title" type="text">
                     <label>作者<span>（选填）</span></label>
@@ -41,6 +41,8 @@
                     <div class="textdiv">
                         <textarea name="content" id="content"></textarea>
                     </div>
+                    <input type="hidden" name="act" value="create_share" />
+                    <input type="hidden" name="user_id" value="2" />
 
                 </form>
             </div>
@@ -88,15 +90,20 @@
         });
 
         $('button.save').click(function(){
+            $('#idea-form').action="../share.php";
             $('#idea-form').submit();
         });
 
         $('button.view').click(function(){
-            alert('结果预览');
+            // alert('结果预览');
+            var formData = $('#idea-form').serialize();
+            $.post('project.php', formData, function(data, textStatus){
+                var win=window.open("about blank");
+                win.document.write(data);
+            });
         });
-
     });
 
-</script>
+    </script>
 </body>
 </html>

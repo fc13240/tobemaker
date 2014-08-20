@@ -37,7 +37,7 @@
 					<span class="title">控制台</span>
 					</a>
 				</li>
-                                <li class="last <?= @$page_level[0] == 'idea' ? 'active open' : '' ?>">
+                                <li class="<?= @$page_level[0] == 'idea' ? 'active open' : '' ?>">
 					<a href="javascript:;">
 					<i class="icon-basket"></i>
 					<span class="title">项目</span>
@@ -59,8 +59,51 @@
 							<i class="icon-home"></i>
 							项目详情</a>
 						</li>
+
+						<li class="<?= @$page_level[1] == 'idea_recommend' ? 'active' : '' ?>">
+                                                        <a href="idea_recommend.php">
+							<i class="icon-home"></i>
+							项目推荐</a>
+						</li>
 					</ul>
-					
+				</li>
+                                <li class="<?= @$page_level[0] == 'product' ? 'active open' : '' ?>">
+					<a href="javascript:;">
+					<i class="icon-basket"></i>
+					<span class="title">商品</span>
+					<span class="arrow <?= @$page_level[0] == 'product' ? 'open' : '' ?>"></span>
+					</a>
+                                        <ul class="sub-menu">
+                                                <li class="<?= @$page_level[1] == 'product_list' ? 'active' : '' ?>">
+                                                        <a href="product_list.php">
+							<i class="icon-home"></i>
+							项目列表</a>
+						</li>
+                                                <li class="<?= @$page_level[1] == 'product_detail' ? 'active' : '' ?>">
+                                                        <a href="prodect_detail.php">
+							<i class="icon-home"></i>
+							项目详情</a>
+						</li>
+					</ul>
+				</li>
+                                <li class="last <?= @$page_level[0] == 'user' ? 'active open' : '' ?>">
+					<a href="javascript:;">
+					<i class="icon-basket"></i>
+					<span class="title">用户</span>
+					<span class="arrow <?= @$page_level[0] == 'user' ? 'open' : '' ?>"></span>
+					</a>
+                                        <ul class="sub-menu">
+                                                <li class="<?= @$page_level[1] == 'user_list' ? 'active' : '' ?>">
+                                                        <a href="user_list.php">
+							<i class="icon-home"></i>
+							用户列表</a>
+						</li>
+                                                <li class="<?= @$page_level[1] == 'user_detail' ? 'active' : '' ?>">
+                                                        <a href="user_detail.php">
+							<i class="icon-home"></i>
+							用户详情</a>
+						</li>
+					</ul>
 				</li>
 			</ul>
 			<!-- END SIDEBAR MENU -->

@@ -38,6 +38,7 @@ class class_file
                 || ($_FILES["file"]["type"] == "image/jpeg")
                 || ($_FILES["file"]["type"] == "image/pjpeg")
                 || ($_FILES["file"]["type"] == "image/png")
+                || ($_FILES["file"]["type"] == "image/jpg")
             )
             && 
             (
@@ -48,6 +49,7 @@ class class_file
             if ($_FILES["file"]["error"] > 0){
                 // 上传文件失败
                 $this->error_msg = "上传失败，错误代码：". $_FILES["file"]["error"] . "";
+		return "";
             }else{
                 // 上传成功，转存文件
                 
@@ -64,6 +66,7 @@ class class_file
             }
         }else{
             $this->error_msg = "文件格式错误或文件大于1MB";
+	    return "";
         }
     }
     
@@ -87,8 +90,8 @@ class class_file
         $name = $name_array[0];
         $ext = $name_array[1];
         
-        $new_name = substr($name,0,5).substr(md5($name),2,10) . rand(1,10000);
-        
+        $new_name =substr(md5($name),2,10) . rand(1,10000);
+
         return $new_name . '.' . $ext;
     }
     
