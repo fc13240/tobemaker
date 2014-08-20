@@ -348,6 +348,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="idea_id" value=<?php echo "\"".$idea_list[0]["idea_id"]."\"/>";?>
+                                    <input type="hidden" name="user_id" value=<?php echo "\"".$idea_list[0]["user_id"]."\"/>";?>
                                     <!-- 自定义项目结束-->
                 </div>
             </div>

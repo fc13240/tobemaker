@@ -13,6 +13,14 @@ if(isset($_POST["idea_id"]))
 	$arr=$_POST;
 	//var_dump($arr);
 	$idea->update_idea($id,$arr);
+	//注册修改时间
+	$change_info=array();
+    $change_info['user_id']=1;
+    $change_info['idea_id']=$_POST['idea_id'];
+    $change_info['idea_status']=$_POST['idea_status'];
+    $change_info['last_change_time']='now()';
+    $idea->insert("idea_manage",$change_info);
+    // 返回
 	$url="Location:".HOSTNAME."/admin/idea_detail_all.php?idea_id=".$id;
 	header($url);
 	exit();
