@@ -15,7 +15,7 @@ if(isset($_POST["idea_id"]))
 	$idea->update_idea($id,$arr);
 	//注册修改时间
 	$change_info=array();
-    $change_info['user_id']=$_POST['user_id'];
+    $change_info['user_id']=1;
     $change_info['idea_id']=$_POST['idea_id'];
     $change_info['idea_status']=$_POST['idea_status'];
     $change_info['last_change_time']='now()';

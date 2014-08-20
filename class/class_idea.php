@@ -98,8 +98,8 @@ class class_idea
       }
       $aa=rtrim($aa,",");
       $sql="UPDATE idea_info SET ".$aa." where idea_id=".$idea_id;
-      echo $sql;
-      //$this->db->query($sql);
+      //echo $sql;
+      $this->db->query($sql);
     }
 
 
