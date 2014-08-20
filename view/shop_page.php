@@ -26,20 +26,25 @@
 				
 				for($i=0;$i<count($categoryList);$i++)
                       {
-					  echo '<li><div>'.$categoryList[$i]["pc_name"].'</div></li>';
+					  if($categoryList[$i]["pc_id"]!=$category)
+					  echo '<li><div><a href="shop.php?categoryID='.$categoryList[$i]["pc_id"].'">'.$categoryList[$i]["pc_name"].'</a></div></li>';
+					  else
+					  {
+					   echo '<li class="active"><div ><a href="shop.php?categoryID='.$categoryList[$i]["pc_id"].'">'.$categoryList[$i]["pc_name"].'</a></div></li>';
+                       }
 					  }				
 			    ?>
-                    <li class="active"><div>家居</div></li>
-                    <li><div>手工艺课程</div></li>
-                    <li><div>T恤</div></li>
+                    
                 </ul>
             </div>
             <div class="goods">
                 <div class="left">
 				<?php
-                for($i=0;$i<count($productList)/2;$i++)
+				//循环输出左列商品
+				
+                for($i=($curPage-1)*$perPageCount;$i<count($productList)&&$i<($curPage)*$perPageCount;$i+=2)
                 {
-				$strProduct='<div><a href="javascript:void 0"><img src="';
+				$strProduct='<div><a href="'.$productList[$i]["pf_link"].'"><img src="';
 				$strProduct=$strProduct.$productList[$i]["pf_image"].'" alt="">';
 				if(empty($productList[$i]["pf_label"]))
 				{
@@ -61,26 +66,56 @@
 				}				
 				?>
                     
-                    <div><a href="javascript:void 0"><img src="asset/20.png" alt=""><label>SALE</label><span>$56.00<b>$70.00</b></span></a></div>
-                    <div><a href="javascript:void 0"><img src="asset/19.png" alt=""><span>$199.00</span></a></div>
+                   
                 </div>
                 <div class="right">
-                    <div><a href="javascript:void 0"><img src="asset/20.png" alt=""><label>SALE</label><span>$56.00<b>$70.00</b></span></a></div>
-                    <div><a href="javascript:void 0"><img src="asset/19.png" alt=""><span>$199.00</span></a></div>
-                    <div><a href="javascript:void 0"><img src="asset/20.png" alt=""><label>SALE</label><span>$56.00<b>$70.00</b></span></a></div>
+				<?php
+				//循环输出右列商品
+				
+                for($i=($curPage-1)*$perPageCount+1;$i<count($productList)&&$i<($curPage)*$perPageCount;$i+=2)
+                {
+				$strProduct='<div><a href="'.$productList[$i]["pf_link"].'"><img src="';
+				$strProduct=$strProduct.$productList[$i]["pf_image"].'" alt="">';
+				if(empty($productList[$i]["pf_label"]))
+				{
+				$strProduct=$strProduct.'<span>'.$productList[$i]["pf_discount"];
+				}
+				else
+				{
+				$strProduct=$strProduct.'<label>'.$productList[$i]["pf_label"].'</label><span>'.$productList[$i]["pf_discount"];
+				}
+				if(empty($productList[$i]["pf_price"]))
+				{
+				$strProduct=$strProduct.'</span></a></div>';
+				}
+				else
+				{
+				$strProduct=$strProduct.'<b>'.$productList[$i]["pf_price"].'</b></span></a></div>';
+				}
+				echo $strProduct;
+				}				
+				?>
+                    
                 </div>
                 <br class="clear"/>
 
                 <div class="pagenum">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#">7</a>
-                    <a href="#">8</a>
-                    <a href="#">9</a>
+				<?php
+				//输出页码
+				
+				$pageCount=(count($productList)/$perPageCount)+((count($productList)%$perPageCount==0)?0:1);
+				
+				for($i=1;$i<=$pageCount&&$pageCount>2;$i++)
+				{
+				if($curPage!=$i)
+				 echo '<a href="shop.php?categoryID='.$category.'&curPage='.$i.'">'.$i.'</a>';
+				 else
+				 {
+				  echo '<a class="active" href="shop.php?categoryID='.$category.'&curPage='.$i.'">'.$i.'</a>';
+				 }
+				}
+				?>
+                    
 
                 </div>
 
