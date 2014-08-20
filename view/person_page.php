@@ -3,8 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-mine</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <?php include "top_css.php" ?>
 </head>
 <body>
 <div id="top">
@@ -21,8 +20,9 @@
             <br/>
             <p>从来不在意朋友不帅 因为都没我帅</p>
             <br/>
-            <a href="javascript:void 0"><img src="asset/10.png" alt=""></a>
-            <a href="javascript:void 0"><img src="asset/11.png" alt=""></a>
+            <a><i class="fa fa-plus"></i></a>
+            <a><i class="fa fa-envelope-o"></i></a>
+            <a><i class="fa fa-pencil"></i></a>
 
         </div>
 
@@ -42,10 +42,10 @@
                 <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
             </dl>
 
-            <div class="prev">
+            <div class="prev" id="minelistprev">
                 <div><a href="#"><</a></div>
             </div>
-            <div class="next">
+            <div class="next" id="minelistnext">
                 <div><a href="#">></a></div>
             </div>
 
@@ -58,6 +58,8 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
+
+<?php include "bottom_js.php" ?>
 
 </body>
 </html>

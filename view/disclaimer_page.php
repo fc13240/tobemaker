@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>tobeMaker-about</title>
-		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<?php include "top_css.php" ?>
 	</head>
 	<body>
 		<div class="top">
@@ -61,10 +61,6 @@
 					联系我们请 E-mail: <cite>help@tobemaker.com</cite>
 				</p>
 
-
-				
-				
-
 			</div>
 
 		</div>
@@ -73,5 +69,7 @@
     <?php include "footer.php" ?>
 </div>
 
+<?php include "bottom_js.php" ?>
+            
 </body>
 </html>

@@ -24,6 +24,7 @@ elseif(isset($_GET["idea_id"]))
 {
 	$idea_id=$_GET["idea_id"];
 	$idea_list=$idea->get_idea_by_id($idea_id);
+	//var_dump($idea_list);
 }
 
 else{

@@ -3,8 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-idea</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <?php include "top_css.php" ?>
 </head>
 <body>
 <div id="top">
@@ -143,8 +142,26 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script>
+
+<?php include "bottom_js.php" ?>
+
+<!--换页按钮定位相关js-->
+<!--需要jQuery-->
+<!--监听浏览器长宽改变-->
+
+<script type="text/javascript" charset="utf-8">
+	function a(){
+		$(".prev").height( $(window).height() );
+		$(".prev").css("line-height" , $(window).height()+"px");
+		$(".prev").css("left" , ($(window).width() - 1020)/2 - 70 +"px");
+		$(".next").height( $(window).height() );
+		$(".next").css("line-height" , $(window).height()+"px");
+		$(".next").css("left" , ($(window).width() - 1020)/2 + 1040 +"px");
+	}
+	window.onload=function(){  
+		window.onresize= a;
+		a();
+	}
     $("#project-pagenum").on("click","a",function(){
         var current_page = $(this).text();
         var url = $(this).parent("div").data("url");
@@ -152,6 +169,7 @@
             console.log(data);
         });
     });
-    </script>
+</script>
+
 </body>
 </html>

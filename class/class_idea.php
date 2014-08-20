@@ -9,7 +9,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 
 class class_idea
 {
-    private $db = null;
+    public $db = null;
     public $num_of_waiting;
 
     function class_idea(){

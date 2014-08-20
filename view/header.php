@@ -13,7 +13,13 @@
         </div>
         <div class="lgn">
             <a href="person.php" target="_top"><img src="asset/12.png" alt=""></a>
-            <a href="#" target="_top"><img src="asset/1.png" alt=""></a>
+            <div id="sb-search" class="sb-search">
+                <form>
+                    <input class="sb-search-input" placeholder="  some" type="search" name="search" id="search">
+                    <input class="sb-search-submit" type="submit" value="">
+                    <span class="sb-icon-search"></span>
+                </form>
+            </div>
         </div>
     </div>
 </div>
