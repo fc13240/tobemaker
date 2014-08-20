@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-mine</title>
     <?php include "top_css.php" ?>
-    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css"/>
 </head>
 <body>
 <div id="top">
@@ -43,10 +42,10 @@
                 <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
             </dl>
 
-            <div class="prev">
+            <div class="prev" id="minelistprev">
                 <div><a href="#"><</a></div>
             </div>
-            <div class="next">
+            <div class="next" id="minelistnext">
                 <div><a href="#">></a></div>
             </div>
 
@@ -59,6 +58,8 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
+
+<?php include "bottom_js.php" ?>
 
 </body>
 </html>

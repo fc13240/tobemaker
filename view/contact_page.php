@@ -37,6 +37,8 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
+            
+<?php include "bottom_js.php" ?>
 
 </body>
 </html>

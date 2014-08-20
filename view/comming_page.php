@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-comming</title>
     <?php include "top_css.php" ?>
-
 </head>
 <body class="wide">
 <div id="top">
@@ -143,6 +142,8 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
+
+<?php include "bottom_js.php" ?>
 
 <!--换页按钮定位相关js-->
 <!--需要jQuery-->

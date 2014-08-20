@@ -26,9 +26,6 @@
 				
 				这就是我们在做的事情，不求苟同，颠覆至上。</p>
 
-				
-				
-
 			</div>
 
 		</div>
@@ -36,6 +33,8 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
+            
+<?php include "bottom_js.php" ?>
 
 </body>
 </html>

@@ -61,10 +61,6 @@
 					联系我们请 E-mail: <cite>help@tobemaker.com</cite>
 				</p>
 
-
-				
-				
-
 			</div>
 
 		</div>
@@ -73,5 +69,7 @@
     <?php include "footer.php" ?>
 </div>
 
+<?php include "bottom_js.php" ?>
+            
 </body>
 </html>

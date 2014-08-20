@@ -4,14 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-shop</title>
     <?php include "top_css.php" ?>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script>
-        $(function(){
-            $(".menu li").click(function(){
-                $(this).siblings().removeClass("active").end().addClass("active");
-            })
-        })
-    </script>
 </head>
 <body>
 <div id="top">
@@ -67,5 +59,14 @@
     <?php include "footer.php" ?>
 </div>
 
+<?php include "bottom_js.php" ?>
+    
+<script>
+    $(function(){
+        $(".menu li").click(function(){
+            $(this).siblings().removeClass("active").end().addClass("active");
+        })
+    })
+</script>
 </body>
 </html>
