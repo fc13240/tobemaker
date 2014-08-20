@@ -30,7 +30,8 @@ class class_idea
           return false;
         }
     }
-   
+
+
 
    // 在表中增加数据  输入表名和数组字段
 
@@ -44,17 +45,20 @@ class class_idea
         while ($i<$num) {
                         # code...
                  $aa=$aa."`".$keys[$i]."`,";
+                 if($values[$i]!='now()'){
                  $bb=$bb."'".$values[$i]."',";
+               }
+               else{
+                $bb=$bb.$values[$i].",";
+               }
                           $i=$i+1;         
         }
         $aa=rtrim($aa,",");
         $bb=rtrim($bb,",");
         $sql="insert into ".$table_name."(".$aa.") values(".$bb.")";
-        $sql;
         $this->db->query($sql);
         $res=$this->db->get_results("SELECT LAST_INSERT_ID()",ARRAY_A);
         return $res[0]['LAST_INSERT_ID()'];
-        //return $result;
     }
     
     // 更新表中某个字段
@@ -63,6 +67,9 @@ class class_idea
         $this->db->query($sql_query);
     }
     
+
+    // 增加改动信息
+  
     public function delete(){
     }
     // 获取某个id详细信息
@@ -91,7 +98,8 @@ class class_idea
       }
       $aa=rtrim($aa,",");
       $sql="UPDATE idea_info SET ".$aa." where idea_id=".$idea_id;
-      $this->db->query($sql);
+      echo $sql;
+      //$this->db->query($sql);
     }
 
 
@@ -223,8 +231,5 @@ class class_idea
         $sql="UPDATE idea_manage set `idea_status`=3 ,`reason`=\"".$reason."\",`last_change_time`=now() where `idea_id`=".$idea_id;
         $result = $this->db->query($sql);
     }
-
-     
-
     //
 }
