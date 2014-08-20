@@ -45,7 +45,7 @@ if(array_key_exists('img_url',$_POST))
 
     //注册修改事件
     $change_info=array();
-    $change_info['user_id']=3;
+    $change_info['user_id']=1;  //admin 的id
     $change_info['idea_id']=$_GET['idea_id'];
     $change_info['idea_status']=2;
     $change_info['last_change_time']='now()';
