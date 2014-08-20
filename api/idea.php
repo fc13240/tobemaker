@@ -123,7 +123,7 @@ for($i = 0; $i < $real_length; $i++) {
     '<span class="label label-sm label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
     '<a href="javascript:;" class="btn btn-xs blue idea-pass"><i class="fa fa-search"></i>批准</a>'
       . '<a href="javascript:;" class="btn btn-xs red idea-reject"><i class="fa fa-search"></i>拒绝</a>'
-      . '<a href="./idea_detail.php?ideaId='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>查看</a>',
+      . '<a href="./idea_detail_all.php?idea_id='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>查看</a>',
   );
 }
 
