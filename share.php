@@ -21,10 +21,13 @@ if(array_key_exists('img_url',$_POST))
 	$arr['name']=$_POST['title'];
 	$arr['content']=$_POST['content'];
 	$arr['picture_url']=$pic_url;
+	if(array_key_exists('cover-display', $_POST))
+	{
+		$arr['cover_display']=1;
+	}
 
 	//$arr['user_name']=$_POST['user_id'];
 	$arr['user_id']=3;
-	$arr['cover_display']=$_POST['cover_display'];
 
 	$new_idea= new class_idea();
 	$new_idea_id=$new_idea->insert("idea_info",$arr);

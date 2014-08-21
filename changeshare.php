@@ -39,7 +39,11 @@ if(array_key_exists('img_url',$_POST))
 	//$arr['user_name']=$_POST['user_id'];
 	$arr['user_id']=3;
     $idea_id=7;
-	//$arr['cover_display']=$_POST['cover_display'];
+    if(array_key_exists('cover-display', $_POST))
+    {
+        $arr['cover_display']=1;
+    }
+
   //  var_dump($arr);
     $new_idea_id=$new_idea->update_idea($idea_id,$arr);
 
