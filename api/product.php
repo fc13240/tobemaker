@@ -37,7 +37,7 @@ function update_one_product( $pf_id,$arr){
 $status_list = array(
 
   array("success" => "正常"),
-  array("error" => "已下线")
+  array("error" => "下线")
   
 );
 //如果是修改请求
@@ -102,8 +102,8 @@ for($i = 0; $i < $real_length; $i++) {
 	$datalist[$i]["pf_addDate"],
 	$datalist[$i]["pf_recommand"],
     '<span class="label label-sm label-'.(key($status)).' pf-status">'.(current($status)).'</span>',
-    '<a href="javascript:;" class="btn btn-xs blue product-pass" href="./product_detail.php?action=edit&productID='.$id.'"><i class="fa fa-search"></i>编辑</a>'
-      . '<a href="./product_detail.php?productID='.$id.'" class="btn btn-xs default product-view"><i class="fa fa-search"></i>查看</a>',
+    '<a  class="btn btn-xs blue product-pass" href="./product_detail.php?action=edit&productID='.$id.'"><i class="fa fa-search"></i>编辑</a>'
+      . '<a href="./product_detail.php?action=view&productID='.$id.'" class="btn btn-xs default product-view"><i class="fa fa-search"></i>查看</a>',
   );
 }
 

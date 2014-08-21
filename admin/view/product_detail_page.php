@@ -127,7 +127,7 @@
 						<a href="#">商品详情</a>
 					</li>
 				</ul>
-				<div class="page-toolbar">
+				<!--<div class="page-toolbar">
 					<div class="btn-group pull-right">
 						<button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
 						Actions <i class="fa fa-angle-down"></i>
@@ -150,78 +150,20 @@
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="portlet box blue" id="form_wizard_1">
-						<div class="portlet-title">
-							<div class="caption">
-								<i class="fa fa-gift"></i> 项目详情 - <span class="step-title">
-								Step 1 of 4 </span>
-							</div>
-							<div class="tools hidden-xs">
-								<a href="javascript:;" class="collapse">
-								</a>
-								<a href="#portlet-config" data-toggle="modal" class="config">
-								</a>
-								<a href="javascript:;" class="reload">
-								</a>
-								<a href="javascript:;" class="remove">
-								</a>
-							</div>
-						</div>
+						
 						<div class="portlet-body form">
 							<form action="#" class="form-horizontal" id="submit_form" method="POST">
 								<div class="form-wizard">
 									<div class="form-body">
-										<ul class="nav nav-pills nav-justified steps">
-											<li>
-												<a href="#tab1" data-toggle="tab" class="step">
-												<span class="number">
-												1 </span>
-												<span class="desc">
-												<i class="fa fa-check"></i> 新建项目 </span>
-												</a>
-											</li>
-											<li>
-												<a href="#tab2" data-toggle="tab" class="step">
-												<span class="number">
-												2 </span>
-												<span class="desc">
-												<i class="fa fa-check"></i> 等待审核 </span>
-												</a>
-											</li>
-											<li>
-												<a href="#tab3" data-toggle="tab" class="step active">
-												<span class="number">
-												3 </span>
-												<span class="desc">
-												<i class="fa fa-check"></i> 集赞中 </span>
-												</a>
-											</li>
-											<li>
-												<a href="#tab4" data-toggle="tab" class="step">
-												<span class="number">
-												4 </span>
-												<span class="desc">
-												<i class="fa fa-check"></i> 等待生产 </span>
-												</a>
-											</li>
-                                                                                        <li>
-												<a href="#tab5" data-toggle="tab" class="step">
-												<span class="number">
-												5 </span>
-												<span class="desc">
-												<i class="fa fa-check"></i> 完成生产/下线 </span>
-												</a>
-											</li>
-										</ul>
-										<div id="bar" class="progress progress-striped" role="progressbar">
-											<div class="progress-bar progress-bar-success">
-											</div>
-										</div>
+										
+										
+										
 										<div class="tab-content">
 											<div class="alert alert-danger display-none">
 												<button class="close" data-dismiss="alert"></button>
@@ -232,252 +174,152 @@
 												Your form validation is successful!
 											</div>
 											<div class="tab-pane active" id="tab1">
-												<h3 class="block">输入项目信息</h3>
+												<h3 class="block">商品详情</h3>
 												<div class="form-group">
-													<label class="control-label col-md-3">标题 <span class="required">
-													* </span>
+													<label class="control-label col-md-3">商品目录 
+													</label>
+													<div class="col-md-4" class="form-control">
+													<input type="hidden" value="<?=@$productInfo[0]["pc_id"] ?>" name="pc_id" id="pc_id"/>
+													    <input type="hidden" value="<?=@$productInfo[0]["pf_id"] ?>" name="pf_id" id="pf_id"/>
+														<select class="form-control" name="category" disabled="disabled" id="category">
+														
+														<?php
+														
+														for($i=0;$i<count($categoryList);$i++)
+														{
+														if(@$categoryList[$i]["pc_id"]!=@$productInfo[0]["pc_id"])
+														{
+														$cateforyid=@$categoryList[$i]["pc_id"];
+														echo '<option value="'.$cateforyid.'">'.@$categoryList[$i]["pc_name"].'</option>';
+														}
+														
+														else
+														{
+														    echo '<option selected="selected" value="'.@$categoryList[$i]["pc_id"].'">'.@$categoryList[$i]["pc_name"].'</option>';
+														}
+														}
+														?>
+														</select>
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">商品名称 
 													</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" name="title"/>
-														<span class="help-block">
-														输入项目标题 </span>
+													<?php
+													
+													echo '<input type="text" class="form-control" name="name" id="name" value="'.@$productInfo[0]["pf_name"].'" '.$strDisplay.' />';
+													?>
+														
+														
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">作者 <span class="required">
-													* </span>
+													<label class="control-label col-md-3">图片 
 													</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" name="author" id="submit_form_password"/>
-														<span class="help-block">
-														（选填）输入你想显示在项目上的名字 </span>
+													<?php
+													 echo ' <div class="pic"><div class="picture"><img alt="" src="'.@$productInfo[0]["pf_image"].'" id="image" name="image" /></div></div>';
+													 if($action=='edit')
+													 {
+													  /*echo '<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="<?= BASE_URL ?>api/tmpfileupload.php"><input id="fileurl" type="hidden" name="img_url" value=""/>';
+													 */}
+													?>
+														<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="<?= BASE_URL ?>api/tmpfileupload.php">
+															
+															<input id="fileurl" type="hidden" name="img_url" value="<?=@$productInfo[0]["pf_image"]?>"/>
+														
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">封面 <span class="required">
-													* </span>
+													<label class="control-label col-md-3">商品链接 
 													</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" name="cover"/>
-														<span class="help-block">
-														显示在项目列表中的图片 </span>
+													<?php
+													echo '<input type="text" class="form-control" name="link" value="'.@$productInfo[0]["pf_link"].'" '.$strDisplay.'/>';
+													?>
+														
+														
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">标签 <span class="required">
-													* </span>
+													<label class="control-label col-md-3">商品标签 
 													</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" name="labels"/>
-														<span class="help-block">
-														项目相关的标签 </span>
+													<?php
+													echo '<input type="text" class="form-control" name="label"  value="'.@$productInfo[0]["pf_label"].'" '.$strDisplay.'/>';
+													?>
+														
+														
 													</div>
 												</div>
-											</div>
-											<div class="tab-pane" id="tab2">
-												<h3 class="block">检查项目内容并设置集赞岂止时间和目标</h3>
 												<div class="form-group">
-													<label class="control-label col-md-3">开始时间 <span class="required">
-													* </span>
+													<label class="control-label col-md-3">原价 
 													</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" name="start_time"/>
-														<span class="help-block">
-														Provide your fullname </span>
+													<?php
+													
+													echo '<input type="number" class="form-control" name="price" value="'.@$productInfo[0]["pf_price"].'" '.$strDisplay.'/>';
+													
+												
+													?>
+													</div>
+												</div>	
+														
+													
+												<div class="form-group">
+													<label class="control-label col-md-3">现价</label>
+													<div class="col-md-4">
+													<?php
+													echo '<input type="number" class="form-control" name="discount" value="'.@$productInfo[0]["pf_discount"].'" '.$strDisplay.'/>';
+													?>
+														
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">结束时间 <span class="required">
-													* </span>
+													<label class="control-label col-md-3">添加日期 
 													</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" name="end_time"/>
-														<span class="help-block">
-														Provide your phone number </span>
+													<?php
+													echo '<input type="text" class="form-control" name="addDate" value="'.@$productInfo[0]["pf_addDate"].'" disabled="disabled"/>';
+													?>
+														
+														
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">集赞目标</label>
-													<div class="col-md-4">
-														<input type="text" class="form-control" name="like_target"/>
-													</div>
-												</div>
-											</div>
-											<div class="tab-pane" id="tab3">
-												<h3 class="block">Provide your billing and credit card details</h3>
-												<div class="form-group">
-													<label class="control-label col-md-3">Card Holder Name <span class="required">
-													* </span>
+													<label class="control-label col-md-3">状态 
 													</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" name="card_name"/>
-														<span class="help-block">
-														</span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Card Number <span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="text" class="form-control" name="card_number"/>
-														<span class="help-block">
-														</span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">CVC <span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="text" placeholder="" class="form-control" name="card_cvc"/>
-														<span class="help-block">
-														</span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Expiration(MM/YYYY) <span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="text" placeholder="MM/YYYY" maxlength="7" class="form-control" name="card_expiry_date"/>
-														<span class="help-block">
-														e.g 11/2020 </span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Payment Options <span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<div class="checkbox-list">
-															<label>
-															<input type="checkbox" name="payment[]" value="1" data-title="Auto-Pay with this Credit Card."/> Auto-Pay with this Credit Card </label>
-															<label>
-															<input type="checkbox" name="payment[]" value="2" data-title="Email me monthly billing."/> Email me monthly billing </label>
-														</div>
-														<div id="form_payment_error">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="tab-pane" id="tab4">
-												<h3 class="block">Confirm your account</h3>
-												<h4 class="form-section">Account</h4>
-												<div class="form-group">
-													<label class="control-label col-md-3">Username:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="username">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Email:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="email">
-														</p>
-													</div>
-												</div>
-												<h4 class="form-section">Profile</h4>
-												<div class="form-group">
-													<label class="control-label col-md-3">Fullname:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="fullname">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Gender:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="gender">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Phone:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="phone">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Address:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="address">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">City/Town:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="city">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Country:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="country">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Remarks:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="remarks">
-														</p>
-													</div>
-												</div>
-												<h4 class="form-section">Billing</h4>
-												<div class="form-group">
-													<label class="control-label col-md-3">Card Holder Name:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="card_name">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Card Number:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="card_number">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">CVC:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="card_cvc">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Expiration:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="card_expiry_date">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Payment Options:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="payment">
-														</p>
+													<select class="form-control" name="status" <?php echo $strDisplay ?>>
+													<?php
+													$selected=($productInfo[0]["pf_status"]=='正常'?' selected="selected" ':'');
+													
+													echo '<option  value="正常" '.$selected.'>正常</option>';
+													echo '<option value="下线" '.(empty($selected)?' selected="selected" ':'').'>下线</option>';
+													?>
+													<select>	
+														
 													</div>
 												</div>
 											</div>
 										</div>
+		
 									</div>
 									<div class="form-actions">
 										<div class="row">
 											<div class="col-md-offset-3 col-md-9">
-												<a href="javascript:;" class="btn default button-previous">
-												<i class="m-icon-swapleft"></i> Back </a>
-												<a href="javascript:;" class="btn blue button-next">
-												Continue <i class="m-icon-swapright m-icon-white"></i>
-												</a>
-												<a href="javascript:;" class="btn green button-submit">
-												Submit <i class="m-icon-swapright m-icon-white"></i>
-												</a>
+												
+												<?php
+												if($action!='view')
+												{
+												echo '<a href="javascript:;" class="btn green button-submit">
+												<input type="submit" class="btn green button-submit" value="更新" /> 
+												</a>';
+												}
+												?>
+												
 											</div>
 										</div>
 									</div>

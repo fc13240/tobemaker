@@ -91,7 +91,9 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
       }
       $aa=rtrim($aa,",");
       $sql="UPDATE product_info SET ".$aa." where pf_id=".$product_id;
+	  
       $this->db->query($sql);
+	  
      // echo $sql;
     }
     // ---------  增删改查基本操作 - 结束
@@ -115,6 +117,16 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
         $sql="SELECT `product_info`.*, `product_category`.`pc_name` from `product_info`,`product_category` where `product_info`.`pc_id`=`product_category`.`pc_id` limit ".$begin.",".$num;
+        $result = $this->db->get_results($sql,ARRAY_A);
+       // $res = json_encode($result);
+        return $result;
+    }
+	//获取线上商品
+	 public function get_status_product($begin,$num){
+        
+      $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+        $sql="SELECT `product_info`.*, `product_category`.`pc_name` from `product_info`,`product_category` where `product_info`.`pf_status`=\"正常\"  and `product_info`.`pc_id`=`product_category`.`pc_id` limit ".$begin.",".$num;
         $result = $this->db->get_results($sql,ARRAY_A);
        // $res = json_encode($result);
         return $result;
