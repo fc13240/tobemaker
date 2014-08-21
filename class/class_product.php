@@ -119,8 +119,33 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
        // $res = json_encode($result);
         return $result;
     }
-    
-
+    //验证是否重复
+    public function check_is_unique($table_name,$arr_columns_value)
+	{
+	   $strsql='select * from `'.$table_name.'` ';
+	    if (count($arr_columns_value)<=0)
+	    {
+	        return false;
+	    }
+	    else
+	        {
+			    $strsql=$strsql.'where ';
+				$keys=array_keys($arr);
+			    for($i=0;$i<count($arr_columns_value);$i++)
+				{
+				    if($i==0)
+					{
+					    $strsql=$strsql.'`'.$keys[$i].'`='.$arr_columns_value[$keys[$i]].' ';
+					}
+					else
+					{
+					     $strsql=$strsql.' and `'.$keys[$i].'`='.$arr_columns_value[$keys[$i]].' ';
+					}
+				}
+	        }
+		$result=$this->db->get_results($sql,ARRAY_A);
+		return count($result);
+	}
    
 
    
