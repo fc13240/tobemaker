@@ -110,7 +110,7 @@
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			项目详情
+			商品详情
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
@@ -120,11 +120,11 @@
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">项目</a>
+						<a href="#">商品</a>
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">项目详情</a>
+						<a href="#">商品详情</a>
 					</li>
 				</ul>
 				<div class="page-toolbar">
