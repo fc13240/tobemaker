@@ -110,7 +110,7 @@
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			商品详情
+			商品目录详情
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
@@ -124,7 +124,7 @@
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">商品详情</a>
+						<a href="#">商品目录详情</a>
 					</li>
 				</ul>
 				<!--<div class="page-toolbar">
@@ -174,132 +174,49 @@
 												Your form validation is successful!
 											</div>
 											<div class="tab-pane active" id="tab1">
-												<h3 class="block">商品详情</h3>
+												<h3 class="block">商品目录详情</h3>
 												<div class="form-group">
-													<label class="control-label col-md-3">商品目录 
+													<label class="control-label col-md-3">商品目录名称
 													</label>
 													<div class="col-md-4" class="form-control">
-													<input type="hidden" value="<?=@$productInfo[0]["pc_id"] ?>" name="pc_id" id="pc_id"/>
-													    <input type="hidden" value="<?=@$productInfo[0]["pf_id"] ?>" name="pf_id" id="pf_id"/>
-														<select class="form-control" name="category" disabled="disabled" id="category">
+													<input type="hidden" value="<?=@$category[0]["pc_id"] ?>" name="pc_id" id="pc_id"/>
+													    
+														
 														
 														<?php
 														
-														for($i=0;$i<count($categoryList);$i++)
-														{
-														if(@$categoryList[$i]["pc_id"]!=@$productInfo[0]["pc_id"])
-														{
-														$cateforyid=@$categoryList[$i]["pc_id"];
-														echo '<option value="'.$cateforyid.'">'.@$categoryList[$i]["pc_name"].'</option>';
-														}
-														
-														else
-														{
-														    echo '<option selected="selected" value="'.@$categoryList[$i]["pc_id"].'">'.@$categoryList[$i]["pc_name"].'</option>';
-														}
-														}
+													     echo '<input type="text" class="form-control" name="name" id="name" value="'.@$category[0]["pc_name"].'" '.$strDisplay.' />';
 														?>
-														</select>
+														
 														
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">商品名称 
+													<label class="control-label col-md-3">添加时间 
 													</label>
 													<div class="col-md-4">
 													<?php
 													
-													echo '<input type="text" class="form-control" name="name" id="name" value="'.@$productInfo[0]["pf_name"].'" '.$strDisplay.' />';
+													echo '<input type="text" class="form-control" name="addDate" id="addDate" value="'.@$category[0]["pc_addDate"].'" disabled="disabled" />';
 													?>
 														
 														
 													</div>
 												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">图片 
-													</label>
-													<div class="col-md-4">
-													<?php
-													 echo ' <div class="pic"><div class="picture"><img alt="" src="'.@$productInfo[0]["pf_image"].'" id="image" name="image" /></div></div>';
-													 if($action=='edit')
-													 {
-													  /*echo '<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="<?= BASE_URL ?>api/tmpfileupload.php"><input id="fileurl" type="hidden" name="img_url" value=""/>';
-													 */}
-													?>
-														<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="<?= BASE_URL ?>api/tmpfileupload.php">
-															
-															<input id="fileurl" type="hidden" name="img_url" value=""/>
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">商品链接 
-													</label>
-													<div class="col-md-4">
-													<?php
-													echo '<input type="text" class="form-control" name="link" value="'.@$productInfo[0]["pf_link"].'" '.$strDisplay.'/>';
-													?>
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">商品标签 
-													</label>
-													<div class="col-md-4">
-													<?php
-													echo '<input type="text" class="form-control" name="label"  value="'.@$productInfo[0]["pf_label"].'" '.$strDisplay.'/>';
-													?>
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">原价 
-													</label>
-													<div class="col-md-4">
-													<?php
-													
-													echo '<input type="number" class="form-control" name="price" value="'.@$productInfo[0]["pf_price"].'" '.$strDisplay.'/>';
-													
 												
-													?>
-													</div>
-												</div>	
-														
-													
-												<div class="form-group">
-													<label class="control-label col-md-3">现价</label>
-													<div class="col-md-4">
-													<?php
-													echo '<input type="number" class="form-control" name="discount" value="'.@$productInfo[0]["pf_discount"].'" '.$strDisplay.'/>';
-													?>
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">添加日期 
-													</label>
-													<div class="col-md-4">
-													<?php
-													echo '<input type="text" class="form-control" name="addDate" value="'.@$productInfo[0]["pf_addDate"].'" disabled="disabled"/>';
-													?>
-														
-														
-													</div>
-												</div>
+												
 												<div class="form-group">
 													<label class="control-label col-md-3">状态 
 													</label>
 													<div class="col-md-4">
-													<select class="form-control" name="status" <?php echo $strDisplay ?>>
+													<select class="form-control" name="status" <?php echo $strDisplay ?> >
 													<?php
-													$selected=($productInfo[0]["pf_status"]=='正常'?' selected="selected" ':'');
+													$selected=($category[0]["pc_status"]=='正常'?' selected="selected" ':'');
 													
 													echo '<option  value="正常" '.$selected.'>正常</option>';
 													echo '<option value="下线" '.(empty($selected)?' selected="selected" ':'').'>下线</option>';
+													echo '<option  value="删除" >删除</option>';
 													?>
-													<option  value="删除" >删除</option>
 													
 													</select>	
 														
