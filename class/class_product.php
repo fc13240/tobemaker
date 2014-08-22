@@ -62,8 +62,15 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
         $sql_query="update ".$table_name." set ".$col_name."=".$value;
         $this->db->query($sql_query);
     }
-    
-    public function delete(){
+    //删除某个id的商品
+    public function delete_product($pf_id){
+	$sql='delete from `product_info` where `pf_id`='.$pf_id;
+	$this->db->query($sql);
+    }
+	 //删除某个id的商品目录
+    public function delete_category($pc_id){
+	$sql='delete from `product_category` where `pc_id`='.$pc_id;
+	$this->db->query($sql);
     }
     // 获取某个id详细信息
     public function get_product_by_id($pf_id){
@@ -71,7 +78,13 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
       $result = $this->db->get_results($sql, ARRAY_A);  
       return $result;
     }
-
+    //获取某个id目录信息
+	public function get_category_by_id($pc_id)
+	{
+	$sql='select pc.* from `product_category` as pc where pc.`pc_id`='.$pc_id;
+	$result = $this->db->get_results($sql, ARRAY_A);  
+      return $result;
+	}
    //通过product_info字段更新数据  传入修改的id和字段=》值 数组实现更新 
    
      public function update_product($product_id,$arr)
@@ -96,6 +109,29 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	  
      // echo $sql;
     }
+	//通过product_category字段更新数据  传入修改的id和字段=》值 数组实现更新 
+	 public function update_category($product_id,$arr)
+    {
+      $keys=array_keys($arr);
+      $values=array_values($arr);
+      $num_a=count($keys);
+      $i=0;
+      $aa="";
+      $bb="";
+      while ($i<$num_a) {
+        # code...
+        if($arr[$keys[$i]]!=""){
+        $aa=$aa."`".$keys[$i]."`='".$values[$i]."',";
+      }
+        $i++;
+      }
+      $aa=rtrim($aa,",");
+      $sql="UPDATE product_category SET ".$aa." where pc_id=".$product_id;
+	  
+      $this->db->query($sql);
+	  
+     // echo $sql;
+    }
     // ---------  增删改查基本操作 - 结束
     
     // ---------  审核相关操作 - 开始
@@ -110,7 +146,23 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
         $result = $this->db->get_results($sql,ARRAY_A);
         return count($result);
     }
-
+    //获取商品目录数量
+	 public function get_all_category_num()
+	 {
+	 $strsql='select * from `product_category` ';
+	 $result = $this->db->get_results($strsql,ARRAY_A);
+        return count($result);
+	 }
+	 //获取部分商品目录
+	 public function get_part_category($begin,$num)
+	 {
+	 $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+        $sql="SELECT  `product_category`.* from `product_category` where 1 limit ".$begin.",".$num;
+        $result = $this->db->get_results($sql,ARRAY_A);
+       // $res = json_encode($result);
+        return $result;
+	 }
    //获取部分商品
      public function get_part_product($begin,$num){
         

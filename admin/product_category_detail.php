@@ -4,7 +4,7 @@ include_once '../config.php';
 include_once '../class/class_product.php';
 include_once '../class/class_file.php';
 // 导航 当前页面控制
-$current_page = 'product-product_detail';
+$current_page = 'product-product_category_detail';
 $page_level = explode('-', $current_page);
 
 $page_level_style = '
@@ -32,21 +32,7 @@ jQuery(document).ready(function() {
     QuickSidebar.init(); // init quick sidebar
     Demo.init(); // init demo features
     TableManaged.init();
-	$(\'#fileSelect\').fileupload({
-            dataType: \'json\',
-            done: function (e, data) {
-                if (data.result.url == null){
-                    alert("错误：" + data.result.err_msg);
-                }else{
-                    //$("#coverPreview").attr(\'src\', data.result.url);
-                    $("#fileurl").val(data.result.url);
-					$("#image").attr(\'src\', data.result.url);
-                }
-            },
-            progress: function (e, data) {
-
-            },
-        });
+	
 });
 </script>
 ';
@@ -54,20 +40,15 @@ jQuery(document).ready(function() {
 if(empty($_GET["productID"])||empty($_GET["action"]))
 {
 
-echo '<script language="javascript">alter("参数传递错误！");history.go(-1);</script>';
+echo '<script language="javascript">alert("参数传递错误！");history.go(-1);</script>';
 }
 //获取商品目录
 $product=new class_product();
-$strsql='select * from `product_category`';
-$categoryList=$product->select($strsql);
-$file=new class_file();
-//获取商品详情
-$productID=$_GET["productID"];
-$strsql='select * from `product_info` where `product_info`.`pf_id`='.$productID;
-$productInfo=$product->select($strsql);
-//判断状态（编辑/查看）并绑定数据
-if(array_key_exists('action',$_GET))
-{
+
+$category=$product->get_category_by_id($_GET["productID"]);
+
+
+
 
 	//绑定数据
 	$action=$_GET["action"];
@@ -75,39 +56,45 @@ if(array_key_exists('action',$_GET))
 	if($action=='view')
     $strDisplay=' disabled="disabled" ';
 	
-}
 
+// 表单处理
+if(array_key_exists('name',$_POST))
+{
+//下线处理验证】
+$isContain=null;
+ if($_POST["status"]=='下线'||$_POST["status"]=='删除')
+ {
+  $strsql='select * from `product_info` where `pc_id`='.$_POST["pc_id"];
+  $isContain=$product->select($strsql);
+ }
+ if(!$isContain)
+ {
+ if($_POST["status"]=='删除')
+{
+    $product->delete_category($_POST["pc_id"]);
+}
+else
+{
+  $arr=array("pc_name"=>$_POST["name"],"pc_id"=>$_POST["pc_id"],"pc_status"=>$_POST["status"]);
+  
+  $result=$product->update_category($_POST["pc_id"],$arr);
+  
+}
+  }
+  else
+  {
+  //提示目录下含有商品
+  echo '<script type="text/javascript"> alert("目录下含有商品，不能执行删除和下线操作")</script>';
+  }
+  
+  //成功信息
+}
 include 'view/header.php';
 
 include 'view/leftnav.php';
 
-include 'view/product_detail_page.php';
+include 'view/product_category_detail_page.php';
 
 include 'view/quick_bar.php';
 
 include 'view/footer.php';
-// 表单处理
-if(array_key_exists('name',$_POST))
-{
-if($_POST["status"]=='删除')
-{
-    $product->delete_product($_POST["pf_id"]);
-}
-else
-{
-$imgUrl='';
-if(!empty($_POST["img_url"]))
-  $imgUrl=$file->save($_POST["img_url"]);
-  if(!empty($imgUrl))
-  $arr=array("pf_name"=>$_POST["name"],"pf_image"=>$imgUrl,"pf_link"=>$_POST["link"],
-             "pf_label"=>$_POST["label"],"pf_price"=>$_POST["price"],"pf_discount"=>$_POST["discount"],
-			 "pf_status"=>$_POST["status"]);
-  else
-  $arr=array("pf_name"=>$_POST["name"],"pf_link"=>$_POST["link"],
-             "pf_label"=>$_POST["label"],"pf_price"=>$_POST["price"],"pf_discount"=>$_POST["discount"],
-			 "pf_status"=>$_POST["status"]);
-  $result=$product->update_product($_POST["pf_id"],$arr);
-  
-  //成功信息
-}
-}
