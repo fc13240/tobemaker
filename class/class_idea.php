@@ -144,6 +144,23 @@ class class_idea
        // $res = json_encode($result);
         return $result;
     }
+
+    //获取部分项目加排序    先获取符合条件的后排序
+     public function get_part_ideas_order_status($begin,$num,$sort_rule){
+
+      $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+      if($sort_rule==0){
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_status` asc limit ".$begin.",".$num;
+      }elseif ($sort_rule==1) {
+        # code...
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_status` desc limit ".$begin.",".$num;
+
+      }
+        $result = $this->db->get_results($sql,ARRAY_A);
+        $res = json_encode($result);
+        return $result;
+    }
      // 获取所有待审核项目
     public function get_all_waiting(){
       $begin = $this->db->escape($begin);
