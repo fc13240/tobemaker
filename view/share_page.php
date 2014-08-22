@@ -3,27 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>share</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <?php include "top_css.php" ?>
     <link rel="stylesheet" type="text/css" href="css/redactor.css">
-
-    
-
-    <script>
-        if(!Array.indexOf)
-        {
-            Array.prototype.indexOf = function(obj)
-            {
-                for(var i=0; i<this.length; i++)
-                {
-                    if(this[i]==obj)
-                    {
-                        return i;
-                    }
-                }
-                return -1;
-            }
-        }
-    </script>
 </head>
 <body>
 <div id="top">
@@ -82,50 +63,47 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
-    <script src="js/jquery.min.js"></script>
+    
+    <?php include "bottom_js.php" ?>
     <script src="js/redactor.js"></script>
-    <!--<script src="admin/assets/global/plugins/jquery-1.11.0.min.js" />-->
     <script src="admin/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
-<script src="admin/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
+    <script src="admin/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
 
-<script>
-$(document).ready(function(){
-    console.log("hi");
-    $('#content').redactor();
-    
-    $('#fileSelect').fileupload({
-        dataType: 'json',
-        done: function (e, data) {
-            if (data.result.url == null){
-                alert("错误：" + data.result.err_msg);
-            }else{
-                $("#coverPreview").attr('src', data.result.url);
-                $("#fileurl").val(data.result.url);
-            }
-        },
-        progress: function (e, data) {
-            
-        },
-    });
-    
-    
-    $('button.save').click(function(){
-        //$('#idea-form').submit();
-        $('#idea-form').action="../share.php";
-        $('#idea-form').submit();
-    });
-    
-    $('button.view').click(function(){
-       // alert('结果预览');
-       var formData = $('#idea-form').serialize();
-        $.post('project.php', formData, function(data, textStatus){
-            var win=window.open("about blank");
-            win.document.write(data);
+    <script>
+    $(document).ready(function(){
+
+        $('#content').redactor();
+
+        $('#fileSelect').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                if (data.result.url == null){
+                    alert("错误：" + data.result.err_msg);
+                }else{
+                    $("#coverPreview").attr('src', data.result.url);
+                    $("#fileurl").val(data.result.url);
+                }
+            },
+            progress: function (e, data) {
+
+            },
+        });
+
+        $('button.save').click(function(){
+            $('#idea-form').action="../share.php";
+            $('#idea-form').submit();
+        });
+
+        $('button.view').click(function(){
+            // alert('结果预览');
+            var formData = $('#idea-form').serialize();
+            $.post('project.php', formData, function(data, textStatus){
+                var win=window.open("about blank");
+                win.document.write(data);
+            });
         });
     });
-    
-});
 
-</script>
+    </script>
 </body>
 </html>

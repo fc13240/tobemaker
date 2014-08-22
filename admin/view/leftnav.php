@@ -59,6 +59,12 @@
 							<i class="icon-home"></i>
 							项目详情</a>
 						</li>
+
+						<li class="<?= @$page_level[1] == 'idea_recommend' ? 'active' : '' ?>">
+                                                        <a href="idea_recommend.php">
+							<i class="icon-home"></i>
+							项目推荐</a>
+						</li>
 					</ul>
 				</li>
                                 <li class="<?= @$page_level[0] == 'product' ? 'active open' : '' ?>">

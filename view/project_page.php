@@ -3,35 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-item</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.qqFace.js"></script>
-    <script type="text/javascript" src="js/jquery-migrate-1.1.1.js"></script>
-    <script type="text/javascript" src="js/jQuery.pin.js"></script>
-    <script>
-        $(function(){
-            $('.emotion').qqFace({
-                id : 'facebox',
-                assign:'saytext',
-                path:'asset/arclist/'	//表情存放的路径
-            });
-            $(".sub_btn").click(function(){
-                var str = $("#saytext").val();
-                $("#show").html(replace_em(str));
-            });
-            $(".pendant").pin({
-                minWidth : 1220
-            });
-
-        });
-        function replace_em(str){
-            str = str.replace(/\</g,'&lt;');
-            str = str.replace(/\>/g,'&gt;');
-            str = str.replace(/\n/g,'<br/>');
-            str = str.replace(/\[em_([0-9]*)\]/g,'<img src="asset/arclist/$1.gif" border="0" />');
-            return str;
-        }
-    </script>
+    <?php include "top_css.php" ?>
 </head>
 <body>
 <div id="top">
@@ -138,24 +110,53 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
-<script>
-$("#like_btn").click(function(){
-    var url = $(this).data("url");
-    var idea_id = $(this).data("idea_id");
-    //TODO:从当前登录用户信息中获取用户id
-    var user_id = 1;
-    $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
-        var status = data['status'];
-        if (status == "success"){
-            $("#like_btn").addClass("red");
-        }else if (status == "error"){
-            alert("系统错误，请联系管理员");
-        }else if (status == "like_already"){
-            alert("已标记喜欢，请勿重复提交");
-        }
-    },'json');
-});
 
-</script>    
+<?php include "bottom_js.php" ?>
+<script type="text/javascript" src="./js/jquery.qqFace.js"></script>
+<script type="text/javascript" src="./js/jquery-migrate-1.1.1.js"></script>
+<script type="text/javascript" src="./js/jQuery.pin.js"></script>
+
+<script>
+    $(function(){
+        $('.emotion').qqFace({
+            id : 'facebox',
+            assign:'saytext',
+            path:'asset/arclist/'	//表情存放的路径
+        });
+        $(".sub_btn").click(function(){
+            var str = $("#saytext").val();
+            $("#show").html(replace_em(str));
+        });
+        $(".pendant").pin({
+            minWidth : 1220
+        });
+
+        $("#like_btn").click(function(){
+            var url = $(this).data("url");
+            var idea_id = $(this).data("idea_id");
+            //TODO:从当前登录用户信息中获取用户id
+            var user_id = 1;
+            $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
+                var status = data['status'];
+                if (status == "success"){
+                    $("#like_btn").addClass("red");
+                }else if (status == "error"){
+                    alert("系统错误，请联系管理员");
+                }else if (status == "like_already"){
+                    alert("已标记喜欢，请勿重复提交");
+                }
+            },'json');
+        });
+
+    });
+    function replace_em(str){
+        str = str.replace(/\</g,'&lt;');
+        str = str.replace(/\>/g,'&gt;');
+        str = str.replace(/\n/g,'<br/>');
+        str = str.replace(/\[em_([0-9]*)\]/g,'<img src="asset/arclist/$1.gif" border="0" />');
+        return str;
+    }
+</script>
+
 </body>
 </html>
