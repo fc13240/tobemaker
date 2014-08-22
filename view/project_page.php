@@ -24,14 +24,17 @@
                     <a href="javascript:void 0"><img src="asset/10.png" alt=""></a>
                     <a href="javascript:void 0"><img src="asset/11.png" alt=""></a>
                 </div>
-
                 <br class="clear"/>
-
             </div>
             <div class="atc">
                 <p><?php echo $item[0]['content'];?></p>
-
+                <?php 
+                if($item[0]['cover_display']==1){
+                ?>
                 <img src=<?php echo "\"".$item[0]['picture_url']."\""?> alt="图挂了">
+                <?php
+                }
+                ?>
             </div>
             <div class="commentbox">
                 <form action="../project.php" method="POST" >

@@ -35,7 +35,9 @@
             <div class="pic">
                 <div class="picture">
                     <label>标题</label>
-                    <img id="coverPreview" src="asset/14.png" alt="">
+                    <img id="coverPreview" src=<?php
+                    echo "\"".$idea_info['picture_url']."\"";
+                    ?> alt="封面">
 
                 </div>
                 <p>*上述内容均为原创作品</p>
@@ -54,7 +56,7 @@
                         <input id="fileSelect" type="file" name="file" data-url="<?= BASE_URL ?>api/tmpfileupload.php">
                         <input id="fileurl" type="hidden" name="img_url" value=""/>
                     </div>
-                    <input name="cover-display" type="checkbox"><span>封面图片显示在正文中</span>
+                    <input name="cover-display" type="checkbox" value="1"><span>封面图片显示在正文中</span>
                     <a href="javascript:void 0" class="a1">添加摘要</a>
                     <label class="last">正文</label>
                     <div class="textdiv">
