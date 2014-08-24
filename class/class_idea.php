@@ -158,7 +158,21 @@ class class_idea
 
       }
         $result = $this->db->get_results($sql,ARRAY_A);
-        $res = json_encode($result);
+        return $result;
+    }
+
+    public function get_part_ideas_order_ideaid($begin,$num,$sort_rule){
+
+      $begin = $this->db->escape($begin);
+      $num=$this->db->escape($num);
+      if($sort_rule==0){
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_id` asc limit ".$begin.",".$num;
+      }elseif ($sort_rule==1) {
+        # code...
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_id` desc limit ".$begin.",".$num;
+
+      }
+        $result = $this->db->get_results($sql,ARRAY_A);
         return $result;
     }
      // 获取所有待审核项目
@@ -215,9 +229,15 @@ class class_idea
     }
 
     // 显示审核通过想法
-    public function get_passed($num_of_eachpage){
+    public function get_passed(){
       $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=4 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`)";
       $result = $this->db->get_results($sql, ARRAY_A);
+    }
+
+    public function get_num_of_ideas_by_status($status){
+      $sql="SELECT count(*) from `idea_info` where `idea_info`.`idea_status`=".$status;
+      $result = $this->db->get_results($sql, ARRAY_A);
+      return (int)$result[0]["count(*)"];
     }
     
 
