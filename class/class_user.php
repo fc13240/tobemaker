@@ -28,15 +28,46 @@ class class_user
     }
     
     // 添加用户
-    function insert($data){
+    function insert($array){
+        $array["user_passcode"]=md5($array["user_passcode"]);
+       $num=count($array);
+        $keys=array_keys($array);
+        $values=array_values($array);
+        $aa=null;
+        $bb=null;
+        $i=0;
+        while ($i<$num) {
+                        # code...
+                 $aa=$aa."`".$keys[$i]."`,";
+                 $bb=$bb."'".$values[$i]."',";
+                          $i=$i+1;         
+        }
+        $aa=rtrim($aa,",");
+        $bb=rtrim($bb,",");
+        $sql="insert into user_info(".$aa.") values(".$bb.")";
+        $sql;
+        $this->db->query($sql);
+        $res=$this->db->get_results("SELECT LAST_INSERT_ID()",ARRAY_A);
+        return $res[0]['LAST_INSERT_ID()'];
         
-        $username = $this->db->escape($data['username']);
-        $password = $this->db->escape($data['password']);
         
-        $result = $this->db->query("INSERT INTO `user_info` (`user_name`, `user_passcode`, `user_group`) VALUES ('$username', md5('$password'), 'default') ");
-        
-        return true;
     }
+
+	//启用用户
+	function enable($userid)
+	{
+	   $sql='update `user_info` set `user_activity`="Y" where `user_id`='.$userid.' ';
+			$this->db->query($sql);
+	}
+     //【屏蔽用户】
+	 function shield($userid)
+	 {
+	    
+		    $sql='update `user_info` set `user_activity`="N" where `user_id`='.$userid.' ';
+			$this->db->query($sql);
+		  
+	 }
+
     // 根据数组字段插入数据
     public function insert_user($table_name,$array){
         $num=count($array);
@@ -102,6 +133,23 @@ class class_user
     
     // 更新用户信息
     function update($userid, $data){
+	$keys=array_keys($data);
+      $values=array_values($data);
+      $num_a=count($keys);
+      $i=0;
+      $aa="";
+      $bb="";
+      while ($i<$num_a) {
+        # code...
+        if($arr[$keys[$i]]!=""){
+        $aa=$aa."`".$keys[$i]."`='".$values[$i]."',";
+      }
+        $i++;
+      }
+      $aa=rtrim($aa,",");
+      $sql="UPDATE user_info SET ".$aa." where user_id=".$userid;
+	  
+      $this->db->query($sql);
         
     }
     
