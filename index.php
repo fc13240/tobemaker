@@ -1,3 +1,69 @@
+
+<?php
+include_once "config.php";
+include_once ROOT_PATH."class/class_user.php";
+$class_user=new class_user();
+$warning=null;
+//登录请求
+
+if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
+{
+
+    //  组织数据
+    $arr=array();
+
+    $arr['user_passcode']=md5($_POST['password']);
+
+   // $arr['real_name']=$_POST['real_name'];
+    $arr['user_email']=$_POST['username'];
+    //$arr['user_mobile']=$_POST['mobile'];
+    //检测用户数据
+    $checkres=$class_user->select_by_email($array['user_email']);
+    if(count($checkres)>0){
+        //存在该用户名
+
+        $warning="存在用户名，请直接登录";
+    }
+
+   
+    else{
+        //插入数据库
+        $class_user->insert_user('user_info',$arr);
+    // 跳转到登录页面
+        
+    }
+
+}
+elseif(array_key_exists("action",$_POST)&&$_POST['action']=='login'){
+    $arr['username']=$_POST['username'];
+
+    $arr['passcode']=$_POST['password'];
+
+    $result=$class_user->userlogin($arr['username'],$arr['passcode']);
+
+
+    //没有错误  登录成功
+    if($result['status']=='success'){
+        //url=
+
+        //处理session
+
+    }
+    //没有该用户
+    elseif($result['status']=='no_user'){
+        //显示用户名错误
+
+    }
+
+    //密码错误
+    elseif ($result['status']=='password_error') {
+        # code...
+        //显示密码错误
+
+    }  
+}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
