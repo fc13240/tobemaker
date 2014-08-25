@@ -49,7 +49,7 @@ class class_session
         $username = $this->db->escape($_POST['username']);
         $password = $this->db->escape(MD5($_POST['password']));
         
-        $result = $this->db->get_row("SELECT * FROM `user_info` WHERE `user_name` = '$username' AND `user_passcode` = '$password'", ARRAY_A);
+        $result = $this->db->get_row("SELECT * FROM `user_info` WHERE `user_name` = '$username' AND `user_passcode` = '$password' and `user_activity`='Y' ", ARRAY_A);
         
         if ( !is_null($result) && count($result) > 0){
             
@@ -79,20 +79,20 @@ class class_session
     public function check_auth($action_name, $return_bool = true){
 
         // ------- 获取用户所在的权限组 -------
-        // 权限组类型：anonymous / none / "group name"
+        // 权限组类型：anonymous(0) / none(-1) / "group name"
 
-        $user_group = "anonymous";
+        $user_group = 0;
 
         // 判断用户是否登录
         if (!$this->check_login()){
             // 用户未登录，标记未匿名
-            $user_group = "anonymous";
+            $user_group = 0;
         }else{
             //用户已登录，获取系统中的分组
             if (array_key_exists('group', $_SESSION) && $_SESSION['group'] != ""){
                 $user_group = $_SESSION['group'];
             }else{
-                $user_group = 'none';
+                $user_group = -1;
             }
         }
 

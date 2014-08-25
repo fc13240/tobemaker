@@ -183,8 +183,13 @@
                                                                                         
 										</div>
                                                                                 <div class="btn-group">
-                                                                                        <button id="sample_editable_1_reject" class="btn red">
+                                                                                        <button id="sample_editable_1_shield" class="btn red">
 											屏蔽用户 <i class="fa fa-plus"></i>
+											</button>
+                                                                                </div>
+																				  <div class="btn-group">
+                                                                                        <button id="sample_editable_1_delete" class="btn red">
+											批量删除 <i class="fa fa-plus"></i>
 											</button>
                                                                                 </div>
 									</div>
@@ -210,7 +215,7 @@
 									</div>
 								</div>
 							</div>
-                                                    <table class="table table-striped table-bordered table-hover" id="idea_list_table" data-url="<?=BASE_URL?>api/user.php">
+                                                    <table class="table table-striped table-bordered table-hover" id="user_list_table" data-url="<?=BASE_URL?>api/user.php">
 							<thead>
 							<tr>
 								<th class="table-checkbox">

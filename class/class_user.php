@@ -52,7 +52,20 @@ class class_user
         
         
     }
-     
+	//启用用户
+	function enable($userid)
+	{
+	   $sql='update `user_info` set `user_activity`="Y" where `user_id`='.$userid.' ';
+			$this->db->query($sql);
+	}
+     //【屏蔽用户】
+	 function shield($userid)
+	 {
+	    
+		    $sql='update `user_info` set `user_activity`="N" where `user_id`='.$userid.' ';
+			$this->db->query($sql);
+		  
+	 }
     // 删除用户
     function delete($userid){
         $userid = $this->db->escape($userid);

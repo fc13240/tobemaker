@@ -268,7 +268,22 @@
 													<label class="control-label col-md-3">群组 
 													</label>
 													<div class="col-md-4">
-													<input type="text" class="form-control" name="group" id="group" value="<?=@$userInfo[0]["user_group"]?>" <?php echo $strDisplay; ?> />
+													<select class="form-control" name="group" id="group" <?php echo $strDisplay; ?>>
+													<?php
+													for($i=0;$i<count($groupList);$i++)
+													{
+													if($userInfo[0]["user_group"]!=$groupList[$i]["group_id"])
+													{
+													echo '<option value='.$groupList[$i]["group_id"].'>'.$groupList[$i]["group_name"].'</option>';
+													}
+													else
+													{
+													echo '<option value='.$groupList[$i]["group_id"].' selected="selected">'.$groupList[$i]["group_name"].'</option>';
+													}
+													}
+													?>
+													</select>
+													
 													</div>
 												</div>	
 														
@@ -297,6 +312,20 @@
 													</label>
 													<div class="col-md-4">
 													<input type="text" class="form-control" name="occupation" id="occupation" value="<?=@$userInfo[0]["occupation"]?>" <?php echo $strDisplay; ?> />
+														
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">状态
+													</label>
+													<div class="col-md-4">
+													
+													<select name="activity" id="activity" class="form-control" <?php echo $strDisplay; ?>>
+													<option value="正常" <?php echo($userInfo[0]["user_activity"]=='Y'?'selected="selected"':'') ?>>正常</option>
+													<option value="屏蔽"  <?php echo($userInfo[0]["user_activity"]=='N'?'selected="selected"':'') ?>>屏蔽</option>
+													<option value="删除">删除</option>
+													</select>
 														
 														
 													</div>

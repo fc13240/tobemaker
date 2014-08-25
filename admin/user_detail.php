@@ -3,6 +3,7 @@
 include_once '../config.php';
 include_once '../class/class_user.php';
 include_once '../class/class_file.php';
+include_once '../class/class_group.php';
 // 导航 当前页面控制
 $current_page = 'user-user_detail';
 $page_level = explode('-', $current_page);
@@ -56,6 +57,10 @@ if(empty($_GET["user_id"])||empty($_GET["action"]))
 
 echo '<script language="javascript">alert("参数传递错误！");history.go(-1);</script>';
 }
+//获取群组信息
+$group=new class_group();
+$groupList=$group->get_all_group();
+
 //获取用户信息
 $user=new class_user();
 $userInfo=$user->select($_GET["user_id"]);
@@ -85,6 +90,8 @@ if(!empty($_POST["img_url"]))
 {
   $imgUrl=$file->save($_POST["img_url"]);
 }
+if($_POST["activity"]!='删除')
+{
   if(!empty($imgUrl))
   {
   $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],
@@ -100,6 +107,11 @@ if(!empty($_POST["img_url"]))
 			 "description"=>$_POST["description"],"occupation"=>$_POST["occupation"]);
 			 }
   $result=$user->update($_POST["user_id"],$arr);
+ }
+ else
+ {
+    $user->delete($_POST["user_id"]);
+ }
   
   //成功信息
 
