@@ -12,17 +12,22 @@
 <div id="center">
     <div class="middle">
         <div class="mine">
-            <img src="asset/18.png" alt="">
+            <img id="userHead" src="asset/18.png" alt="">
+                <a href="#" id="btn-upload" style="display: none;" data-url="<?=BASE_URL?>api/user.php" title="上传图片">
+                    <input id="fileSelect" type="file" name="file" data-url="<?= BASE_URL ?>api/tmpfileupload.php" /><i class="fa fa-chevron-circle-up"></i>
+                </a>
             <br/>
-            <h2>水泡长在驴身上</h2>
+            <h2 id="userName">水泡长在驴身上</h2>
             <br/>
-            <span>工业设计师</span>
+            <span id="userTitle">工业设计师</span>
             <br/>
-            <p>从来不在意朋友不帅 因为都没我帅</p>
+            <p id="userIntroduction">从来不在意朋友不帅 因为都没我帅</p>
             <br/>
-            <a><i class="fa fa-plus"></i></a>
-            <a><i class="fa fa-envelope-o"></i></a>
-            <a id="btn-modify"><i class="fa fa-pencil"></i></a>
+            <a id="btn-follow"><i class="fa fa-plus"></i></a>
+            <a id="btn-msg"><i class="fa fa-envelope-o"></i></a>
+            <a href="javascript:0" id="btn-modify"><i class="fa fa-pencil"></i></a>
+            <a href="javascript:0" id="btn-comfirm" style="display: none;" data-url="<?=BASE_URL?>api/user.php" ><i class="fa fa-check blue"></i></a>
+            <a href="javascript:0" id="btn-cancle" style="display: none;" ><i class="fa fa-times red"></i></a>
 
         </div>
 
@@ -60,11 +65,109 @@
 </div>
 
 <?php include "bottom_js.php" ?>
+    <script src="admin/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
+    <script src="admin/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
     <script>
+        function bottomBtnToggle(){
+            
+            $("#btn-follow").toggle();
+            $("#btn-msg").toggle();
+            $("#btn-modify").toggle();
+            
+            $("#btn-comfirm").toggle();
+            $("#btn-cancle").toggle();
+            
+            $("#btn-upload").toggle();
+        };
+        
+        function rollBack(){
+            var head_url = $('#userHead').data('ori');
+            var user_name = $('#userName input[name=user_name]').data('ori');
+            var user_occupation = $('#userTitle input[name=user_occupation]').data('ori');
+            var user_introduction = $('#userIntroduction input[name=user_introduction]').data('ori');
+
+            $('#userHead').attr('src', head_url);
+            $('#userName').html(user_name);
+            $('#userTitle').html(user_occupation);
+            $('#userIntroduction').html(user_introduction);
+        }
+        
         $(document).ready(function(){
+            
+            $("#btn-comfirm").hide();
+            $("#btn-modify").show();
+            
             $("#btn-modify").click(function(){
+                var headUrl = $('#userHead').attr('src');
+                $('#userHead').data('ori', headUrl);
+                
+                var data = $('#userName').text();
+                $('#userName').html('<input type="text" name="user_name" value="'+data+'" data-ori="'+data+'" />');
+                
+                data = $('#userTitle').text();
+                $('#userTitle').html('<input type="text" name="user_occupation" value="'+data+'" data-ori="'+data+'" />');
+                
+                data = $('#userIntroduction').text();
+                $('#userIntroduction').html('<input type="text" name="user_introduction" value="'+data+'" data-ori="'+data+'" />');
+                
+                bottomBtnToggle();
                 
             });
+            
+            $("#btn-comfirm").click(function(){
+                var url = $(this).data('url');
+                
+                var head_url = $('#userHead').data('ori');
+                var user_name = $('#userName input[name=user_name]').val();
+                var user_occupation = $('#userTitle input[name=user_occupation]').val();
+                var user_introduction = $('#userIntroduction input[name=user_introduction]').val();
+                
+                $.post(url, {
+                    'user_id':1,
+                    'head_url':head_url,
+                    'user_name':user_name,
+                    'user_occupation':user_occupation,
+                    'user_introduction':user_introduction
+                    }, function(data, textStatus){
+                    if (data.status == "success"){
+                        $('#userName').html(user_name);
+                        $('#userTitle').html(user_occupation);
+                        $('#userIntroduction').html(user_introduction);
+
+                    }else{
+                        rollBack();
+                        alert("个人信息修改失败");
+                        
+                    }
+                },'json');
+                
+                bottomBtnToggle();
+                
+            });
+            
+            $("#btn-cancle").click(function(){
+                
+                rollBack();
+                
+                bottomBtnToggle();
+                
+            });
+            
+            $('#fileSelect').fileupload({
+                dataType: 'json',
+                done: function (e, data) {
+                    if (data.result.url == null){
+                        alert("错误：" + data.result.err_msg);
+                    }else{
+                        $("#userHead").attr('src', data.result.url);
+//                        $("#fileurl").val(data.result.url);
+                    }
+                },
+                progress: function (e, data) {
+
+                },
+            });
+            
         });
     </script>
 
