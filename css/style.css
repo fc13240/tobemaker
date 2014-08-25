@@ -776,6 +776,10 @@ form.lgn {
     color: #ff1400;
 }
 
+.pagenum a.active{
+    color: #ff1400;
+}
+
 .clear{
     clear: both;
 }

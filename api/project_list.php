@@ -16,9 +16,9 @@ include_once ROOT_PATH."class/class_like.php";
 
 	$start=isset($_POST['start'])?$_POST['start']:0;
 	$length=isset($_POST['length'])?$_POST['length']:6;
-	$res=$class_idea->get_passed();
-	$num=count($res);
-	$res=array_slice($res,$start,$length);
+	$status_id=4;
+	$num=$class_idea->get_num_of_ideas_by_status($status_id);
+	$res=$class_idea->get_part_passed($start,$length);
 	$records=array();
 	$records['data']=array();
 	$records['data']=$res;
