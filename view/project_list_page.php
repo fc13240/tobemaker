@@ -163,9 +163,12 @@
 		a();
 	}
     $("#project-pagenum").on("click","a",function(){
-        var current_page = $(this).text();
+        var current_page = parseInt( $(this).text() );
+        var pageSize = 6;
+        var start = (current_page - 1) * pageSize;
+        var length = pageSize;
         var url = $(this).parent("div").data("url");
-        $.post(url, {"current_page":current_page}, function(data, textStatus){
+        $.post(url, {"start":start, "length":length}, function(data, textStatus){
             console.log(data);
         });
     });
