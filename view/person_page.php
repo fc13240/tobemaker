@@ -22,7 +22,7 @@
             <br/>
             <a><i class="fa fa-plus"></i></a>
             <a><i class="fa fa-envelope-o"></i></a>
-            <a><i class="fa fa-pencil"></i></a>
+            <a id="btn-modify"><i class="fa fa-pencil"></i></a>
 
         </div>
 
@@ -60,6 +60,13 @@
 </div>
 
 <?php include "bottom_js.php" ?>
+    <script>
+        $(document).ready(function(){
+            $("#btn-modify").click(function(){
+                
+            });
+        });
+    </script>
 
 </body>
 </html>
