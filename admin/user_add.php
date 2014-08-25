@@ -4,7 +4,7 @@ include_once '../config.php';
 include_once '../class/class_user.php';
 include_once '../class/class_file.php';
 // 导航 当前页面控制
-$current_page = 'user-user_detail';
+$current_page = 'user-user_add';
 $page_level = explode('-', $current_page);
 
 $page_level_style = '
@@ -23,9 +23,11 @@ $page_level_script = '<script src="./assets/global/scripts/metronic.js" type="te
 <script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="./assets/user/pages/scripts/product_list.js"></script>
- <script src="./assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
+
+    <script src="./assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
 <script src="./assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
 <script>
+
 jQuery(document).ready(function() {       
     Metronic.init(); // init metronic core components
     Layout.init(); // init current layout
@@ -40,6 +42,7 @@ jQuery(document).ready(function() {
                 }else{
                     //$("#coverPreview").attr(\'src\', data.result.url);
                     $("#fileurl").val(data.result.url);
+					$("#fileurl_display").text(data.result.url);
 					$("#image").attr(\'src\', data.result.url);
                 }
             },
@@ -47,60 +50,31 @@ jQuery(document).ready(function() {
 
             },
         });
+		
+    
 });
 </script>
 ';
-//参数错误检测
-if(empty($_GET["user_id"])||empty($_GET["action"]))
-{
 
-echo '<script language="javascript">alert("参数传递错误！");history.go(-1);</script>';
-}
-//获取用户信息
-$user=new class_user();
-$userInfo=$user->select($_GET["user_id"]);
-
-//绑定数据
-	$action=$_GET["action"];
-	$strDisplay='';
-	if($action=='view')
-    $strDisplay=' disabled="disabled" ';
 include 'view/header.php';
 
 include 'view/leftnav.php';
 
-include 'view/user_detail_page.php';
+include 'view/user_add.php';
 
 include 'view/quick_bar.php';
 
 include 'view/footer.php';
-
-
 //表单处理
+$user=new class_user();
 if(array_key_exists('real_name',$_POST))
 {
-
-$imgUrl='';
-if(!empty($_POST["img_url"]))
-{
-  $imgUrl=$file->save($_POST["img_url"]);
-}
-  if(!empty($imgUrl))
-  {
-  $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],
+$arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],"user_passcode"=>$_POST["password"],
              "birth"=>$_POST["birth"],"head_pic_url"=>$imagUrl,"user_email"=>$_POST["email"],
-			 "user_mobile"=>$_POST["user_mobile"],"money"=>$_POST["money"],"user_group"=>$_POST["group"],"self_intro"=>$_POST["self_intro"],
-			 "description"=>$_POST["description"],"occupation"=>$_POST["occupation"]);
-			 }
-  else
-  {
-  $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],
-             "birth"=>$_POST["birth"],"user_email"=>$_POST["email"],
-			 "user_mobile"=>$_POST["user_mobile"],"money"=>$_POST["money"],"user_group"=>$_POST["group"],"self_intro"=>$_POST["self_intro"],
-			 "description"=>$_POST["description"],"occupation"=>$_POST["occupation"]);
-			 }
-  $result=$user->update($_POST["user_id"],$arr);
-  
-  //成功信息
-
+			 "user_mobile"=>$_POST["mobile"],"money"=>$_POST["money"],"user_group"=>$_POST["group"],
+			 "occupation"=>$_POST["occupation"]);
+			 var_dump($arr);
+$result=$user->insert($arr);
+             var_dump($result);
+//返回成功信息
 }

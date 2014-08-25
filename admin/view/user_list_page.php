@@ -177,9 +177,9 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<button id="sample_editable_1_new" class="btn green">
+											<a href="user_add.php"><button id="sample_editable_1_new" class="btn green">
 											添加用户 <i class="fa fa-plus"></i>
-											</button>
+											</button></a>
                                                                                         
 										</div>
                                                                                 <div class="btn-group">

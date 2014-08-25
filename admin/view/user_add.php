@@ -1,7 +1,7 @@
-
-        <!-- BEGIN CONTENT -->
+<!-- BEGIN CONTENT -->
 	<div class="page-content-wrapper">
 		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -110,7 +110,7 @@
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			用户详情
+			用户列表
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
@@ -124,10 +124,10 @@
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">用户详情</a>
+						<a href="#">用户添加</a>
 					</li>
 				</ul>
-				<!--<div class="page-toolbar">
+				<div class="page-toolbar">
 					<div class="btn-group pull-right">
 						<button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
 						Actions <i class="fa fa-angle-down"></i>
@@ -150,184 +150,148 @@
 						</ul>
 					</div>
 				</div>
-			</div>-->
+			</div>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
-			<div class="row">
-				<div class="col-md-12">
-					<div class="portlet box blue" id="form_wizard_1">
-						
-						<div class="portlet-body form">
-							<form action="#" class="form-horizontal" id="submit_form" method="POST">
-								<div class="form-wizard">
-									<div class="form-body">
-										
-										
-										
-										<div class="tab-content">
-											<div class="alert alert-danger display-none">
-												<button class="close" data-dismiss="alert"></button>
-												You have some form errors. Please check below.
-											</div>
-											<div class="alert alert-success display-none">
-												<button class="close" data-dismiss="alert"></button>
-												Your form validation is successful!
-											</div>
-											<div class="tab-pane active" id="tab1">
-												<h3 class="block">用户详情</h3>
-												<div class="form-group">
-													<label class="control-label col-md-3">用户名
-													</label>
-													<div class="col-md-4" class="form-control">
-													<input type="hidden" value="<?=@$userInfo[0]["user_id"] ?>" name="user_id" id="user_id"/>
-													  <input type="text" class="form-control" name="user_name" id="user_name" value="<?=@$userInfo[0]["user_name"]?>" <?php echo $strDisplay; ?> />
-													
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">真实姓名 
-													</label>
-													<div class="col-md-4">
-													
-													
-													<input type="text" class="form-control" name="real_name" id="real_name" value="<?=@$userInfo[0]["real_name"]?>" <?php echo $strDisplay; ?> />
-													
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">性别 
-													</label>
-													<div class="col-md-4">
-													<select class="form-control" name="sex" id="sex" <?php echo $strDisplay; ?>>
-													<option value="男" <?php echo ($userInfo[0]["sex"]=="男"?'selected="selected"':''); ?>>男</option>
-													<option value="女" <?php echo ($userInfo[0]["sex"]=="女"?'selected="selected"':''); ?>>女</option>
-													<option value="保密" <?php echo ($userInfo[0]["sex"]=="保密"?'selected="selected"':''); ?>>保密</option>
-													
-													</select>	
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">生日 
-													</label>
-													<div class="col-md-4">
-													
-													<input type="text" class="form-control" name="birth" id="birth" value="<?=@$userInfo[0]["birth"]?>" <?php echo $strDisplay; ?> />
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">头像
-													</label>
-													<div class="col-md-4">
-													 <div class="pic"><div class="picture"><img alt="" src="<?=@$userInfo[0]["head_pic_url"]?>" id="image" name="image" /></div></div>
-													<?php
-													if($action=='edit')
-													{
-													echo '<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="'.BASE_URL.'api/tmpfileupload.php">
-															
-															<input id="fileurl" type="hidden" name="img_url" value=""/>';
-													}
-													?>
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">邮箱 
-													</label>
-													<div class="col-md-4">
-													<input type="text" class="form-control" name="email" id="email" value="<?=@$userInfo[0]["user_email"]?>" <?php echo $strDisplay; ?> />
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">手机号 
-													</label>
-													<div class="col-md-4">
-													<input type="text" class="form-control" name="user_moble" id="user_mobile" value="<?=@$userInfo[0]["user_mobile"]?>" <?php echo $strDisplay; ?> />
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">余额 
-													</label>
-													<div class="col-md-4">
-													<input type="text" class="form-control" name="money" id="money" value="<?=@$userInfo[0]["money"]?>" <?php echo $strDisplay; ?> />
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">群组 
-													</label>
-													<div class="col-md-4">
-													<input type="text" class="form-control" name="group" id="group" value="<?=@$userInfo[0]["user_group"]?>" <?php echo $strDisplay; ?> />
-													</div>
-												</div>	
-														
-													
-												
-												<div class="form-group">
-													<label class="control-label col-md-3">自我介绍 
-													</label>
-													<div class="col-md-4">
-													<input type="text" class="form-control" name="self_intro" id="self_intro" value="<?=@$userInfo[0]["self_intro"]?>" <?php echo $strDisplay; ?> />
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">描述 
-													</label>
-													<div class="col-md-4">
-													<input type="text" class="form-control" name="description" id="description" value="<?=@$userInfo[0]["description"]?>" <?php echo $strDisplay; ?> />
-														
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">职务 
-													</label>
-													<div class="col-md-4">
-													<input type="text" class="form-control" name="occupation" id="occupation" value="<?=@$userInfo[0]["occupation"]?>" <?php echo $strDisplay; ?> />
-														
-														
-													</div>
-												</div>
-											</div>
+                        <div class="tab-content">
+							<div class="tab-pane active" id="tab_0">
+								<div class="portlet box green">
+									<div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-gift"></i>用户添加
 										</div>
-		
+										<div class="tools">
+											<a href="javascript:;" class="collapse">
+											</a>
+											<a href="#portlet-config" data-toggle="modal" class="config">
+											</a>
+											<a href="javascript:;" class="reload">
+											</a>
+											<a href="javascript:;" class="remove">
+											</a>
+										</div>
 									</div>
-									<div class="form-actions">
-										<div class="row">
-											<div class="col-md-offset-3 col-md-9">
+									<div class="portlet-body form">
+										<!-- BEGIN FORM-->
+										<form  class="form-horizontal"  id="form1" method="POST"> 
+											<div class="form-body">
+											<div class="form-group">
+													<label class="col-md-3 control-label">用户名</label>
+													<div class="col-md-4">
+													<input id="user_name" name="user_name" type="text" class="form-control input-circle" placeholder="输入用户名">
+														
+													</div>
+												</div>
 												
-												<?php
-												if($action!='view')
-												{
-												echo '<a href="javascript:;" class="btn green button-submit">
-												<input type="submit" class="btn green button-submit" value="更新" /> 
-												</a>';
-												}
-												?>
-												
+												<div class="form-group">
+													<label class="col-md-3 control-label">头像</label>
+													<div class="col-md-4">
+														<!--<div class="input-group">
+															<span class="input-group-addon input-circle-left">
+															<i class="fa fa-envelope"></i>
+															</span>-->
+															<img alt="" src="" name="image" id="image" />
+															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="<?= BASE_URL ?>api/tmpfileupload.php">
+															<!--<p id="fileurl_display" name="fileurl_display"></p>-->
+															<input id="fileurl" type="hidden" name="img_url" value=""/>
+														<!--</div>-->
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">密码</label>
+													<div class="col-md-4">
+														
+															<input id="paaword" name="password" type="password" class="form-control input-circle" placeholder="输入密码">
+															
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">确认密码</label>
+													<div class="col-md-4">
+														
+															<input id="confirmpaaword" name="confirmpassword" type="password" class="form-control input-circle" placeholder="输入确认密码">
+															
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">真实姓名</label>
+													<div class="col-md-4">
+														<input id="real_name" name="real_name" type="text" class="form-control input-circle" placeholder="输入姓名">
+														
+														<span class="help-block">
+														 </span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">性别</label>
+													<div class="col-md-4">
+														<select class="form-control input-circle" name="sex" id="sex">
+														<option value="男">男</option>
+														<option value="女">女</option>
+														<option value="保密">保密</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">出生日期</label>
+													<div class="col-md-4">
+														<input id="birth" name="birth" type="text" class="form-control input-circle" placeholder="">
+														
+														<span class="help-block">
+														 </span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">邮箱</label>
+													<div class="col-md-4">
+														
+															<input id="email" name="email" type="text" class="form-control input-circle" placeholder="输入邮箱">
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">手机号</label>
+													<div class="col-md-4">
+														
+															<input id="mobile" name="mobile" type="number" class="form-control input-circle" placeholder="输入手机号">
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">用户组</label>
+													<div class="col-md-4">
+														<input id="group" name="group" type="text" class="form-control  input-circle" placeholder="用户组">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">职务</label>
+													<div class="col-md-4">
+														<input id="occupation" name="occupation" type="text" class="form-control  input-circle" placeholder="用户组">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label">金额</label>
+													<div class="col-md-4">
+														<input id="group" name="group" type="number" class="form-control  input-circle" placeholder="金额">
+													</div>
+												</div>
 											</div>
-										</div>
+											<div class="form-actions">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<button type="submit" class="btn btn-circle blue">添加</button>
+														
+													</div>
+												</div>
+											</div>
+										</form>
+										<!-- END FORM-->
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<!-- END PAGE CONTENT-->
+
+<!-- END PAGE CONTENT-->
 		</div>
 	</div>
 	<!-- END CONTENT -->

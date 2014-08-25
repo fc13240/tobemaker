@@ -59,7 +59,7 @@ if (array_key_exists('draw', $_REQUEST)){
                 $user_item['last_login_time'],
                 '<span class="label label-sm label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
                 '<a href="javascript:;" class="btn btn-xs red user-block"><i class="fa fa-search"></i>屏蔽用户</a>'
-                . '<a href="./user_detail.php?userId='.$user_item['user_id'].'" class="btn btn-xs default user-view"><i class="fa fa-search"></i>查看</a>',
+                . '<a href="./user_detail.php?action=view&user_id='.$user_item['user_id'].'" class="btn btn-xs default user-view"><i class="fa fa-search"></i>查看</a>',
             );
         }
 
