@@ -96,32 +96,6 @@ class class_user
         return $res[0]['LAST_INSERT_ID()'];
     }
 
-    public function userlogin($username,$password){
-        $sql="SELECT * from `user_info` where `user_name`='".$username."'";
-
-        $res=$this->db->get_results($sql,ARRAY_A);
-        // 不存在用户名
-        if(count($res)==0){
-            $result['status']='no_user';
-            return $result;
-        }
-
-        //密码错误
-        elseif ($res['pass_code']!=$password) {
-            # code...
-            $result['status']='password_error';
-            return $result;
-
-        }
-        //成功登录
-        elseif ($res['pass_code']==$password) {
-            # code...
-            $result['status']='success';
-            $result['data']=$res[0];
-            return $result;
-        }
-    }
-
     // 删除用户
     function delete($userid){
         $userid = $this->db->escape($userid);
@@ -133,7 +107,7 @@ class class_user
     
     // 更新用户信息
     function update($userid, $data){
-	$keys=array_keys($data);
+	  $keys=array_keys($data);
       $values=array_values($data);
       $num_a=count($keys);
       $i=0;
@@ -141,7 +115,7 @@ class class_user
       $bb="";
       while ($i<$num_a) {
         # code...
-        if($arr[$keys[$i]]!=""){
+        if($data[$keys[$i]]!=""){
         $aa=$aa."`".$keys[$i]."`='".$values[$i]."',";
       }
         $i++;
@@ -150,6 +124,7 @@ class class_user
       $sql="UPDATE user_info SET ".$aa." where user_id=".$userid;
 	  
       $this->db->query($sql);
+      return 1;
         
     }
     

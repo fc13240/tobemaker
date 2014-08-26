@@ -2,7 +2,9 @@
 <?php
 include_once "config.php";
 include_once ROOT_PATH."class/class_user.php";
+include_once ROOT_PATH."class/class_session.php";
 $class_user=new class_user();
+$class_session=new class_session();
 $warning=null;
 //登录请求
 
@@ -35,30 +37,29 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
 
 }
 elseif(array_key_exists("action",$_POST)&&$_POST['action']=='login'){
-    $arr['username']=$_POST['username'];
+    
 
-    $arr['passcode']=$_POST['password'];
-
-    $result=$class_user->userlogin($arr['username'],$arr['passcode']);
+    $result=$class_session->login();
 
 
     //没有错误  登录成功
     if($result['status']=='success'){
         //url=
-
+        echo "1";
         //处理session
 
     }
     //没有该用户
     elseif($result['status']=='no_user'){
         //显示用户名错误
-
+        echo "2";
     }
 
     //密码错误
     elseif ($result['status']=='password_error') {
         # code...
         //显示密码错误
+        echo "3";
 
     }  
 }

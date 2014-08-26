@@ -49,19 +49,27 @@ class class_session
         $username = $this->db->escape($_POST['username']);
         $password = $this->db->escape(MD5($_POST['password']));
         
-        $result = $this->db->get_row("SELECT * FROM `user_info` WHERE `user_name` = '$username' AND `user_passcode` = '$password' and `user_activity`='Y' ", ARRAY_A);
+        $result = $this->db->get_row("SELECT * from `user_info` where `user_activity`='Y' and`user_email`='".$username."'", ARRAY_A);
         
-        if ( !is_null($result) && count($result) > 0){
+        if ( !is_null($result) && count($result) > 0&&$result['user_passcode']==$password){
             
             $_SESSION['is_login'] = true;
             $_SESSION['user_id'] = $result['user_id'];
             $_SESSION['group'] = $result['user_group'];
+            $res['status']='success';
             
-            return true;
-        }else{
-            
-            return false;
         }
+        //密码错误
+        elseif(!is_null($result) && count($result) > 0&&$result['user_passcode']!=$password){
+            $res['status']='password_error';
+        }
+        // 不存在用户名
+        else {
+            # code...
+            $res['status']='no_user';
+        }
+
+        return $res;
     }
     
     // 登出
