@@ -133,7 +133,7 @@ class class_user
     
     // 更新用户信息
     function update($userid, $data){
-	$keys=array_keys($data);
+	  $keys=array_keys($data);
       $values=array_values($data);
       $num_a=count($keys);
       $i=0;
@@ -141,7 +141,7 @@ class class_user
       $bb="";
       while ($i<$num_a) {
         # code...
-        if($arr[$keys[$i]]!=""){
+        if($data[$keys[$i]]!=""){
         $aa=$aa."`".$keys[$i]."`='".$values[$i]."',";
       }
         $i++;
@@ -150,6 +150,7 @@ class class_user
       $sql="UPDATE user_info SET ".$aa." where user_id=".$userid;
 	  
       $this->db->query($sql);
+      return 1;
         
     }
     
