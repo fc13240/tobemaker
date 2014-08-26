@@ -170,7 +170,7 @@
         var start = (current_page - 1) * pageSize;
         var length = pageSize;
         var url = $('#project-pagenum').data("url");
-        $.post(url, {"start":start, "length":length}, function(data, textStatus){
+        $.post(url, {"start":start, "length":length, "type":"pass", "user_id":1}, function(data, textStatus){
             console.log(data);
             
             // set up content
@@ -192,8 +192,8 @@
                 </dd>\
                 <dd>\
                     <div class="button"><a href="#">分享</a></div>\
-                    <div class="button"><a href="project.php?idea_id='+ item.idea_id +'">评论</a><span>23</span></div>\
-                    <div class="button"><a href="#">超喜欢</a><span>23</span></div>\
+                    <div class="button"><a href="project.php?idea_id='+ item.idea_id +'">评论</a><span>'+ (item.sum_comment == null ? 0 : item.sum_comment) +'</span></div>\
+                    <div class="button"><a href="#" class="'+ (item.likeit == 0 ? '':'red') +'">超喜欢</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
                 </dd>\
             </dl>');
     

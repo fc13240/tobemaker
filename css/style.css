@@ -569,7 +569,7 @@ form.lgn {
 }
 
 .mine .red{
-    color: #FF0000;
+    color: #ff1300;
 }
 
 .minepro{
@@ -769,6 +769,10 @@ form.lgn {
     transform:scale(0.5,2);
 }
 .list div.prev a:hover,.list div.next a:hover{
+    color: #ff1400;
+}
+
+.list .red{
     color: #ff1400;
 }
 
