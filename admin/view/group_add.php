@@ -1,7 +1,7 @@
-
-	<!-- BEGIN CONTENT -->
+<!-- BEGIN CONTENT -->
 	<div class="page-content-wrapper">
 		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -110,7 +110,7 @@
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			用户列表
+			 群组添加
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
@@ -124,7 +124,7 @@
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">用户列表</a>
+						<a href="#">群组添加</a>
 					</li>
 				</ul>
 				<div class="page-toolbar">
@@ -153,103 +153,54 @@
 			</div>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
-			<div class="row">
-				<div class="col-md-12">
-					 <!-- BEGIN EXAMPLE TABLE PORTLET-->
-					<div class="portlet box grey-cascade">
-						<div class="portlet-title">
-							<div class="caption">
-								<i class="fa fa-globe"></i>用户列表
-							</div>
-							<div class="tools">
-								<a href="javascript:;" class="collapse">
-								</a>
-								<a href="#portlet-config" data-toggle="modal" class="config">
-								</a>
-								<a href="javascript:;" class="reload">
-								</a>
-								<a href="javascript:;" class="remove">
-								</a>
-							</div>
-						</div>
-						<div class="portlet-body">
-							<div class="table-toolbar">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="btn-group">
-											<a href="user_add.php"><button id="sample_editable_1_new" class="btn green">
-											添加用户 <i class="fa fa-plus"></i>
-											</button></a>
-                                                                                        
+                        <div class="tab-content">
+							<div class="tab-pane active" id="tab_0">
+								<div class="portlet box green">
+									<div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-gift"></i>群组添加
 										</div>
-                                                                                <div class="btn-group">
-                                                                                        <button id="sample_editable_1_shield" class="btn red">
-											屏蔽用户 <i class="fa fa-plus"></i>
-											</button>
-                                                                                </div>
-																				  <div class="btn-group">
-                                                                                        <button id="sample_editable_1_delete" class="btn red" onclick="return confirm('确定删除？')">
-											批量删除 <i class="fa fa-plus"></i>
-											</button>
-                                                                                </div>
+										<div class="tools">
+											<a href="javascript:;" class="collapse">
+											</a>
+											<a href="#portlet-config" data-toggle="modal" class="config">
+											</a>
+											<a href="javascript:;" class="reload">
+											</a>
+											<a href="javascript:;" class="remove">
+											</a>
+										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="btn-group pull-right">
-										<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-										</button>
-										<ul class="dropdown-menu pull-right">
-											<li>
-												<a href="#">
-												Print </a>
-											</li>
-											<li>
-												<a href="#">
-												Save as PDF </a>
-											</li>
-											<li>
-												<a href="#">
-												Export to Excel </a>
-											</li>
-										</ul>
-										</div>
+									<div class="portlet-body form">
+										<!-- BEGIN FORM-->
+										<form  class="form-horizontal"  id="form1" method="POST"> 
+											<div class="form-body">
+											<div class="form-group">
+													<label class="col-md-3 control-label">群组名</label>
+													<div class="col-md-4">
+													<input id="group_name" name="group_name" type="text" class="form-control input-circle" placeholder="输入用户名">
+														
+													</div>
+												</div>
+												
+												
+												
+											<div class="form-actions">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<button type="submit" class="btn btn-circle blue">添加</button>
+														
+													</div>
+												</div>
+											</div>
+										</form>
+										<!-- END FORM-->
 									</div>
 								</div>
 							</div>
-                                                    <table class="table table-striped table-bordered table-hover" id="user_list_table" data-url="<?=BASE_URL?>api/user.php">
-							<thead>
-							<tr>
-								<th class="table-checkbox">
-									<input type="checkbox" class="group-checkable" data-set="#idea_list_table .checkboxes"/>
-								</th>
-								<th>
-									 用户id
-								</th>
-								<th>
-									 用户名
-								</th>
-								<th>
-									 职位
-								</th>
-								<th>
-									 最后登录时间
-								</th>
-								<th>
-									 状态
-								</th>
-                                <th>
-									 操作
-								</th>
-							</tr>
-							</thead>
-							
-							</table>
 						</div>
-					</div>
-					<!-- END EXAMPLE TABLE PORTLET-->
-				</div>
-			</div>
 
-			<!-- END PAGE CONTENT-->
+<!-- END PAGE CONTENT-->
 		</div>
 	</div>
 	<!-- END CONTENT -->

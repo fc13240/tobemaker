@@ -34,6 +34,7 @@ if(isset($_POST["action"])&&isset($_POST["userID"]))
   }
   elseif($act=='user_shield')
   {
+  
    while ( $i< $num) {
       # code...
       $user->shield($user_id[$i]);
@@ -45,6 +46,7 @@ if(isset($_POST["action"])&&isset($_POST["userID"]))
   }
   elseif($act=='user_delete')
   {
+  
      while($i< $num) 
 	 {
 	     $user->delete($user_id[$i]);
@@ -91,12 +93,12 @@ if (array_key_exists('draw', $_REQUEST)){
         foreach($user_result as $user_item){
 		
             $status = $status_list[1];
-			$action_status='green user_enable';
+			$action_status='green user-enable';
 			
 			if($user_item['user_activity']=='Y')
 			{
 			$status=$status_list[0];
-			$action_status='red user_shield';
+			$action_status='red user-shield';
 			}
             $records["data"][] = array(
                 '<input class="checkboxes" type="checkbox" name="id[]" value="'.$user_item['user_id'].'"/>',
@@ -106,7 +108,7 @@ if (array_key_exists('draw', $_REQUEST)){
     //            $user_item['self_intro'],
                 $user_item['last_login_time'],
                 '<span class="label label-sm label-'.(key($status)).' user-status">'.(current($status)).'</span>',
-                '<a href="javascript:;" class="btn btn-xs '.$action_status.'"><i class="fa fa-search"></i>'.($action_status=='green user_enable'?'启用用户':'屏蔽用户').'</a>'
+                '<a href="javascript:;" class="btn btn-xs '.$action_status.'"><i class="fa fa-search"></i>'.($action_status=='green user-enable'?'启用用户':'屏蔽用户').'</a>'
 				.'<a href="./user_detail.php?action=edit&user_id='.$user_item['user_id'].'" class="btn btn-xs default user-edit"><i class="fa fa-search"></i>编辑</a>'
                 . '<a href="./user_detail.php?action=view&user_id='.$user_item['user_id'].'" class="btn btn-xs default user-view"><i class="fa fa-search"></i>查看</a>',
             );

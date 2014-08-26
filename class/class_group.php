@@ -30,27 +30,21 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
           return false;
         }
     }
-   
+   //------获取群组信息
+   public function get_group_by_id($group_id)
+   {
+        $sql='select * from `group` where `group_id`='.$group_id;
+		
+		$result=$this->db->get_results($sql,ARRAY_A);
+		return $result;
+   }
 
    // 在表中增加数据  输入表名和数组字段
 
-    public function insert($table_name,$array){
-        $num=count($array);
-        $keys=array_keys($array);
-        $values=array_values($array);
-        $aa=null;
-        $bb=null;
-        $i=0;
-        while ($i<$num) {
-                        # code...
-                 $aa=$aa."`".$keys[$i]."`,";
-                 $bb=$bb."'".$values[$i]."',";
-                          $i=$i+1;         
-        }
-        $aa=rtrim($aa,",");
-        $bb=rtrim($bb,",");
-        $sql="insert into ".$table_name."(".$aa.") values(".$bb.")";
-        $sql;
+    public function insert($group_name){
+        
+        $sql='insert into `group` (`group_name`)values(\''.$group_name.'\')';
+        
         $this->db->query($sql);
         $res=$this->db->get_results("SELECT LAST_INSERT_ID()",ARRAY_A);
         return $res[0]['LAST_INSERT_ID()'];
@@ -58,8 +52,8 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
     }
     
     // 更新表中某个字段
-    private function update_one($table_name,$col_name,$value){
-        $sql_query="update ".$table_name." set ".$col_name."=".$value;
+    private function update_one($group_id,$col_name,$value){
+        $sql_query="update `group` set ".$col_name."=".$value." where `group_id`=".$group_id;
         $this->db->query($sql_query);
     }
     //删除某个id的群组
@@ -74,7 +68,13 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	$result = $this->db->get_results($sql,ARRAY_A);
 	return $result;
 	}
-   
+   //获取群组数量
+   public function get_group_num()
+   {
+    $sql='select * from `group` ';
+	$result=$this->db->get_results($sql,ARRAY_A);
+	return count($result);
+   }
    //通过group字段更新数据  传入修改的id和字段=》值 数组实现更新 
    
      public function update_group($group_id,$arr)
@@ -93,7 +93,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
         $i++;
       }
       $aa=rtrim($aa,",");
-      $sql="UPDATE group SET ".$aa." where group_id=".$group_id;
+      $sql="UPDATE `group` SET ".$aa." where `group_id`=".$group_id;
 	  
       $this->db->query($sql);
 	  
@@ -130,20 +130,20 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	    else
 	        {
 			    $strsql=$strsql.'where ';
-				$keys=array_keys($arr);
+				$keys=array_keys($arr_columns_value);
 			    for($i=0;$i<count($arr_columns_value);$i++)
 				{
 				    if($i==0)
 					{
-					    $strsql=$strsql.'`'.$keys[$i].'`='.$arr_columns_value[$keys[$i]].' ';
+					    $strsql=$strsql.'`'.$keys[$i].'`=\''.$arr_columns_value[$keys[$i]].'\' ';
 					}
 					else
 					{
-					     $strsql=$strsql.' and `'.$keys[$i].'`='.$arr_columns_value[$keys[$i]].' ';
+					     $strsql=$strsql.' and `'.$keys[$i].'`=\''.$arr_columns_value[$keys[$i]].'\' ';
 					}
 				}
 	        }
-		$result=$this->db->get_results($sql,ARRAY_A);
+		$result=$this->db->get_results($strsql,ARRAY_A);
 		return count($result);
 	}
    
