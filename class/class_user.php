@@ -96,32 +96,6 @@ class class_user
         return $res[0]['LAST_INSERT_ID()'];
     }
 
-    public function userlogin($username,$password){
-        $sql="SELECT * from `user_info` where `user_name`='".$username."'";
-
-        $res=$this->db->get_results($sql,ARRAY_A);
-        // 不存在用户名
-        if(count($res)==0){
-            $result['status']='no_user';
-            return $result;
-        }
-
-        //密码错误
-        elseif ($res['pass_code']!=$password) {
-            # code...
-            $result['status']='password_error';
-            return $result;
-
-        }
-        //成功登录
-        elseif ($res['pass_code']==$password) {
-            # code...
-            $result['status']='success';
-            $result['data']=$res[0];
-            return $result;
-        }
-    }
-
     // 删除用户
     function delete($userid){
         $userid = $this->db->escape($userid);
