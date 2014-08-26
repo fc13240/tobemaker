@@ -110,7 +110,7 @@
 			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			用户列表
+			权限分配
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
@@ -124,7 +124,7 @@
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">用户列表</a>
+						<a href="#">权限分配</a>
 					</li>
 				</ul>
 				<div class="page-toolbar">
@@ -159,7 +159,7 @@
 					<div class="portlet box grey-cascade">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-globe"></i>用户列表
+								<i class="fa fa-globe"></i>权限分配
 							</div>
 							<div class="tools">
 								<a href="javascript:;" class="collapse">
@@ -172,26 +172,23 @@
 								</a>
 							</div>
 						</div>
+						
 						<div class="portlet-body">
+						
 							<div class="table-toolbar">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="user_add.php"><button id="sample_editable_1_new" class="btn green">
-											添加用户 <i class="fa fa-plus"></i>
+											<a href="group_add.php"><button id="sample_editable_1_new" class="btn green">
+											添加群组 <i class="fa fa-plus"></i>
 											</button></a>
                                                                                         
 										</div>
-                                                                                <div class="btn-group">
-                                                                                        <button id="sample_editable_1_shield" class="btn red">
-											屏蔽用户 <i class="fa fa-plus"></i>
-											</button>
-                                                                                </div>
-																				  <div class="btn-group">
-                                                                                        <button id="sample_editable_1_delete" class="btn red" onclick="return confirm('确定删除？')">
-											批量删除 <i class="fa fa-plus"></i>
-											</button>
-                                                                                </div>
+                                           <div class="btn-group">
+                                                                                        <a href="user_list.php"><button id="sample_editable_1_pass" class="btn blue">
+											用户列表 <i class="fa fa-plus"></i>
+											</button></a>
+                                                                                </div>                                      
 									</div>
 									<div class="col-md-6">
 										<div class="btn-group pull-right">
@@ -215,34 +212,53 @@
 									</div>
 								</div>
 							</div>
-                                                    <table class="table table-striped table-bordered table-hover" id="user_list_table" data-url="<?=BASE_URL?>api/user.php">
+							<input type="hidden" name="group_id" id="group_id" value="<?=@$groupInfo[0]["group_id"]?>">
+                                                    <table class="table table-striped table-bordered table-hover" id="idea_list_table"  data-url="<?=BASE_URL?>api/auth.php">
 							<thead>
 							<tr>
-								<th class="table-checkbox">
+								
+								
+									<th class="table-checkbox">
 									<input type="checkbox" class="group-checkable" data-set="#idea_list_table .checkboxes"/>
 								</th>
 								<th>
-									 用户id
+								操作名称
 								</th>
-								<th>
-									 用户名
-								</th>
-								<th>
-									 职位
-								</th>
-								<th>
-									 最后登录时间
-								</th>
-								<th>
-									 状态
-								</th>
-                                <th>
-									 操作
-								</th>
+
+                                
 							</tr>
+                            
 							</thead>
+							<?php
+							//for($i=0;$i<count($actionList);$i++)
+							//{
+							//if(!in_array($actionList[$keys[$i]],$authList))
+							    // echo '<tr><td><input type="checkbox" class="checkboxes" name="id['.$i.']" value="'.@$actionList[$keys[$i]].'" /></td><td>'.@$actionList[$keys[$i]].'</td></tr>';
+						    //else
+							//{
+							   // echo '<tr><td><input type="checkbox" class="checkboxes" name="id['.$i.']" checked value="'.@$actionList[$keys[$i]].'" /></td><td>'.@$actionList[$keys[$i]].'</td></tr>';
+							//}
+							//}
 							
+							?>
 							</table>
+							<div class="form-actions">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														给<?=@$groupInfo[0]["group_name"]?>赋权
+														
+													</div>
+												</div>
+											</div>
+							<div class="form-actions">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														
+														
+														<button id="sample_editable_1_update" name="sample_editable_1_update" class="btn btn-circle blue">更新</button>
+													</div>
+												</div>
+											</div>
 						</div>
 					</div>
 					<!-- END EXAMPLE TABLE PORTLET-->
