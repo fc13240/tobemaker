@@ -12,25 +12,40 @@
 <div id="center">
     <div class="middle">
         <div class="mine">
-            <img id="userHead" src="asset/18.png" alt="">
+            <img id="userHead" src=<?php
+            echo $user_info['head_pic_url'];
+            ?>
+             alt="头像读取错误">
                 <a href="#" id="btn-upload" style="display: none;" data-url="<?=BASE_URL?>api/user.php" title="上传图片">
                     <input id="fileSelect" type="file" name="file" data-url="<?= BASE_URL ?>api/tmpfileupload.php" /><i class="fa fa-chevron-circle-up"></i>
+                    <input id="head_pic_url" type="hidden" name="img_url" value=""/>
                 </a>
             <br/>
-            <h2 id="userName">水泡长在驴身上</h2>
+            <h2 id="userName"><?php
+            echo $user_info['user_name'];
+            ?></h2>
             <br/>
-            <span id="userTitle">工业设计师</span>
+            <span id="userTitle"><?php
+            echo $user_info['occupation'];
+            ?></span>
             <br/>
-            <p id="userIntroduction">从来不在意朋友不帅 因为都没我帅</p>
+            <p id="userIntroduction">
+            <?php
+            echo $user_info['self_intro'];
+            ?>
+            
+            </p>
             <br/>
             <a id="btn-follow"><i class="fa fa-plus"></i></a>
             <a id="btn-msg"><i class="fa fa-envelope-o"></i></a>
             <a href="javascript:0" id="btn-modify"><i class="fa fa-pencil"></i></a>
-            <a href="javascript:0" id="btn-comfirm" style="display: none;" data-url="<?=BASE_URL?>api/user.php" ><i class="fa fa-check blue"></i></a>
+            <a href="javascript:0" id="btn-comfirm" style="display: none;" data-url="<?=BASE_URL?>api/userinfo_change.php" ><i class="fa fa-check blue"></i></a>
             <a href="javascript:0" id="btn-cancle" style="display: none;" ><i class="fa fa-times red"></i></a>
 
         </div>
-
+        <input type="hidden" id="user_id" name="user_id" value=<?php 
+            echo $user_info['user_id']." />";
+            ?>
     </div>
     <div class="middle-margin">
         <div class="minepro list">
@@ -48,7 +63,7 @@
             </dl>
 
             <div class="prev" id="minelistprev">
-                <div><a href="#"><</a></div>
+                <div><a href="#"></a></div>
             </div>
             <div class="next" id="minelistnext">
                 <div><a href="#">></a></div>
@@ -116,14 +131,20 @@
             
             $("#btn-comfirm").click(function(){
                 var url = $(this).data('url');
-                
-                var head_url = $('#userHead').data('ori');
+                if($('#head_pic_url').val()==""){
+                    var head_url = $('#userHead').data('ori');
+                }
+                else {var head_url=$('#head_pic_url').val();}
+               // console.log(head_url);
                 var user_name = $('#userName input[name=user_name]').val();
                 var user_occupation = $('#userTitle input[name=user_occupation]').val();
                 var user_introduction = $('#userIntroduction input[name=user_introduction]').val();
+                var user_id = $('#user_id').val();
+                console.log(head_url);
+
                 
                 $.post(url, {
-                    'user_id':1,
+                    'user_id':user_id,
                     'head_url':head_url,
                     'user_name':user_name,
                     'user_occupation':user_occupation,
@@ -160,7 +181,7 @@
                         alert("错误：" + data.result.err_msg);
                     }else{
                         $("#userHead").attr('src', data.result.url);
-//                        $("#fileurl").val(data.result.url);
+                        $("#head_pic_url").val(data.result.url);
                     }
                 },
                 progress: function (e, data) {

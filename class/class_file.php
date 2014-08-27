@@ -58,7 +58,7 @@ class class_file
                 if (file_exists($this->tmp_path . $savename)){
                     $this->error_msg = "文件已存在";
                 }else{
-                    move_uploaded_file($_FILES["file"]["tmp_name"],
+                    copy($_FILES["file"]["tmp_name"],
                             $this->tmp_path . $savename);
                     return BASE_URL . $this->tmp_folder . $savename;
                 }
