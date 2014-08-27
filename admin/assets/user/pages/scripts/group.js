@@ -108,7 +108,73 @@ var TableManaged = function () {
                 }
             },'json');
         });
-        
+        //注册点击编辑事件
+		 table.on('click','tbody tr .group-edit',function(){
+		 var $tr=$(this).parents('tr');
+		 var $span=$tr.find('span[name="name"]');
+		 $span.hide();
+		 $tr.find('.group-edit').hide();
+		 $tr.find('input[name="group_name"]').show();
+		  $tr.find('.edit-confirm').show();
+		 $tr.find('.edit-cancel').show();
+		 $tr.find('.group-delete').hide();
+		 }
+		 );
+		 //注册确认编辑事件
+		  table.on('click','tbody tr .edit-confirm',function(){
+		 var $tr=$(this).parents('tr');
+		 var $id=$tr.find('input[type="checkbox"]').val();
+		 var $name=$tr.find('input[name="group_name"]').val();
+		 $.post(ideaProcessUrl, $.param({'action':'edit', 'groupId':$id,'name':$name}), function(data, textStatus){
+		            $tr.find('.edit-confirm').hide();
+		            $tr.find('.edit-cancel').hide();
+					 $tr.find('span[name="name"]').show();
+					$tr.find('.group-edit').show();
+					$tr.find('.group-delete').show();
+					$tr.find('input[name="group_name"]').hide();
+                if (data.status == "success"){
+				   
+                    $tr.find('span[name="name"]').val($name);
+					//成功信息
+		            
+                    
+                }else{
+				
+                    alert("状态修改失败");                            
+                }
+            },'json');
+		 
+		 }
+		 );
+		 //注册点击取消事件
+		  table.on('click','tbody tr .edit-cancel',function(){
+		   var $tr=$(this).parents('tr');
+		    $tr.find('.edit-confirm').hide();
+		            $tr.find('.edit-cancel').hide();
+					 $tr.find('span[name="name"]').show();
+					$tr.find('.group-edit').show();
+					$tr.find('.group-delete').show();
+		  }
+		  )
+		  //注册点击删除事件
+		   table.on('click','tbody tr .group-delete',function(){
+		    var $tr=$(this).parents('tr');
+			 var $id=$tr.find('input[type="checkbox"]').val();
+			  $.post(ideaProcessUrl, $.param({'action':'delete', 'groupId':$id}), function(data, textStatus){
+		            
+                if (data.status == "success"){
+				   
+                    $tr.remove();
+					//成功信息
+		            
+                    
+                }else{
+				
+                    alert("状态修改失败");                            
+                }
+            },'json');
+		   }
+		   )
         // 注册点击拒绝事件
         table.on('click', 'tbody tr .idea-reject', function(){
             var $tr = $(this).parents('tr');
