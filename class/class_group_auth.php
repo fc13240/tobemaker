@@ -59,7 +59,12 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	$sql='delete from `group_auth` where `auth_id`='.$auth_id;
 	$this->db->query($sql);
     }
-	
+	// 删除某个组的某个权限
+     public function delete_group_auth($group_id,$action_name)
+	 {
+	    $sql='delete from `group_auth` where `group_name`='.$group_id.' and `action_name`=\''.$action_name.'\'';
+		$this->db->query($sql);
+	 }
     
   
 	

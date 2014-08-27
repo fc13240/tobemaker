@@ -52,8 +52,8 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
     }
     
     // 更新表中某个字段
-    private function update_one($group_id,$col_name,$value){
-        $sql_query="update `group` set ".$col_name."=".$value." where `group_id`=".$group_id;
+    public function update_one($group_id,$col_name,$value){
+        $sql_query='update `group` set `'.$col_name.'`=\''.$value.'\' where `group_id`='.$group_id;
         $this->db->query($sql_query);
     }
     //删除某个id的群组
@@ -120,31 +120,15 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	 }
    
     //验证是否重复
-    public function check_is_unique($table_name,$arr_columns_value)
+    public function check_is_unique($group_name,$group_id=null)
 	{
-	   $strsql='select * from `'.$table_name.'` ';
-	    if (count($arr_columns_value)<=0)
-	    {
-	        return false;
-	    }
-	    else
-	        {
-			    $strsql=$strsql.'where ';
-				$keys=array_keys($arr_columns_value);
-			    for($i=0;$i<count($arr_columns_value);$i++)
-				{
-				    if($i==0)
-					{
-					    $strsql=$strsql.'`'.$keys[$i].'`=\''.$arr_columns_value[$keys[$i]].'\' ';
-					}
-					else
-					{
-					     $strsql=$strsql.' and `'.$keys[$i].'`=\''.$arr_columns_value[$keys[$i]].'\' ';
-					}
-				}
-	        }
-		$result=$this->db->get_results($strsql,ARRAY_A);
-		return count($result);
+	$sql='select * from `group` where `group_name`=\''.$group_name.'\' ';
+	  if($group_id!=null)
+	  {
+	    $sql=$sql.' and `group_id`!='.$group_id;
+	  }
+	  $result = $this->db->get_results($sql,ARRAY_A);
+	  return count($result);
 	}
    
 

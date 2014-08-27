@@ -5,7 +5,11 @@
    */
 include_once "../config.php";
 include_once ROOT_PATH."class/class_group.php";
+include_once ROOT_PATH."class/class_group_auth.php";
+include_once ROOT_PATH."class/class_user.php";
 $group=new class_group();
+$group_auth=new class_group_auth();
+$user=new class_user();
 $iTotalRecords =$group->get_group_num();
 
 //if (array_key_exists('action', $_REQUEST)){
@@ -42,12 +46,46 @@ $status_list = array(
 );
 //如果是修改请求
 //则做出相应修改
-if(isset($_POST["action"])&&isset($_POST["productID"])){
-  $act=$_POST["action"];
-  $pf_id=$_POST["productID"];
-  $num=count($pf_id);
-  $i=0;
 
+if(isset($_POST["action"])&&isset($_POST["groupId"])){
+  $act=$_POST["action"];
+  $group_id=$_POST["groupId"];
+  
+ if($act=='edit')
+ {
+ $value=$_POST["name"];
+  if(!$group->check_is_unique($value,$group_id))
+  {
+  $group->update_one($group_id,'group_name',$value);
+     $res= array();
+     $res['status']='success';
+     echo json_encode($res);
+   }
+   else
+   {
+    $res= array();
+     $res['status']='error';
+     echo json_encode($res);
+   }
+}
+elseif($act=='delete')
+{
+    $exsits_auth=$group_auth->get_all_auth($group_id);
+	$exsits_user=$user->get_user_by_group($group_id);
+	if(count($exsits_auth)<=0&&count($exsits_user)<=0)
+	{
+     $group->delete_group($group_id);
+	 $res= array();
+     $res['status']='success';
+     echo json_encode($res);
+	 }
+	 else
+	 {
+	    $res= array();
+     $res['status']='error';
+     echo json_encode($res);
+	 }
+}
   
 }
 
@@ -95,7 +133,8 @@ for($i = 0; $i < $real_length; $i++) {
     $id,
     '<span name="name" id="name">'.$datalist[$i]["group_name"].'</span><input name="group_name" class="form-control input group-name" value="'.$datalist[$i]["group_name"].'" style="display:none"/>',
 	
-    '<a  class="btn btn-xs blue group-edit"><i class="fa fa-search"></i>编辑</a><a  class="btn btn-xs blue edit-confirm" style="display:none"><i class="fa fa-search"></i>确定</a><a style="display:none"  class="btn btn-xs blue edit-cancel"><i class="fa fa-search"></i>取消</a>',
+    '<a  class="btn btn-xs blue group-edit"><i class="fa fa-search"></i>编辑</a><a  class="btn btn-xs red group-delete"><i class="fa fa-search"></i>删除</a>'
+	.'<a  class="btn btn-xs blue edit-confirm" style="display:none"><i class="fa fa-search"></i>确定</a><a style="display:none"  class="btn btn-xs blue edit-cancel"><i class="fa fa-search"></i>取消</a>',
       
   );
 }
