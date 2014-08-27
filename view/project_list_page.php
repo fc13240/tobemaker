@@ -115,7 +115,7 @@
             </div>
 
             <div class="prev">
-                <div><a href="javascript:0"><</a></div>
+                <div><a href="javascript:0"></a></div>
             </div>
             <div class="next">
                 <div><a href="javascript:0">></a></div>

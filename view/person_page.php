@@ -18,6 +18,7 @@
              alt="头像读取错误">
                 <a href="#" id="btn-upload" style="display: none;" data-url="<?=BASE_URL?>api/user.php" title="上传图片">
                     <input id="fileSelect" type="file" name="file" data-url="<?= BASE_URL ?>api/tmpfileupload.php" /><i class="fa fa-chevron-circle-up"></i>
+                    <input id="head_pic_url" type="hidden" name="img_url" value=""/>
                 </a>
             <br/>
             <h2 id="userName"><?php
@@ -130,8 +131,11 @@
             
             $("#btn-comfirm").click(function(){
                 var url = $(this).data('url');
-                
-                var head_url = $('#userHead').data('ori');
+                if($('#head_pic_url').val()==""){
+                    var head_url = $('#userHead').data('ori');
+                }
+                else {var head_url=$('#head_pic_url').val();}
+               // console.log(head_url);
                 var user_name = $('#userName input[name=user_name]').val();
                 var user_occupation = $('#userTitle input[name=user_occupation]').val();
                 var user_introduction = $('#userIntroduction input[name=user_introduction]').val();
@@ -177,7 +181,7 @@
                         alert("错误：" + data.result.err_msg);
                     }else{
                         $("#userHead").attr('src', data.result.url);
-//                        $("#fileurl").val(data.result.url);
+                        $("#head_pic_url").val(data.result.url);
                     }
                 },
                 progress: function (e, data) {
