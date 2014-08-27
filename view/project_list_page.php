@@ -196,7 +196,6 @@
                     <div class="button"><a href="#" class="'+ (item.likeit == 0 ? '':'red') +'">超喜欢</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
                 </dd>\
             </dl>');
-    
             }
             
             // set up page nav
