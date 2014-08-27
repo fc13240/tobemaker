@@ -80,9 +80,14 @@
 							项目列表</a>
 						</li>
                                                 <li class="<?= @$page_level[1] == 'product_detail' ? 'active' : '' ?>">
-                                                        <a href="prodect_detail.php">
+                                                        <a href="product_detail.php">
 							<i class="icon-home"></i>
 							项目详情</a>
+						</li>
+						<li class="<?= @$page_level[1] == 'product_category_list' ? 'active' : '' ?>">
+                                                        <a href="product_category_list.php">
+							<i class="icon-home"></i>
+							商品目录</a>
 						</li>
 					</ul>
 				</li>
@@ -102,6 +107,17 @@
                                                         <a href="user_detail.php">
 							<i class="icon-home"></i>
 							用户详情</a>
+						</li>
+						   <li class="<?= @$page_level[1] == 'group_list' ? 'active' : '' ?>">
+                                                        <a href="group_list.php">
+							<i class="icon-home"></i>
+							群组列表</a>
+						</li>
+						</li>
+						   <li class="<?= @$page_level[1] == 'auth_assign' ? 'active' : '' ?>">
+                                                        <a href="auth_assign.php">
+							<i class="icon-home"></i>
+							权限分配</a>
 						</li>
 					</ul>
 				</li>
