@@ -8,7 +8,7 @@ include_once ROOT_PATH."include/ez_sql_mysql.php";
 {
  private $db = null;
 //global $arr_action_name;//在此添加action_name
-public class_attention()
+function class_attention()
 {
         // Initialise database object and establish a connection
         // at the same time - db_user / db_password / db_name / db_host

@@ -45,9 +45,9 @@ if(isset($_POST["action"])){
 	   // 总项目数
        // 当前显示数量
     $iTotalRecords=$attention->get_num_attention($userid)
-    $iDisplayLength = intval($_REQUEST['length']);
+    $iDisplayLength = intval($_POST['length']);
     $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength; 
-	$iDisplayStart = intval($_REQUEST['start']);
+	$iDisplayStart = intval($_PST['start']);
 	$records = array();
     $records["data"] = array(); 
 	$end = $iDisplayStart + $iDisplayLength;
@@ -60,9 +60,9 @@ if(isset($_POST["action"])){
 	for($i = 0; $i < $real_length; $i++) {
 	$userinfo=$user->select($dataList[$i]["attention_userid"]);
 	$records["data"][] = array($userinfo["user_id"],$userinfo["user_name"],$userinfo["head_pic_url"]);
-	$records["draw"] = $sEcho;
+	
     $records["recordsTotal"] = $iTotalRecords;
-    $records["recordsFiltered"] = $iTotalRecords;
+    $records["start"] = $iDisplayStart;
     echo json_encode($records);
 	}
   }
@@ -72,9 +72,9 @@ if(isset($_POST["action"])){
 	   // 总项目数
        // 当前显示数量
     $iTotalRecords=$attention->get_num_attention_me($attention_userid)
-    $iDisplayLength = intval($_REQUEST['length']);
+    $iDisplayLength = intval($_POST['length']);
     $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength; 
-	$iDisplayStart = intval($_REQUEST['start']);
+	$iDisplayStart = intval($_POST['start']);
 	$records = array();
     $records["data"] = array(); 
 	$end = $iDisplayStart + $iDisplayLength;
@@ -87,9 +87,9 @@ if(isset($_POST["action"])){
 	for($i = 0; $i < $real_length; $i++) {
 	$userinfo=$user->select($dataList[$i]["attention_userid"]);
 	$records["data"][] = array($userinfo["user_id"],$userinfo["user_name"],$userinfo["head_pic_url"]);
-	$records["draw"] = $sEcho;
+	
     $records["recordsTotal"] = $iTotalRecords;
-    $records["recordsFiltered"] = $iTotalRecords;
+    $records["start"] = $iDisplayStart;
     echo json_encode($records);
 	}
   }
