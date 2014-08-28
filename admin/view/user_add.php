@@ -258,9 +258,19 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label">用户组</label>
+													<label class="control-label col-md-3">群组 
+													</label>
 													<div class="col-md-4">
-														<input id="group" name="group" type="text" class="form-control  input-circle" placeholder="用户组">
+													<select class="form-control input-circle" name="group" id="group" >
+													<?php
+													for($i=0;$i<count($groupList);$i++)
+													{
+													
+													echo '<option value='.$groupList[$i]["group_id"].'>'.$groupList[$i]["group_name"].'</option>';
+													}
+													?>
+													</select>
+													
 													</div>
 												</div>
 												<div class="form-group">
@@ -272,7 +282,7 @@
 												<div class="form-group">
 													<label class="col-md-3 control-label">金额</label>
 													<div class="col-md-4">
-														<input id="group" name="group" type="number" class="form-control  input-circle" placeholder="金额">
+														<input id="money" name="money" type="number" class="form-control  input-circle" placeholder="金额">
 													</div>
 												</div>
 											</div>
