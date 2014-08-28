@@ -1,4 +1,4 @@
-
+﻿
 <?php
 include_once "config.php";
 include_once ROOT_PATH."class/class_user.php";
@@ -72,7 +72,7 @@ elseif(array_key_exists("action",$_POST)&&$_POST['action']=='login'){
 		<title>tobeMaker</title>
 	</head>
 	<body>
-	<form id="loginForm" action="" method="post">
+	<form id="loginForm" action="index.php" method="post">
 		<div class="form-group">
 			<label>用户名（邮箱）</label>
 			<input type="text" name="username" />
@@ -80,6 +80,7 @@ elseif(array_key_exists("action",$_POST)&&$_POST['action']=='login'){
 		<div class="form-group">
 			<label>密码</label>
 			<input type="password" name="password" />
+<input type="hidden" name="action" value="login" />
 		</div>
 		<input type="submit" name="login" value="登录" />
 		
