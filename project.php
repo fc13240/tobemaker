@@ -25,6 +25,9 @@ $class_comment=new class_comment();
       $item[0]['content']=$_POST['content'];
       $item[0]['picture_url']=$_POST['img_url'];
       $item[0]['user_id']=3;
+      if(isset($_POST['cover_display'])){
+      $item[0]['cover_display']=$_POST['cover_display'];
+      }
 
       //brief暂时无需获取
       // $$item[0]['user_name']通过session或者cookie获取，预留

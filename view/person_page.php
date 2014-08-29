@@ -20,10 +20,7 @@
                     <form>
                     <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/" /><i class="fa fa-chevron-circle-up"></i>
                     <input id="head_pic_url" type="hidden" name="img_url" value=""/>
-                    <input id="key" name="key" type="hidden" value=<?php
-    echo "\"".$key."\"";
-
-    ?>>
+                   
     <input name="token" type="hidden" value=<?php
     echo "\"".$upToken."\"";
 

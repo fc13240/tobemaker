@@ -2,6 +2,23 @@
 
 include_once "config.php";
 include_once ROOT_PATH."class/class_user.php";
+//上传suo xu
+require_once("qiniu/rs.php");
+require_once("qiniu/auth_digest.php");
+require_once("qiniu/io.php");
+require_once("qiniu/http.php");
+
+$accessKey = ACCESS_KEY;
+$secretKey = SECRET_KEY;
+$bucket=BUCKET;
+
+Qiniu_SetKeys($accessKey, $secretKey);
+$putPolicy = new Qiniu_RS_PutPolicy($bucket);
+$putPolicy->deadline=1800;
+$putPolicy->FsizeLimit=2000000;
+$putPolicy->mineLimit="image/jpeg;image/png";
+$upToken = $putPolicy->Token(null);
+
 
 // 导航 当前页面控制
 $current_page = 'person';

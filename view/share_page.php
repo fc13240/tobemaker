@@ -31,10 +31,6 @@
                     <label>作者<span>（选填）</span></label>
                     <input name="author" type="text">
 
-                    <input id="key" name="key" type="hidden" value=<?php
-    echo "\"".$key."\"";
-
-    ?>>
     <input name="token" type="hidden" value=<?php
     echo "\"".$upToken."\"";
 
@@ -46,7 +42,7 @@
                         <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/">
                         <input id="fileurl" type="hidden" name="img_url" value=""/>
                     </div>
-                    <input name="cover_display" type="checkbox" value="0"><span>封面图片显示在正文中</span>
+                    <input name="cover_display" type="checkbox" value="1"><span>封面图片显示在正文中</span>
                     <a href="javascript:void 0" class="a1">添加摘要</a>
                     <label class="last">正文</label>
                     <div class="textdiv">
