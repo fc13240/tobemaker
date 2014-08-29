@@ -17,8 +17,18 @@
             ?>
              alt="头像读取错误">
                 <a href="#" id="btn-upload" style="display: none;" data-url="<?=BASE_URL?>api/user.php" title="上传图片">
-                    <input id="fileSelect" type="file" name="file" data-url="<?= BASE_URL ?>api/tmpfileupload.php" /><i class="fa fa-chevron-circle-up"></i>
+                    <form>
+                    <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/" /><i class="fa fa-chevron-circle-up"></i>
                     <input id="head_pic_url" type="hidden" name="img_url" value=""/>
+                    <input id="key" name="key" type="hidden" value=<?php
+    echo "\"".$key."\"";
+
+    ?>>
+    <input name="token" type="hidden" value=<?php
+    echo "\"".$upToken."\"";
+
+    ?>>
+                    </form>
                 </a>
             <br/>
             <h2 id="userName"><?php
@@ -177,11 +187,13 @@
             $('#fileSelect').fileupload({
                 dataType: 'json',
                 done: function (e, data) {
-                    if (data.result.url == null){
+                    if (data.result.key == null){
                         alert("错误：" + data.result.err_msg);
                     }else{
-                        $("#userHead").attr('src', data.result.url);
-                        $("#head_pic_url").val(data.result.url);
+                        var url="http://yzzwordpress.qiniudn.com/"+ data.result.key;
+                        console.log(url);
+                        $("#userHead").attr('src', url);
+                        $("#head_pic_url").val(url);
                     }
                 },
                 progress: function (e, data) {

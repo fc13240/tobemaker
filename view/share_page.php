@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>share</title>
     <?php include "top_css.php" ?>
+    <script type="text/javascript" src="js/md5.js"></script> 
     <link rel="stylesheet" type="text/css" href="css/redactor.css">
 </head>
 <body>
@@ -29,10 +30,20 @@
                     <input name="title" type="text">
                     <label>作者<span>（选填）</span></label>
                     <input name="author" type="text">
+
+                    <input id="key" name="key" type="hidden" value=<?php
+    echo "\"".$key."\"";
+
+    ?>>
+    <input name="token" type="hidden" value=<?php
+    echo "\"".$upToken."\"";
+
+    ?>>
+
                     <label>封面<span>（大图片建议尺寸 900像素*500像素）</span></label>
                     <div class="fileupload">
                         <div>上传</div>
-                        <input id="fileSelect" type="file" name="file" data-url="<?= BASE_URL ?>api/tmpfileupload.php">
+                        <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/">
                         <input id="fileurl" type="hidden" name="img_url" value=""/>
                     </div>
                     <input name="cover_display" type="checkbox" value="0"><span>封面图片显示在正文中</span>
@@ -71,17 +82,16 @@
 
     <script>
     $(document).ready(function(){
-
         $('#content').redactor();
-
         $('#fileSelect').fileupload({
             dataType: 'json',
             done: function (e, data) {
-                if (data.result.url == null){
+                if (data.result.key == null){
                     alert("错误：" + data.result.err_msg);
                 }else{
-                    $("#coverPreview").attr('src', data.result.url);
-                    $("#fileurl").val(data.result.url);
+                    var url="http://yzzwordpress.qiniudn.com/"+ data.result.key;
+                    $("#coverPreview").attr('src', url);
+                    $("#fileurl").val(url);
                 }
             },
             progress: function (e, data) {
@@ -89,6 +99,7 @@
             },
         });
 
+        
         $('button.save').click(function(){
             $('#idea-form').action="../share.php";
             $('#idea-form').submit();

@@ -22,3 +22,8 @@ define('DATABASE_PASSWORD', '123456');
  */
 define('TABLENAME_AD', 'ad_img');
 define('TABLENAME_USER', 'user');
+
+
+define('ACCESS_KEY','-KZQqWyVFjjfoQDpkVb_Z1q-T7BrBKTJZfhEQ3XW');
+define('SECRET_KEY','_L0dnTqGE8PhJ1zNB3c97oX7pPge9TDzkKALu9gW');
+//define

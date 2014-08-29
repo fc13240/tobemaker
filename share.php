@@ -3,6 +3,21 @@
 include 'config.php';
 include_once ROOT_PATH."class/class_file.php";
 include_once ROOT_PATH."class/class_idea.php";
+require_once("qiniu/rs.php");
+require_once("qiniu/auth_digest.php");
+require_once("qiniu/io.php");
+
+$accessKey = ACCESS_KEY;
+$secretKey = SECRET_KEY;
+$bucket="yzzwordpress";
+$dd=date('Y-m-d H:i:s',time());
+$key=md5($dd).rand(0,1000).".jpg";
+Qiniu_SetKeys($accessKey, $secretKey);
+$putPolicy = new Qiniu_RS_PutPolicy($bucket);
+$putPolicy->deadline=1800;
+$putPolicy->FsizeLimit=2000000;
+$putPolicy->mineLimit="image/jpeg;image/png";
+$upToken = $putPolicy->Token(null);
 
 // 导航 当前页面控制
 $current_page = 'share';
@@ -13,9 +28,9 @@ $page_level = explode('-', $current_page);
 if(array_key_exists('img_url',$_POST))
 {
 	//保存图片
-	$tmp_url=$_POST['img_url'];
-	$file_instance = new class_file();
-	$pic_url=$file_instance->save($tmp_url);
+	$pic_url=$_POST['img_url'];
+	//$file_instance = new class_file();
+	//$pic_url=$file_instance->save($tmp_url);
 	// 保存其他信息  预留字段user_id 和user_name
 	$arr= array();
 	$arr['name']=$_POST['title'];
