@@ -37,13 +37,13 @@
                 ?>
             </div>
             <div class="commentbox">
-                <form action="../project.php" method="POST" >
+                <form id="commentForm" action="<?=BASE_URL?>project.php?idea_id=<?=$idea_id?>" method="POST" >
                     <label>评论</label>
                     <textarea id="saytext" name="saytext"></textarea>
                     <a href="javascript:void 0" class="emotion">添加表情</a>
                     <input type="checkbox"><span>同时推荐该想法</span>
-                    <input type="hidden" name="idea_id" value="1"/>
-                    <input type="submit" value="评论">
+                    <input type="hidden" name="idea_id" value="<?=$idea_id?>"/>
+                    <input class="sub_btn" type="submit" value="评论">
                     <p>个字符</p>
                     <em>2000</em>
                     <p>还可以输入</p>
@@ -55,7 +55,7 @@
         </div>
         <div class="comment">
             <h1>全部评论</h1>
-            <ul>
+            <ul id="comment-list-content">
                         <li>
                             <div class="commenter">
                                 <a href="javascript:void 0"><img src="asset/15.png" alt=""></a>
@@ -69,7 +69,7 @@
                         </li>
                
             </ul>
-            <div class="pagenum">
+            <div id="comment-pagenum" class="pagenum" data-url="<?=BASE_URL?>api/get_comment.php">
                 <a href="#">1</a>
                 <a href="#">2</a>
                 <a href="#">3</a>
@@ -87,8 +87,8 @@
         <div class="pendant left">
             <ul>
                 <li><a href="javascript:void 0" class="red">分&nbsp;&nbsp;&nbsp;&nbsp;享</a></li>
-                <li><a href="javascript:void 0">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
-                <li><a id="like_btn" href="javascript:void 0" data-idea_id="1" data-url="<?=BASE_URL."api/like.php"?>">超喜欢</a></li>
+                <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
+                <li><a id="like_btn" href="javascript:void 0" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>">超喜欢</a></li>
             </ul>
         </div>
         <div class="pendant right">
@@ -108,6 +108,70 @@
 <script type="text/javascript" src="./js/jQuery.pin.js"></script>
 
 <script>
+    
+    var pageSize = 50;
+    var pageNow = 1;
+    var maxPageNo = 1;
+    
+    function loadIdeaPage(current_page){
+        
+        var start = (current_page - 1) * pageSize;
+        var length = pageSize;
+        var url = $('#comment-pagenum').data("url");
+        var idea_id = <?=$idea_id?>;
+        $.post(url, {"action":'get_comment' ,"start":start, "length":length, "idea_id":idea_id}, function(data, textStatus){
+            console.log(data);
+            
+            // set up content
+            var $container = $('#comment-list-content');
+            $container.html('');
+            
+            for (var i=0; data.data != undefined && i<data.data.length; i++){
+                var item = data.data[i];
+
+                $container.append('\
+            <li>\
+                <div class="commenter">\
+                    <a href="javascript:void 0"><img src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\
+                    <br />\
+                    <a href="<?=BASE_URL.'person.php?user_id='?>'+item['sender_id']+'">'+item['user_name']+'</a>\
+                </div>\
+                <div class="text">'+item['context']+'<img src="asset/17.png" alt="">\
+                </div>\
+            </li>');
+            }
+            
+            // set up page nav
+            var $pageNav = $('#comment-pagenum');
+            $pageNav.html('');
+            maxPageNo = Math.ceil( parseInt(data.num_of_all) / pageSize );
+            for (var i=1; i<=maxPageNo && i<=9; i++){
+                var pageNavClass = "";
+                if (i == current_page){
+                    pageNavClass = ' class="active" ';
+                }
+                $pageNav.append('<a href="#" '+ pageNavClass +' >'+ i +'</a>');
+            }
+            if (maxPageNo > 9){
+                $pageNav.append('<a>...</a>');
+            }
+        },"json");
+    }
+    
+    $("#comment-pagenum").on("click","a",function(){
+        var current_page = parseInt( $(this).text() );
+        pageNow = current_page;
+        loadIdeaPage(pageNow);
+    });
+    
+    function replace_em(str){
+        str = str.replace(/\</g,'&lt;');
+        str = str.replace(/\>/g,'&gt;');
+        str = str.replace(/\n/g,'<br/>');
+        str = str.replace(/\[em_([0-9]*)\]/g,'<img src="asset/arclist/$1.gif" border="0" />');
+        return str;
+    }
+    
     $(function(){
         $('.emotion').qqFace({
             id : 'facebox',
@@ -116,7 +180,9 @@
         });
         $(".sub_btn").click(function(){
             var str = $("#saytext").val();
-            $("#show").html(replace_em(str));
+            $("#saytext").val(replace_em(str));
+            alert(replace_em(str));
+//            $("#show").html(replace_em(str));
         });
         $(".pendant").pin({
             minWidth : 1220
@@ -138,15 +204,11 @@
                 }
             },'json');
         });
+        
+        pageNow = 1;
+        loadIdeaPage(pageNow);
 
     });
-    function replace_em(str){
-        str = str.replace(/\</g,'&lt;');
-        str = str.replace(/\>/g,'&gt;');
-        str = str.replace(/\n/g,'<br/>');
-        str = str.replace(/\[em_([0-9]*)\]/g,'<img src="asset/arclist/$1.gif" border="0" />');
-        return str;
-    }
 </script>
 
 </body>

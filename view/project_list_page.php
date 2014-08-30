@@ -170,7 +170,7 @@
         var start = (current_page - 1) * pageSize;
         var length = pageSize;
         var url = $('#project-pagenum').data("url");
-        $.post(url, {"start":start, "length":length, "type":"pass", "user_id":1}, function(data, textStatus){
+        $.post(url, {"start":start, "length":length, "type":"pass", "user_id":<?=$current_user['user_id']?>}, function(data, textStatus){
             console.log(data);
             
             // set up content
@@ -182,18 +182,18 @@
 
                 $container.append('\
             <dl>\
-                <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="asset/13.png" alt=""></a></dd>\
+                <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" alt=""></a></dd>\
                 <dt>'+ item.name +'</dt>\
                 <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>\
                 <dd>\
-                    <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>\
-                    <a href="#" class="author">'+ item.user_name +'</a>\
+                    <a href="#" class="avatar"><img src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\
+                    <a href="<?=BASE_URL?>person.php?user_id='+item.user_id+'" class="author">'+ item.user_name +'</a>\
                     <span>发布</span>\
                 </dd>\
                 <dd>\
                     <div class="button"><a href="#">分享</a></div>\
-                    <div class="button"><a href="project.php?idea_id='+ item.idea_id +'">评论</a><span>'+ (item.sum_comment == null ? 0 : item.sum_comment) +'</span></div>\
-                    <div class="button"><a href="#" class="'+ (item.likeit == 0 ? '':'red') +'">超喜欢</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
+                    <div class="button"><a href="project.php?idea_id='+ item.idea_id +'#commentForm">评论</a><span>'+ (item.sum_comment == null ? 0 : item.sum_comment) +'</span></div>\
+                    <div class="button"><a class="like_btn '+ (item.likeit == 0 ? '':'red') +'" href="javascript:void 0" data-idea_id="'+ item.idea_id +'" data-url="<?=BASE_URL."api/like.php"?>" >超喜欢</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
                 </dd>\
             </dl>');
             }
@@ -228,7 +228,7 @@
         loadIdeaPage(pageNow);
         
         $('#idea-list-block .next').click(function(){
-            if (pageNow < maxPageNo){   
+            if (pageNow < maxPageNo){
                 pageNow++;
                 loadIdeaPage(pageNow);
             }
@@ -239,6 +239,26 @@
                 pageNow--;
                 loadIdeaPage(pageNow);
             }
+        });
+        
+        $("#idea-list-content").on('click', ".like_btn", function(){
+            var the_like_btn = $(this);
+            var url = $(this).data("url");
+            var idea_id = $(this).data("idea_id");
+            
+            //TODO:从当前登录用户信息中获取用户id
+            var user_id = <?=$current_user['user_id']?>;
+            $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
+                var status = data['status'];
+                if (status == "success"){
+                    the_like_btn.addClass("red");
+                    
+                }else if (status == "error"){
+                    alert("系统错误，请联系管理员");
+                }else if (status == "like_already"){
+                    alert("已标记喜欢，请勿重复提交");
+                }
+            },'json');
         });
     });
 </script>
