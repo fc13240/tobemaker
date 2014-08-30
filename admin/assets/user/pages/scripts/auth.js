@@ -33,6 +33,7 @@ var TableManaged = function () {
                 "type": 'post',
                 "timeout": 20000,
                 "data": function (data) { // add request parameters before submit
+				
 
                 },
                     
@@ -56,6 +57,7 @@ var TableManaged = function () {
                 [25, 50, 100, "All"] // change per page values here
             ],
             // set the initial value
+			
             "pageLength": 25,            
             "pagingType": "bootstrap_full_number",
             "language": {
@@ -98,8 +100,11 @@ var TableManaged = function () {
 			
 			 $.post(ideaProcessUrl, $.param({action:'auth_update', auths:auths,groupid:$id }), function(data, textStatus){
                 if (data.status == "success"){
-                   //成功信息
-                     $status = $tr.find('.idea-status');   
+                   $rows.each(function(){
+                        $status = $(this).parents('tr').find('.checkboxes');
+                        $status.checked=true;
+                        
+                    });
                 }else{
 				//失败信息
                     alert("更新失败");

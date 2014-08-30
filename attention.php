@@ -46,4 +46,5 @@ if(!$user_session->check_login())
 //获取用户信息
 $userid=$_SESSION["user_id"];
 $userInfo=$user->select($userid);
+
 include 'view/attention_page.php';

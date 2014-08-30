@@ -19,21 +19,7 @@ $page_level_plugins = '
 <script type="text/javascript" src="./assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 ';
 
-$page_level_script = '<script src="./assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script src="./assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
-<script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="./assets/user/pages/scripts/auth.js"></script>
-<script>
-jQuery(document).ready(function() {       
-    Metronic.init(); // init metronic core components
-    Layout.init(); // init current layout
-    QuickSidebar.init(); // init quick sidebar
-    Demo.init(); // init demo features
-    TableManaged.init();
-});
-</script>
-';
+
 //获取操作列表
 $action=new class_auth();
 $actionList=$action->get_action_name_list();
@@ -56,12 +42,34 @@ include 'view/leftnav.php';
 include 'view/give_auth.php';
 
 include 'view/quick_bar.php';
+$page_level_script = '<script src="./assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="./assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+<script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+<script src="./assets/user/pages/scripts/auth.js"></script>
+<script>
+jQuery(document).ready(function() {       
+    Metronic.init(); // init metronic core components
+    Layout.init(); // init current layout
+    QuickSidebar.init(); // init quick sidebar
+    Demo.init(); // init demo features
+    TableManaged.init();
+	inittable();
+	var box=$("#id[view]");
+	var i=box.value;
+	var j=0;
+});
+</script>
+';
 
-include 'view/footer.php';
-//绑定处理
+$page_level_script=$page_level_script.'<script>function inittable(){';
 for($i=0;$i<count($authList);$i++)
 {
      
-    echo '<script>$("#id['.$authList[$i]["action_name"].']").parents(\'tr\').addClass("active");</script>';
+    $page_level_script= $page_level_script.'$("#id['.$authList[$i]["action_name"].']").Checked="true";';
 }
+$page_level_script=$page_level_script.'}</script>';
+include 'view/footer.php';
+//绑定处理
+
 

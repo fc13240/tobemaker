@@ -1,8 +1,8 @@
 var divManaged = function () {
 
-    var attentionProcessUrl;
+    var attentionProcessUrl=$('#tableattention').data('url');
    
-    var length=24;
+    var length=12;
 // 更改页面内容
     var initdiv = function (  data, type) {
         
@@ -10,34 +10,67 @@ var divManaged = function () {
 		if(type=='my')
 		{
 		    div=$("#myattentionList");
+			
 		}
 		else
 		{
 		     div=$("attentionmeList");
 		}
+		div.empty();
         var list=data["data"];
        
 		for(var i in list)
 		{
-		    var html='<dl><dd><a href="#"><img src="'+i[2]+'" alt=""></dd><dd><a>'+i[1]+'</a></dd></dl>';
+		    var html='<dl><dd><a href="#"><img src="'+list[i][2]+'" alt=""></dd><dd><a>'+list[i][1]+'</a></dd></dl>';
 			div.append(html);
 		}
+		var start=+data.start;
 		var total=data.recordsTotal;
-		
+		var prestartnum=(-length+start>0?start-length:1);
+		var nexstartnum=(length+start>total?start:start+length);
 		if(type=='my')
 		{
-		var foot='<div class="prev-my" id="minelistprev"><div><a href="#"><</a></div><input type="hidden" id="myprevstart" value="'+(data.start-length>0?data.start-legth:1)+'"/></div><div class="next-my" id="minelistnext"><div><a href="#">></a></div><input type="hidden" id="mynextstart" value="'+(data.start+length>total?data.start:data.start+length)+'"/></div><br class="clear"/>';
-		div.append(foot);
+		$("#myprevstart").val(prestartnum);
+		$("#mynextstart").val(nexstartnum);
+		
 		}
 		else
 		{
-		      var foot='<div class="prev-me" id="minelistprev"><div><a href="#"><</a></div><input type="hidden" id="meprevstart" value="'+(data.start-length>0?data.start-legth:1)+'"/></div><div class="next-me" id="minelistnext"><div><a href="#">></a></div><input type="hidden" id="menextstart" value="'+(data.start+length>total?data.start:data.start+length)+'"/></div><br class="clear"/>';
-		div.append(foot);
+		$("#meprevstart").val(prestartnum);
+		$("#menextstart").val(nexstartnum);
+		     
 		}
         }
-  
+  //注册点击更换tab事件(换位关注我的)
+ $("#attentionme-btn").click(function(){
+ var $divmy=$("#mylist");
+ var $divme=$("#melist");
+ $divme.show();
+ $divmy.hide();
+ var userid=$('#userid').val();
+var start=$('#menextstart').val();
+ $.post(attentionProcessUrl, $.param({'action':'view-attention-me', 'userid':userid,'start':start,'length':length }), function(data, textStatus){
+               //成功改变页面内容
+                    initdiv(data,'me');
+                   
+            },'json');
+ });
+ //注册点击更换tab事件（换为我的关注）
+ $("#myattention-btn").click(function(){
+ var $divmy=$("#mylist");
+ var $divme=$("#melist");
+ $divme.hide();
+ $divmy.show();
+ var userid=$('#userid').val();
+var start=$('#mynextstart').val();
+ $.post(attentionProcessUrl, $.param({'action':'view-me', 'userid':userid,'start':start,'length':length }), function(data, textStatus){
+               //成功改变页面内容
+                    initdiv(data,'my');
+                   
+            },'json');
+ });
 //注册点击向后翻页事(我的关注)
-$('.next-my').click(function()
+$('.mynex').click(function()
 {
 var userid=$('#userid').val();
 var start=$('#mynextstart').val();
@@ -48,7 +81,7 @@ var start=$('#mynextstart').val();
             },'json');
 });
 //注册点击向前翻页事（我的关注）
-$('.prev-my').click(function()
+$('.mypre').click(function()
 {
 var userid=$('#userid').val();
 var start=$('#myprevstart').val();
@@ -59,7 +92,7 @@ var start=$('#myprevstart').val();
             },'json');
 });
 //注册点击向后翻页事(关注我的)
-$('.next-me').click(function()
+$('.menex').click(function()
 {
 var userid=$('#userid').val();
 var start=$('#menextstart').val();
@@ -70,7 +103,7 @@ var start=$('#menextstart').val();
             },'json');
 });
 //注册点击向前翻页事（关注我的）
-$('.prev-me').click(function()
+$('.mepre').click(function()
 {
 var userid=$('#userid').val();
 var start=$('#meprevstart').val();

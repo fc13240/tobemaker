@@ -37,39 +37,29 @@
         </div>
 
     </div>
-    <div class="middle-margin" data-url="<?=BASE_URL?>api/attention.php" id="data_userinfo">
-        <div class="minepro list" id="myattentionList">
-            <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-				
-            </dl>
-            <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-            </dl>
-            <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-            </dl>
-            <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-            </dl>
-
-            <div class="prev-my" id="minelistprev">
+    <div id="tableattention" class="middle-margin" data-url="<?=BASE_URL?>api/attention.php" id="data_userinfo">
+        <div class="minepro list" id="mylist">
+            <div class="minepro list" id="myattentionList">
+			</div>
+            <div class="prev mypre" id="minelistprev">
                 <div><a href="#"><</a></div>
 				<input type="hidden" id="myprevstart" value="1"/>
             </div>
-            <div class="next-my" id="minelistnext">
+            <div class="next mynex" id="minelistnext">
                 <div><a href="#">></a></div>
 				<input type="hidden" id="mynextstart" value="1"/>
             </div>
 
             <br class="clear"/>
         </div>
-        <div class="minepro list" style="display:none" id="attentionmeList">
-		 <div class="prev-me" id="minelistprev">
+        <div class="minepro list" style="display:none" id="melist" >
+		<div class="minepro list" id="attentionmeList">
+		</div>
+		 <div class="prev mepre" id="minelistprev">
                 <div><a href="#"><</a></div>
 				<input type="hidden" id="meprevstart" value="1"/>
             </div>
-            <div class="next-me" id="minelistnext">
+            <div class="next menex" id="minelistnext">
                 <div><a href="#">></a></div>
 				<input type="hidden" id="menextstart" value="1"/>
             </div>

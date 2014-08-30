@@ -52,7 +52,7 @@ function checkunique($userid,$attention_userid)
 	 return count($result);
 }
  //-------获取关注数量
- function get_num_attetion($userid)
+ function get_num_attention($userid)
  {
      $sql='select * from `attention` where `userid`='.$userid;
 	$result=$this->db->get_results($sql,ARRAY_A);
