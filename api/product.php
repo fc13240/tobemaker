@@ -37,7 +37,7 @@ function update_one_product( $pf_id,$arr){
 $status_list = array(
 
   array("success" => "正常"),
-  array("error" => "下线")
+  array("danger" => "下线")
   
 );
 //如果是修改请求
@@ -89,6 +89,10 @@ $datalist=$class_product->get_part_product($iDisplayStart,$real_length);
 $real_length= count($datalist);
 for($i = 0; $i < $real_length; $i++) {
     $status = $status_list[0];
+	if($datalist[$i]["pf_status"]=='下线')
+	{
+	  $status = $status_list[1];
+	}
   $id = $datalist[$i]["pf_id"];
   $records["data"][] = array(
     '<input class="checkboxes" type="checkbox" name="id[]" value="'.$id.'"/>',
@@ -100,7 +104,7 @@ for($i = 0; $i < $real_length; $i++) {
 	$datalist[$i]["pc_name"],
 	$datalist[$i]["user_id"],
 	$datalist[$i]["pf_addDate"],
-	$datalist[$i]["pf_recommand"],
+	$datalist[$i]["pf_sort"],
     '<span class="label label-sm label-'.(key($status)).' pf-status">'.(current($status)).'</span>',
     '<a  class="btn btn-xs blue product-pass" href="./product_detail.php?action=edit&productID='.$id.'"><i class="fa fa-search"></i>编辑</a>'
       . '<a href="./product_detail.php?action=view&productID='.$id.'" class="btn btn-xs default product-view"><i class="fa fa-search"></i>查看</a>',

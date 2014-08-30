@@ -46,7 +46,7 @@
 				{
 				$strProduct=$strProduct.'<label>'.$productList[$i]["pf_label"].'</label><span>'.$productList[$i]["pf_discount"];
 				}
-				if(empty($productList[$i]["pf_price"]))
+				if(empty($productList[$i]["pf_price"])||$productList[$i]["pf_price"]=='0.00')
 				{
 				$strProduct=$strProduct.'</span></a></div>';
 				}

@@ -74,7 +74,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
     }
     // 获取某个id详细信息
     public function get_product_by_id($pf_id){
-      $sql="SELECT pf.*, pc.pc_name from `product_info` as pf, `product_category` as pc where `product_info`.`pc_id`=pc.`pc_id` and `product_info`.`pf_id`=".$product_id;
+      $sql="SELECT pf.*, pc.pc_name from `product_info` as pf, `product_category` as pc where `product_info`.`pc_id`=pc.`pc_id` and `product_info`.`pf_id`=".$product_id.' order by `pf_sort` desc';
       $result = $this->db->get_results($sql, ARRAY_A);  
       return $result;
     }
@@ -142,7 +142,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
     //获取所有商品数量
     public function get_all_product_num(){
        
-        $sql="SELECT * from `product_info`";
+        $sql="SELECT * from `product_info` order by `pf_sort` desc";
         $result = $this->db->get_results($sql,ARRAY_A);
         return count($result);
     }
@@ -158,7 +158,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	 {
 	 $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
-        $sql="SELECT  `product_category`.* from `product_category` where 1 limit ".$begin.",".$num;
+        $sql="SELECT  `product_category`.* from `product_category` where 1  limit ".$begin.",".$num;
         $result = $this->db->get_results($sql,ARRAY_A);
        // $res = json_encode($result);
         return $result;
@@ -168,7 +168,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
         
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
-        $sql="SELECT `product_info`.*, `product_category`.`pc_name` from `product_info`,`product_category` where `product_info`.`pc_id`=`product_category`.`pc_id` limit ".$begin.",".$num;
+        $sql="SELECT `product_info`.*, `product_category`.`pc_name` from `product_info`,`product_category` where `product_info`.`pc_id`=`product_category`.`pc_id` order by `pf_sort` desc limit ".$begin.",".$num;
         $result = $this->db->get_results($sql,ARRAY_A);
        // $res = json_encode($result);
         return $result;
