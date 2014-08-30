@@ -13,11 +13,11 @@ include_once ROOT_PATH."include/ez_sql_mysql.php";
  * 
  */
 
-class class_findpassword
+class class_findpass_code
 {
     private $db = null;
     
-    function class_user(){
+    function class_findpass_code(){
         
         // Initialise database object and establish a connection
         // at the same time - db_user / db_password / db_name / db_host
@@ -29,13 +29,13 @@ class class_findpassword
     //添加找回码
     function add_code($user_email){
     	$code=rand(100000,1000000);
-    	$sql="INSERT into `findpass_code`(`code`,`user_email`) values(".$code.",".$user_email.")";
+    	$sql="INSERT into `findpass_code`(`code`,`user_email`) values(".$code.",'".$user_email."')";
     	$this->db->query($sql);
     	return $code;
     }
 
 
-    //删除邀请码
+    //删除重置码
     function delete_code($code){
     	//$code=rand(10000,100000);
     	$sql="DELETE from `findpass_code`where code=".$code;
