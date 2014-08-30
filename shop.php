@@ -31,7 +31,7 @@ else
 {
 $strsql='select * from `product_info` where `product_info`.`pc_id`='.$category.' ';
 }
-$strsql=$strsql.' and `product_info`.`pf_status`="正常" ';
+$strsql=$strsql.' and `product_info`.`pf_status`="正常" order by `pf_sort` desc';
 //$strsql=$strsql.' order by `product_info`.`pf_id` '
 $productList=$product->select($strsql);
 //设置页面数量

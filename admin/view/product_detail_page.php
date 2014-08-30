@@ -260,7 +260,7 @@
 													<div class="col-md-4">
 													<?php
 													
-													echo '<input type="number" class="form-control" name="price" value="'.@$productInfo[0]["pf_price"].'" '.$strDisplay.'/>';
+													echo '<input type="text" class="form-control" name="price" value="'.(@$productInfo[0]["pf_price"]=='0.00'?'':$productInfo[0]["pf_price"]).'" '.$strDisplay.'/>';
 													
 												
 													?>
@@ -272,7 +272,16 @@
 													<label class="control-label col-md-3">现价</label>
 													<div class="col-md-4">
 													<?php
-													echo '<input type="number" class="form-control" name="discount" value="'.@$productInfo[0]["pf_discount"].'" '.$strDisplay.'/>';
+													echo '<input type="text" class="form-control" name="discount" value="'.@$productInfo[0]["pf_discount"].'" '.$strDisplay.'/>';
+													?>
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">推荐权重</label>
+													<div class="col-md-4">
+													<?php
+													echo '<input type="number" class="form-control" name="sort" value="'.@$productInfo[0]["pf_sort"].'" '.$strDisplay.'/>';
 													?>
 														
 													</div>
