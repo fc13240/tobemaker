@@ -12,10 +12,10 @@
 
         </div>
         <div class="lgn">
-            <a href="person.php" target="_top"><img src="<?php echo $top_user_data['head_url'] == '' ? 'asset/12.png' : $top_user_data['head_url']; ?>" alt="<?=$top_user_data['user_name']?>"></a>
+            <a href="person.php" target="_top"><img src="<?php echo $current_user['head_url'] == '' ? 'asset/12.png' : $current_user['head_url']; ?>" alt="<?=$current_user['user_name']?>"></a>
             <div id="sb-search" class="sb-search">
-                <form>
-                    <input class="sb-search-input" placeholder="  some" type="search" name="search" id="search">
+                <form action="project_list.php">
+                    <input class="sb-search-input" placeholder="搜索项目" type="search" name="search" id="search">
                     <input class="sb-search-submit" type="submit" value="">
                     <span class="sb-icon-search"></span>
                 </form>

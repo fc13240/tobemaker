@@ -156,10 +156,23 @@ class class_user
         return $result[0][0];
         
     }
+    
     //获取某组用户信息
-	 function get_user_by_group($group_id)
-	 {
-	     $result=$this->db->get_results('select * from `user_info` where `user_group`='.$group_id,ARRAY_A);
-		 return $result;
-	 }
+    function get_user_by_group($group_id)
+    {
+        $result=$this->db->get_results('select * from `user_info` where `user_group`='.$group_id,ARRAY_A);
+            return $result;
+    }
+    
+    function get_current_user()
+    {
+        $top_user_data = array(
+            'head_url' => $_SESSION['head_url'],
+            'user_name' => $_SESSION['user_name'],
+            'user_id' => $_SESSION['user_id'],
+        );
+        
+        return $top_user_data;
+    }
+    
 }

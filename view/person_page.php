@@ -12,9 +12,7 @@
 <div id="center">
     <div class="middle">
         <div class="mine">
-            <img id="userHead" src=<?php
-            echo $user_info['head_pic_url'];
-            ?>
+            <img id="userHead" src="<?=$user_info['head_pic_url']?>"
              alt="头像读取错误">
                 <a href="#" id="btn-upload" style="display: none;" data-url="<?=BASE_URL?>api/user.php" title="上传图片">
                     <form>

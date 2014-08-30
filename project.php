@@ -1,9 +1,19 @@
 <?php
-$current_page = 'project';
-$page_level = explode('-', $current_page);
 
 
 include_once "config.php";
+
+include_once ROOT_PATH."class/class_session.php";
+include_once ROOT_PATH."class/class_user.php";
+
+$class_session=new class_session();
+$class_user=new class_user();
+
+$current_user = $class_user->get_current_user();
+
+$current_page = 'project';
+$page_level = explode('-', $current_page);
+
 include ROOT_PATH."/class/class_idea.php";
 include_once ROOT_PATH."/class/class_comment.php";
         //获取数据

@@ -1,9 +1,17 @@
 <?php
 
 include 'config.php';
+
+include_once ROOT_PATH."class/class_session.php";
+include_once ROOT_PATH."class/class_user.php";
+
 include_once ROOT_PATH."class/class_file.php";
 include_once ROOT_PATH."class/class_idea.php";
 
+$class_session=new class_session();
+$class_user=new class_user();
+
+$top_user_data = $class_user->get_current_user();
 
 /*
   前台修改控制器，目前存在bug：
