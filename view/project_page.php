@@ -42,7 +42,6 @@
                     <textarea id="saytext" name="saytext"></textarea>
                     <a href="javascript:void 0" class="emotion">添加表情</a>
                     <input type="checkbox"><span>同时推荐该想法</span>
-                    <input type="hidden" name="user_id" value="2"/>
                     <input type="hidden" name="idea_id" value="1"/>
                     <input type="submit" value="评论">
                     <p>个字符</p>
@@ -57,29 +56,18 @@
         <div class="comment">
             <h1>全部评论</h1>
             <ul>
-                 <?php
-                     if($comment_list!=0) // 有评论则显示
-                     {
-                        $num=count($comment_list);
-                        $i=0;
-                        while ($i<$num) { ?>
                         <li>
                             <div class="commenter">
                                 <a href="javascript:void 0"><img src="asset/15.png" alt=""></a>
                                 <br />
-                                <a href="javascript:void 0"><?php 
-                                echo $comment_list[$i]->user_name;
-                                ?></a>
+                                <a href="javascript:void 0">评论者名称</a>
                             </div>
                             <div class="text">
-                        <?php
-                            echo $comment_list[$i]->context;
-                        ?>
+                        评论内容
                         <img src="asset/17.png" alt="">
                             </div>
                         </li>
-                <?php  $i++; }
-                }?>
+               
             </ul>
             <div class="pagenum">
                 <a href="#">1</a>
