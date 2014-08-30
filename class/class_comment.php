@@ -31,14 +31,21 @@ class class_comment
          $idea_id = $this->db->escape($idea_id);
     	
     	$sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc";
-    	$result=$this->db->get_results($sql);
-    	if(count($result)>0)
-    	{
+    	$result=$this->db->get_results($sql,ARRAY_A);
+    	
     		return $result;
-    	}
-    	else{
-    		return 0;
-    	}
+    	
+
+    }
+
+
+
+    public function get_part_comment_by_ideaid($idea_id,$start,$length){
+         $idea_id = $this->db->escape($idea_id);
+        
+        $sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` ,`user_info`.`head_pic_url` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc limit ".$start.", ".$length;
+        $result=$this->db->get_results($sql,ARRAY_A);
+            return $result;
 
     }
     // 一级评价  传进idea_id，评论者id和评论类容
@@ -51,11 +58,9 @@ class class_comment
     	$sql="update idea_info set sum_comment=sum_comment+1";
         $this->db->query($sql);
     	$sql="select user_id from idea_info where idea_id=".$idea_id;
-    	$result=$this->db->get_results($sql);
-    	$receiver_id=$result[0]->user_id;
-        // $this->db->vardump($result);
+    	$result=$this->db->get_results($sql,ARRAY_A);
+    	$receiver_id=$result[0]['user_id'];
     	$sql="insert into idea_comment(`idea_id`,`context`,`comment_time`,`sender_id`) values(".$idea_id.",\"".$context."\",now(),".$user_id.")";
-        //echo $sql;
     	$result=$this->db->query($sql);
 
     }
@@ -66,13 +71,12 @@ class class_comment
   //    修改一张表：idea_comment 
     public function add_reply($comment_id,$user_id,$context){
     	// 第一步，获取主题id
-         $comment_id = $this->db->escape($comment_id);
+        $comment_id = $this->db->escape($comment_id);
         $user_id = $this->db->escape($user_id);
         $context=$this->db->escape($context);
     	$sql="select idea_id from idea_comment where id=".$comment_id;
-    	$result=$this->db->get_results($sql);
-    	$idea_id=$result['idea_id'];
-
+    	$result=$this->db->get_results($sql,ARRAY_A);
+    	$idea_id=$result[0]['idea_id'];
 
 
     	// 第二步：添加回复记录
@@ -80,12 +84,19 @@ class class_comment
     	$result=$this->db->query($sql);
     	//第三步，关联回复对象和本次回复记录
     	$sql="select * from idea_comment where idea_id=".$idea_id." and context=".$context;
-    	$result=$this->db->get_results($sql);
+    	$result=$this->db->get_results($sql,ARRAY_A);
     	$id=$result[0]["id"];
     	$sql="update idea_comment set son_id=".$id;
         $this->db->query($sql);
     }
 
+    public function get_num_of_comment($idea_id)
+    {
+        $comment_id = $this->db->escape($idea_id);
+        $sql="select count(*) from idea_comment where idea_id=".$idea_id;
+        $result=$this->db->get_results($sql,ARRAY_A);
+        return $result[0]['count(*)'];
+    }
     public function delete_comment(){
 
     }
