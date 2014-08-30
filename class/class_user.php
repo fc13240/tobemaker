@@ -136,7 +136,7 @@ class class_user
         return $result;
     }
 
-    function select_by_mail($user_email){
+    function select_by_email($user_email){
         
         $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_email` ='".$user_email."'", ARRAY_A);
         return $result;
