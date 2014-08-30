@@ -131,8 +131,14 @@ class class_user
     // 获取用户信息
     function select($userid){
         
-        $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_id` = $userid ", ARRAY_A);
+        $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_id` = ".$userid , ARRAY_A);
         
+        return $result;
+    }
+
+    function select_by_email($user_email){
+        
+        $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_email` ='".$user_email."'", ARRAY_A);
         return $result;
     }
     

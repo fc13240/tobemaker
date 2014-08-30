@@ -46,7 +46,7 @@ class class_session
     
     // 登录
     public function login(){
-        $username = $this->db->escape($_POST['username']);
+        $username = $this->db->escape($_POST['user_email']);
         $password = $this->db->escape(MD5($_POST['password']));
         
         $result = $this->db->get_row("SELECT * from `user_info` where `user_activity`='Y' and`user_email`='".$username."'", ARRAY_A);
