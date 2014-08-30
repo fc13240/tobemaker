@@ -55,6 +55,8 @@ class class_session
             
             $_SESSION['is_login'] = true;
             $_SESSION['user_id'] = $result['user_id'];
+            // TODO: 设置默认头像
+            $_SESSION['head_url'] = $result['head_url'];
             $_SESSION['group'] = $result['user_group'];
             $res['status']='success';
             
@@ -65,7 +67,6 @@ class class_session
         }
         // 不存在用户名
         else {
-            # code...
             $res['status']='no_user';
         }
 
@@ -93,7 +94,7 @@ class class_session
 
         // 判断用户是否登录
         if (!$this->check_login()){
-            // 用户未登录，标记未匿名
+            // 用户未登录，标记为匿名
             $user_group = 0;
         }else{
             //用户已登录，获取系统中的分组

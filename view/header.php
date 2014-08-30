@@ -12,7 +12,7 @@
 
         </div>
         <div class="lgn">
-            <a href="person.php" target="_top"><img src="asset/12.png" alt=""></a>
+            <a href="person.php" target="_top"><img src="<?php echo $top_user_data['head_url'] == '' ? 'asset/12.png' : $top_user_data['head_url']; ?>" alt="<?=$top_user_data['user_name']?>"></a>
             <div id="sb-search" class="sb-search">
                 <form>
                     <input class="sb-search-input" placeholder="  some" type="search" name="search" id="search">
