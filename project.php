@@ -51,10 +51,10 @@ $class_comment=new class_comment();
     	$idea_id=$_GET["idea_id"]; //有请求的idea
     	// 调用view来显示
     	$class_idea=new class_idea();
-        $item=$class_idea->get_idea_by_id($idea_id);
+      $item=$class_idea->get_idea_by_id($idea_id);
 
       //$class_comment=new class_comment();
-        $comment_list=$class_comment->get_all_comment_by_ideaid($idea_id);
+      //$comment_list=$class_comment->get_all_comment_by_ideaid($idea_id);
     	include 'view/project_page.php';  
     }
 
