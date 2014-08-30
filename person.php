@@ -19,7 +19,6 @@ $putPolicy->FsizeLimit=2000000;
 $putPolicy->mineLimit="image/jpeg;image/png";
 $upToken = $putPolicy->Token(null);
 
-
 // 导航 当前页面控制
 $current_page = 'person';
 $page_level = explode('-', $current_page);
@@ -32,15 +31,13 @@ if(array_key_exists('user_id', $_GET)){
 	{
 		echo "no user";
 		header("Location:".BASE_URL);
-	}
-	else{
+	}else{
 		$user_info=$user_info[0];
 	}
-}
-else{
-	$url="Location:".BASE_URL;
-	header($url);
-
+}else{
+    $user_id = $_SESSION['user_id'];
+    $user_info = $class_user->select($user_id);
+    $user_info=$user_info[0];
 }
 
 include 'view/person_page.php';

@@ -118,4 +118,13 @@ class class_session
         }
     }
 
+    function set_session(){
+        $_SESSION['is_login'] = true;
+        $_SESSION['user_id'] = 5;
+        // TODO: 设置默认头像
+        $_SESSION['head_url'] = 'http://localhost/tobemaker/asset/12.png';
+        $_SESSION['group'] = 1;
+        $_SESSION['user_name'] = "果壳";
+    }
+    
 }

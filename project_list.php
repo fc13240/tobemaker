@@ -9,8 +9,9 @@ $class_session=new class_session();
 $class_user=new class_user();
 
 $top_user_data = array(
-    'head_url' => '',
-    'user_name' => '大宝',
+    'head_url' => $_SESSION['head_url'],
+    'user_name' => $_SESSION['user_name'],
+    
 );
 
 // 导航 当前页面控制

@@ -5,7 +5,7 @@
 		<title>tobeMaker</title>
 	</head>
 	<body>
-	<form id="loginForm" action="" method="post">
+            <form id="loginForm" action="" method="post" data-url="<?=BASE_URL."api/user_login.php"?>">
 		<div class="form-group">
 			<label>用户名（邮箱）</label>
 			<input type="text" name="username" />
@@ -14,7 +14,7 @@
 			<label>密码</label>
 			<input type="password" name="password" />
 		</div>
-		<input type="submit" name="login" value="登录" />
+		<input type="button" name="action" value="login" />
 		
 	</form>
 	<form id="regForm" action="" method="post">
@@ -28,13 +28,13 @@
 		</div>
 		<div class="form-group">
 			<label>确认密码</label>
-			<input type="passwordAgain" name="passwordAgain" />
+			<input type="password" name="passwordAgain" />
 		</div>
 		<div class="form-group">
 			<label>邀请码</label>
 			<input type="text" name="inviteCode" />
 		</div>
-		<input type="submit" name="reg" value="注册" />
+		<input type="submit" name="action" value="register" />
 	</form>
 	<form id="forgetPassForm" action="" method="post">
 		<div class="form-group">
@@ -43,6 +43,26 @@
 		</div>
 		<input type="submit" name="login" value="发送" />
 	</form>
-	<a href="project_list.php"><button>自动登录（调试）</button></a>
+            <form action="" method="post">
+                <input type="submit" name="action" value="auto_login" />
+            </form>
+            <script src="./js/jquery.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $('#loginForm input[type=button]').click(function(){
+                        alert('ok');
+                        var url = $('#loginForm').data('url');
+                        var user_email = $('#loginForm input[name=username]').val();
+                        var password = $('#loginForm input[name=password]').val();
+                        $.post(url, {
+                            'action':'login', 
+                            'user_email':user_email, 
+                            'password':password
+                            }, function(data, textStatus){
+                            
+                        }, 'json');
+                    });
+                });
+            </script>
 	</body>
 </html>
