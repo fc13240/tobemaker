@@ -13,7 +13,7 @@
     <div class="middle">
         <div class="mine">
 		<input type="hidden" id="userid" value="<?=@$userid?>"/>
-            <img id="userHead" src="asset/18.png" alt="">
+            <img id="userHead" src="<?=@$userInfo[0]["head_pic_url"]?>" alt="">
                 <a href="#" id="btn-upload" style="display: none;" data-url="<?=BASE_URL?>api/user.php" title="上传图片">
                     <input id="fileSelect" type="file" name="file" data-url="<?= BASE_URL ?>api/tmpfileupload.php" /><i class="fa fa-chevron-circle-up"></i>
                 </a>

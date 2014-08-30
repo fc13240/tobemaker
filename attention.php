@@ -1,8 +1,9 @@
 <?php
-session_start();
+
 include_once "config.php";
 include_once ROOT_PATH."class/class_attention.php";
 include_once ROOT_PATH."class/class_session.php";
+include_once ROOT_PATH."class/class_user.php";
 // 导航 当前页面控制
 
 $current_page = 'attention';
@@ -36,6 +37,7 @@ jQuery(document).ready(function() {
 </script>
 ';
 //判断是否登陆
+$user=new class_user();
 $user_session=new class_session();
 if(!$user_session->check_login())
 {
@@ -43,4 +45,5 @@ if(!$user_session->check_login())
 }
 //获取用户信息
 $userid=$_SESSION["user_id"];
+$userInfo=$user->select($userid);
 include 'view/attention_page.php';
