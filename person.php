@@ -1,6 +1,7 @@
 <?php
 
 include_once "config.php";
+include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
 //上传suo xu
 require_once("qiniu/rs.php");
@@ -22,7 +23,10 @@ $upToken = $putPolicy->Token(null);
 // 导航 当前页面控制
 $current_page = 'person';
 $page_level = explode('-', $current_page);
+$class_session=new class_session();
 $class_user=new class_user();
+
+$current_user = $class_user->get_current_user();
 //  准备数据
 
 if(array_key_exists('user_id', $_GET)){

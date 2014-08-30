@@ -164,4 +164,13 @@ class class_user
             return $result;
     }
     
+    function get_current_user()
+    {
+        $top_user_data = array(
+            'head_url' => $_SESSION['head_url'],
+            'user_name' => $_SESSION['user_name'],
+        );
+        return $top_user_data;
+    }
+    
 }

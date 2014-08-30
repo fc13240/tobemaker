@@ -8,11 +8,8 @@ include_once ROOT_PATH."class/class_user.php";
 $class_session=new class_session();
 $class_user=new class_user();
 
-$top_user_data = array(
-    'head_url' => $_SESSION['head_url'],
-    'user_name' => $_SESSION['user_name'],
-    
-);
+$current_user = $class_user->get_current_user();
+
 
 // 导航 当前页面控制
 $current_page = 'project_list';
