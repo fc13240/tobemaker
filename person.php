@@ -3,6 +3,7 @@
 include_once "config.php";
 include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
+include_once ROOT_PATH."class/class_attention.php";
 //上传suo xu
 require_once("qiniu/rs.php");
 require_once("qiniu/auth_digest.php");
