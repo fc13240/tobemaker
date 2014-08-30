@@ -3,6 +3,7 @@
 include_once '../config.php';
 include_once '../class/class_user.php';
 include_once '../class/class_file.php';
+include_once '../class/class_group.php';
 // 导航 当前页面控制
 $current_page = 'user-user_add';
 $page_level = explode('-', $current_page);
@@ -55,7 +56,10 @@ jQuery(document).ready(function() {
 });
 </script>
 ';
-
+//获取群组信息
+$file=new class_file();
+$group=new class_group();
+$groupList=$group->get_all_group();
 include 'view/header.php';
 
 include 'view/leftnav.php';
@@ -67,15 +71,31 @@ include 'view/quick_bar.php';
 include 'view/footer.php';
 //表单处理
 $user=new class_user();
-var_dump(1);
+
+$imgUrl='';
+if(!empty($_POST["img_url"]))
+{
+  $imgUrl=$file->save($_POST["img_url"]);
+}
 if(array_key_exists('real_name',$_POST))
 {
+if(!empty($imgUrl))
+  {
 $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],"user_passcode"=>$_POST["password"],
              "birth"=>$_POST["birth"],"head_pic_url"=>$imagUrl,"user_email"=>$_POST["email"],
 			 "user_mobile"=>$_POST["mobile"],"money"=>$_POST["money"],"user_group"=>$_POST["group"],
 			 "occupation"=>$_POST["occupation"]);
-			 
-$result=$user->insert($arr);
+			 $result=$user->insert($arr);
+} 
+	else
+{
+$arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],"user_passcode"=>$_POST["password"],
+             "birth"=>$_POST["birth"],"user_email"=>$_POST["email"],
+			 "user_mobile"=>$_POST["mobile"],"money"=>$_POST["money"],"user_group"=>$_POST["group"],
+			 "occupation"=>$_POST["occupation"]);
+			 $result=$user->insert($arr);
+}	
+
              
 //返回成功信息
 }
