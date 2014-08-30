@@ -131,8 +131,14 @@ class class_user
     // 获取用户信息
     function select($userid){
         
-        $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_id` = $userid ", ARRAY_A);
+        $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_id` = ".$userid , ARRAY_A);
         
+        return $result;
+    }
+
+    function select_by_email($user_email){
+        
+        $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_email` ='".$user_email."'", ARRAY_A);
         return $result;
     }
     
@@ -149,6 +155,24 @@ class class_user
         $result = $this->db->get_results("select count(`user_id`) from `user_info`", ARRAY_N);
         return $result[0][0];
         
+    }
+    
+    //获取某组用户信息
+    function get_user_by_group($group_id)
+    {
+        $result=$this->db->get_results('select * from `user_info` where `user_group`='.$group_id,ARRAY_A);
+            return $result;
+    }
+    
+    function get_current_user()
+    {
+        $top_user_data = array(
+            'head_url' => $_SESSION['head_url'],
+            'user_name' => $_SESSION['user_name'],
+            'user_id' => $_SESSION['user_id'],
+        );
+        
+        return $top_user_data;
     }
     
 }

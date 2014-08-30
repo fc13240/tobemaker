@@ -9,8 +9,8 @@ include_once ROOT_PATH."class/class_group_auth.php";
 $group_auth=new class_group_auth();
 $auth=new class_auth();
 
-
-
+//获取权限
+$authList=$auth->get_action_name_list();
 //如果是修改请求
 //则做出相应修改
 
@@ -23,11 +23,18 @@ if(isset($_POST["action"])&&isset($_POST["auths"])){
   
 if($act=='auth_update')
 {
-var_dump($_POST);
+
     while($i<$num)
 	{
 	    $group_auth->insert($group_id,$auths[$i]);
 	    $i++;
+	}
+	for($i=0;$i<count($authList);$i++)
+	{
+	    if(!in_array($authList[$i],$auths))
+		{
+		    $group_auth->delete_group_auth($group_id,$authList[$i]);
+		}
 	}
 	 $res= array();
       $res['status']='success';

@@ -45,9 +45,13 @@ class class_session
     }
     
     // 登录
-    public function login(){
-        $username = $this->db->escape($_POST['username']);
-        $password = $this->db->escape(MD5($_POST['password']));
+    public function login($username = '', $password = ''){
+        if ($username == ''){
+            $username = $this->db->escape($_POST['user_email']);
+        }
+        if ($password == ''){
+            $password = $this->db->escape(MD5($_POST['password']));
+        }
         
         $result = $this->db->get_row("SELECT * from `user_info` where `user_activity`='Y' and`user_email`='".$username."'", ARRAY_A);
         
@@ -55,6 +59,9 @@ class class_session
             
             $_SESSION['is_login'] = true;
             $_SESSION['user_id'] = $result['user_id'];
+            // TODO: 设置默认头像
+            $_SESSION['head_url'] = array_key_exists('head_url', $result) ? $result['head_url'] : '';
+            $_SESSION['user_name'] = array_key_exists('user_name', $result) ? $result['user_name'] : '';
             $_SESSION['group'] = $result['user_group'];
             $res['status']='success';
             
@@ -65,7 +72,6 @@ class class_session
         }
         // 不存在用户名
         else {
-            # code...
             $res['status']='no_user';
         }
 
@@ -93,7 +99,7 @@ class class_session
 
         // 判断用户是否登录
         if (!$this->check_login()){
-            // 用户未登录，标记未匿名
+            // 用户未登录，标记为匿名
             $user_group = 0;
         }else{
             //用户已登录，获取系统中的分组
@@ -117,4 +123,13 @@ class class_session
         }
     }
 
+    function set_session(){
+        $_SESSION['is_login'] = true;
+        $_SESSION['user_id'] = 5;
+        // TODO: 设置默认头像
+        $_SESSION['head_url'] = 'http://localhost/tobemaker/asset/12.png';
+        $_SESSION['group'] = 1;
+        $_SESSION['user_name'] = "果壳";
+    }
+    
 }

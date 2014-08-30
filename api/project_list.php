@@ -22,10 +22,19 @@ include_once ROOT_PATH."class/class_like.php";
 
     $class_idea=new class_idea();
     $class_like=new class_like();
+    //如果发送了用户id，则获取是否喜欢的信息，否则默认不喜欢
+    if(array_key_exists('user_id', $_POST))
+    {
+        $get_likeit=true;
+        $user_id=$_POST['user_id'];
+    }
+    else{
+        $get_likeit=false;
+    }
 
+   // echo $_POST['type'];
     $start=isset($_POST['start'])?$_POST['start']:0;
     $length=isset($_POST['length'])?$_POST['length']:6;
-    $user_id=$_POST['user_id'];
     //装备参数
         if($_POST['type']=="pass")
         {
@@ -39,19 +48,27 @@ include_once ROOT_PATH."class/class_like.php";
             $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and `idea_info`.`user_id`=`user_info`.`user_id` limit ".$start.",".$length;
 
             $res=$class_idea->select($sql);
-            $i=0;$num=count($res);
-            while ($i<$num) {
+            $i=0;
+            $tmp=count($res);
+            while ($i<$tmp) {
                 # code...
-                $idea_id=$res[$i]['idea_id'];
-                $check_like=$class_like->get_like_info($idea_id,$user_id);
-                if($check_like==1)
-                {
-                    $res[$i]['likeit']=1;
+                if($get_likeit==true){
+                    $idea_id=$res[$i]['idea_id'];
+                    $check_like=$class_like->get_like_info($idea_id,$user_id);
+                    if($check_like==1)
+                    {
+                        $res[$i]['likeit']=1;
+                    }
+                    else{
+                        $res[$i]['likeit']=0;
+                    }
+                    $i++;
                 }
                 else{
                     $res[$i]['likeit']=0;
+                    $i++;
                 }
-                $i++;
+
             }
             $records=array();
             $records['data']=array();
@@ -65,7 +82,7 @@ include_once ROOT_PATH."class/class_like.php";
         elseif ($_POST['type']=="produce") {
             # code...
             $status_id=4;
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`user_id`=5";
+            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5";
 
             $res=$class_idea->select($sql);
             $num=$res[0]['count(*)'];
@@ -74,19 +91,25 @@ include_once ROOT_PATH."class/class_like.php";
             $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and `idea_info`.`user_id`=`user_info`.`user_id` limit ".$start.",".$length;
 
             $res=$class_idea->select($sql);
-            $i=0;$num=count($res);
-            while ($i<$num) {
+            $i=0;$tmp=count($res);
+            while ($i<$tmp) {
                 # code...
-                $idea_id=$res[$i]['idea_id'];
-                $check_like=$class_like->get_like_info($idea_id,$user_id);
-                if($check_like==1)
-                {
-                    $res[$i]['likeit']=1;
+                if($get_likeit==true){
+                    $idea_id=$res[$i]['idea_id'];
+                    $check_like=$class_like->get_like_info($idea_id,$user_id);
+                    if($check_like==1)
+                    {
+                        $res[$i]['likeit']=1;
+                    }
+                    else{
+                        $res[$i]['likeit']=0;
+                    }
+                    $i++;
                 }
                 else{
                     $res[$i]['likeit']=0;
+                    $i++;
                 }
-                $i++;
 
             }
             $records=array();
@@ -112,16 +135,22 @@ include_once ROOT_PATH."class/class_like.php";
             $i=0;$num=count($res);
             while ($i<$num) {
                 # code...
-                $idea_id=$res[$i]['idea_id'];
-                $check_like=$class_like->get_like_info($idea_id,$user_id);
-                if($check_like==1)
-                {
-                    $res[$i]['likeit']=1;
+                if($get_likeit==true){
+                    $idea_id=$res[$i]['idea_id'];
+                    $check_like=$class_like->get_like_info($idea_id,$user_id);
+                    if($check_like==1)
+                    {
+                        $res[$i]['likeit']=1;
+                    }
+                    else{
+                        $res[$i]['likeit']=0;
+                    }
+                    $i++;
                 }
                 else{
                     $res[$i]['likeit']=0;
+                    $i++;
                 }
-                $i++;
             }
             $records=array();
             $records['data']=array();

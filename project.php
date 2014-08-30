@@ -1,9 +1,19 @@
 <?php
-$current_page = 'project';
-$page_level = explode('-', $current_page);
 
 
 include_once "config.php";
+
+include_once ROOT_PATH."class/class_session.php";
+include_once ROOT_PATH."class/class_user.php";
+
+$class_session=new class_session();
+$class_user=new class_user();
+
+$current_user = $class_user->get_current_user();
+
+$current_page = 'project';
+$page_level = explode('-', $current_page);
+
 include ROOT_PATH."/class/class_idea.php";
 include_once ROOT_PATH."/class/class_comment.php";
         //获取数据
@@ -25,6 +35,9 @@ $class_comment=new class_comment();
       $item[0]['content']=$_POST['content'];
       $item[0]['picture_url']=$_POST['img_url'];
       $item[0]['user_id']=3;
+      if(isset($_POST['cover_display'])){
+      $item[0]['cover_display']=$_POST['cover_display'];
+      }
 
       //brief暂时无需获取
       // $$item[0]['user_name']通过session或者cookie获取，预留

@@ -26,10 +26,13 @@ $class_idea->db->query($sql);
 if($res==1)
 {
 	$records['status']='success';
+	$url="Location:".BASE_URL."person.php?user_id=".$user_id;
+	header($url);
 }
 else {
 	# code...
 	$records['status']='error';
+	echo "修改错误";
 }
-echo json_encode($records);
+
 ?>
