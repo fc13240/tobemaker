@@ -3,6 +3,16 @@
 include 'config.php';
 include_once ROOT_PATH."class/class_file.php";
 include_once ROOT_PATH."class/class_idea.php";
+
+
+include_once ROOT_PATH."class/class_session.php";
+include_once ROOT_PATH."class/class_user.php";
+
+$class_session=new class_session();
+$class_user=new class_user();
+
+$current_user = $class_user->get_current_user();
+
 require_once("qiniu/rs.php");
 require_once("qiniu/auth_digest.php");
 require_once("qiniu/io.php");

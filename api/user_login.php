@@ -52,11 +52,11 @@ status＝'user_exist'/'available'
 
    */
 include_once "../config.php";
-include_once ROOT_PATH."class/class_user.php";
 include_once ROOT_PATH."class/class_session.php";
+include_once ROOT_PATH."class/class_user.php";
 //include_once ROOT_PATH."class/class_invitation_code.php";
-$class_user=new class_user();
 $class_session=new class_session();
+$class_user=new class_user();
 //$class_invitation_code=new class_invitation_code();
 function check_invitation_code($invitation_code){
 	//检测是否需要验证码
@@ -90,6 +90,9 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
     $arr['user_passcode']=md5($_POST['password']);
 
     $arr['user_email']=$_POST['user_email'];
+    
+    $arr['user_name'] = $arr['user_email'];
+    
     //检测用户数据
     $checkres=$class_user->select_by_email($arr['user_email']);
     if(count($checkres)>0){
@@ -103,7 +106,10 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
     else{
         //插入数据库
         $class_user->insert_user('user_info',$arr);
-
+        
+        // 登录
+        $class_session->login($arr['user_email'], $arr['user_passcode']);
+        
         $result['status']='success';
         //验证码不可用
        // $class_invitation_code->delete_code($_POST['code']);
