@@ -43,9 +43,8 @@ class class_comment
     public function get_part_comment_by_ideaid($idea_id,$start,$length){
          $idea_id = $this->db->escape($idea_id);
         
-        $sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc limit ".$start.", ".$length;
+        $sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` ,`user_info`.`head_pic_url` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc limit ".$start.", ".$length;
         $result=$this->db->get_results($sql,ARRAY_A);
-        
             return $result;
 
     }
@@ -62,7 +61,6 @@ class class_comment
     	$result=$this->db->get_results($sql,ARRAY_A);
     	$receiver_id=$result[0]['user_id'];
     	$sql="insert into idea_comment(`idea_id`,`context`,`comment_time`,`sender_id`) values(".$idea_id.",\"".$context."\",now(),".$user_id.")";
-        //echo $sql;
     	$result=$this->db->query($sql);
 
     }
