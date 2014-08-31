@@ -198,9 +198,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">内容</label>
-                                        <div class="col-md-8">
+                                        <div class="col-md-6">
                                             <div class="input-group">
-                                                <textarea style="width:1000px;height: 100px;" id="editor" name="content" placeholder="这里输入内容" autofocus>
+                                                <textarea id="editor" name="content" placeholder="这里输入内容" autofocus>
                                                     <?php echo  $idea_list[0]["content"];?>
                                                 </textarea>
                                                 
