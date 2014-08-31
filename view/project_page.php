@@ -136,7 +136,7 @@
                     <br />\
                     <a href="<?=BASE_URL.'person.php?user_id='?>'+item['sender_id']+'">'+item['user_name']+'</a>\
                 </div>\
-                <div class="text">'+item['context']+'<img src="asset/17.png" alt="">\
+                <div class="text">'+item['context']+'\
                 </div>\
             </li>');
             }
