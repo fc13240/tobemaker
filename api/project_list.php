@@ -59,7 +59,25 @@ include_once ROOT_PATH."class/class_like.php";
         if($_POST['type']=="pass")
         {
             $status_id=4;
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and idea_status=4";
+
+
+            if($sort_rule=='is_recommend'){
+
+                $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and idea_status=4 and is_recommend>0";
+
+            $res=$class_idea->select($sql);
+            $num=$res[0]['count(*)'];
+
+            // 获取数据
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4  and `idea_info`.`is_recommend`>0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
+
+            $res=$class_idea->select($sql);
+
+            }
+            else{
+
+            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4";
+
 
             $res=$class_idea->select($sql);
             $num=$res[0]['count(*)'];
@@ -68,6 +86,7 @@ include_once ROOT_PATH."class/class_like.php";
             $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
 
             $res=$class_idea->select($sql);
+        }
             $i=0;
             $tmp=count($res);
             while ($i<$tmp) {
@@ -88,7 +107,6 @@ include_once ROOT_PATH."class/class_like.php";
                     $res[$i]['likeit']=0;
                     $i++;
                 }
-
             }
             $records=array();
             $records['data']=array();
@@ -101,7 +119,20 @@ include_once ROOT_PATH."class/class_like.php";
         //抓数据
         elseif ($_POST['type']=="produce") {
             # code...
-            $status_id=4;
+            $status_id=5;
+             if($sort_rule=='is_recommend'){
+                $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and idea_status=5 and `idea_info`.`is_recommend`>0";
+
+            $res=$class_idea->select($sql);
+            $num=$res[0]['count(*)'];
+
+            // 获取数据
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5  and `idea_info`.`is_recommend`>0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
+
+            $res=$class_idea->select($sql);
+
+            }
+            else{
             $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5";
 
             $res=$class_idea->select($sql);
@@ -111,6 +142,7 @@ include_once ROOT_PATH."class/class_like.php";
             $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
 
             $res=$class_idea->select($sql);
+        }
             $i=0;$tmp=count($res);
             while ($i<$tmp) {
                 # code...
@@ -143,15 +175,30 @@ include_once ROOT_PATH."class/class_like.php";
             # code...
 
             //获取总共数量
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (idea_status=4 or idea_status=5)";
+
+            if($sort_rule=='is_recommend'){
+
+                $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and idea_status=5 and `idea_info`.`is_recommend`>0";
+
+            $res=$class_idea->select($sql);
+            $num=$res[0]['count(*)'];
+
+            // 获取数据
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`is_recommend`>0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
+
+            $res=$class_idea->select($sql);
+
+            }
+            else{
+            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5)";
 
             $res=$class_idea->select($sql);
             $num=$res[0]['count(*)'];
 
             // 获取数据
             $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."` desc limit ".$start.",".$length;
-
             $res=$class_idea->select($sql);
+        }
             $i=0;$num=count($res);
             while ($i<$num) {
                 # code...
