@@ -15,7 +15,7 @@ define('BASE_URL', 'http://localhost/tobemaker/');
 define('DATABASE_HOST', '127.0.0.1');
 define('DATABASE_NAME', 'idea');
 define('DATABASE_USER', 'root');
-define('DATABASE_PASSWORD', '123456');
+define('DATABASE_PASSWORD', '');
 
 /*
  * Database Tables
