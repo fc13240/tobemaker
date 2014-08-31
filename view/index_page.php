@@ -97,7 +97,7 @@
 
 <div id="forget_form" class="login hide">
     <div class="form">
-        <form id="forgetPassForm" action="" method="post" data-url="<?=BASE_URL."api/user_login.php"?>" >
+        <form id="forgetPassForm" action="" method="post" data-url="<?=BASE_URL."api/find_password.php"?>" >
             <input type="text" name="username" placeholder="tobeMaker邮箱" id="forget_email">
             <input type="button" value="发送">
             <div>
@@ -155,13 +155,17 @@
             $(".section").addClass("blur");
         }
     }
+    
+    function hideAll(){
+        $(".login").addClass("hide");
+        $("#index").removeClass("blur");
+        $(".background").removeClass("blur");
+        $(".section").removeClass("blur");
+    }
     $(document).keydown(function(event){ 
         
         if (event.keyCode == 27){
-            $(".login").addClass("hide");
-            $("#index").removeClass("blur");
-            $(".background").removeClass("blur");
-            $(".section").removeClass("blur");
+            hideAll();
         }
     });
         
@@ -204,6 +208,22 @@
                     alert(data['status']);
                 }else{
                     location.href = 'person.php';
+                }
+            }, 'json');
+        });
+        $('#forgetPassForm input[type=button]').click(function(){
+            var url = $('#forgetPassForm').data('url');
+            var user_email = $('#forgetPassForm input[name=username]').val();
+            
+            $.post(url, {
+                'action':'findpass', 
+                'user_email':user_email, 
+                }, function(data, textStatus){
+                if (data['status'] == 'success'){
+                    hideAll();
+                    alert("密码已发送到指定邮箱，请查收");
+                }else{
+                    alert(data['status']);
                 }
             }, 'json');
         });
