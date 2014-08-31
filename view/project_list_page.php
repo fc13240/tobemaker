@@ -20,103 +20,111 @@
             <a href="?sort=hot" class="<?=($sort_rule=="hot"? 'red':'')?>">最热</a>
         </div>
         <div id="idea-list-block" class="content list">
-            <div id="idea-list-content">
-                <dl>
-                    <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                    <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                    <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                    <dd>
-                        <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                        <a href="#" class="author">糯米团子</a>
-                        <span>发布</span>
-                    </dd>
-                    <dd>
-                        <div class="button"><a href="#">分享</a></div>
-                        <div class="button"><a href="#">评论</a><span>23</span></div>
-                        <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                    </dd>
+            <div id="idea-list-content" class="slide">
+                <ul>
+                    <li page="0"></li>
+                    <li page="1">
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
+                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
+                            <dd>
+                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                                <a href="#" class="author">糯米团子</a>
+                                <span>发布</span>
+                            </dd>
+                            <dd>
+                                <div class="button"><a href="#">分享</a></div>
+                                <div class="button"><a href="#">评论</a><span>23</span></div>
+                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
+                            </dd>
 
-                </dl>
-                <dl>
-                    <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                    <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                    <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                    <dd>
-                        <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                        <a href="#" class="author">糯米团子</a>
-                        <span>发布</span>
-                    </dd>
-                    <dd>
-                        <div class="button"><a href="#">分享</a></div>
-                        <div class="button"><a href="#">评论</a><span>23</span></div>
-                        <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                    </dd>
+                        </dl>
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
+                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
+                            <dd>
+                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                                <a href="#" class="author">糯米团子</a>
+                                <span>发布</span>
+                            </dd>
+                            <dd>
+                                <div class="button"><a href="#">分享</a></div>
+                                <div class="button"><a href="#">评论</a><span>23</span></div>
+                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
+                            </dd>
 
-                </dl>
-                <dl>
-                    <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                    <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                    <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                    <dd>
-                        <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                        <a href="#" class="author">糯米团子</a>
-                        <span>发布</span>
-                    </dd>
-                    <dd>
-                        <div class="button"><a href="#">分享</a></div>
-                        <div class="button"><a href="#">评论</a><span>23</span></div>
-                        <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                    </dd>
+                        </dl>
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
+                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
+                            <dd>
+                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                                <a href="#" class="author">糯米团子</a>
+                                <span>发布</span>
+                            </dd>
+                            <dd>
+                                <div class="button"><a href="#">分享</a></div>
+                                <div class="button"><a href="#">评论</a><span>23</span></div>
+                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
+                            </dd>
 
-                </dl>
-                <dl>
-                    <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                    <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                    <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                    <dd>
-                        <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                        <a href="#" class="author">糯米团子</a>
-                        <span>发布</span>
-                    </dd>
-                    <dd>
-                        <div class="button"><a href="#">分享</a></div>
-                        <div class="button"><a href="#">评论</a><span>23</span></div>
-                        <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                    </dd>
+                        </dl>
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
+                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
+                            <dd>
+                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                                <a href="#" class="author">糯米团子</a>
+                                <span>发布</span>
+                            </dd>
+                            <dd>
+                                <div class="button"><a href="#">分享</a></div>
+                                <div class="button"><a href="#">评论</a><span>23</span></div>
+                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
+                            </dd>
 
-                </dl>
-                <dl>
-                    <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                    <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                    <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                    <dd>
-                        <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                        <a href="#" class="author">糯米团子</a>
-                        <span>发布</span>
-                    </dd>
-                    <dd>
-                        <div class="button"><a href="#">分享</a></div>
-                        <div class="button"><a href="#">评论</a><span>23</span></div>
-                        <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                    </dd>
+                        </dl>
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
+                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
+                            <dd>
+                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                                <a href="#" class="author">糯米团子</a>
+                                <span>发布</span>
+                            </dd>
+                            <dd>
+                                <div class="button"><a href="#">分享</a></div>
+                                <div class="button"><a href="#">评论</a><span>23</span></div>
+                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
+                            </dd>
 
-                </dl>
-                <dl>
-                    <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                    <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                    <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                    <dd>
-                        <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                        <a href="#" class="author">糯米团子</a>
-                        <span>发布</span>
-                    </dd>
-                    <dd>
-                        <div class="button"><a href="#">分享</a></div>
-                        <div class="button"><a href="#">评论</a><span>23</span></div>
-                        <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                    </dd>
+                        </dl>
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
+                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
+                            <dd>
+                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
+                                <a href="#" class="author">糯米团子</a>
+                                <span>发布</span>
+                            </dd>
+                            <dd>
+                                <div class="button"><a href="#">分享</a></div>
+                                <div class="button"><a href="#">评论</a><span>23</span></div>
+                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
+                            </dd>
 
-                </dl>
+                        </dl>
+                        <br class="clear"/>
+                    </li>
+                    <li page="2"></li>
+
+                </ul>
             </div>
 
             <div class="prev">
@@ -170,7 +178,7 @@
     var pageNow = 1;
     var maxPageNo = 1;
     
-    function loadIdeaPage(current_page){
+    function loadIdeaPage(current_page, move_type){
         
         var start = (current_page - 1) * pageSize;
         var length = pageSize;
@@ -182,7 +190,7 @@
             "user_id":<?=(array_key_exists('user_id', $current_user) ? $current_user['user_id']: '')?>,
             "sort_rule":'<?=$sort_rule?>'}, function(data, textStatus){
             // set up content
-            var $container = $('#idea-list-content');
+            var $container = $("[page='"+move_type+"']");
             $container.html('');
             
             for (var i=0; data.data != undefined && i<data.data.length; i++){
@@ -215,6 +223,28 @@
                     <div class="button"><a class="like_btn '+ (item.likeit == 0 ? '':'red') +'" href="javascript:void 0" data-idea_id="'+ item.idea_id +'" data-url="<?=BASE_URL."api/like.php"?>" >超喜欢</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
                 </dd>\
             </dl>');
+                
+            }
+            
+            if (move_type == 0){
+                // move right
+                $(".slide ul").animate({left:0},1000,
+                function(){
+                    $("[page='1']").remove();
+                    $("[page='0']").attr("page",1);
+                    $(".slide ul li:first-child").before("<li page='0'></li>");
+                    $(".slide ul").attr("style","left:-1020px");
+                });
+            }else if(move_type == 2){
+                // move left
+                $(".slide ul").animate({left:"-2040px"},1000,
+                function(){
+                    $("[page='1']").remove();//在这拉取数据填充进li里
+                    $("[page='2']").attr("page",1);
+                    $(".slide ul").append("<li page='2'></li>");
+                    $(".slide ul").attr("style","left:-1020px");
+                    flag = 0;
+                });
             }
             
             // set up page nav
@@ -237,26 +267,26 @@
     $("#project-pagenum").on("click","a",function(){
         var current_page = parseInt( $(this).text() );
         pageNow = current_page;
-        loadIdeaPage(pageNow);
+        loadIdeaPage(pageNow, 1);
     });
     
     $(document).ready(function(){
         window.onresize= a;
         a();
         pageNow = 1;
-        loadIdeaPage(pageNow);
+        loadIdeaPage(pageNow, 1);
         
         $('#idea-list-block .next').click(function(){
             if (pageNow < maxPageNo){
                 pageNow++;
-                loadIdeaPage(pageNow);
+                loadIdeaPage(pageNow, 2);
             }
         });
         
         $('#idea-list-block .prev').click(function(){
             if (pageNow > 1){
                 pageNow--;
-                loadIdeaPage(pageNow);
+                loadIdeaPage(pageNow, 0);
             }
         });
         
