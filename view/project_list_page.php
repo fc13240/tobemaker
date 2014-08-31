@@ -177,12 +177,23 @@
             
             for (var i=0; data.data != undefined && i<data.data.length; i++){
                 var item = data.data[i];
-
+                
+                // process date
+                var startTime = new Date(item.begin_time);
+                var endTime = new Date(item.end_time);
+                var nowTime = new Date();
+                var timePercent = parseInt(((nowTime - startTime)/(endTime - startTime))*100);
+                
+                if (timePercent > 100)
+                    timePercent = 100;
+                if (timePercent < 0)
+                    timePercent = 0;
+                
                 $container.append('\
             <dl>\
                 <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" alt=""></a></dd>\
                 <dt>'+ item.name +'</dt>\
-                <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>\
+                <dd><div class="bar"><div class="done" style="width: '+timePercent+'%"></div></div></dd>\
                 <dd>\
                     <a href="#" class="avatar"><img src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\
                     <a href="<?=BASE_URL?>person.php?user_id='+item.user_id+'" class="author">'+ item.user_name +'</a>\

@@ -1,11 +1,11 @@
 <?php
 
-define('HOSTNAME','http://localhost:8080/');
+define('HOSTNAME','http://localhost');
 
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
 
-define('BASE_URL', 'http://localhost:8080/xampp/tobemaker/');
+define('BASE_URL', 'http://localhost/tobemaker/');
 
 /*
  * MySQL
