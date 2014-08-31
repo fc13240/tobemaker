@@ -94,7 +94,6 @@ function check_change(){
 			$password=md5($_POST['new_password']);
 			$change_arr['user_passcode']=$password;
 			$class_user->update($user_id,$change_arr);
-			$class_findpass->delete_code($_POST['reset_code']);
 			return 1;
 		}
 	}
@@ -124,7 +123,7 @@ $smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody, $mailtype)
 if(array_key_exists("action",$_POST)&&$_POST['action']=='findpass')
 {
 	//获取信息
-	$mail=$_POST['user_mail'];
+	 $mail=$_POST['user_email'];
 
 	 $checkres=$class_user->select_by_email($mail);
      if(count($checkres)==0){
@@ -136,10 +135,10 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='findpass')
     }
 	//生成验证码
 	//$code=rand(100000,1000000);
-	$code=$class_findpass->add_code($mail);
+	$code=$class_findpass->change_code($mail);
 
 	// 发送邮件
-	$content="请输入验证码:".$code;
+	$content="您的新密码:".$code."<br/>  请您登录后重置密码！";
 	mail_code($mail,$content);
 	//返回信息
 	$result['status']='success';

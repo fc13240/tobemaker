@@ -29,8 +29,12 @@
                 <form id="idea-form" method="POST">
                     <label>标题</label>
                     <input name="title" type="text">
-                    <label>作者<span>（选填）</span></label>
-                    <input name="author" type="text">
+                    <label>作者<span></span></label>
+                    <input name="author" type="text" disabled="true" value=
+                    <?php
+                    echo "\"".$current_user['user_name']."\"";
+                    ?>
+                    >                    
 
     <input name="token" type="hidden" value=<?php
     echo "\"".$upToken."\"";
@@ -39,12 +43,15 @@
 
                     <label>封面<span>（大图片建议尺寸 900像素*500像素）</span></label>
                     <div class="fileupload">
-                        <div>上传</div>
+                        <div>上传<i id='upload-progress-label'></i></div>
                         <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/">
                         <input id="fileurl" type="hidden" name="img_url" value=""/>
                     </div>
                     <input name="cover_display" type="checkbox" value="1"><span>封面图片显示在正文中</span>
-                    <a href="javascript:void 0" class="a1">添加摘要</a>
+                    <label>标签<span>（标签之前用英文逗号分隔，最多5个标签）</span></label>
+                    <input id="tmpTagText" type="text" />
+                    <input id="trueTagText" name="tags" type="hidden" />
+                    <div id="tagView">d</div>
                     <label class="last">正文</label>
                     <div class="textdiv">
                   		<textarea id="editor" name="content" placeholder="这里输入内容" autofocus></textarea>					
@@ -91,9 +98,12 @@
                     $("#coverPreview").attr('src', url);
                     $("#fileurl").val(url);
                 }
+                $('#upload-progress-label').text('');
             },
             progress: function (e, data) {
-
+                console.log(data);
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#upload-progress-label').text(progress+'%');
             },
         });
 
@@ -110,6 +120,19 @@
                 var win=window.open("about blank");
                 win.document.write(data);
             });
+        });
+        
+        $('#tmpTagText').keyup(function(){
+            var labelArr = $(this).val().split(',');
+            var trueLabelArr = new Array();
+            console.log(labelArr);
+            $('#tagView').html('');
+            for (var i=0; i<5 && i<labelArr.length; i++){
+                trueLabelArr.push(labelArr[i]);
+                $('#tagView').append(labelArr[i]+',');
+            }
+            $('#tagView').html(trueLabelArr.join(','));
+            $('#trueTagText').val(trueLabelArr.join(','));
         });
     });
 

@@ -1,25 +1,13 @@
 <?php
 
 include_once "config.php";
+include_once ROOT_PATH."class/class_qiniu.php";
 include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
 include_once ROOT_PATH."class/class_attention.php";
 //上传suo xu
-require_once("qiniu/rs.php");
-require_once("qiniu/auth_digest.php");
-require_once("qiniu/io.php");
-require_once("qiniu/http.php");
-
-$accessKey = ACCESS_KEY;
-$secretKey = SECRET_KEY;
-$bucket=BUCKET;
-
-Qiniu_SetKeys($accessKey, $secretKey);
-$putPolicy = new Qiniu_RS_PutPolicy($bucket);
-$putPolicy->deadline=1800;
-$putPolicy->FsizeLimit=2000000;
-$putPolicy->mineLimit="image/jpeg;image/png";
-$upToken = $putPolicy->Token(null);
+$qiniu= new class_qiniu();
+$upToken=$qiniu->get_token_to_upload_head();
 
 // 导航 当前页面控制
 $current_page = 'person';
@@ -29,7 +17,6 @@ $class_user=new class_user();
 
 $current_user = $class_user->get_current_user();
 //  准备数据
-
 if(array_key_exists('user_id', $_GET)){
 	$user_info=$class_user->select($_GET['user_id']);
 	if(count($user_info)==0)

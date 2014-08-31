@@ -26,6 +26,15 @@ class class_findpass_code
         
     }
 
+    //修改密码
+    function change_code($user_email){
+        $code=rand(100000,1000000);
+        $passcode=md5($code);
+        $sql="UPDATE `user_info`set `user_passcode`= '".$passcode."' where user_email='".$user_email."'";
+        $this->db->query($sql);
+        return $code;
+    }
+
     //添加找回码
     function add_code($user_email){
     	$code=rand(100000,1000000);
@@ -52,6 +61,7 @@ class class_findpass_code
     	}
     	return 1;
     }
+
 
 
     function mark_used($code){

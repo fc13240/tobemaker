@@ -1,0 +1,930 @@
+
+@font-face {
+    font-family: 'Lantingchaoxi';
+    src: url('../asset/Lantingchaoxi.eot');
+    src: url('../asset/Lantingchaoxi.eot?#iefix') format('embedded-opentype'),
+    url('../asset/Lantingchaoxi.TTF') format('truetype');
+    /*url('../asset/_-webfont.woff') format('woff'),
+    url('../asset/_-webfont.svg#fzlantingheis-ul-gbregular') format('svg');*/
+    font-weight: normal;
+    font-style: normal;
+
+}
+a,p,div,h1,h2{
+    color: #9c9c9c;
+    font-family: 微软雅黑;
+}
+a{
+    text-decoration: none;
+}
+textarea{
+    resize: none;
+    overflow: hidden;
+}
+button,input[type="submit"]{
+
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #fafafa;
+    min-width: 1220px;
+}
+
+iframe{
+    border: none;
+    width: 100%;
+}
+img{
+    border: none;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    float: left;
+    list-style-type: none;
+}
+
+.blur {
+    filter:url(blur.svg#blur);
+    -webkit-filter: blur(5px); /* Chrome, Opera */
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5, MakeShadow=false); /* IE6~IE9 */
+}
+
+.middle{
+    margin: 0 auto;
+    width: 1000px;
+    position: relative;
+}
+.middle-margin{
+    margin: 0 auto;
+    width: 1020px;
+}
+.middle-wide{
+    margin: 0 auto;
+    width: 1220px;
+}
+.middle-auto{
+    margin: 0 auto;
+    width: 100%;
+    min-width: 1000px;
+}
+#top iframe{
+    height: 84px;
+}
+#center{
+
+}
+#footer{
+
+}
+#footer iframe{
+    height: 80px;
+}
+body.index{
+    background: #040608;
+}
+#index{
+
+}
+#index .main{
+    margin: 0 auto;
+    width: 100%;
+    min-width: 800px;
+    max-width: 1000px;
+    position: relative;
+}
+#index .background{
+    width: 100%;
+    height: auto;
+}
+#index .front{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+#index .section .loginbtn{
+    width: 800px;
+    margin: 300px auto 0 auto;
+}
+#index .section .loginbtn a{
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+#index .section .loginbtn a#godown{
+    float: right;
+}
+#index .section a img{
+    width: 100%;
+    height: 100%;
+}
+#index .flow{
+    width: 800px;
+    margin: 200px auto 0 auto;
+}
+#index .flow label{
+    font-family: Lantingchaoxi;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 17px;
+}
+#index .flow p{
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 13px;
+}
+#index .flow ul{
+    margin: 20px 0;
+}
+#index .flow ul li img{
+    width: 80px;
+    height: auto;
+    float: left;
+}
+#index .flow ul li span{
+    display: block;
+    margin: 26px 0 0 80px;
+    width: 64px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+#index .flow ul li p{
+    width: 80px;
+}
+#index .flow a{
+    margin: 20px auto;
+    display: block;
+    width: 120px;
+}
+#index .flow a img{
+    width: 100%;
+    height: auto;
+}
+
+.login{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 800px;
+    min-height: 600px;
+}
+.login.hide{
+    visibility: hidden;
+}
+.login .form{
+    position: relative;
+    margin: 60px auto 0 auto;
+    width: 520px;
+    background: url("../asset/30.png");
+}
+
+.login .form img{
+    display: block;
+    width: 320px;
+    margin: 0 auto;
+    padding-top: 60px;
+}
+
+.login form{
+    padding: 30px 0;
+}
+.login form input[type="text"],
+.login form input[type="password"]
+{
+    display: block;
+    width: 300px;
+    height: 30px;
+    padding: 5px 10px;
+    margin: 10px auto;
+    font-size: 16px;
+    border: 1px #d7d7d7 solid;
+    line-height: /*\**/ 30px \9;
+}
+.login form input[type="checkbox"]{
+    margin-left: 100px;
+}
+.login form input[type="button"]{
+    display: block;
+    margin: 10px auto;
+    width: 320px;
+    height: 40px;
+    background: #df3b42;
+    border: 1px #be0008 solid;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login form > div{
+    width: 320px;
+    margin: 20px auto;
+}
+.login form > div span{
+    padding-left: 50px;
+}
+.login p{
+    margin-top: 50px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+}
+.login a{
+    color: #a7292e;
+    font-size: 16px;
+}
+.login span{
+    font-size: 16px;
+}
+
+
+.top{
+    margin-top: 20px;
+    border-bottom: #e8e7ed 1px solid;
+    height: 60px;
+}
+.top .logo{
+    display: block;
+    float: left;
+    width: 15%;
+}
+.top .nav{
+    float: left;
+    width: 70%;
+    height: 60px;
+    display: inline;
+}
+.top .nav ul{
+    width: 400px;
+    margin: 0 auto;
+}
+.top .nav ul li{
+    width: 60px;
+    margin: 0 20px 0 20px;
+}
+.top .nav ul li a{
+    display: block;
+    font-family: 方正姚体;
+    text-align: center;
+    font-size: 17px;
+    line-height: 60px;
+}
+.top .nav ul li a:hover,.top .nav ul li a.active{
+    color: #ff1400;
+    border-bottom: #ff1400 3px solid;
+}
+.top .lgn{
+    float: left;
+    width: 15%;
+    height: 60px;
+}
+.top .lgn a{
+    display: block;
+    float: right;
+}
+.top .lgn a img{
+    width: 22px;
+    margin: 19px;
+}
+.footer{
+    width: 100%;
+    height: 80px;
+    background: #e8e7ed;
+}
+.footer .logo{
+    float: left;
+    margin: 10px;
+
+}
+.footer ul{
+    float: left;
+    margin-left: 100px;
+}
+.footer ul li{
+    width: 100px;
+    height: 100%;
+    text-align: center;
+}
+.footer ul li a{
+    font-size: 14px;
+    line-height: 80px;
+}
+.footer p{
+    float: right;
+    font-size: 13px;
+    line-height: 80px;
+    margin: 0;
+}
+.slogan{
+    font-family: 方正姚体;
+    height: 80px;
+    text-align: center;
+    line-height: 100px;
+}
+
+.content{
+
+}
+.content dl{
+    width: 318px;
+    margin: 10px;
+}
+.content.list .prev,.content.list .next{
+    height: 1034px;
+}
+.share{
+    padding-top: 20px;
+    background: #ffffff;
+}
+.share .pic{
+    float: left;
+    width: 36%;
+}
+.share .pic .picture{
+    margin: 10px;
+    border: #dfdfdf 1px solid;
+}
+.share .pic .picture label{
+    display: block;
+    margin: 5%;
+    margin-bottom: 0;
+}
+.share .pic .picture img{
+    width: 90%;
+    margin: 5%;
+}
+.share .pic  p{
+    font-size: 14px;
+    margin: 0;
+    line-height: 2em;
+    padding-left: 5%;
+}
+.share .form{
+    float: right;
+    width: 64%;
+}
+.share .form form{
+    margin: 10px;
+    background: #f4f5f9;
+    border: #dfdfdf 1px solid;
+}
+.share .form label{
+    display: block;
+    margin: 5% 4% 0 4%;
+    color: #000000;
+    font-size: 14px;
+}
+.share .form label.last{
+    margin-top: 0;
+}
+.share .form span{
+    color: #9c9c9c;
+    font-size: 14px;
+}
+.share .form input[type="text"]{
+    display: block;
+    width: 92%;
+    margin:1% 4% 0 4%;
+    border: #dfdfdf 1px solid;
+    height: 30px;
+}
+.share .form .fileupload{
+    margin: 1% 4% 1% 4%;
+    width: 100px;
+    height: 30px;
+    position: relative;
+}
+.share .form .fileupload div{
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border: #dfdfdf 1px solid;
+    color: #000000;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+}
+.share .form .fileupload:hover div{
+    color: #9c9c9c;
+}
+.share .form .fileupload input[type="file"]{
+    margin: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter: alpha(opacity: 0);
+}
+.share .form input[type="checkbox"]{
+    margin: 1%;
+    margin-left: 4%;
+}
+.share .form a.a1{
+    display: block;
+    color: #459ae9;
+    font-size: 14px;
+    margin: 3% 0 1% 4%;
+}
+.share .form .textdiv{
+    margin: 0 4% 10% 4%;
+}
+.share .redactor_editor {
+    height: 300px;
+}
+.share .submit{
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+.share .submit div.out{
+    margin: 10px;
+    border-top: #dfdfdf 1px solid;
+}
+.share .submit div.out div{
+    margin-left: 36%;
+}
+.share .submit button{
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    width: 120px;
+    height: 36px;
+    margin: 10px;
+    border-radius: 3px;
+}
+.share .submit button.save{
+    background: #e32a14;
+    border: #e32a14 1px solid;
+    color: #ffffff;
+}
+.share .submit button.view{
+    background: #ffffff;
+    border: #dfdfdf 1px solid;
+}
+.item{
+    padding: 30px;
+}
+.ttl{
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.ttl .title{
+    float: left;
+    font-family: Lantingchaoxi;
+    font-size: 80px;
+    line-height: 120px;
+    color: #6f6f6f;
+    text-align: center;
+    width: 760px;
+    height: 120px;
+    border-right: #6f6f6f 1px solid;
+    border-bottom: #6f6f6f 1px solid;
+
+}
+.ttl .author{
+    float: left;
+    height: 100px;
+    padding: 10px;
+    width: 158px;
+    border-bottom: #6f6f6f 1px solid;
+    text-align: center;
+}
+.ttl .author img{
+    width: 60px;
+    height: 60px;
+}
+.ttl .author a{
+    font-size: 14px;
+    line-height: 2em;
+    color: #6f6f6f;
+}
+.ttl .subtitle{
+    float: left;
+    width: 730px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 30px;
+    font-family: Lantingchaoxi;
+    font-size: 18px;
+    color: #6f6f6f;
+    border-right: #6f6f6f 1px solid;
+}
+.ttl .emailme{
+    float: left;
+    width: 178px;
+    height: 36px;
+    text-align: center;
+}
+.ttl .emailme img{
+    height: 36px;
+    width: 36px;
+}
+.atc{
+    padding: 30px;
+    padding-bottom: 60px;
+}
+.atc p{
+    font-size: 17px;
+}
+.atc img{
+    display: block;
+    margin: 50px auto;
+    max-width: 100%;
+}
+.commentbox{
+
+
+}
+.commentbox,.commentbox a,.commentbox span,.commentbox p,.commentbox em,.commentbox input[type="submit"]{
+    font-family: Lantingchaoxi;
+}
+.commentbox textarea{
+    width: 918px;
+    height: 80px;
+    padding: 10px;
+    border: #dfdfdf 1px solid;
+}
+.commentbox label{
+    display: block;
+    font-size: 24px;
+    vertical-align: middle;
+}
+.commentbox a,.commentbox span{
+    font-size: 15px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+.commentbox input[type="checkbox"]{
+    margin-left: 40px;
+    height: 15px;
+    width: 15px;
+    vertical-align: middle;
+}
+.commentbox p,.commentbox em{
+    float: right;
+    font-size: 15px;
+    line-height: 36px;
+    margin: 0;
+}
+.commentbox em{
+    color: #c6362b;
+}
+.commentbox input[type="submit"]{
+    float: right;
+    margin: 5px 0 0 40px;
+    border: none;
+    background: #c6362b;
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+}
+.comment{
+    margin: 20px;
+    margin-bottom: 100px;
+}
+.comment h1{
+    font-family: Lantingchaoxi;
+    font-weight: 100;
+    text-align: center;
+    color: #6f6f6f;
+    border-bottom: #6f6f6f 1px solid;
+    font-size: 28px;
+    line-height: 40px;
+}
+.comment ul{
+    margin: 60px 30px;
+}
+.comment ul li{
+    float: none;
+    display: table;
+    margin-bottom: 10px;
+}
+.comment ul li .commenter{
+    width: 90px;
+    height: 90px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: bottom;
+}
+.comment ul li .commenter img{
+    width: 50px;
+    height: 50px;
+}
+.comment ul li .commenter a{
+    font-size: 12px;
+    line-height: 2em;
+    color: #6f6f6f;
+    vertical-align: top;
+}
+.comment ul li .text{
+    float: left;
+    width: 720px;
+    margin-bottom: 80px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border: #dfdfdf 1px solid;
+    vertical-align: bottom;
+    position: relative;
+    font-size: 16px;
+    line-height: 2em;
+    color: #636363;
+}
+.comment ul li .text img{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: -16px;
+    left: -1px;
+
+}
+.comment .pagenum a{
+    font-size: 24px;
+    padding: 0 15px;
+}
+.qqFace{margin-top:4px;background:#fff;padding:2px;border:1px #dfe6f6 solid;}
+.qqFace table td{padding:0px;}
+.qqFace table td img{cursor:pointer;border:1px #fff solid;}
+.qqFace table td img:hover{border:1px #0066cc solid;}
+.pendant{
+    position: absolute;
+    width: 100px;
+    top: 100px;
+    margin-top: 200px;
+    text-align: center;
+}
+.pendant ul{
+
+}
+.pendant.left{
+    left: -100px;
+}
+.pendant.right{
+    right: -100px;
+}
+.pendant ul li{
+    float: none;
+}
+.pendant ul li a{
+    text-align: center;
+    font-family: Lantingchaoxi;
+    font-size: 16px;
+    line-height: 2em;
+}
+.pendant ul li a.red{
+    color: #ff1300;
+}
+.pendant img.backtotop{
+    width: 50px;
+    height: auto;
+}
+
+.mine{
+    text-align: center;
+    margin-top: 30px;
+    font-family: Lantingchaoxi;
+    border-bottom: #d9d7e2 1px solid;
+}
+.mine img{
+    width: 150px;
+    height: 150px;
+}
+.mine h2,.mine span{
+    color: #636363;
+    font-family: Lantingchaoxi;
+}
+.mine h2{
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.mine span{
+    font-size: 16px;
+}
+.mine p{
+    margin-bottom: 0;
+}
+.mine a img{
+    width: 40px;
+    height: 40px;
+}
+.minepro{
+    margin-top: 30px;
+    margin-bottom: 80px;
+
+}
+.minepro.list dl{
+    width: 233px;
+    margin: 10px;
+}
+.minepro.list .prev,.minepro.list .next{
+    height: 222px;
+}
+.shop{
+    background: #ffffff;
+}
+.shop .menu{
+    width: 28%;
+    float: left;
+}
+.shop .menu ul{
+    padding: 50px 30px;
+}
+.shop .menu ul li{
+    float: none;
+    overflow: hidden;
+}
+.shop .menu ul li div{
+    text-align: center;
+    font-family: Lantingchaoxi;
+    font-size: 16px;
+    line-height: 2em;
+    cursor: pointer;
+    margin: 5px 3px;
+}
+.shop .menu ul li.active div{
+    border: #d9d7e2 1px solid;
+    margin: 4px 2px;
+    font-size: 16px;
+    color: #ff1400;
+    background: #f9f9fa;
+}
+.shop .menu ul li:hover{
+    color: #ff1400;
+}
+.shop .goods{
+    float: right;
+    width: 72%;
+    padding: 30px 0;
+}
+.shop .goods div div{
+    width: 328px;
+    margin: 20px 30px 0 0;
+    border: #d9d7e2 1px solid;
+    position: relative;
+}
+.shop .goods div div img{
+    width: 100%;
+}
+.shop .goods div div label{
+    display: block;
+    background: #e60039;
+    color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.shop .goods div div span{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    color: #636363;
+}
+.shop .goods div div span b{
+    padding-left: 5px;
+    text-decoration: line-through;
+}
+.shop .goods .left{
+    float: left;
+}
+.shop .goods .right{
+    float: right;
+}
+.shop .goods .pagenum a{
+    font-size: 28px;
+    padding: 0 15px;
+}
+.list{
+    position: relative;
+}
+.list dl{
+    float: left;
+    border: #dfdfdf 1px solid;
+    background: #ffffff;
+
+}
+.list dl dt{
+    padding: 20px;
+    color: #985d3e;
+    font-size: 14px;
+    font-weight: bold;
+}
+.list dl dd{
+    width: 100%;
+    /*height: 176px;*/
+    overflow: hidden;
+    margin: 0;
+    text-align: center;
+}
+.list dl dd img{
+    width: 100%;
+    height: auto;
+}
+.list dl dd a.avatar{
+    width: 40px;
+    height: 40px;
+    margin: 15px auto 5px auto;
+    display: block;
+}
+.list dl dd a.author{
+    color: #985d3e;
+    font-size: 13px;
+}
+.list dl dd a.author:hover{
+    text-decoration: underline;
+}
+.list dl dd span{
+    font-size: 13px;
+}
+.list dl dd div.bar{
+    height: 3px;
+    margin: 0 20px 0 20px;
+    background: #b3b3b4;
+}
+.list dl dd div.bar .done{
+    background: #ff1400;
+    height: 100%;
+}
+.list dl dd div.button{
+    float: left;
+    text-align: center;
+    width: 106px;
+}
+.list dl dd div.button a{
+    line-height: 60px;
+}
+.list dl dd div.button span{
+    font-size: 12px;
+    color: #cecece;
+    padding:0 5px;
+}
+.list div.prev{
+    position: absolute;
+    width: 100px;
+    left: -100px;
+    top: 0;
+    display:table;
+}
+.list div.next{
+    position: absolute;
+    width: 100px;
+    right: -100px;
+    top: 0;
+    display:table;
+}
+.list div.prev div,.list div.next div{
+    vertical-align:middle;
+    display: table-cell;
+    text-align: center;
+}
+.list div.prev a,.list div.next a{
+    font-size: 80px;
+    font-family: Lantingchaoxi;
+    color: #d1cfdc;
+}
+.list div.prev a:hover,.list div.next a:hover{
+    color: #ff1400;
+}
+
+.pagenum{
+    text-align: center;
+    margin: 50px 0 50px 0;
+}
+.pagenum a{
+    font-family: Lantingchaoxi;
+    font-size: 28px;
+    padding: 0 20px;
+}
+.pagenum a:hover{
+    color: #ff1400;
+}
+
+.clear{
+    clear: both;
+}

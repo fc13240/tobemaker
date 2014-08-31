@@ -7,7 +7,7 @@ include_once ROOT_PATH."include/ez_sql_mysql.php";
  class class_auth
 {
 //global $arr_action_name;//在此添加action_name
-private $arr_action_name=array("admin"=>"admin","view"=>"view");
+private $arr_action_name=array("admin"=>"admin","view"=>"view","submitproject"=>"submitproject");
 
  function get_action_name_list()
 {

@@ -54,20 +54,20 @@ class class_session
         }
         
         $result = $this->db->get_row("SELECT * from `user_info` where `user_activity`='Y' and`user_email`='".$username."'", ARRAY_A);
-        
-        if ( !is_null($result) && count($result) > 0&&$result['user_passcode']==$password){
+
+        if ( !is_null($result) && count($result) > 0&&rtrim($result['user_passcode'])==$password){
             
             $_SESSION['is_login'] = true;
             $_SESSION['user_id'] = $result['user_id'];
             // TODO: 设置默认头像
-            $_SESSION['head_url'] = array_key_exists('head_url', $result) ? $result['head_url'] : '';
+            $_SESSION['head_url'] = array_key_exists('head_pic_url', $result) ? $result['head_pic_url'] : '';
             $_SESSION['user_name'] = array_key_exists('user_name', $result) ? $result['user_name'] : '';
             $_SESSION['group'] = $result['user_group'];
             $res['status']='success';
             
         }
         //密码错误
-        elseif(!is_null($result) && count($result) > 0&&$result['user_passcode']!=$password){
+        elseif(!is_null($result) && count($result) > 0&&rtrim($result['user_passcode'])!=$password){
             $res['status']='password_error';
         }
         // 不存在用户名
@@ -87,41 +87,7 @@ class class_session
         
     }
 
-    // 检查权限
-    // 判断当前用户是否具备执行操作action_name的权限
-    // 权限管理采用用户组+权限矩阵的方式实现
-    public function check_auth($action_name, $return_bool = true){
-
-        // ------- 获取用户所在的权限组 -------
-        // 权限组类型：anonymous(0) / none(-1) / "group name"
-
-        $user_group = 0;
-
-        // 判断用户是否登录
-        if (!$this->check_login()){
-            // 用户未登录，标记为匿名
-            $user_group = 0;
-        }else{
-            //用户已登录，获取系统中的分组
-            if (array_key_exists('group', $_SESSION) && $_SESSION['group'] != ""){
-                $user_group = $_SESSION['group'];
-            }else{
-                $user_group = -1;
-            }
-        }
-
-        // 判断用户所在组是否具有该权限
-        // 查询二元组（用户组，权限）是否在数据库中
-        $result = $this->db->get_row("SELECT * FROM `group_auth` WHERE `group_name` = '$user_group' AND `action_name` = '$action_name'", ARRAY_A);     
-        
-        if ( !is_null($result) && count($result) > 0){
-            
-            return true;
-        }else{
-            
-            return false;
-        }
-    }
+    
 
     function set_session(){
         $_SESSION['is_login'] = true;
@@ -130,6 +96,10 @@ class class_session
         $_SESSION['head_url'] = 'http://localhost/tobemaker/asset/12.png';
         $_SESSION['group'] = 1;
         $_SESSION['user_name'] = "果壳";
+    }
+
+    function update_session($user_name){
+
     }
     
 }
