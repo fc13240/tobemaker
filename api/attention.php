@@ -53,10 +53,10 @@ if(isset($_POST["action"])){
     $records["data"] = array(); 
 	$end = $iDisplayStart + $Length;
     $end = $end > $iTotalRecords ? $iTotalRecords : $end;
-    $real_length=$end-$iDisplayStart;
+    $real_length=$end-$iDisplayStart+1;
 	//获取数据
-	$dataList=$attention->get_part_attention($userid,$iDisplayStart,$real_length);
-	
+	$dataList=$attention->get_part_attention($userid,$iDisplayStart-1,$real_length);
+	//echo $real_length;
 	$real_length= count($dataList);
 	for($i = 0; $i < $real_length; $i++) {
 	$userinfo=$user->select($dataList[$i]["attention_userid"]);
@@ -86,7 +86,7 @@ if(isset($_POST["action"])){
     $real_length=$end-$iDisplayStart;
 	//获取数据
 	$dataList=$attention->get_part_attention($attention_userid,$iDisplayStart,$real_length);
-	
+	 
 	$real_length= count($datalist);
 	for($i = 0; $i < $real_length; $i++) {
 	$userinfo=$user->select($dataList[$i]["attention_userid"]);

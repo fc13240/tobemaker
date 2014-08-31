@@ -41,7 +41,7 @@
             
             </p>
             <br/>
-            <a id="btn-follow"><i class="fa fa-plus"></i></a>
+            <a id="btn-follow" class=" add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
             <a id="btn-msg"><i class="fa fa-envelope-o"></i></a>
             <a href="javascript:0" id="btn-modify"><i class="fa fa-pencil"></i></a>
             <a href="javascript:0" id="btn-comfirm" style="display: none;" data-url="<?=BASE_URL?>api/userinfo_change.php" ><i class="fa fa-check blue"></i></a>
@@ -51,6 +51,7 @@
         <input type="hidden" id="user_id" name="user_id" value=<?php 
             echo $user_info['user_id']." />";
             ?>
+			<input type="hidden" id="session_userid" name="session_userid" value="<?=@$_SESSION["user_id"]?>" />
     </div>
     <div class="middle-margin">
         <div class="minepro list">
@@ -87,6 +88,7 @@
 <?php include "bottom_js.php" ?>
     <script src="admin/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
     <script src="admin/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
+	
     <script>
         function bottomBtnToggle(){
             
@@ -133,7 +135,56 @@
                 bottomBtnToggle();
                 
             });
-            
+			//注册关注事件
+            $('.add').click(function(){
+			var attention_userid = $('#user_id').val();
+			var userid=$("#session_userid").val();
+			var url=$(this).data('url');
+			$.post(url, {
+			        'action':'add',
+                    'userid':userid,
+                    'attention_userid':attention_userid
+                    
+                    }, function(data, textStatus){
+                    if (data.status == "success"){
+					var $control=$('.add');
+                        $control.empty();
+                        $control.removeClass();
+                        $control.addClass(" delete");
+						$control.append('取消关注');
+                        alert('关注成功！');
+                    }else{
+                        //rollBack();
+                        alert("关注失败");
+                        
+                    }
+                },'json');
+			});
+			//注册取消关注事件
+			 $('.delete').click(function(){
+			var attention_userid = $('#user_id').val();
+			var userid=$("#session_userid").val();
+			var url=$(this).data('url');
+			$.post(url, {
+			        'action':'delete',
+                    'userid':userid,
+                    'attention_userid':attention_userid
+                    
+                    }, function(data, textStatus){
+                    if (data.status == "success"){
+					var $control=$('.delete');
+                        $control.empty();
+                        $control.removeClass();
+                        $control.addClass(" add");
+						$control.html('<i class="fa fa-plus"></i>');
+                        alert("取消成功")
+                    }else{
+                        //rollBack();
+                        alert("取消关注失败");
+                        
+                    }
+                },'json');
+			});
             $("#btn-comfirm").click(function(){
                 var url = $(this).data('url');
                 if($('#head_pic_url').val()==""){
@@ -198,6 +249,26 @@
             
         });
     </script>
+<?php
+	//控制页面显示信息
+if(!array_key_exists('user_id', $_GET)){
 
+echo '<script>$("#btn-follow").remove();</script>';
+
+}
+elseif($_GET["user_id"]!=$_SESSION["user_id"])
+{
+   echo '<script>$("#btn-modify").remove();</script>';
+   //获取用户是否被关注
+$attention=new class_attention();
+if($attention->checkunique($_SESSION["user_id"],$_GET["user_id"]))
+{
+echo '<script>$("#btn-follow").empty();$("#btn-folloy").removeClass();$("#btn-follow").addClass("delete");$("#btn-follow").append("取消关注")</script>';
+    //将关注符号改为取消关注
+}
+}
+
+
+	?>
 </body>
 </html>

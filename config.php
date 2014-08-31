@@ -1,11 +1,11 @@
 <?php
 
-define('HOSTNAME','http://www.cc.com/');
+efine('HOSTNAME','http://localhost/');
 
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
 
-define('BASE_URL', 'http://www.cc.com/');
+define('BASE_URL', 'http://localhost/tobemaker/');
 
 /*
  * MySQL

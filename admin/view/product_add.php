@@ -179,7 +179,7 @@
 													<label class="col-md-3 control-label">商品目录</label>
 													<div class="col-md-4">
 													
-														<select class="form-control select-circle" id="category" name="category">
+														<select class="form-control input-circle" id="category" name="category">
 														<?php
 														for($i=0;$i<count($categoryList);$i++)
 														{
@@ -231,14 +231,14 @@
 													<label class="col-md-3 control-label">原价</label>
 													<div class="col-md-4">
 														
-															<input id="price" name="price" type="number" class="form-control input-circle" placeholder="不填则不显示">
+															<input id="price" name="price" type="text" class="form-control input-circle" placeholder="不填则不显示">
 														
 													</div>
 												</div>
 												<div class="form-group last">
 													<label class="col-md-3 control-label">现价</label>
 													<div class="col-md-4">
-														<input id="discount" name="discount" type="number" class="form-control  input-circle" placeholder="现价">
+														<input id="discount" name="discount" type="text" class="form-control  input-circle" placeholder="现价">
 													</div>
 												</div>
 												

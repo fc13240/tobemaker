@@ -50,11 +50,12 @@ jQuery(document).ready(function() {
 });
 </script>
 ';
+
 //参数错误检测
 if(empty($_GET["productID"])||empty($_GET["action"]))
 {
 
-echo '<script language="javascript">alter("参数传递错误！");history.go(-1);</script>';
+echo '<script language="javascript">alert("参数传递错误！");history.go(-1);</script>';
 }
 //获取商品目录
 $product=new class_product();
@@ -101,11 +102,11 @@ if(!empty($_POST["img_url"]))
   if(!empty($imgUrl))
   $arr=array("pf_name"=>$_POST["name"],"pf_image"=>$imgUrl,"pf_link"=>$_POST["link"],
              "pf_label"=>$_POST["label"],"pf_price"=>$_POST["price"],"pf_discount"=>$_POST["discount"],
-			 "pf_status"=>$_POST["status"]);
+			 "pf_status"=>$_POST["status"],"pf_sort"=>$_POST["sort"]);
   else
   $arr=array("pf_name"=>$_POST["name"],"pf_link"=>$_POST["link"],
              "pf_label"=>$_POST["label"],"pf_price"=>$_POST["price"],"pf_discount"=>$_POST["discount"],
-			 "pf_status"=>$_POST["status"]);
+			 "pf_status"=>$_POST["status"],"pf_sort"=>$_POST["sort"]);
   $result=$product->update_product($_POST["pf_id"],$arr);
   
   //成功信息

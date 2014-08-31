@@ -37,7 +37,7 @@ function update_one_category( $pf_id,$arr){
 $status_list = array(
 
   array("success" => "正常"),
-  array("error" => "下线")
+  array("danger" => "下线")
   
 );
 //如果是修改请求
