@@ -10,9 +10,6 @@ $class_user=new class_user();
 
 $current_user = $class_user->get_current_user();
 
-var_dump($current_user);
-var_dump($_SESSION);
-
 // 导航 当前页面控制
 $current_page = 'project_list';
 $page_level = explode('-', $current_page);
