@@ -69,6 +69,7 @@
 </div>
 <div id="login_form" class="login hide">
     <div class="form">
+        <img src="asset/29.png" alt="">
         <form id="loginForm" action="" method="post" data-url="<?=BASE_URL."api/user_login.php"?>">
             <input type="text" name="username" placeholder="tobeMaker邮箱" value="test">
             <input type="password" name="password" placeholder="密码" value="123">
@@ -83,6 +84,7 @@
 </div>
 <div id="register_form" class="login hide">
     <div class="form">
+        <img src="asset/29.png" alt="">
         <form id="regForm" action="" method="post" data-url="<?=BASE_URL."api/user_login.php"?> ">
             <input type="text" name="username" placeholder="tobeMaker邮箱">
             <input type="text" name="password" placeholder="密码">
@@ -91,12 +93,13 @@
             <input type="checkbox"><span>我已经认真阅读并同意《使用协议》</span>
             <input type="button" value="注册">
         </form>
-        <p>关注微信公众号：sidarsm，回复邮箱，获取邀请码</p>
     </div>
+    <p>关注微信公众号：sidarsm，回复邮箱，获取邀请码</p>
 </div>
 
 <div id="forget_form" class="login hide">
     <div class="form">
+        <img src="asset/29.png" alt="">
         <form id="forgetPassForm" action="" method="post" data-url="<?=BASE_URL."api/find_password.php"?>" >
             <input type="text" name="username" placeholder="tobeMaker邮箱" id="forget_email">
             <input type="button" value="发送">
