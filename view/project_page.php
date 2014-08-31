@@ -22,7 +22,7 @@
 					<input type="hidden" id="user_id" value="<?=@$user_id?>">
                     <a href="javascript:void 0"><a href="javascript:void 0"><?php echo $item[0]['user_name'];?></a>
                 </div>
-                <div class="subtitle"><?php echo $item[0]['brief'];?></div>
+                <div class="subtitle"><?php echo $item[0]['tags'];?></div>
                 <div class="emailme">
                     <a href="javascript:void 0" id="addAttention" data-url="<?=BASE_URL?>api/attention.php"><img src="asset/10.png" alt=""></a>
 					<a href="javascript:void 0" id="deleteAttention" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>

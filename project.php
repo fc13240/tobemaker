@@ -28,21 +28,26 @@ $user_id=$current_user['user_id'];
 if(array_key_exists('saytext', $_POST)){
     
     $class_comment->add_comment($_POST["idea_id"],$user_id,$_POST["saytext"]);
-}elseif(array_key_exists('title', $_POST)){
+}
+
+//如果预览
+elseif(array_key_exists('title', $_POST)){
     //预览页面
     $item[0]['name']=$_POST['title'];
     $item[0]['content']=$_POST['content'];
     $item[0]['picture_url']=$_POST['img_url'];
     $item[0]['user_id']=$current_user['user_id'];
-    if(isset($_POST['cover_display'])){
+if(isset($_POST['cover_display'])){
     $item[0]['cover_display']=$_POST['cover_display'];
-    }
-    $item[0]['brief'] = '';
-    // $$item[0]['user_name']通过session或者cookie获取，预留
-    //$item[0]['brief']="123123";
+}
+    $item[0]['tags'] = $_POST['tags'];
     $item[0]['user_name']=$current_user['user_name'];
     $is_like_item = 0;
-}elseif(!empty($_GET["idea_id"])){   // 默认显示主页
+
+
+}
+
+elseif(!empty($_GET["idea_id"])){   // 默认显示主页
     //有id 则请求id对应详细
     $idea_id=$_GET["idea_id"]; //有请求的idea
     // 调用view来显示
