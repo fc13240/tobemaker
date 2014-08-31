@@ -29,7 +29,11 @@
                     <label>标题</label>
                     <input name="title" type="text">
                     <label>作者<span>（选填）</span></label>
-                    <input name="author" type="text">
+                    <input name="author" type="text" disabled="true" value=
+                    <?php
+                    echo "\"".$current_user['user_name']."\"";
+                    ?>
+                    >                    
 
     <input name="token" type="hidden" value=<?php
     echo "\"".$upToken."\"";

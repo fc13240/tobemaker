@@ -49,7 +49,7 @@ if(array_key_exists('img_url',$_POST))
 	{
 		$arr['cover_display']=1;
 	}
-	$arr['user_name']=$_POST['user_id'];
+	$arr['user_name']=$current_user['user_name'];
 	$new_idea= new class_idea();
 	$new_idea_id=$new_idea->insert("idea_info",$arr);
 	$url="Location:".BASE_URL."project.php?idea_id=".$new_idea_id;
