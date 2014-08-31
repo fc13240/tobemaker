@@ -904,3 +904,6 @@ blockquote h2 {
 	color: #FFFFFF;
 }
 
+.circle {
+	border-radius: 50%;
+}

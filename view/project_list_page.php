@@ -186,7 +186,7 @@
                 <dt>'+ item.name +'</dt>\
                 <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>\
                 <dd>\
-                    <a href="#" class="avatar"><img src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\
+                    <a href="#" class="avatar"><img class="circle" src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\
                     <a href="<?=BASE_URL?>person.php?user_id='+item.user_id+'" class="author">'+ item.user_name +'</a>\
                     <span>发布</span>\
                 </dd>\
