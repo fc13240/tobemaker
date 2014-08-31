@@ -28,13 +28,14 @@ var TableManaged = function () {
 
         table.dataTable({
             "serverSide": true,
+			
             "ajax": {
                 "url": ideaProcessUrl,
                 "type": 'post',
                 "timeout": 20000,
                 "data": function (data) { // add request parameters before submit
-				
-
+					
+                data.group_id=$("#group_id").val();
                 },
                     
                 "dataSrc": function (res) { // Manipulate the data returned from the server
@@ -51,6 +52,8 @@ var TableManaged = function () {
                 "orderable": false
             }, {
                 "orderable": true
+            }, {
+                "orderable": false
             }],
             "lengthMenu": [
                 [25, 50, 100, -1],
@@ -111,6 +114,42 @@ var TableManaged = function () {
                 }
             },'json');
 		 });
+		 //注册点击取消权限事件
+		  table.on('click', 'tbody tr .func-cancel', function(){
+		   var $tr = $(this).parents('tr');
+		  var group_id=$("#group_id").val();
+		  var auths=$tr.find('input[type="checkbox"]').val();
+		  $.post(ideaProcessUrl, $.param({'action':'cancel', 'auths':auths,'groupid':group_id}), function(data, textStatus){
+		  if (data.status == "success"){
+		             var action = $tr.find('.func-cancel');
+		             action.removeClass();
+					action.addClass('btn btn-xs green func-enable');
+					action.html('<i class="fa fa-search"></i>添加权限');
+					alert("取消成功");
+		  }
+		  else{
+		  alert("取消失败");
+		  }
+		  },'json');
+		  });
+		  //注册点击添加权限事件
+		  table.on('click', 'tbody tr .func-enable', function(){
+		   var $tr = $(this).parents('tr');
+		  var group_id=$("#group_id").val();
+		  var auths=$tr.find('input[type="checkbox"]').val();
+		  $.post(ideaProcessUrl, $.param({'action':'enable', 'auths':auths,'groupid':group_id}), function(data, textStatus){
+		  if (data.status == "success"){
+		             var $action = $tr.find('.func-enable');
+		             $action.removeClass();
+					$action.addClass('btn btn-xs red func-cancel');
+					$action.html('<i class="fa fa-search"></i>取消权限');
+					alert("添加成功");
+		  }
+		  else{
+		  alert("添加失败");
+		  }
+		  },'json');
+		  });
         // 注册点击批准事件
         table.on('click', 'tbody tr .idea-pass', function(){
             var $tr = $(this).parents('tr');

@@ -79,7 +79,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	 public function get_all_auth($group_id)
 	 {
 	 
-        $sql='SELECT  `group_auth`.* from `group_auth` where `group_name`='.$group_id;
+        $sql='SELECT  `group_auth`.`action_name` from `group_auth` where `group_name`='.$group_id;
         $result = $this->db->get_results($sql,ARRAY_A);
        // $res = json_encode($result);
         return $result;
