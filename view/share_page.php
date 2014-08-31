@@ -6,6 +6,7 @@
     <?php include "top_css.php" ?>
     <script type="text/javascript" src="js/md5.js"></script> 
     <link rel="stylesheet" type="text/css" href="css/redactor.css">
+    <link rel="stylesheet" type="text/css" href="css/simditor.css"/>
 </head>
 <body>
 <div id="top">
@@ -46,7 +47,7 @@
                     <a href="javascript:void 0" class="a1">添加摘要</a>
                     <label class="last">正文</label>
                     <div class="textdiv">
-                        <textarea name="content" id="content"></textarea>
+                  		<textarea id="editor" name="content" placeholder="这里输入内容" autofocus></textarea>					
                     </div>
                     <input type="hidden" name="act" value="create_share" />
                     <input type="hidden" name="user_id" value="2" />
@@ -75,6 +76,7 @@
     <script src="js/redactor.js"></script>
     <script src="admin/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
     <script src="admin/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
+	<script src="js/simditor-all.min.js" type="text/javascript" charset="utf-8"></script>
 
     <script>
     $(document).ready(function(){
@@ -111,6 +113,12 @@
         });
     });
 
+    </script>
+    <script type="text/javascript" charset="utf-8">
+		var editor = new Simditor({
+			textarea: $('#editor'),
+			 toolbar:  ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table',  'link', 'image', 'hr', '|', 'indent', 'outdent'],
+		});
     </script>
 </body>
 </html>

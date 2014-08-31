@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker-item</title>
     <?php include "top_css.php" ?>
+    <link rel="stylesheet" type="text/css" href="css/simditor.css"/>
 </head>
 <body>
 <div id="top">
@@ -26,7 +27,8 @@
                 </div>
                 <br class="clear"/>
             </div>
-            <div class="atc">
+            <div class="simditor" style="border: none;">
+            	 <div class="atc simditor-body">
                 <p><?php echo $item[0]['content'];?></p>
                 <?php 
                 if(isset($item[0]['cover_display'])&&$item[0]['cover_display']==1){
@@ -36,6 +38,8 @@
                 }
                 ?>
             </div>
+            </div>
+           
             <div class="commentbox">
                 <form id="commentForm" action="<?=BASE_URL?>project.php?idea_id=<?=$idea_id?>" method="POST" >
                     <label>评论</label>
