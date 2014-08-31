@@ -171,8 +171,6 @@
         var length = pageSize;
         var url = $('#project-pagenum').data("url");
         $.post(url, {"start":start, "length":length, "type":"pass", "user_id":<?=$current_user['user_id']?>}, function(data, textStatus){
-            console.log(data);
-            
             // set up content
             var $container = $('#idea-list-content');
             $container.html('');
