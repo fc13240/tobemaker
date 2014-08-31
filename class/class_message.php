@@ -75,9 +75,10 @@ class class_message
     	$sender_id = $this->db->escape($sender_id);
         $reciever_id = $this->db->escape($reciever_id);
         $context=$this->db->escape($context);
-    	$sql="insert into idea_message(`sender_id`,`context`,`send_time`,`receiver_id`) values(".$sender_id.",\"".$context."\",now(),".$reciever_id.")";
+    	$sql='insert into `idea_message`(`sender_id`,`context`,`send_time`,`receiver_id`) values('.$sender_id.',\''.$context.'\',now(),'.$reciever_id.')';
         //echo $sql;
     	$result=$this->db->query($sql);
+		return $sql;
     }
 
     //给群体发送消息
