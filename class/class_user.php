@@ -16,7 +16,7 @@ include_once ROOT_PATH."include/ez_sql_mysql.php";
 
 class class_user
 {
-    private $db = null;
+    public $db = null;
     
     function class_user(){
         
@@ -27,6 +27,10 @@ class class_user
         
     }
     
+
+    function query_sql($sql){
+      $this->db->query($sql);
+    }
     // 添加用户
     function insert($array){
         $array["user_passcode"]=md5($array["user_passcode"]);
