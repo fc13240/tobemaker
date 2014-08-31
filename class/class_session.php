@@ -54,20 +54,20 @@ class class_session
         }
         
         $result = $this->db->get_row("SELECT * from `user_info` where `user_activity`='Y' and`user_email`='".$username."'", ARRAY_A);
-        
-        if ( !is_null($result) && count($result) > 0&&$result['user_passcode']==$password){
+
+        if ( !is_null($result) && count($result) > 0&&rtrim($result['user_passcode'])==$password){
             
             $_SESSION['is_login'] = true;
             $_SESSION['user_id'] = $result['user_id'];
             // TODO: 设置默认头像
-            $_SESSION['head_url'] = array_key_exists('head_url', $result) ? $result['head_url'] : '';
+            $_SESSION['head_url'] = array_key_exists('head_pic_url', $result) ? $result['head_pic_url'] : '';
             $_SESSION['user_name'] = array_key_exists('user_name', $result) ? $result['user_name'] : '';
             $_SESSION['group'] = $result['user_group'];
             $res['status']='success';
             
         }
         //密码错误
-        elseif(!is_null($result) && count($result) > 0&&$result['user_passcode']!=$password){
+        elseif(!is_null($result) && count($result) > 0&&rtrim($result['user_passcode'])!=$password){
             $res['status']='password_error';
         }
         // 不存在用户名
@@ -130,6 +130,10 @@ class class_session
         $_SESSION['head_url'] = 'http://localhost/tobemaker/asset/12.png';
         $_SESSION['group'] = 1;
         $_SESSION['user_name'] = "果壳";
+    }
+
+    function update_session($user_name){
+
     }
     
 }
