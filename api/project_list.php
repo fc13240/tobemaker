@@ -4,6 +4,7 @@
 前台项目展示接口
 
 1，传入   $user_id start（开始位置），length（长度） type
+       sort_rule:"new"/"hot"/"recommend"
 
 user_id=-1  表示首页获取数据
 
@@ -36,6 +37,25 @@ include_once ROOT_PATH."class/class_like.php";
     $start=isset($_POST['start'])?$_POST['start']:0;
     $length=isset($_POST['length'])?$_POST['length']:6;
     //装备参数
+
+    if(array_key_exists('sort_rule', $_POST))
+    {
+        if($_POST['sort_rule']=='new')
+        {
+            $sort_rule='create_time';
+        }
+        elseif($_POST['sort_rule']=='hot')
+        {
+            $sort_rule='sum_like';
+        }
+        elseif($_POST['sort_rule']=='recommend')
+        {
+            $sort_rule='is_recommend';
+        }
+    }
+    else{
+        $sort_rule='is_recommend';
+    }
         if($_POST['type']=="pass")
         {
             $status_id=4;
@@ -45,7 +65,7 @@ include_once ROOT_PATH."class/class_like.php";
             $num=$res[0]['count(*)'];
 
             // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and `idea_info`.`user_id`=`user_info`.`user_id` limit ".$start.",".$length;
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
 
             $res=$class_idea->select($sql);
             $i=0;
@@ -88,7 +108,7 @@ include_once ROOT_PATH."class/class_like.php";
             $num=$res[0]['count(*)'];
 
             // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and `idea_info`.`user_id`=`user_info`.`user_id` limit ".$start.",".$length;
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
 
             $res=$class_idea->select($sql);
             $i=0;$tmp=count($res);
@@ -129,7 +149,7 @@ include_once ROOT_PATH."class/class_like.php";
             $num=$res[0]['count(*)'];
 
             // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`user_id`=`user_info`.`user_id` limit ".$start.",".$length;
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."` desc limit ".$start.",".$length;
 
             $res=$class_idea->select($sql);
             $i=0;$num=count($res);
