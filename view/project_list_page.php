@@ -14,6 +14,11 @@
         <div class="slogan">
             大家的想法都在这里，喜欢的话不妨点赞支持一下吧！
         </div>
+        <div>
+            <a href="?sort=recommend" class="<?=($sort_rule=="recommend"? 'red':'')?>">推荐</a>
+            <a href="?sort=new" class="<?=($sort_rule=="new"? 'red':'')?>">最新</a>
+            <a href="?sort=hot" class="<?=($sort_rule=="hot"? 'red':'')?>">最热</a>
+        </div>
         <div id="idea-list-block" class="content list">
             <div id="idea-list-content">
                 <dl>
@@ -170,7 +175,12 @@
         var start = (current_page - 1) * pageSize;
         var length = pageSize;
         var url = $('#project-pagenum').data("url");
-        $.post(url, {"start":start, "length":length, "type":"pass", "user_id":<?=$current_user['user_id']?>}, function(data, textStatus){
+        $.post(url, {
+            "start":start, 
+            "length":length, 
+            "type":"pass", 
+            "user_id":<?=(array_key_exists('user_id', $current_user) ? $current_user['user_id']: '')?>,
+            "sort_rule":'<?=$sort_rule?>'}, function(data, textStatus){
             // set up content
             var $container = $('#idea-list-content');
             $container.html('');
