@@ -41,7 +41,8 @@
             
             </p>
             <br/>
-            <a id="btn-follow" class=" add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
+			<a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
+            <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
             <a id="btn-msg"><i class="fa fa-envelope-o"></i></a>
             <a href="javascript:0" id="btn-modify"><i class="fa fa-pencil"></i></a>
             <a href="javascript:0" id="btn-comfirm" style="display: none;" data-url="<?=BASE_URL?>api/userinfo_change.php" ><i class="fa fa-check blue"></i></a>
@@ -136,7 +137,7 @@
                 
             });
 			//注册关注事件
-            $('.add').click(function(){
+            $("#btn-follow").click(function(){
 			var attention_userid = $('#user_id').val();
 			var userid=$("#session_userid").val();
 			var url=$(this).data('url');
@@ -147,11 +148,9 @@
                     
                     }, function(data, textStatus){
                     if (data.status == "success"){
-					var $control=$('.add');
-                        $control.empty();
-                        $control.removeClass();
-                        $control.addClass(" delete");
-						$control.append('取消关注');
+					var $control=$("#btn-follow");
+                        $control.hide();
+                      $("#btn-cancel").show();
                         alert('关注成功！');
                     }else{
                         //rollBack();
@@ -161,7 +160,7 @@
                 },'json');
 			});
 			//注册取消关注事件
-			 $('.delete').click(function(){
+			 $("#btn-cancel").click(function(){
 			var attention_userid = $('#user_id').val();
 			var userid=$("#session_userid").val();
 			var url=$(this).data('url');
@@ -172,11 +171,9 @@
                     
                     }, function(data, textStatus){
                     if (data.status == "success"){
-					var $control=$('.delete');
-                        $control.empty();
-                        $control.removeClass();
-                        $control.addClass(" add");
-						$control.html('<i class="fa fa-plus"></i>');
+					var $control=$("#btn-cancel");
+                        $control.hide();
+                        $("#btn-follow").show();
                         alert("取消成功")
                     }else{
                         //rollBack();
