@@ -28,20 +28,17 @@ if(array_key_exists('img_url',$_POST))
 	die('对不起，您没有权限！');
 	//return;
   }
-        $arr= array();
+    $arr= array();
 
-	$arr['user_id']=3;
-	//保存图片
+	$arr['user_id']=$current_user['user_id'];
+	//七牛保存图片
 	$pic_url=$_POST['img_url'];
 	$url_array = explode("/", $pic_url);
     $key = end($url_array);
     $key1 ="upload/".$current_user['user_id']."/".$key;
     $qiniu->move($key,$key1);
     $pic_url=QINIU_DOWN.$key1;
-	//$file_instance = new class_file();
-	//$pic_url=$file_instance->save($tmp_url);
-	// 保存其他信息  预留字段user_id 和user_name
-
+   //
 	$arr['name']=$_POST['title'];
 	$arr['content']=$_POST['content'];
 	$arr['picture_url']=$pic_url;
