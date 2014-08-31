@@ -248,6 +248,10 @@
     </script>
 <?php
 	//控制页面显示信息
+	if(!array_key_exists('user_id',$_SESSION))
+	{
+	     echo '<script>$("#btn-follow").remove();$("#btn-msg").remove();</script>';
+	}
 if(!array_key_exists('user_id', $_GET)){
 
 echo '<script>$("#btn-follow").remove();</script>';
