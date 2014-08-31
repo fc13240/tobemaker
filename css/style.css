@@ -126,6 +126,20 @@ ul li{
     width: 22px;
     margin: 19px;
 }
+.top .lgn a:first-child{
+    margin-right: 30px;
+}
+.top .lgnhover{
+    position: absolute;
+    right: 0;
+    top: 60px;
+    padding: 10px 6px;
+    display: none;
+    z-index: 1;
+}
+.top .lgnhover a,.top .lgnhover span{
+    font-size: 13px;
+}
 form.lgn {
 	float: right;
 }
@@ -796,6 +810,22 @@ form.lgn {
 
 .list .red{
     color: #ff1400;
+}
+
+.slide{
+    overflow: hidden;
+    position: relative;
+    height: 1034px;
+}
+.slide ul{
+    width:3060px;
+    position: absolute;
+    left: -1020px;
+    top: 0;
+}
+.slide ul li{
+    width: 1020px;
+    min-height: 100px;
 }
 
 .pagenum{

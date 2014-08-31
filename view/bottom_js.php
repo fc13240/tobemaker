@@ -5,4 +5,20 @@
 
 <script>
     new UISearch( document.getElementById( 'sb-search' ) );
+    $("#minebtn").hover(
+            function(){
+               $(".lgnhover").show();
+    },
+            function(){
+                $(".lgnhover").hide();
+            }
+    );
+    $(".lgnhover").hover(
+            function(){
+                $(this).show();
+            },
+            function(){
+                $(this).hide();
+            }
+    );
 </script>
