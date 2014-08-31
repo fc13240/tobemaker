@@ -33,7 +33,6 @@ class class_like
         else{
             return 0;
         }
-        
     }
      public function add_like($idea_id,$user_id=null)
     {
@@ -49,8 +48,8 @@ class class_like
         $this->db->query($sql);
         $sql="update idea_info set sum_like=sum_like+1 where idea_id=".$idea_id;
         $this->db->query($sql);
+        $this->check_to_change_produce($idea_id);
             return 1;
-       
     }
 
 // 取消点赞
@@ -88,5 +87,22 @@ class class_like
     	else {
     		return 0;
     	}
+    }
+    //积攒达到一定数量就待产
+    public function check_to_change_produce($idea_id){
+        $idea_id = $this->db->escape($idea_id);
+        $sum=$this->get_sum_like($idea_id);
+        $sql="SELECT * from idea_info where idea_id=".$idea_id;
+        $res=$this->db->get_results($sql,ARRAY_A);
+        //var_dump($res);
+        $limit=$res[0]["target"];
+        if($sum>$limit){
+            $sql="UPDATE `idea_info` set idea_status=5 where idea_id=".$idea_id;
+            $this->db->query($sql);
+        }
+        else{
+            return 0;
+        }
+
     }
 }
