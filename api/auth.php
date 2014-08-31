@@ -16,14 +16,14 @@ $authList=$auth->get_action_name_list();
 
 if(isset($_POST["action"])&&isset($_POST["auths"])){
   $act=$_POST["action"];
-  $auths=$_POST["auths"];
+  
+  //var_dump($_POST);
+if($act=='auth_update')
+{
+$auths=$_POST["auths"];
   $group_id=$_POST["groupid"];
   $num=count($auths);
   $i=0;
-  
-if($act=='auth_update')
-{
-
     while($i<$num)
 	{
 	    $group_auth->insert($group_id,$auths[$i]);
@@ -40,6 +40,25 @@ if($act=='auth_update')
       $res['status']='success';
       echo json_encode($res);
 }
+elseif($act=='cancel')
+{
+   $group_id=$_POST["groupid"];
+   $auths=$_POST["auths"];
+   $group_auth->delete_group_auth($group_id,$auths);
+   $res= array();
+      $res['status']='success';
+      echo json_encode($res);
+}
+elseif($act=='enable')
+{
+    $group_id=$_POST["groupid"];
+   $auths=$_POST["auths"];
+   $group_auth->insert($group_id,$auths);
+  $res= array();
+      $res['status']='success';
+      echo json_encode($res);
+}
+
   else
   {
      $res= array();
@@ -53,10 +72,26 @@ elseif(isset($_POST["action"])){
      $res['status']='error';
      echo json_encode($res);
 }
-
+// 常亮设置
+$status_list = array(
+  array("success" => "正常"),
+  array("danger" => "无权限")
+);
+function checkin($value,$arr)
+{
+   for($i=0;$i<count($arr);$i++)
+   {
+      if($value==$arr[$i]["action_name"])
+	  {
+	     return true;
+	  }
+   }
+   return false;
+}
 if (array_key_exists('draw', $_REQUEST)){
 // 请求来自dataTable
-
+       $group_id=$_REQUEST['group_id'];
+	   
         // 设置总用户条数，用于计算分页数量
         $iTotalRecords =$auth->get_action_num();
 
@@ -88,15 +123,20 @@ if (array_key_exists('draw', $_REQUEST)){
         $records["data"] = array(); 
         $keys=array_keys($action_list);
 		//获取用户拥有的权限
+		$groupactionList=$group_auth->get_all_auth($group_id);
 		
-		
-		
+		//var_dump(array_values($groupactionList));
        for($i=0;$i<count($action_list);$i++){
-		
+	   $action_status='green func-enable';
+		if(checkin($action_list[$keys[$i]],$groupactionList))
+		{
+		 $action_status='red func-cancel';
+		}
            
             $records["data"][] = array(
                 '<input class="checkboxes" type="checkbox" name="id['.$action_list[$keys[$i]].']" id="id['.$action_list[$keys[$i]].']" value="'.$action_list[$keys[$i]].'" />',
-                $action_list[$keys[$i]]
+                $action_list[$keys[$i]],
+				'<a href="javascript:;" class="btn btn-xs '.$action_status.'"><i class="fa fa-search"></i>'.($action_status=='green func-enable'?'添加权限':'取消权限').'</a>'
                 
             );
         }
