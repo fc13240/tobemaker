@@ -1,6 +1,6 @@
 <?php
 
-efine('HOSTNAME','http://localhost/');
+define('HOSTNAME','http://localhost/');
 
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
