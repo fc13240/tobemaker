@@ -477,14 +477,35 @@ form.lgn {
     line-height: 2em;
     color: #636363;
 }
-.comment ul li .text img{
+.comment ul li .text:before { 
+	content: ' ';
+	display: block;
+	position: absolute;
+	bottom: -20px;
+	left: -1px;
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid #dfdfdf; 
+	border-right: 20px solid transparent; 
+}  
+.comment ul li .text:after { 
+	content: ' ';
+	display: block;
+	position: absolute;
+	bottom: -18px;
+	left: 0px;
+	width: 0; 
+	height: 0; 
+	border-top: 18px solid #FFFFFF; 
+	border-right: 18px solid transparent; 
+} 
+/*.comment ul li .text img{
     width: 16px;
     height: 16px;
     position: absolute;
     bottom: -16px;
     left: -1px;
-
-}
+}*/
 .comment .pagenum a{
     font-size: 24px;
     padding: 0 15px;

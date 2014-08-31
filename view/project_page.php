@@ -17,11 +17,14 @@
                 <div class="author">
                     <a href="javascript:void 0"><img src="asset/15.png" alt=""></a>
                     <br />
+					<input type="hidden" id="author_id" value="<?=@$item[0]["user_id"]?>">
+					<input type="hidden" id="user_id" value="<?=@$user_id?>">
                     <a href="javascript:void 0"><a href="javascript:void 0"><?php echo $item[0]['user_name'];?></a>
                 </div>
                 <div class="subtitle"><?php echo $item[0]['brief'];?></div>
                 <div class="emailme">
-                    <a href="javascript:void 0"><img src="asset/10.png" alt=""></a>
+                    <a href="javascript:void 0" id="addAttention" data-url="<?=BASE_URL?>api/attention.php"><img src="asset/10.png" alt=""></a>
+					<a href="javascript:void 0" id="deleteAttention" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
                     <a href="javascript:void 0"><img src="asset/11.png" alt=""></a>
                 </div>
                 <br class="clear"/>
@@ -136,7 +139,7 @@
                     <br />\
                     <a href="<?=BASE_URL.'person.php?user_id='?>'+item['sender_id']+'">'+item['user_name']+'</a>\
                 </div>\
-                <div class="text">'+item['context']+'<img src="asset/17.png" alt="">\
+                <div class="text">'+item['context']+'\
                 </div>\
             </li>');
             }
@@ -163,7 +166,52 @@
         pageNow = current_page;
         loadIdeaPage(pageNow);
     });
-    
+    //注册关注事件
+            $("#addAttention").click(function(){
+			var attention_userid = $('#author_id').val();
+			var userid=$("#user_id").val();
+			var url=$(this).data('url');
+			$.post(url, {
+			        'action':'add',
+                    'userid':userid,
+                    'attention_userid':attention_userid
+                    
+                    }, function(data, textStatus){
+                    if (data.status == "success"){
+					var $control=$("#addAttention");
+                        $control.hide();
+                      $("#deleteAttention").show();
+                        alert('关注成功！');
+                    }else{
+                        //rollBack();
+                        alert("关注失败");
+                        
+                    }
+                },'json');
+			});
+			//注册取消关注事件
+			 $("#deleteAttention").click(function(){
+			var attention_userid = $('#author_id').val();
+			var userid=$("#user_id").val();
+			var url=$(this).data('url');
+			$.post(url, {
+			        'action':'delete',
+                    'userid':userid,
+                    'attention_userid':attention_userid
+                    
+                    }, function(data, textStatus){
+                    if (data.status == "success"){
+					var $control=$("#deleteAttention");
+                        $control.hide();
+                        $("#addAttention").show();
+                        alert("取消成功")
+                    }else{
+                        //rollBack();
+                        alert("取消关注失败");
+                        
+                    }
+                },'json');
+			});
     function replace_em(str){
         str = str.replace(/\</g,'&lt;');
         str = str.replace(/\>/g,'&gt;');

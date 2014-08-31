@@ -1,6 +1,6 @@
 <?php
 
-define('HOSTNAME','http://www.cc.com/');
+define('HOSTNAME','http://localhost');
 
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
@@ -15,7 +15,7 @@ define('BASE_URL', 'http://www.cc.com/');
 define('DATABASE_HOST', '127.0.0.1');
 define('DATABASE_NAME', 'idea');
 define('DATABASE_USER', 'root');
-define('DATABASE_PASSWORD', '123456');
+define('DATABASE_PASSWORD', '');
 
 /*
  * Database Tables
