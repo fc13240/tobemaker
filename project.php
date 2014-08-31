@@ -5,9 +5,11 @@ include_once "config.php";
 
 include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
+include_once ROOT_PATH."class/class_like.php";
 
 $class_session=new class_session();
 $class_user=new class_user();
+$class_like = new class_like();
 
 $current_user = $class_user->get_current_user();
 
@@ -18,12 +20,14 @@ include ROOT_PATH."/class/class_idea.php";
 include_once ROOT_PATH."/class/class_comment.php";
         //获取数据
 $class_comment=new class_comment();
-        
+
+$user_id=$current_user['user_id']; 
+
 //如果有评论
-    if(array_key_exists('saytext', $_POST)){
-       $user_id=$current_user['user_id'];
-       $class_comment->add_comment($_POST["idea_id"],$user_id,$_POST["saytext"]);
-    }
+if(array_key_exists('saytext', $_POST)){
+    
+    $class_comment->add_comment($_POST["idea_id"],$user_id,$_POST["saytext"]);
+}
 
     //预览页面
     elseif(array_key_exists('title', $_POST)){
@@ -48,6 +52,7 @@ $class_comment=new class_comment();
     $idea_id=$_GET["idea_id"]; //有请求的idea
     // 调用view来显示
     $class_idea=new class_idea();
+    $is_like_item = $class_like->get_like_info($idea_id, $user_id);
     $item=$class_idea->get_idea_by_id($idea_id);
     include 'view/project_page.php';  
 
