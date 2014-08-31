@@ -43,7 +43,7 @@
             <br/>
 			<a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
             <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
-            <a id="btn-msg"><i class="fa fa-envelope-o"></i></a>
+            <a id="btn-msg" href="<?=BASE_URL?>msg_send.php?userid=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o"></i></a>
             <a href="javascript:0" id="btn-modify"><i class="fa fa-pencil"></i></a>
             <a href="javascript:0" id="btn-comfirm" style="display: none;" data-url="<?=BASE_URL?>api/userinfo_change.php" ><i class="fa fa-check blue"></i></a>
             <a href="javascript:0" id="btn-cancle" style="display: none;" ><i class="fa fa-times red"></i></a>
@@ -136,6 +136,7 @@
                 bottomBtnToggle();
                 
             });
+			
 			//注册关注事件
             $("#btn-follow").click(function(){
 			var attention_userid = $('#user_id').val();
