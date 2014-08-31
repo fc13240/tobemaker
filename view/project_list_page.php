@@ -244,12 +244,17 @@
             var url = $(this).data("url");
             var idea_id = $(this).data("idea_id");
             
-            //TODO:从当前登录用户信息中获取用户id
             var user_id = <?=$current_user['user_id']?>;
             $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
                 var status = data['status'];
                 if (status == "success"){
+                    // 标记“喜欢”按钮为红色表示已经标记为喜欢
                     the_like_btn.addClass("red");
+                    // 修改喜欢数量+1
+                    var $likeCntNode = the_like_btn.next('span');
+                    var likeCnt = $likeCntNode.text();
+                    likeCnt = parseInt(likeCnt) + 1;
+                    $likeCntNode.text(likeCnt);
                     
                 }else if (status == "error"){
                     alert("系统错误，请联系管理员");
