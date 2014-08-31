@@ -129,9 +129,9 @@
             $('#tagView').html('');
             for (var i=0; i<5 && i<labelArr.length; i++){
                 trueLabelArr.push(labelArr[i]);
-                $('#tagView').append(labelArr[i]+',');
+                $('#tagView').append('<span class="tag">' + labelArr[i] + '</span>');
             }
-            $('#tagView').html(trueLabelArr.join(','));
+//          $('#tagView').html(trueLabelArr.join(','));
             $('#trueTagText').val(trueLabelArr.join(','));
         });
     });
