@@ -7,10 +7,10 @@ include_once ROOT_PATH."class/class_idea.php";
 
 include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
-
+include_once ROOT_PATH."class/class_group_auth.php";
 $class_session=new class_session();
 $class_user=new class_user();
-
+$class_group_auth=new class_group_auth();
 $current_user = $class_user->get_current_user();
 
 require_once("qiniu/rs.php");
@@ -37,6 +37,14 @@ $page_level = explode('-', $current_page);
 //保存提交的想法
 if(array_key_exists('img_url',$_POST))
 {
+
+
+  if(!$class_group_auth->check_auth("submitproject"))
+  {
+    //echo '<script>alert("对不起，您没有权限！");history.go(-1);</script>';
+	die('对不起，您没有权限！');
+	//return;
+  }
 		$arr= array();
 
 	$arr['user_id']=3;
