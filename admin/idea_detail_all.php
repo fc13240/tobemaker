@@ -31,7 +31,7 @@ if(isset($_POST["idea_id"]))
     $change_info['last_change_time']='now()';
     $idea->insert("idea_manage",$change_info);
     // 返回
-	$url="Location:".HOSTNAME."/admin/idea_detail_all.php?idea_id=".$id;
+	$url="Location:".BASE_URL."admin/idea_detail_all.php?idea_id=".$id;
 	header($url);
 	exit();
 }
@@ -56,10 +56,12 @@ $page_level = explode('-', $current_page);
 
 $page_level_style = '
 <link rel="stylesheet" type="text/css" href="./assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="'.BASE_URL.'css/simditor.css"/>
 ';
 
 $page_level_plugins = '
 <script type="text/javascript" src="./assets/global/plugins/select2/select2.min.js"></script>
+
 ';
 
 $page_level_script = '
@@ -68,6 +70,7 @@ $page_level_script = '
 <script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="./assets/admin/pages/scripts/form-samples.js"></script>
+<script type="text/javascript" src="'.BASE_URL.'js/simditor-all.min.js"></script>
 <script>
 jQuery(document).ready(function() {    
    // initiate layout and plugins
@@ -77,9 +80,14 @@ jQuery(document).ready(function() {
     Demo.init(); // init demo features
    FormSamples.init();
 });
+'."
+var editor = new Simditor({
+    textarea: $('#editor'),
+     toolbar:  ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table',  'link', 'image', 'hr', '|', 'indent', 'outdent'],
+});
 </script>
 
-';
+";
 
 include 'view/header.php';
 
