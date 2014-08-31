@@ -36,12 +36,14 @@ if(array_key_exists('img_url',$_POST))
 	$url_array = explode("/", $pic_url);
     $key = end($url_array);
     $key1 ="upload/".$current_user['user_id']."/".$key;
-//    $qiniu->move($key,$key1);
-//    $pic_url=QINIU_DOWN.$key1;
+    $qiniu->move($key,$key1);
+    $pic_url=QINIU_DOWN.$key1;
    //
 	$arr['name']=$_POST['title'];
 	$arr['content']=$_POST['content'];
+	$arr['create_time']='now()';
 	$arr['picture_url']=$pic_url;
+	$arr['tags']=$_POST['tags'];
 	if(array_key_exists('cover-display', $_POST))
 	{
 		$arr['cover_display']=1;
