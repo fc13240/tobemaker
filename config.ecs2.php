@@ -28,3 +28,10 @@ define('SECRET_KEY','_L0dnTqGE8PhJ1zNB3c97oX7pPge9TDzkKALu9gW');
 define('BUCKET', 'yzzwordpress');
 define('QINIU_UP','http://up.qiniu.com/');
 define('QINIU_DOWN','http://'.BUCKET.'.qiniudn.com/');
+
+//邮箱工具
+
+define('MAIL_HOST','smtp.126.com');
+define('MAIL_ADDRESS', 'tobemaker@126.com');
+define('MAIL_PASS', 'tobemaker1');
+define('MAIL_USER', 'tobemaker');
