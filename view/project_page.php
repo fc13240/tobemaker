@@ -44,7 +44,7 @@
             </div>
            
             <div class="commentbox">
-                <form id="commentForm" action="<?=BASE_URL?>project.php?idea_id=<?=$idea_id?>" method="POST" >
+                <form id="commentForm" action="<?=BASE_URL?>project.php" method="POST" >
                     <label>评论</label>
                     <textarea id="saytext" name="saytext"></textarea>
                     <a href="javascript:void 0" class="emotion">添加表情</a>
@@ -233,8 +233,8 @@
         $(".sub_btn").click(function(){
             var str = $("#saytext").val();
             $("#saytext").val(replace_em(str));
-            alert(replace_em(str));
-//            $("#show").html(replace_em(str));
+    //        alert(replace_em(str));
+//           $("#show").html(replace_em(str));
         });
         $(".pendant").pin({
             minWidth : 1220

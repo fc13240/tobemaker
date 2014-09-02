@@ -26,8 +26,11 @@ $user_id=$current_user['user_id'];
 
 //如果有评论
 if(array_key_exists('saytext', $_POST)){
-    
-    $class_comment->add_comment($_POST["idea_id"],$user_id,$_POST["saytext"]);
+    $idea_id=intval($_POST['idea_id']);
+    $class_comment->add_comment($idea_id,$user_id,$_POST["saytext"]);
+    $url="Location:".BASE_URL."project.php?idea_id=".$idea_id;
+    header($url);
+    exit();
 }
 
 //如果预览
@@ -37,9 +40,9 @@ elseif(array_key_exists('title', $_POST)){
     $item[0]['content']=$_POST['content'];
     $item[0]['picture_url']=$_POST['img_url'];
     $item[0]['user_id']=$current_user['user_id'];
-if(isset($_POST['cover_display'])){
-    $item[0]['cover_display']=$_POST['cover_display'];
-}
+    if(isset($_POST['cover_display'])){
+        $item[0]['cover_display']=$_POST['cover_display'];
+    }
     $item[0]['tags'] = $_POST['tags'];
     $item[0]['user_name']=$current_user['user_name'];
     $is_like_item = 0;
@@ -54,6 +57,7 @@ elseif(!empty($_GET["idea_id"])){   // 默认显示主页
     $class_idea=new class_idea();
     $is_like_item = $class_like->get_like_info($idea_id, $user_id);
     $item=$class_idea->get_idea_by_id($idea_id);
+    exit();
       
 }else{
     die("页面传入参数错误");
