@@ -29,7 +29,6 @@ if(array_key_exists('img_url',$_POST))
 	//return;
   }
     $arr= array();
-
 	$arr['user_id']=$current_user['user_id'];
 	//七牛保存图片
 	$pic_url=$_POST['img_url'];
@@ -38,21 +37,27 @@ if(array_key_exists('img_url',$_POST))
     $key1 ="upload/".$current_user['user_id']."/".$key;
     $qiniu->move($key,$key1);
     $pic_url=QINIU_DOWN.$key1;
-   //
+   
+
+   //写数据库保存想法
 	$arr['name']=$_POST['title'];
 	$arr['content']=$_POST['content'];
 	$arr['create_time']='now()';
 	$arr['picture_url']=$pic_url;
 	$arr['tags']=$_POST['tags'];
-	if(array_key_exists('cover-display', $_POST))
+	if(array_key_exists('cover-display', $_POST))// 是否显示封面  数据库默认显示
 	{
 		$arr['cover_display']=1;
 	}
 	$arr['user_name']=$current_user['user_name'];
+
+
+	// 插入数据库
 	$new_idea= new class_idea();
 	$new_idea_id=$new_idea->insert("idea_info",$arr);
 	$url="Location:".BASE_URL."project.php?idea_id=".$new_idea_id;
 	header($url);
+	exit();
 }
 
 

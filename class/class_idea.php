@@ -7,6 +7,14 @@ include_once ROOT_PATH."include/ez_sql_core.php";
 include_once ROOT_PATH."include/ez_sql_mysql.php";
 include_once ROOT_PATH."class/class_pagesurpport.php";
 
+
+
+ /*----------idea_类 
+
+ 功能  对想法的增删改查等操作
+
+ */
+
 class class_idea
 {
     public $db = null;
@@ -28,7 +36,7 @@ class class_idea
 
 
 
-   // 在表中增加数据  输入表名和数组字段
+   // 在表中增加数据  输入表名和数组字段  ［'cloumn'］=>'values'
 
     public function insert($table_name,$array){
         $num=count($array);
@@ -56,18 +64,21 @@ class class_idea
         return $res[0]['LAST_INSERT_ID()'];
     }
     
-    // 更新表中某个字段
+
+    // 更新单独表中某个字段
     private function update_one($table_name,$col_name,$value){
         $sql_query="update ".$table_name." set ".$col_name."=".$value;
         $this->db->query($sql_query);
     }
     
 
-    // 增加改动信息
+    // 删除idea信息
   
     public function delete(){
     }
     // 获取某个id详细信息
+
+
     public function get_idea_by_id($idea_id){
       $sql="SELECT * from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_id`=".$idea_id;
       $result = $this->db->get_results($sql, ARRAY_A);  
@@ -76,7 +87,7 @@ class class_idea
 
    //通过idea_info字段更新数据  传入修改的id和字段=》值 数组实现更新 
    
-     public function update_idea($idea_id,$arr)
+    public function update_idea($idea_id,$arr)
     {
       $keys=array_keys($arr);
       $values=array_values($arr);
@@ -97,6 +108,7 @@ class class_idea
       $this->db->query($sql);
     }
 
+    //按关键字获取部分
 
     function search_by_key_word($key_word,$start,$length)
     {
@@ -107,6 +119,8 @@ class class_idea
       return $result;
     }
 
+
+    //  按关键字获取全部
     function search_all_by_key_word($key_word)
     {
       $key_word="%".$key_word."%";
@@ -114,6 +128,9 @@ class class_idea
       $result = $this->db->get_results($sql, ARRAY_A);  
       return $result;
     }
+
+
+
     // ---------  增删改查基本操作 - 结束
     
     // ---------  审核相关操作 - 开始
@@ -124,9 +141,9 @@ class class_idea
     //获取所有项目数量
     public function get_all_idea_num(){
        
-        $sql="SELECT * from `idea_info`";
+        $sql="SELECT count(*) from `idea_info`";
         $result = $this->db->get_results($sql,ARRAY_A);
-        return count($result);
+        return $result[0]['count(*)'];
     }
 
    //获取部分项目
@@ -140,31 +157,38 @@ class class_idea
         return $result;
     }
 
-    //获取部分项目加排序    先获取符合条件的后排序
+
+
+    //获取部分项目加按照状态排序    先获取符合条件的,后排序
      public function get_part_ideas_order_status($begin,$num,$sort_rule){
 
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
-      if($sort_rule==0){
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_status` asc limit ".$begin.",".$num;
-      }elseif ($sort_rule==1) {
+      if($sort_rule==0){  //增序
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_status` asc limit ".$begin.",".$num;
+      }
+      elseif ($sort_rule==1) {  //倒序
         # code...
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_status` desc limit ".$begin.",".$num;
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_status` desc limit ".$begin.",".$num;
 
       }
-        $result = $this->db->get_results($sql,ARRAY_A);
-        return $result;
+      $result = $this->db->get_results($sql,ARRAY_A);
+      return $result;
     }
+    
 
+
+
+    //  根据id排序获取想法id
     public function get_part_ideas_order_ideaid($begin,$num,$sort_rule){
 
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
       if($sort_rule==0){
-        $sql="SELECT distinct `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_id` asc limit ".$begin.",".$num;
+        $sql="SELECT distinct `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_id` asc limit ".$begin.",".$num;
       }elseif ($sort_rule==1) {
         # code...
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_id` desc limit ".$begin.",".$num;
+        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_id` desc limit ".$begin.",".$num;
 
       }
         $result = $this->db->get_results($sql,ARRAY_A);
@@ -174,12 +198,10 @@ class class_idea
     public function get_all_waiting(){
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.`name`,`idea_info`.`user_name`,`idea_info`.`brief`,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`";
+      $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_info`.`idea_status`=2 and `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id`";
         $result = $this->db->get_results($sql,ARRAY_A);
-        return $result;
+      return $result;
     }
-
-   
 
    //------------------- 待审核项目操作
 
@@ -250,9 +272,6 @@ class class_idea
         $result = $this->db->query($sql);
         return $result;
     }
-
-
-
     // 标记审核不通过
     public function mark_fail($idea_id,$reason=""){
         // 修改两张表：  基本信息表idea_info 和idea管理表 idea_manage

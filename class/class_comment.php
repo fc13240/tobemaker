@@ -22,10 +22,8 @@ class class_comment
         $this->db->query("SET NAMES utf8");
     }
 
-    public function get_reply_by_comment_id($comment_id){
-    }
 
-    //根据某个评论，获得其回复的评论对象，若没有，则返回0
+    //   //------获取所有评论
     ///  有评论时候返回的是二维数组，result[i]['aa']表示第i条记录的aa字段值
     public function get_all_comment_by_ideaid($idea_id){
          $idea_id = $this->db->escape($idea_id);
@@ -34,12 +32,10 @@ class class_comment
     	$result=$this->db->get_results($sql,ARRAY_A);
     	
     		return $result;
-    	
-
     }
 
 
-
+  //------   获取部分评论
     public function get_part_comment_by_ideaid($idea_id,$start,$length){
          $idea_id = $this->db->escape($idea_id);
         
@@ -48,32 +44,42 @@ class class_comment
             return $result;
 
     }
-    // 一级评价  传进idea_id，评论者id和评论类容
+
+
+    // 增加评论  传进idea_id，评论者id和评论类容
     //  修改两张表： idea_info 和 idea_comment
     public function add_comment($idea_id,$user_id,$context){
-         $idea_id = $this->db->escape($idea_id);
+        $idea_id = $this->db->escape($idea_id);
         $user_id = $this->db->escape($user_id);
         $context=$this->db->escape($context);
 
+
+    
+        //------ id_info 添加评论数目
     	$sql="update idea_info set sum_comment=sum_comment+1";
         $this->db->query($sql);
+
+        //idea_comment 添加评论事件
     	$sql="select user_id from idea_info where idea_id=".$idea_id;
     	$result=$this->db->get_results($sql,ARRAY_A);
     	$receiver_id=$result[0]['user_id'];
     	$sql="insert into idea_comment(`idea_id`,`context`,`comment_time`,`sender_id`) values(".$idea_id.",\"".$context."\",now(),".$user_id.")";
     	$result=$this->db->query($sql);
-
     }
 
 
-    //  添加回复  
+    
+     
+    //  添加回复  (已经废除的设计)
     //  需要参数  a回复b的评论，需要b的评论事件id，a的id和回复内容
-  //    修改一张表：idea_comment 
+    //  修改一张表：idea_comment 
     public function add_reply($comment_id,$user_id,$context){
-    	// 第一步，获取主题id
         $comment_id = $this->db->escape($comment_id);
         $user_id = $this->db->escape($user_id);
         $context=$this->db->escape($context);
+
+                // 第一步，获取主题id
+
     	$sql="select idea_id from idea_comment where id=".$comment_id;
     	$result=$this->db->get_results($sql,ARRAY_A);
     	$idea_id=$result[0]['idea_id'];
@@ -90,6 +96,8 @@ class class_comment
         $this->db->query($sql);
     }
 
+
+    // 获取评论数目
     public function get_num_of_comment($idea_id)
     {
         $comment_id = $this->db->escape($idea_id);
@@ -97,6 +105,8 @@ class class_comment
         $result=$this->db->get_results($sql,ARRAY_A);
         return $result[0]['count(*)'];
     }
+
+    //删除评论，暂时没有需求
     public function delete_comment(){
 
     }
