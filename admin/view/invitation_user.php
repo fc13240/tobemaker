@@ -177,7 +177,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="product_add.php"><button id="sample_editable_1_new" class="btn green">
+											<a href="invote_code.php"><button id="sample_editable_1_new" class="btn green">
 											生成邀请码 <i class="fa fa-plus"></i>
 											</button></a>
                                                                                         

@@ -54,22 +54,6 @@ var TableManaged = function () {
                 "orderable": false
             }, {
                 "orderable": false
-            }, {
-                "orderable": false
-            }, {
-                "orderable": true
-            }, {
-                "orderable": false
-            }, {
-                "orderable": true
-            }, {
-                "orderable": false
-            }, {
-                "orderable": false
-            }, {
-                "orderable": false
-            }, {
-                "orderable": false
             }],
             "lengthMenu": [
                 [25, 50, 100, -1],

@@ -8,7 +8,7 @@ include_once ROOT_PATH."class/class_invitation_code.php";
 include_once ROOT_PATH."class/class_user.php";
 $class_invitation_code=new class_invitation_code();
 $user=new class_user();
-$iTotalRecords =count($class_invitation_code->get_all_user_code();
+$iTotalRecords =count($class_invitation_code->get_all_user_code());
 
 //if (array_key_exists('action', $_REQUEST)){
 //
@@ -20,7 +20,7 @@ if(isset($_POST["action"])){
   $act=$_POST["action"];
 	if($act=='create')
 	{
-	   $result=$code->add_code();
+	   $result=$class_invitation_code->add_code();
 		$res= array();
      $res['code']=$result;
      echo json_encode($res);
@@ -28,7 +28,7 @@ if(isset($_POST["action"])){
 	if($act=='delete')
 	{
 	  
-	  $code->delete_code($_POST["code"])
+	  $class_invitation_code->delete_code($_POST["code"]);
 	  $res= array();
      $res['status']="success";
      echo json_encode($res);
