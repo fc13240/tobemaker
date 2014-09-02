@@ -25,9 +25,13 @@ if(isset($_POST["action"])){
      $res['code']=$result;
      echo json_encode($res);
 	}
-	if($act=='view')
+	if($act=='delete')
 	{
 	  
+	  $code->delete_code($_POST["code"])
+	  $res= array();
+     $res['status']="success";
+     echo json_encode($res);
 	}
 }
 if(array_key_exists('draw',$_REQUEST))
