@@ -51,6 +51,7 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='change_share')
     $idea_id=$_POST['idea_id'];
     $arr['name']=$_POST['title'];
     $arr['content']=$_POST['content'];
+    $arr['tags']=$_POST['tags'];
     $arr['create_time']='now()';
     $arr['picture_url']=$pic_url;
     $arr['tags']=$_POST['tags'];
