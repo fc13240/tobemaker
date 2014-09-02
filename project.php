@@ -27,6 +27,11 @@ $user_id=$current_user['user_id'];
 //如果有评论
 if(array_key_exists('saytext', $_POST)){
     
+	if(strlen(trim($_POST["saytext"]))<=0)
+	{
+	    //返回错误信息
+		echo '<script>alert("评论内容不能为空");history.go(-1);</script>';return;
+	}
     $class_comment->add_comment($_POST["idea_id"],$user_id,$_POST["saytext"]);
 }
 

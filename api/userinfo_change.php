@@ -38,6 +38,14 @@ $arr['head_pic_url']=$pic_url;
 $arr['occupation']=$_POST['user_occupation'];
 $arr['self_intro']=$_POST['user_introduction'];
 $res=$class_user->update($user_id,$arr);
+if(strlen(trim($arr['user_name']))<=0||strlen(trim($arr['user_name']))>40)
+{
+   # code...
+	$records['status']='error';
+	echo json_encode($records);
+}
+else
+{
 
 $sql="UPDATE `idea_info` set user_name='".$arr['user_name']."' where user_id=".$user_id;
 
@@ -54,5 +62,5 @@ else {
 	$records['status']='error';
 	echo json_encode($records);
 }
-
+}
 ?>
