@@ -57,7 +57,6 @@ elseif(!empty($_GET["idea_id"])){   // 默认显示主页
     $class_idea=new class_idea();
     $is_like_item = $class_like->get_like_info($idea_id, $user_id);
     $item=$class_idea->get_idea_by_id($idea_id);
-    exit();
       
 }else{
     die("页面传入参数错误");
