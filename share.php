@@ -20,7 +20,7 @@ $page_level = explode('-', $current_page);
 
 
 //保存提交的想法
-if(array_key_exists('img_url',$_POST))
+if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 {
   if(!$class_group_auth->check_auth("submitproject"))
   {

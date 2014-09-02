@@ -38,7 +38,7 @@ class class_share
 
 
 
-    
+    //    
     public function click_share($idea_id,$user_id){
         $idea_id = $this->db->escape($idea_id);
         $user_id = $this->db->escape($user_id);
@@ -58,13 +58,9 @@ class class_share
     public function share_by_wechat($idea_id,$user_id){
         $idea_id = $this->db->escape($idea_id);
         $user_id = $this->db->escape($user_id);
-    	// 第一步，取得idea_id 对应的想法名称
 
-    	$sql_query="select * from idea_info where idea_id=".$idea_id;
-    	$result=$this->db->get_results($sql_query,ARRAY_A);
-    	$idea_name=$result[0]["name"];
     	//第二步 ，更新idea_share  信息
-    	$sql="INSERT into idea_share(`idea_id`,`idea_name`,`share_user_id`,`share_time`,`share_method`) values(".$idea_id.",'".$idea_name."',".$user_id.",now(),'wechat')";
+    	$sql="INSERT into idea_share(`idea_id`,`share_user_id`,`share_time`,`share_method`) values(".$idea_id.",".$user_id.",now(),'wechat')";
         
     	$this->db->query($sql);
     	$sql="UPDATE idea_info set sum_share=sum_share+1 where idea_id=".$idea_id;
