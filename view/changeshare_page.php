@@ -47,7 +47,10 @@
                     <div class="fileupload">
                         <div>上传<i id='upload-progress-label'></i></div>
                         <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/">
-                        <input id="fileurl" type="hidden" name="img_url" value=""/>
+                        <input id="fileurl" type="hidden" name="img_url" value=<?php
+                    echo "\"".$idea_info['picture_url']."\"";
+                    ?>
+                    />
                     </div>
                     <input name="cover_display" type="checkbox" value="1"><span>封面图片显示在正文中</span>
                     <label>标签<span>（标签之前用英文逗号分隔，最多5个标签）</span></label>

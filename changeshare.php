@@ -55,11 +55,17 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='change_share')
     $arr['create_time']='now()';
     $arr['picture_url']=$pic_url;
     $arr['tags']=$_POST['tags'];
-    if(array_key_exists('cover-display', $_POST))// 是否显示封面  数据库默认显示
+    if(array_key_exists('cover_display', $_POST))// 是否显示封面  数据库默认显示
     {
+      echo "yes";
         $arr['cover_display']=1;
     }
-    $new_idea_id=$new_idea->update_idea($idea_id,$arr);
+    else
+    {
+      echo "no";
+      $arr['cover_display']=0;
+    }
+    $new_idea->update_idea($idea_id,$arr);
     //注册修改事件
     $change_info=array();
     $change_info['idea_id']=$_POST['idea_id'];

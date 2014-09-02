@@ -48,7 +48,7 @@ class class_idea
         while ($i<$num) {
                         # code...
                  $aa=$aa."`".$keys[$i]."`,";
-                 if($values[$i]!='now()'){
+                 if($values[$i]!=='now()'){
                  $bb=$bb."'".$values[$i]."',";
                }
                else{
@@ -97,14 +97,21 @@ class class_idea
       $bb="";
       while ($i<$num_a) {
         # code...
-        if($arr[$keys[$i]]!=""){
-        $aa=$aa."`".$keys[$i]."`='".$values[$i]."',";
+        if(isset($arr[$keys[$i]])){
+          if($arr[$keys[$i]]==='now()')
+          {
+             $aa=$aa."`".$keys[$i]."`=now(),";
+          }
+          else{
+          $aa=$aa."`".$keys[$i]."`='".$values[$i]."',";
+        }
+
       }
         $i++;
       }
       $aa=rtrim($aa,",");
       $sql="UPDATE idea_info SET ".$aa." where idea_id=".$idea_id;
-      //echo $sql;
+      echo $sql;
       $this->db->query($sql);
     }
 

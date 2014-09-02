@@ -34,7 +34,7 @@
             	 <div class="atc simditor-body">
                 <p><?php echo $item[0]['content'];?></p>
                 <?php 
-                if(isset($item[0]['cover_display'])&&$item[0]['cover_display']==1){
+                if(isset($item[0]['cover_display'])&&intval($item[0]['cover_display'])==1){
                 ?>
                 <img src=<?php echo "\"".$item[0]['picture_url']."\""?> alt="图挂了">
                 <?php
