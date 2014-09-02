@@ -1,6 +1,8 @@
 <?php
 include_once "../config.php";
 include_once ROOT_PATH."class/class_idea.php";
+include_once ROOT_PATH."class/class_like.php";
+$class_like=new class_like();
 $class_idea=new class_idea();
 $num_of_all=null;
 
@@ -29,6 +31,19 @@ num_of_all
 data[]
 
 */
+
+
+
+if(array_key_exists('user_id', $_POST))
+    {
+        $get_likeit=true;
+        $user_id=$_POST['user_id'];
+    }
+    else{
+        $get_likeit=false;
+    }
+
+
 if(array_key_exists('q', $_POST)){
 	$key_word="%".$_POST['q']."%";
 	$type=$_POST['type'];
@@ -54,12 +69,39 @@ if(array_key_exists('q', $_POST)){
 		$data=$class_idea->select($sql);
 		$num_of_all=$data[0]['count(*)'];
 		//echo $num_of_all;
-		$start=$_POST['start'];
-		$length=$_POST['length'];
+		$start=isset($_POST['start'])?$_POST['start']:0;
+        $length=isset($_POST['length'])?$_POST['length']:6;
 
 		$sql="SELECT * from `idea_info` where ".$rule." and (`idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `user_name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."') limit ".$start.",".$length;
 		
-        $data=$class_idea->select($sql);  
+        $data=$class_idea->select($sql); 
+
+
+        //
+
+        $i=0;$tmp=count($data);
+            while ($i<$tmp) {
+                # code...
+                if($get_likeit==true){
+                    $idea_id=$data[$i]['idea_id'];
+                    $check_like=$class_like->get_like_info($idea_id,$user_id);
+                    if($check_like==1)
+                    {
+                        $data[$i]['likeit']=1;
+                    }
+                    else{
+                        $data[$i]['likeit']=0;
+                    }
+                    $i++;
+                }
+                else{
+                    $data[$i]['likeit']=0;
+                    $i++;
+                }
+
+            }
+
+        // 
 		$result['num_of_all']=$num_of_all;
 		$result['num_of_currentpage']=count($data);
 		$result['data']=$data;
