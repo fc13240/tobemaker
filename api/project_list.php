@@ -42,7 +42,7 @@ $num_of_all=null;
     }
 
 
-    if(array_key_exists('q', $_POST)){
+    if(array_key_exists('q', $_POST)&&strlen($_POST['q'])>0){
             //装备参数
     $key_word="%".$_POST['q']."%";
     $type=$_POST['type'];
@@ -65,7 +65,6 @@ $num_of_all=null;
     }
 
     else{
-   // echo $_POST['type'];
     $start=isset($_POST['start'])?$_POST['start']:0;
     $length=isset($_POST['length'])?$_POST['length']:6;
     //装备参数

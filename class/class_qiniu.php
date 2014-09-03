@@ -49,8 +49,4 @@ class class_qiniu{
         $client = new Qiniu_MacHttpClient(null);
         $err = Qiniu_RS_Copy($client, $this->bucket, $file1, $this->bucket, $file2);
     }
-
-
-
-
 }

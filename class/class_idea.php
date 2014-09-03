@@ -145,21 +145,25 @@ class class_idea
       if($sort_key=='new')
         {
             $sort_rule='`idea_info`.`create_time`';
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and ".$rule." and `idea_info`.`user_id`=`user_info`.`user_id` order by ".$sort_rule."  desc limit ".$start.",".$length;
         }
         elseif($sort_key=='hot')
         {
             $sort_rule='`idea_info`.`sum_like`';
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and ".$rule." and `idea_info`.`user_id`=`user_info`.`user_id` order by ".$sort_rule."  desc limit ".$start.",".$length;
         }
         elseif($sort_key=='recommend')
         {
             $sort_rule='`idea_info`.`is_recommend`';
+
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`is_recommend` >0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`is_recommend` desc limit ".$start.",".$length;
         }
         else{
         $sort_rule='`idea_info`.`is_recommend`';
+
+
+            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`is_recommend` >0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`is_recommend` desc limit ".$start.",".$length;
       }
-
-
-      $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and ".$rule." and `idea_info`.`user_id`=`user_info`.`user_id` order by ".$sort_rule."  desc limit ".$start.",".$length;
       $res=$this->db->get_results($sql,ARRAY_A);
       return $res;
      }
@@ -300,39 +304,32 @@ class class_idea
         return $result;
     }
 
-
-
     //获取部分项目加按照状态排序    先获取符合条件的,后排序
      public function get_part_ideas_order_status($begin,$num,$sort_rule){
 
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
       if($sort_rule==0){  //增序
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_info`.`idea_status` asc limit ".$begin.",".$num;
+        $sql="SELECT  `idea_info`.*, `idea_status`.`status_name` from `idea_info`,`idea_status` where `idea_status`.`status_id`=`idea_info`.`idea_status` order by `idea_info`.`idea_status` asc limit ".$begin.",".$num;
       }
       elseif ($sort_rule==1) {  //倒序
         # code...
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_info`.`idea_status` desc limit ".$begin.",".$num;
+        $sql="SELECT  `idea_info`.*, `idea_status`.`status_name` from `idea_info`,`idea_status` where `idea_status`.`status_id`=`idea_info`.`idea_status` order by `idea_info`.`idea_status` desc limit ".$begin.",".$num;
 
       }
       $result = $this->db->get_results($sql,ARRAY_A);
       return $result;
     }
     
-
-
-
     //  根据id排序获取想法id
     public function get_part_ideas_order_ideaid($begin,$num,$sort_rule){
-
       $begin = $this->db->escape($begin);
       $num=$this->db->escape($num);
       if($sort_rule==0){
-        $sql="SELECT distinct `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_info`.`idea_id` asc limit ".$begin.",".$num;
+        $sql="SELECT  `idea_info`.*, `idea_status`.`status_name` from `idea_info`,`idea_status` where `idea_status`.`status_id`=`idea_info`.`idea_status` order by `idea_info`.`idea_id` asc limit ".$begin.",".$num;
       }elseif ($sort_rule==1) {
         # code...
-        $sql="SELECT `idea_manage`.`idea_id`,`idea_info`.*,`idea_manage`.`reason`,`idea_manage`.`idea_status`, `idea_status`.`status_name`from `idea_info`,`idea_status`,`idea_manage` where `idea_status`.`status_id`=`idea_info`.`idea_status` and `idea_manage`.`idea_id`=`idea_info`.`idea_id` order by `idea_info`.`idea_id` desc limit ".$begin.",".$num;
-
+        $sql="SELECT  `idea_info`.*, `idea_status`.`status_name` from `idea_info`,`idea_status` where `idea_status`.`status_id`=`idea_info`.`idea_status` order by `idea_info`.`idea_id` desc limit ".$begin.",".$num;
       }
         $result = $this->db->get_results($sql,ARRAY_A);
         return $result;

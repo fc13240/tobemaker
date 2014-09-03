@@ -35,12 +35,15 @@ function update_one_idea( $idea_id,$arr){
 }
 
 $status_list = array(
-
-  array("notready" => "等待完善"),
-  array("newidea" => "新建想法"),
+  array("danger" => "等待完善"),
+  array("danger" => "新建想法"),
   array("warning" => "等待审核"),
   array("danger" => "已拒绝"),
-  array("success" => "已批准")
+  array("success" => "已批准积赞中"),
+  array("success"=>"待产"),
+  array("success"=>"生产完成"),
+  array("success"=>"下线"),
+  array("danger"=>"积赞失败需下线")
 );
 
 
@@ -99,7 +102,6 @@ elseif ($_POST['order'][0]['column']==5 or $_POST['order'][0]['column']==1) {
 
 // 开始位置
   $iDisplayStart = intval($_REQUEST['start']);
-
 // Draw counter. 
 // This is used by DataTables to ensure that the Ajax 
 // returns from server-side processing requests are drawn 
@@ -135,6 +137,7 @@ elseif ($_POST['order'][0]['column']==5 or $_POST['order'][0]['column']==1) {
   $real_length= count($datalist);
   for($i = 0; $i < $real_length; $i++) {
   $status = $status_list[$datalist[$i]["idea_status"]];
+ // echo current($status);
   $id = $datalist[$i]["idea_id"];
   $records["data"][] = array(
     '<input class="checkboxes" type="checkbox" name="id[]" value="'.$id.'"/>',
@@ -186,7 +189,6 @@ $end = $end > $iTotalRecords ? $iTotalRecords : $end;
 $real_length=$end-$iDisplayStart;
 
  // 获取数据
-
 $datalist=$class_idea->get_part_ideas($iDisplayStart,$real_length);
 $real_length= count($datalist);
 for($i = 0; $i < $real_length; $i++) {
@@ -204,7 +206,6 @@ for($i = 0; $i < $real_length; $i++) {
       . '<a href="./idea_detail_all.php?idea_id='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>查看</a>',
   );
 }
-
 
 if (isset($_REQUEST["customActionType"]) && $_REQUEST["customActionType"] == "group_action") {
   $records["customActionStatus"] = "OK"; // pass custom message(useful for getting status of group actions)
