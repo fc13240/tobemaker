@@ -55,6 +55,20 @@ class class_invitation_code
 	   $result=$this->db->get_results($sql,ARRAY_A);
 	   return $result;
 	}
+	//获取部分邀请码
+	function get_part_code($begin,$length)
+	{
+	    $sql='select `invitation_code`.* from `invitation_code` where 1 limit '.$begin.','.$length.'';
+	   $result=$this->db->get_results($sql,ARRAY_A);
+	   return $result;
+	}
+	//获取全部邀请码
+	function get_all_code()
+	{
+	    $sql='select `invitation_code`.* from `invitation_code` ';
+	   $result=$this->db->get_results($sql,ARRAY_A);
+	   return $result;
+	}
     // 查询是否可用
     function check_code($code){
     	$arr = array();
