@@ -13,12 +13,9 @@ $current_user = $class_user->get_current_user();
 
 $qiniu= new class_qiniu();
 $upToken=$qiniu->get_token_to_upload_idea();
-
 // 导航 当前页面控制
 $current_page = 'share';
 $page_level = explode('-', $current_page);
-
-
 //保存提交的想法
 if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 {
@@ -33,7 +30,7 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 	//七牛保存图片
 	if(isset($_POST['img_url']))
 	{
-		$pic_url=$_POST['img_url'];
+	$pic_url=$_POST['img_url'];
 	$url_array = explode("/", $pic_url);
     $key = end($url_array);
     $key1 ="upload/".$current_user['user_id']."/".$key;
@@ -55,7 +52,6 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 	else
     {
       $arr['cover_display']=0;
-      echo "okoko";
     }
 	//echo "";
 	$arr['user_name']=$current_user['user_name'];
@@ -68,6 +64,4 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 	header($url);
 	exit();
 }
-
-
 include 'view/share_page.php';
