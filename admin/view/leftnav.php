@@ -91,7 +91,7 @@
 						</li>
 					</ul>
 				</li>
-                                <li class="last <?= @$page_level[0] == 'user' ? 'active open' : '' ?>">
+                                <li class="<?= @$page_level[0] == 'user' ? 'active open' : '' ?>">
 					<a href="javascript:;">
 					<i class="icon-basket"></i>
 					<span class="title">用户</span>
