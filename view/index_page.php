@@ -91,7 +91,7 @@
             <input type="text" name="password" placeholder="密码">
             <!--<input type="password" name="passwordAgain" placeholder="确认密码">-->
             <input type="text" name="inviteCode" placeholder="邀请码">
-            <input type="checkbox"><span>我已经认真阅读并同意《使用协议》</span>
+                <input type="checkbox"><span>我已经认真阅读并同意<a href="login_agreement.html">《使用协议》</a></span>
             <input type="button" value="注册">
             <div class="close">X</div>
         </form>
