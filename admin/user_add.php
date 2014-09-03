@@ -4,8 +4,10 @@ include_once '../config.php';
 include_once '../class/class_user.php';
 include_once '../class/class_file.php';
 include_once '../class/class_group.php';
+include_once '../class/class_check.php';
 include_once ROOT_PATH."class/class_group_auth.php";
 $class_group_auth=new class_group_auth();
+$class_check=new class_check();
 //判断权限
 if(!$class_group_auth->check_auth("admin"))
   {
@@ -79,7 +81,18 @@ include 'view/user_add.php';
 
 include 'view/quick_bar.php';
 
-include 'view/footer.php';
+
+function alertMsg($msg,$status)
+{
+    if($status=='error')
+    {
+       echo '<script>alert("'.$msg.'");history.go(-1);</script>';
+    }
+	else
+	{
+	   echo '<script>alert("'.$msg.'");</script>';
+	}
+}
 //表单处理
 $user=new class_user();
 
@@ -91,6 +104,31 @@ if(!empty($_POST["img_url"]))
 if(array_key_exists('real_name',$_POST))
 {
 //验证表单提交数据合法性
+if($class_check->username_able($_POST["user_name"],2,16)!='success')
+{
+   alertMsg('用户名不合法，长度应在2~16之间且不能含有空格！',"error");
+}
+elseif($class_check->password_able($_POST["password"],6,16)!='success')
+{
+    alertMsg('密码不合法，不能含有空格且长度在6~16之间！',"error");
+}
+elseif(!$class_check->is_email($_POST["email"]))
+{ 
+   alertMsg('邮箱不合法！',"error");
+}
+elseif(!empty($_POST["money"])&&!$class_check->is_double_p($_POST["money"]))
+{
+   alertMsg('金额不合法！',"error");
+}
+elseif(!$class_check->is_mobile($_POST["mobile"]))
+{
+   alertMsg('手机号不合法！',"error");
+}
+elseif($_POST["password"]!=$_POST["confirmpaaword"])
+{
+   alertMsg('两次密码不一致！',"error");
+}
+else{
 if(!empty($imgUrl))
   {
 $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],"user_passcode"=>$_POST["password"],
@@ -107,7 +145,8 @@ $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"se
 			 "occupation"=>$_POST["occupation"]);
 			 $result=$user->insert($arr);
 }	
-
+}
              
 //返回成功信息
 }
+include 'view/footer.php';

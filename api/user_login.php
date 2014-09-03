@@ -55,10 +55,11 @@ include_once "../config.php";
 include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
 include_once ROOT_PATH."class/class_invitation_code.php";
+include_once ROOT_PATH."class/class_check.php";
 //include_once ROOT_PATH."class/class_invitation_code.php";
 $class_session=new class_session();
 $class_user=new class_user();
-
+$class_check=new class_check();
 //$class_invitation_code=new class_invitation_code();
 function check_invitation_code($invitation_code){
 	//检测是否需要验证码
@@ -145,10 +146,10 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
 		    $result['status']='email_unable';
 	        echo json_encode($result);
 		 }
-		  elseif(strlen(trim($_POST['password']))<=0)
+		  elseif($class_check->password_able($_POST["password"],6,16)!='success')
           {
 		    $result=array();
-            $result['status']='password_empty！';
+            $result['status']=$class_check->password_able($_POST["password"],6,16);
 			echo json_encode($result);
           }
         //插入数据库
@@ -188,12 +189,12 @@ elseif(array_key_exists("action",$_POST)&&$_POST['action']=='login'){
 		    $result['status']='email_unable';
 	        echo json_encode($result);
    }
-   elseif(strlen(trim($_POST['password']))<=0)
-   {
-    $result=array();
-            $result['status']='password_empty！';
+   elseif($class_check->password_able($_POST["password"],6,16)!='success')
+          {
+		    $result=array();
+            $result['status']=$class_check->password_able($_POST["password"],6,16);
 			echo json_encode($result);
-   }
+          }
    else{
    
     $result=$class_session->login();
