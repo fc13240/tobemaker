@@ -743,8 +743,17 @@ form.lgn {
 }
 .list dl dd img{
     width: 100%;
+    height: auto;
+}
+
+.list dl dd img.h200{
     height: 200px;
 }
+
+.list dl dd img.h273{
+    height: 273px;
+}
+
 .list dl dd a.avatar{
     width: 40px;
     height: 40px;

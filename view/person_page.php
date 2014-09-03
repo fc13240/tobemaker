@@ -136,7 +136,7 @@
                     $container.append('\
                     <dl>\
                         <dd>\
-                            <img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/233x200!"  class="" >\
+                            <img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/233x200!"  class="h200" >\
                             <div class="person-img-shield">\
                                 <p class="state">'+ item.status_name +'</p>\
                                 <a href="project.php?idea_id='+ item.idea_id +'"><p class="title">'+item.name+'</p></a>\
