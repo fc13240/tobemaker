@@ -49,7 +49,7 @@
 							<i class="icon-home"></i>
 							项目列表</a>
 						</li>
-                                                <li class="<?= @$page_level[1] == 'idea_detail' ? 'active' : '' ?>">
+<!--                                                <li class="<?= @$page_level[1] == 'idea_detail' ? 'active' : '' ?>">
                                                         <a href="idea_detail.php">
 							<i class="icon-home"></i>
 							项目向导</a>
@@ -58,12 +58,12 @@
                                                         <a href="idea_detail_all.php">
 							<i class="icon-home"></i>
 							项目详情</a>
-						</li>
+						</li>-->
 
 						<li class="<?= @$page_level[1] == 'idea_recommend' ? 'active' : '' ?>">
                                                         <a href="idea_recommend.php">
 							<i class="icon-home"></i>
-							项目推荐</a>
+							推荐排序</a>
 						</li>
 					</ul>
 				</li>
@@ -74,15 +74,15 @@
 					<span class="arrow <?= @$page_level[0] == 'product' ? 'open' : '' ?>"></span>
 					</a>
                                         <ul class="sub-menu">
+                                                <li class="<?= @$page_level[1] == 'product_add' ? 'active' : '' ?>">
+                                                        <a href="product_add.php">
+							<i class="icon-home"></i>
+							新商品</a>
+						</li>
                                                 <li class="<?= @$page_level[1] == 'product_list' ? 'active' : '' ?>">
                                                         <a href="product_list.php">
 							<i class="icon-home"></i>
-							项目列表</a>
-						</li>
-                                                <li class="<?= @$page_level[1] == 'product_detail' ? 'active' : '' ?>">
-                                                        <a href="product_detail.php">
-							<i class="icon-home"></i>
-							项目详情</a>
+							商品列表</a>
 						</li>
 						<li class="<?= @$page_level[1] == 'product_category_list' ? 'active' : '' ?>">
                                                         <a href="product_category_list.php">
@@ -98,17 +98,31 @@
 					<span class="arrow <?= @$page_level[0] == 'user' ? 'open' : '' ?>"></span>
 					</a>
                                         <ul class="sub-menu">
+                                                <li class="<?= @$page_level[1] == 'user_add' ? 'active' : '' ?>">
+                                                        <a href="user_add.php">
+							<i class="icon-home"></i>
+							新用户</a>
+						</li>
                                                 <li class="<?= @$page_level[1] == 'user_list' ? 'active' : '' ?>">
                                                         <a href="user_list.php">
 							<i class="icon-home"></i>
 							用户列表</a>
 						</li>
-                                                <li class="<?= @$page_level[1] == 'user_detail' ? 'active' : '' ?>">
-                                                        <a href="user_detail.php">
+					</ul>
+				</li>
+                                <li class="last <?= @$page_level[0] == 'auth' ? 'active open' : '' ?>">
+					<a href="javascript:;">
+					<i class="icon-basket"></i>
+					<span class="title">权限</span>
+					<span class="arrow <?= @$page_level[0] == 'auth' ? 'open' : '' ?>"></span>
+					</a>
+                                        <ul class="sub-menu">
+                                                <li class="<?= @$page_level[1] == 'group_add' ? 'active' : '' ?>">
+                                                        <a href="group_add.php">
 							<i class="icon-home"></i>
-							用户详情</a>
+							新群组</a>
 						</li>
-						   <li class="<?= @$page_level[1] == 'group_list' ? 'active' : '' ?>">
+                                                <li class="<?= @$page_level[1] == 'group_list' ? 'active' : '' ?>">
                                                         <a href="group_list.php">
 							<i class="icon-home"></i>
 							群组列表</a>
