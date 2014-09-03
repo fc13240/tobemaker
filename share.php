@@ -55,8 +55,7 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
     }
 	//echo "";
 	$arr['user_name']=$current_user['user_name'];
-
-
+	$arr['idea_status']='2';
 	// 插入数据库
 	$new_idea= new class_idea();
 	$new_idea_id=$new_idea->insert("idea_info",$arr);

@@ -100,14 +100,10 @@ class class_like
         $sum=$this->get_sum_like($idea_id);
         $sql="SELECT * from idea_info where idea_id=".$idea_id;
         $res=$this->db->get_results($sql,ARRAY_A);
-        //var_dump($res);
-
-
-
         $limit=$res[0]["target"];
-
+        $idea_status=$res[0]['idea_status'];
         //  积赞超过目标
-        if($sum>=$limit){
+        if($sum>=$limit&&intval($idea_status)==4){
             $sql="UPDATE `idea_info` set idea_status=5 where idea_id=".$idea_id;
             $this->db->query($sql);
         }
