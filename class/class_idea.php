@@ -30,6 +30,7 @@ class class_idea
 
     // ---------  增删改查基本操作 - 开始
     public function select($sql_select){
+	 $sql_select = $this->db->escape($sql_select);
         $result = $this->db->get_results($sql_select, ARRAY_A);  
         return $result;
     }
@@ -40,7 +41,12 @@ class class_idea
 
     public function insert($table_name,$array){
         $num=count($array);
-        $keys=array_keys($array);
+         $table_name=$this->db->escape($table_name);
+	$keys=array_keys($array);
+	for($i=0;$i<count($keys);$i++)
+	{
+	   $array[$keys[$i]]=$this->db->escape($array[$keys[$i]]);
+	}
         $values=array_values($array);
         $aa=null;
         $bb=null;
@@ -67,6 +73,9 @@ class class_idea
 
     // 更新单独表中某个字段
     private function update_one($table_name,$col_name,$value){
+	     $table_name=$this->db->escape($table_name);
+	  $col_name=$this->db->escape($col_name);
+	   $value=$this->db->escape($value);
         $sql_query="update ".$table_name." set ".$col_name."=".$value;
         $this->db->query($sql_query);
     }
@@ -80,6 +89,7 @@ class class_idea
 
 
     public function get_idea_by_id($idea_id){
+	$idea_id=$this->db->escape($idea_id);
       $sql="SELECT * from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_id`=".$idea_id;
       $result = $this->db->get_results($sql, ARRAY_A);  
       return $result;
@@ -89,7 +99,12 @@ class class_idea
    
     public function update_idea($idea_id,$arr)
     {
-      $keys=array_keys($arr);
+	$idea_id=$this->db->escape($idea_id);
+       $keys=array_keys($arr);
+	  for($i=0;$i<count($keys);$i++)
+	{
+	   $arr[$keys[$i]]=$this->db->escape($arr[$keys[$i]]);
+	}
       $values=array_values($arr);
       $num_a=count($keys);
       $i=0;
@@ -119,6 +134,9 @@ class class_idea
 
     function search_by_key_word($key_word,$start,$length)
     {
+	$key_word=$this->db->escape($key_word);
+	$start=$this->db->escape($start);
+	$length=$this->db->escape($length);
       $key_word="%".$key_word."%";
       $sql="SELECT * from `idea_info` where `idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `user_name` like '".$key_word."' limit ".$start.",".$length;
       //echo $sql;
@@ -129,7 +147,10 @@ class class_idea
 
 ////  搜索＋排序
      function get_idea_key_sort_by_rule($sort_key,$type,$start,$length){
-      $this->db->escape($type);
+      $sort_key=$this->db->escape($sort_key);
+	  $type=$this->db->escape($type);
+	  $start=$this->db->escape($start);
+	  $length=$this->db->escape($length);
       if($type=='pass'){
         $rule=' `idea_info`.`idea_status`=4 ';
       }
@@ -170,7 +191,8 @@ class class_idea
 
 
      function get_ideanum_sort_by_rule($sort_key,$type){
-      $this->db->escape($type);
+      $type=$this->db->escape($type);
+	  $sort_key=$this->db->escape($sort_key);
       if($type=='pass'){
         $rule=' `idea_info`.`idea_status`=4 ';
       }
@@ -220,6 +242,7 @@ class class_idea
     //  按关键字获取全部
     function search_all_by_key_word($key_word)
     {
+	$key_word=$this->db->escape($key_word);
       $key_word="%".$key_word."%";
       $sql="SELECT * from `idea_info` where `idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `user_name` like '".$key_word."'";
       $result = $this->db->get_results($sql, ARRAY_A);  
@@ -228,7 +251,10 @@ class class_idea
 
     //按照关键字分类搜索
     function search_part_by_key_word($key,$type,$start,$length){
-      $this->db->escape($type);
+       $key=$this->db->escape($key);
+	  $type=$this->db->escape($type);
+	  $start=$this->db->escape($start);
+	  $length=$this->db->escape($length);
       if($type=='pass'){
         $rule=' `idea_info`.`idea_status`=4 ';
       }
@@ -253,7 +279,9 @@ class class_idea
 
 
      function search_num_by_key_word($key,$type){
-      $this->db->escape($type);
+	  $key=$this->db->escape($key);
+	  $type=$this->db->escape($type);
+      
       if($type=='pass'){
         $rule=' `idea_info`.`idea_status`=4 ';
       }

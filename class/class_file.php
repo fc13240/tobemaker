@@ -1,8 +1,9 @@
 <?php if ( ! defined('ROOT_PATH')) exit('No direct script access allowed');
-
+include_once ROOT_PATH."include/ez_sql_core.php";
+include_once ROOT_PATH."include/ez_sql_mysql.php";
 class class_file
 {
-    
+    private $db = null;
     private $tmp_folder;
     private $file_folder;
     
@@ -20,6 +21,10 @@ class class_file
         $this->file_path = ROOT_PATH . $this->file_folder;
         
         $this->error_msg = "";
+		// Initialise database object and establish a connection
+        // at the same time - db_user / db_password / db_name / db_host
+        $this->db = new ezSQL_mysql(DATABASE_USER,DATABASE_PASSWORD, DATABASE_NAME, DATABASE_HOST);
+        $this->db->query("SET NAMES utf8");
     }
     
     // 保存文件为临时文件，用于用户预览上传的内容。
@@ -73,6 +78,7 @@ class class_file
     // 保存文件为持久文件
     // 返回持久url地址
     function save($url){
+	$url = $this->db->escape($url);
         $url_array = explode("/", $url);
         
         $filename = end($url_array);
@@ -88,6 +94,7 @@ class class_file
     }
     
     function gen_filename($filename){
+	$filename = $this->db->escape($filename);
         $name_array = explode(".", $filename);
         
         $name = $name_array[0];

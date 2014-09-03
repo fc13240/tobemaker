@@ -29,10 +29,16 @@ class class_user
     
 
     function query_sql($sql){
+	   $sql=$this->db->escape($sql);
       $this->db->query($sql);
     }
     // 添加用户
     function insert($array){
+	$keys=array_keys($array);
+	for($i=0;$i<count($keys);$i++)
+	{
+	   $array[$keys[$i]]=$this->db->escape($array[$keys[$i]]);
+	}
         $array["user_passcode"]=md5($array["user_passcode"]);
        $num=count($array);
         $keys=array_keys($array);
@@ -58,13 +64,14 @@ class class_user
 	//启用用户
 	function enable($userid)
 	{
+	    $userid=$this->db->escape($userid);
 	   $sql='update `user_info` set `user_activity`="Y" where `user_id`='.$userid.' ';
 			$this->db->query($sql);
 	}
      //【屏蔽用户】
 	 function shield($userid)
 	 {
-	    
+	    $userid=$this->db->escape($userid);
 		    $sql='update `user_info` set `user_activity`="N" where `user_id`='.$userid.' ';
 			$this->db->query($sql);
 		  
@@ -72,6 +79,12 @@ class class_user
 
     // 根据数组字段插入数据
     public function insert_user($table_name,$array){
+	$table_name=$this->db->escape($table_name);
+	$keys=array_keys($array);
+	for($i=0;$i<count($keys);$i++)
+	{
+	   $array[$keys[$i]]=$this->db->escape($array[$keys[$i]]);
+	}
         $num=count($array);
         $keys=array_keys($array);
         $values=array_values($array);
@@ -109,7 +122,12 @@ class class_user
     
     // 更新用户信息
     function update($userid, $data){
+	$userid=$this->db->escape($userid);
 	  $keys=array_keys($data);
+	  for($i=0;$i<count($keys);$i++)
+	{
+	   $data[$keys[$i]]=$this->db->escape($data[$keys[$i]]);
+	}
       $values=array_values($data);
       $num_a=count($keys);
       $i=0;
@@ -132,21 +150,22 @@ class class_user
     
     // 获取用户信息
     function select($userid){
-        
+        $userid = $this->db->escape($userid);
         $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_id` = ".$userid , ARRAY_A);
         
         return $result;
     }
 
     function select_by_email($user_email){
-        
+        $user_email= $this->db->escape($user_email);
         $result = $this->db->get_results("SELECT * FROM `user_info` WHERE `user_email` ='".$user_email."'", ARRAY_A);
         return $result;
     }
     
     // 获取用户列表
     function get_user_list($start, $length){
-        
+        $start= $this->db->escape($start);
+		$length= $this->db->escape($length);
         $result = $this->db->get_results("select * from `user_info` limit $start,$length", ARRAY_A);
         
         return $result;
@@ -162,6 +181,7 @@ class class_user
     //获取某组用户信息
     function get_user_by_group($group_id)
     {
+	    $group_id= $this->db->escape($group_id);
         $result=$this->db->get_results('select * from `user_info` where `user_group`='.$group_id,ARRAY_A);
             return $result;
     }

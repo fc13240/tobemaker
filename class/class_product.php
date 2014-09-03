@@ -22,6 +22,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 
     // ---------  增删改查基本操作 - 开始
     public function select($sql_select){
+	   $sql_select= $this->db->escape($sql_select);
         $result = $this->db->get_results($sql_select, ARRAY_A);  
         if(count($result)>0) 
         {return $result;
@@ -36,7 +37,12 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 
     public function insert($table_name,$array){
         $num=count($array);
-        $keys=array_keys($array);
+        $table_name=$this->db->escape($table_name);
+	$keys=array_keys($array);
+	for($i=0;$i<count($keys);$i++)
+	{
+	   $array[$keys[$i]]=$this->db->escape($array[$keys[$i]]);
+	}
         $values=array_values($array);
         $aa=null;
         $bb=null;
@@ -59,21 +65,27 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
     
     // 更新表中某个字段
     private function update_one($table_name,$col_name,$value){
+	 $table_name=$this->db->escape($table_name);
+	  $col_name=$this->db->escape($col_name);
+	   $value=$this->db->escape($value);
         $sql_query="update ".$table_name." set ".$col_name."=".$value;
         $this->db->query($sql_query);
     }
     //删除某个id的商品
     public function delete_product($pf_id){
+	$pf_id=$this->db->escape($pf_id);
 	$sql='delete from `product_info` where `pf_id`='.$pf_id;
 	$this->db->query($sql);
     }
 	 //删除某个id的商品目录
     public function delete_category($pc_id){
+	$pc_id=$this->db->escape($pc_id);
 	$sql='delete from `product_category` where `pc_id`='.$pc_id;
 	$this->db->query($sql);
     }
     // 获取某个id详细信息
     public function get_product_by_id($pf_id){
+	$pf_id=$this->db->escape($pf_id);
       $sql="SELECT pf.*, pc.pc_name from `product_info` as pf, `product_category` as pc where `product_info`.`pc_id`=pc.`pc_id` and `product_info`.`pf_id`=".$product_id.' order by `pf_sort` desc';
       $result = $this->db->get_results($sql, ARRAY_A);  
       return $result;
@@ -81,6 +93,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
     //获取某个id目录信息
 	public function get_category_by_id($pc_id)
 	{
+	$pc_id=$this->db->escape($pc_id);
 	$sql='select pc.* from `product_category` as pc where pc.`pc_id`='.$pc_id;
 	$result = $this->db->get_results($sql, ARRAY_A);  
       return $result;
@@ -89,7 +102,12 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
    
      public function update_product($product_id,$arr)
     {
+	  $product_id=$this->db->escape($product_id);
       $keys=array_keys($arr);
+	  for($i=0;$i<count($keys);$i++)
+	{
+	   $arr[$keys[$i]]=$this->db->escape($arr[$keys[$i]]);
+	}
       $values=array_values($arr);
       $num_a=count($keys);
       $i=0;
@@ -112,7 +130,12 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	//通过product_category字段更新数据  传入修改的id和字段=》值 数组实现更新 
 	 public function update_category($product_id,$arr)
     {
+       $product_id=$this->db->escape($product_id);
       $keys=array_keys($arr);
+	  for($i=0;$i<count($keys);$i++)
+	{
+	   $arr[$keys[$i]]=$this->db->escape($arr[$keys[$i]]);
+	}
       $values=array_values($arr);
       $num_a=count($keys);
       $i=0;
@@ -186,6 +209,12 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
     //验证是否重复
     public function check_is_unique($table_name,$arr_columns_value)
 	{
+	$table_name = $this->db->escape($table_name);
+	 $keys=array_keys($arr_columns_value);
+	  for($i=0;$i<count($keys);$i++)
+	{
+	   $arr_columns_value[$keys[$i]]=$this->db->escape($arr_columns_value[$keys[$i]]);
+	}
 	   $strsql='select * from `'.$table_name.'` ';
 	    if (count($arr_columns_value)<=0)
 	    {
@@ -207,6 +236,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 					}
 				}
 	        }
+			
 		$result=$this->db->get_results($sql,ARRAY_A);
 		return count($result);
 	}
