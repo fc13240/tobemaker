@@ -31,11 +31,11 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 	if(isset($_POST['img_url']))
 	{
 	$pic_url=$_POST['img_url'];
-	$url_array = explode("/", $pic_url);
-    $key = end($url_array);
-    $key1 ="upload/".$current_user['user_id']."/".$key;
-    $qiniu->copy($key,$key1);
-    $pic_url=QINIU_DOWN.$key1;
+	//$url_array = explode("/", $pic_url);
+    //$key = end($url_array);
+    //$key1 ="upload/".$current_user['user_id']."/".$key;
+    //$qiniu->copy($key,$key1);
+    //$pic_url=QINIU_DOWN.$key1;
     }
     else $pic_url="";
 

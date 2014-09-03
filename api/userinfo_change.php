@@ -39,14 +39,14 @@ elseif(strlen(trim($_POST['user_occupation']))>200)
 }
 else{
 //七牛处理图片
-$qiniu= new class_qiniu();
+//$qiniu= new class_qiniu();
 $pic_url=$_POST['head_url'];
-$url_array = explode("/", $pic_url);
-$key = end($url_array);
-$key1 ="upload/".$user_id."/head/".$key;
+//$url_array = explode("/", $pic_url);
+//$key = end($url_array);
+//$key1 ="upload/".$user_id."/head/".$key;
 
-$qiniu->move($key,$key1);
-$pic_url=QINIU_DOWN.$key1;
+// $qiniu->move($key,$key1);
+// $pic_url=QINIU_DOWN.$key1;
 
 //
 $arr['head_pic_url']=$pic_url;
