@@ -145,8 +145,10 @@ $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"se
 			 "occupation"=>$_POST["occupation"]);
 			 $result=$user->insert($arr);
 }	
+//返回成功信息
+alertMsg("添加成功！","success");
 }
              
-//返回成功信息
+
 }
 include 'view/footer.php';

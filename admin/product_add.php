@@ -115,6 +115,7 @@ $arr= array("pf_name"=>$_POST["name"],"pf_image"=>$imgUrl,
 			"pc_id"=>$_POST["category"],"pf_addDate"=>date("y-m-d",$time));
 
 $result=$product->insert('product_info',$arr);
+alertMsg("添加成功！","success");
 }
 }
 include 'view/header.php';

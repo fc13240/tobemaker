@@ -145,6 +145,7 @@ else{
              "pf_label"=>$_POST["label"],"pf_price"=>$_POST["price"],"pf_discount"=>$_POST["discount"],
 			 "pf_status"=>$_POST["status"],"pf_sort"=>$_POST["sort"]);
   $result=$product->update_product($_POST["pf_id"],$arr);
+  alertMsg("更新成功！","success");
   }
   //成功信息
 }

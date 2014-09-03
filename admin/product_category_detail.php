@@ -95,6 +95,7 @@ else
   $arr=array("pc_name"=>$_POST["name"],"pc_id"=>$_POST["pc_id"],"pc_status"=>$_POST["status"]);
   
   $result=$product->update_category($_POST["pc_id"],$arr);
+   echo '<script type="text/javascript"> alert("更新成功！")</script>';
   }
   
 }
