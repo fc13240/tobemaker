@@ -344,7 +344,7 @@
                     if (data.result.key == null){
                         alert("错误：" + data.result.err_msg);
                     }else{
-                        var url="http://yzzwordpress.qiniudn.com/"+ data.result.key;
+                        var url="<?=QINIU_DOWN?>"+ data.result.key;
                         console.log(url);
                         $("#userHead").attr('src', url);
                         $("#head_pic_url").val(url);
