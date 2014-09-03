@@ -57,7 +57,6 @@
                   		<textarea id="editor" name="content" placeholder="这里输入内容" autofocus></textarea>					
                     </div>
                     <input type="hidden" name="act" value="create_share" />
-                    <input type="hidden" name="user_id" value="2" />
 
                 </form>
             </div>

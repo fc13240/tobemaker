@@ -34,6 +34,10 @@ class class_like
             return 0;
         }
     }
+
+
+
+    ///----------增加点赞记录
      public function add_like($idea_id,$user_id=null)
     {
         //先查询是是否有点赞记录，如果有则直接返回true
@@ -52,7 +56,7 @@ class class_like
             return 1;
     }
 
-// 取消点赞
+      // 取消点赞  （暂时没有用到）
     public function delet_like($idea_id,$user_id)
     {
         //先查询是是否有点赞记录，如果有则直接返回true
@@ -77,6 +81,8 @@ class class_like
         }
     }
 
+
+    //--------获取点赞数目
     public function get_sum_like($idea_id){
         $idea_id = $this->db->escape($idea_id);
     	$sql="select sum_like from idea_info where `idea_id`=".$idea_id;
@@ -88,15 +94,20 @@ class class_like
     		return 0;
     	}
     }
-    //积攒达到一定数量就待产
+    //积赞达到一定数量就待产
     public function check_to_change_produce($idea_id){
         $idea_id = $this->db->escape($idea_id);
         $sum=$this->get_sum_like($idea_id);
         $sql="SELECT * from idea_info where idea_id=".$idea_id;
         $res=$this->db->get_results($sql,ARRAY_A);
         //var_dump($res);
+
+
+
         $limit=$res[0]["target"];
-        if($sum>$limit){
+
+        //  积赞超过目标
+        if($sum>=$limit){
             $sql="UPDATE `idea_info` set idea_status=5 where idea_id=".$idea_id;
             $this->db->query($sql);
         }

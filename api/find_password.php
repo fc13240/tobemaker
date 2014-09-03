@@ -10,6 +10,8 @@ $class_user =new class_user();
 $class_session=new class_session();
 $class_findpass=new class_findpass_code();
 /*
+
+//发送找回请求
 传入
 
 action='findpass'
@@ -19,6 +21,9 @@ user_email
 status＝'no_user'/'success'
 -重置密码(找回密码所用)
 
+
+
+//   已被废除的接口设计
 传入
 
 action='resetpass'
@@ -28,6 +33,9 @@ new_password
 传出
 
 status＝'code_error'/'success'
+
+
+
 -重置密码(修改密码所用)
 
 传入

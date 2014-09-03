@@ -52,9 +52,7 @@ class class_user
         $sql;
         $this->db->query($sql);
         $res=$this->db->get_results("SELECT LAST_INSERT_ID()",ARRAY_A);
-        return $res[0]['LAST_INSERT_ID()'];
-        
-        
+        return $res[0]['LAST_INSERT_ID()'];    
     }
 
 	//启用用户

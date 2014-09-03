@@ -28,7 +28,7 @@ class class_qiniu{
         $upToken = $putPolicy->Token(null);
         return $upToken;
     }
-
+   
     public function get_token_to_upload_head(){
     	
         $putPolicy = new Qiniu_RS_PutPolicy($this->bucket);
@@ -38,12 +38,13 @@ class class_qiniu{
         $upToken = $putPolicy->Token(null);
         return $upToken;
     }
-
+    //移动
     public function move($file1,$file2){
         $client = new Qiniu_MacHttpClient(null);
         $err = Qiniu_RS_Move($client, $this->bucket, $file1, $this->bucket, $file2);
     }
 
+    //复制
     public function copy($file1,$file2){
         $client = new Qiniu_MacHttpClient(null);
         $err = Qiniu_RS_Copy($client, $this->bucket, $file1, $this->bucket, $file2);
