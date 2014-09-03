@@ -291,7 +291,7 @@
 
                     }else{
                         rollBack();
-                        alert("个人信息修改失败");
+                        alert("个人信息修改失败！"+data.status);
                         
                     }
                 },'json');

@@ -123,7 +123,7 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
     public function check_is_unique($group_name,$group_id=null)
 	{
 	$sql='select * from `group` where `group_name`=\''.$group_name.'\' ';
-	  if($group_id!=null)
+	  if($group_id!=null&&!empty($group_id))
 	  {
 	    $sql=$sql.' and `group_id`!='.$group_id;
 	  }

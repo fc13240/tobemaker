@@ -63,9 +63,13 @@ include 'view/footer.php';
 $group=new class_group();
 if(array_key_exists('group_name',$_POST))
 {
+if(strlen(trim($_POST["group_name"]))<=1||strlen(trim($_POST["group_name"]))>16)
+{
+    echo '<script>alert("群组名称不合法，长度应在2-16之间");history.go(-1);</script>';
+}
 $arr=array("group_name"=>$_POST["group_name"]);
 //验证是否重复
-$result=$group->check_is_unique('group',$arr);
+$result=$group->check_is_unique($_POST["group_name"]);
 
 if(!$result)
 {
