@@ -174,6 +174,71 @@ body.index{
     width: 100%;
     height: auto;
 }
+i {
+	transform: scale(1);
+	font-weight: 100;
+}
+i{
+	animation: myfirst 0.9s ease-out infinite alternate;
+	/* Firefox: */
+	-moz-animation: myfirst 0.9s ease-out infinite alternate;
+	/* Safari 和 Chrome: */
+	-webkit-animation: myfirst 0.9s ease-out infinite alternate;
+	/* Opera: */
+	-o-animation: myfirst 0.9s ease-out infinite alternate;
+}
+@keyframes myfirst
+{
+0%   {color: #FFFFFF;}
+100% {color: #000000;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+0%   {color: red;}
+25%  {color: yellow;}
+50%  {color: blue;}
+100% {color: green;}
+}
+
+@-webkit-keyframes myfirst
+{
+0%   {color: #FFFFFF;}
+100% {color: #000000;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+0%   {color: red;}
+25%  {color: yellow;}
+50%  {color: blue;}
+100% {color: green;}
+}
+
+div.close {
+	width: 30px!important;
+	height: 30px;
+	/*background: url("../asset/30.png");*/
+	background-color: #df3b42;
+	border-radius: 50%;
+	position: absolute;
+	top:-30px;
+	right: -15px;
+	z-index: 10;
+	line-height: 30px;
+	text-align: center;
+	font-weight: bold;
+	color: #a7292e;
+	cursor:pointer;
+}	
+
+div.close:hover {
+	/*-webkit-transition:all 2s ease-in-out;
+	-moz-transition:all 2s ease-in-out;
+	transform: rotate(720deg);*/
+	color: #FFFFFF!important;
+	cursor:pointer;
+}
 
 .login{
     position: fixed;
