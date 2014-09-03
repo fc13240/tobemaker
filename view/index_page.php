@@ -6,7 +6,7 @@
     <title>tobeMaker</title>
     <link rel="stylesheet" type="text/css" href="css/style-index.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
-
+    <link rel="stylesheet" type="text/css" href="fonts/Font-Awesome/css/font-awesome.min.css"/>
     
 </head>
 <body class="index">
@@ -18,7 +18,7 @@
                 <div class="loginbtn">
                     <a href="#" id="login"><img src="asset/7.png" alt=""></a>
                     <a href="#" id="register"><img src="asset/8.png" alt=""></a>
-                    <a href="#" id="godown"><img src="asset/27.png" alt=""></a>
+                    <a href="#" id="godown"><i class="fa fa-angle-down fa-5x"></i></a>
                 </div>
 
             </div>
@@ -59,7 +59,7 @@
                         <br class="clear"/>
                     </ul>
                     <p>在这里，自由分享你创意与设计，说不定她会让大家的生活更便利。</p>
-                    <a href="#" id="goup"><img src="asset/28.png" alt=""></a>
+                    <a href="#" id="goup"><i class="fa fa-angle-up fa-5x"></i></a>
 
                 </div>
             </div>
@@ -79,6 +79,7 @@
                 <span>还没有账号？</span>
                 <a href="#" id='reg_btn'>立即注册></a>
             </div>
+            <div class="close">X</div>
         </form>
     </div>
 </div>
@@ -92,6 +93,7 @@
             <input type="text" name="inviteCode" placeholder="邀请码">
             <input type="checkbox"><span>我已经认真阅读并同意《使用协议》</span>
             <input type="button" value="注册">
+            <div class="close">X</div>
         </form>
     </div>
     <p>关注微信公众号：sidarsm，回复邮箱，获取邀请码</p>
@@ -106,6 +108,7 @@
             <div>
                 <a href="#" id="login2">又想起来了>></a>
             </div>
+            <div class="close">X</div>
         </form>
     </div>
 </div>
@@ -148,7 +151,7 @@
         $("#forget_form").removeClass("hide");
         blur();
     });
-
+	
     function blur(){
         if(navigator.userAgent.indexOf("Firefox") != -1){
             $("#index").addClass("blur");
@@ -230,6 +233,10 @@
                 }
             }, 'json');
         });
+        
+        $(".close").click(function(){
+           hideAll();
+		});
     });
 
 </script>

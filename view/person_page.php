@@ -61,7 +61,18 @@
                     <li page="0"></li>
                     <li page="1">
                         <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                            <dd>
+                                <img src="asset/13.png" alt="" class="">
+                                <div class="person-img-shield">
+                                    <p class="state">集赞中</p>
+                                    <p class="title">可以唱歌的淋浴头</p>
+                                    <p class="justify">
+                                        <i class="fa fa-info"></i>
+                                        <!--<i class="fa fa-pencil-square-o"></i>-->
+                                        <i class="fa fa-trash-o"></i>
+                                    </p>
+                                </div>
+                            </dd>
                         </dl>
                         <dl>
                             <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
@@ -133,9 +144,28 @@
                         timePercent = 0;
 
                     $container.append('\
-                <dl>\
-                    <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" alt="'+item.name+'"></a></dd>\
-                </dl>');
+                    <dl>\
+                        <dd>\
+                            <img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'"  class="" >\
+                            <div class="person-img-shield">\
+                                <p class="state"></p>\
+                                <a href="project.php?idea_id='+ item.idea_id +'"><p class="title">'+item.name+'</p></a>\
+                                <p class="justify">\
+                                    <a href="project.php?idea_id='+ item.idea_id +'">\
+                                        <i class="fa fa-info"></i>\
+                                    </a>\
+                                    <a href="share.php?idea_id='+ item.idea_id +'">\
+                                        <i class="fa fa-pencil-square-o"></i>\
+                                    </a>\
+                                    <a href="project.php?idea_id='+ item.idea_id +'">\
+                                        <i class="fa fa-trash-o"></i>\
+                                    </a>\
+                                </p>\
+                            </div>\
+                        </dd>\
+                    </dl>\
+                    ');
+                    $('.person-img-shield').hide();
 
                 }
 
@@ -325,6 +355,16 @@
                 },
             });
             
+            $('.person-img-shield').hide();
+            
+            $('#myProjectList').on('mouseenter' ,'img', function(){
+                $(this).next().show();
+                $(this).addClass('person-img__blur');
+            });
+            $('#myProjectList').on('mouseout' ,'.person-img-shield', function(){
+                $(this).hide();
+                $(this).prev().removeClass('person-img__blur');
+            });
             loadPersonalProject(1,1);
             
         });
