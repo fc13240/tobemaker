@@ -90,6 +90,7 @@ if(!empty($_POST["img_url"]))
 }
 if(array_key_exists('real_name',$_POST))
 {
+//验证表单提交数据合法性
 if(!empty($imgUrl))
   {
 $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],"user_passcode"=>$_POST["password"],
