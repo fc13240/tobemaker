@@ -116,4 +116,29 @@ class class_like
         }
 
     }
+
+
+    public function check_like_by_group($data,$user_id,$flag){
+       $i=0;$tmp=count($data);
+            while ($i<$tmp) {
+                # code...
+                if($flag===1){
+                    $idea_id=$data[$i]['idea_id'];
+                    $check_like=$this->get_like_info($idea_id,$user_id);
+                    if($check_like==1)
+                    {
+                        $data[$i]['likeit']=1;
+                    }
+                    else{
+                        $data[$i]['likeit']=0;
+                    }
+                    $i++;
+                }
+                else{
+                    $data[$i]['likeit']=0;
+                    $i++;
+                }
+            }
+            return $data;
+    }
 }

@@ -127,6 +127,92 @@ class class_idea
     }
 
 
+////  搜索＋排序
+     function get_idea_key_sort_by_rule($sort_key,$type,$start,$length){
+      $this->db->escape($type);
+      if($type=='pass'){
+        $rule=' `idea_info`.`idea_status`=4 ';
+      }
+      elseif ($type=='produce') {
+    # code..
+        $rule=' `idea_info`.`idea_status`=5 ';
+      }
+      elseif ($type=='all') {
+    # code...
+        $rule=' ((`idea_info`.`idea_status`=4) or (`idea_info`.`idea_status`=5))';
+      }
+
+      if($sort_key=='new')
+        {
+            $sort_rule='`idea_info`.`create_time`';
+        }
+        elseif($sort_key=='hot')
+        {
+            $sort_rule='`idea_info`.`sum_like`';
+        }
+        elseif($sort_key=='recommend')
+        {
+            $sort_rule='`idea_info`.`is_recommend`';
+        }
+        else{
+        $sort_rule='`idea_info`.`is_recommend`';
+      }
+
+
+      $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and ".$rule." and `idea_info`.`user_id`=`user_info`.`user_id` order by ".$sort_rule."  desc limit ".$start.",".$length;
+      $res=$this->db->get_results($sql,ARRAY_A);
+      return $res;
+     }
+
+
+     function get_ideanum_sort_by_rule($sort_key,$type){
+      $this->db->escape($type);
+      if($type=='pass'){
+        $rule=' `idea_info`.`idea_status`=4 ';
+      }
+      elseif ($type=='produce') {
+    # code..
+        $rule=' `idea_info`.`idea_status`=5 ';
+      }
+      elseif ($type=='all') {
+    # code...
+        $rule=' ((`idea_info`.`idea_status`=4) or (`idea_info`.`idea_status`=5))';
+      }
+
+      if($sort_key=='new')
+        {
+            $sort_rule='`idea_info`.`create_time`';
+        }
+        elseif($sort_key=='hot')
+        {
+            $sort_rule='`idea_info`.`sum_like`';
+        }
+        elseif($sort_key=='recommend')
+        {
+            $sort_rule='`idea_info`.`is_recommend`';
+        }
+        else{
+        $sort_rule='`idea_info`.`is_recommend`';
+      }
+
+
+      if($sort_rule==='is_recommend'){
+        $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and ".$rule." and `idea_info`.`is_recommend`>0";
+
+      }
+
+      else{
+        # code...
+        $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and ".$rule;
+      }
+      $res=$this->db->get_results($sql,ARRAY_A);
+      return $res[0]['count(*)'];
+     }
+
+
+
+  //     搜索＋排序
+
     //  按关键字获取全部
     function search_all_by_key_word($key_word)
     {
@@ -136,6 +222,56 @@ class class_idea
       return $result;
     }
 
+    //按照关键字分类搜索
+    function search_part_by_key_word($key,$type,$start,$length){
+      $this->db->escape($type);
+      if($type=='pass'){
+        $rule=' `idea_info`.`idea_status`=4 ';
+      }
+      elseif ($type=='produce') {
+    # code..
+        $rule=' `idea_info`.`idea_status`=5 ';
+      }
+      elseif ($type=='all') {
+    # code...
+        $rule=' ((`idea_info`.`idea_status`=4) or (`idea_info`.`idea_status`=5))';
+      }
+
+      $key=$this->db->escape($key);
+      $key_word=$key;
+
+
+     $sql="SELECT * from `idea_info` where ".$rule." and (`idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `user_name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."') limit ".$start.",".$length;
+      $res=$this->db->get_results($sql,ARRAY_A);
+      return $res;
+     }
+
+
+
+     function search_num_by_key_word($key,$type){
+      $this->db->escape($type);
+      if($type=='pass'){
+        $rule=' `idea_info`.`idea_status`=4 ';
+      }
+      elseif ($type=='produce') {
+    # code..
+        $rule=' `idea_info`.`idea_status`=5 ';
+      }
+      elseif ($type=='all') {
+    # code...
+        $rule=' ((`idea_info`.`idea_status`=4) or (`idea_info`.`idea_status`=5))';
+      }
+
+      $key=$this->db->escape($key);
+      $key_word="%".$key."%";
+
+
+     $sql="SELECT count(*) from `idea_info` where ".$rule." and (`idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `user_name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."')";
+
+    $data=$this->db->get_results($sql,ARRAY_A);
+    $num_of_all=$data[0]['count(*)'];
+      return $num_of_all;
+     }
 
 
     // ---------  增删改查基本操作 - 结束
