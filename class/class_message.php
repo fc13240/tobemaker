@@ -33,8 +33,14 @@ class class_message
     	$res=$this->db->get_results($sql,ARRAY_A);
     	return $res;
     }
+//获取部分收到消息
+function  get_part_message($user_id,$begin,$legth){
+    	$user_id=$this->db->escape($user_id);
+    	$sql='SELECT `idea_message`.*,`user_info`.`user_name` from `idea_message`,`user_info` where `user_info`.`user_id`=`idea_message`.`sender_id` and `receiver_id`='.$user_id.' order by `idea_message`.`send_time` limit '.$begin.','.$legth.'';
 
-
+    	$res=$this->db->get_results($sql,ARRAY_A);
+    	return $res;
+    }
     //2,获取未读取消息
 
     function get_new_message($user_id){
