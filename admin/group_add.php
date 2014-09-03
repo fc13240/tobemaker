@@ -74,12 +74,14 @@ $result=$group->check_is_unique($_POST["group_name"]);
 if(!$result)
 {
 $result=$group->insert($_POST["group_name"]);
-
+//返回成功信息
+echo '<script>alert("添加成功");</script>';
 }
 else
 {
 //弹出重复框
+echo '<script>alert("已包含该名称群组");history.go(-1);</script>';
 }
              
-//返回成功信息
+
 }

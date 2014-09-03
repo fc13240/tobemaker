@@ -4,7 +4,9 @@ include_once '../config.php';
 include_once '../class/class_user.php';
 include_once '../class/class_file.php';
 include_once '../class/class_group.php';
+include_once '../class/class_check.php';
 include_once ROOT_PATH."class/class_group_auth.php";
+$class_check=new class_check();
 $class_group_auth=new class_group_auth();
 //判断权限
 if(!$class_group_auth->check_auth("admin"))
@@ -62,6 +64,17 @@ jQuery(document).ready(function() {
 });
 </script>
 ';
+function alertMsg($msg,$status)
+{
+    if($status=='error')
+    {
+       echo '<script>alert("'.$msg.'");history.go(-1);</script>';
+    }
+	else
+	{
+	   echo '<script>alert("'.$msg.'");</script>';
+	}
+}
 //参数错误检测
 if(empty($_GET["user_id"])||empty($_GET["action"]))
 {
@@ -95,6 +108,25 @@ include 'view/footer.php';
 //表单处理
 if(array_key_exists('real_name',$_POST))
 {
+//验证表单提交数据合法性
+if($class_check->username_able($_POST["user_name"],2,16)!='success')
+{
+   alertMsg('用户名不合法，长度应在2~16之间且不能含有空格！',"error");
+}
+
+elseif(!$class_check->is_email($_POST["email"]))
+{ 
+   alertMsg('邮箱不合法！',"error");
+}
+elseif(!empty($_POST["money"])&&!$class_check->is_double_p($_POST["money"]))
+{
+   alertMsg('金额不合法！',"error");
+}
+elseif(!$class_check->is_mobile($_POST["user_mobile"]))
+{
+   alertMsg('手机号不合法！',"error");
+}
+else{
 
 $imgUrl='';
 if(!empty($_POST["img_url"]))
@@ -118,12 +150,14 @@ if($_POST["activity"]!='删除')
 			 "description"=>$_POST["description"],"occupation"=>$_POST["occupation"]);
 			 }
   $result=$user->update($_POST["user_id"],$arr);
+  alertMsg("更新成功！");
  }
  else
  {
     $user->delete($_POST["user_id"]);
+	alertMsg("删除成功！","success");
  }
-  
+  }
   //成功信息
 
 }
