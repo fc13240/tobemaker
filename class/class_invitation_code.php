@@ -17,7 +17,7 @@ class class_invitation_code
 {
     private $db = null;
     
-    function class_user(){
+    function class_invitation_code(){
         
         // Initialise database object and establish a connection
         // at the same time - db_user / db_password / db_name / db_host
@@ -41,6 +41,20 @@ class class_invitation_code
     	$sql="DELETE from `invitation_code`where code=".$code;
     	$this->db->query($sql);
     }
+	//获取全部邀请码注册用户
+	function get_all_user_code()
+	{
+	   $sql='select `user_info`.* , `invitation_code`.* from `user_info` ,`invitation_code` where `user_invite_code`!=\'\' and `invitation_code`.`code`=`user_info`.`user_invite_code` order by `code` desc';
+	   $result=$this->db->get_results($sql,ARRAY_A);
+	   return $result;
+	}
+	//获取部分邀请码注册用户
+	function get_part_user_code($begin,$length)
+	{
+	   $sql='select `user_info`.* , `invitation_code`.* from `user_info` ,`invitation_code` where `user_invite_code`!=\'\' and `invitation_code`.`code`=`user_info`.`user_invite_code` order by `code` desc limit '.$begin.','.$length.'';
+	   $result=$this->db->get_results($sql,ARRAY_A);
+	   return $result;
+	}
     // 查询是否可用
     function check_code($code){
     	$arr = array();

@@ -92,7 +92,7 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
     $arr['user_email']=$_POST['user_email'];
     
     $arr['user_name'] = $arr['user_email'];
-    
+    $arr['user_invite_code']=$_POST['invite_code'];
     //检测用户数据
     $checkres=$class_user->select_by_email($arr['user_email']);
     if(count($checkres)>0){
