@@ -49,8 +49,10 @@ class class_qiniu{
         $err = Qiniu_RS_Move($client, $this->bucket, $file1, $this->bucket, $file2);
         if ($err !== null) {
             var_dump($err);
+            return $err;
         } else {
            // echo "Success!";
+            return "move ok";
         }
     }
     //复制
@@ -61,8 +63,10 @@ class class_qiniu{
 
         if ($err !== null) {
             var_dump($err);
+            return $err;
         } else {
            // echo "Success!";
+            return "copy ok";
         }
     }
 }
