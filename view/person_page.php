@@ -41,7 +41,7 @@
             
             </p>
             <br/>
-			<a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
+            <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
             <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
             <a id="btn-msg" href="<?=BASE_URL?>msg_send.php?userid=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o"></i></a>
             <a href="javascript:0" id="btn-modify"><i class="fa fa-pencil"></i></a>
@@ -55,25 +55,33 @@
 			<input type="hidden" id="session_userid" name="session_userid" value="<?=@$_SESSION["user_id"]?>" />
     </div>
     <div class="middle-margin">
-        <div class="minepro list">
-            <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-            </dl>
-            <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-            </dl>
-            <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-            </dl>
-            <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-            </dl>
+        <div id="myProjectBlock" class="minepro list" data-url="<?=BASE_URL.'api/user_project.php'?>">
+            <div id="myProjectList" class="slide">
+                <ul>
+                    <li page="0"></li>
+                    <li page="1">
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                        </dl>
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                        </dl>
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                        </dl>
+                        <dl>
+                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                        </dl>
+                    </li>
+                    <li page="2"></li>
+                </ul>
+            </div>
 
             <div class="prev" id="minelistprev">
-                <div><a href="#"></a></div>
+                <div><a href="javascript:0"><</a></div>
             </div>
             <div class="next" id="minelistnext">
-                <div><a href="#">></a></div>
+                <div><a href="javascript:0">></a></div>
             </div>
 
             <br class="clear"/>
@@ -91,6 +99,69 @@
     <script src="admin/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
 	
     <script>
+        var pageSize = 4;
+        var pageNow = 1;
+        var maxPageNo = 1;
+        
+        function loadPersonalProject(current_page, move_type){
+            
+            var start = (current_page - 1) * pageSize;
+            var length = pageSize;
+            var url = $('#myProjectBlock').data("url");
+            $.post(url, {
+                "start":start, 
+                "length":length, 
+                "type":"pass_produce", 
+                "user_id":<?=(array_key_exists('user_id', $current_user) ? $current_user['user_id']: '')?>,
+                }, function(data, textStatus){
+                // set up content
+                var $container = $("[page='"+move_type+"']");
+                $container.html('');
+
+                for (var i=0; data.data != undefined && i<data.data.length; i++){
+                    var item = data.data[i];
+
+                    // process date
+                    var startTime = new Date(item.begin_time);
+                    var endTime = new Date(item.end_time);
+                    var nowTime = new Date();
+                    var timePercent = parseInt(((nowTime - startTime)/(endTime - startTime))*100);
+
+                    if (timePercent > 100)
+                        timePercent = 100;
+                    if (timePercent < 0)
+                        timePercent = 0;
+
+                    $container.append('\
+                <dl>\
+                    <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" alt="'+item.name+'"></a></dd>\
+                </dl>');
+
+                }
+
+                if (move_type == 0){
+                    // move right
+                    $(".slide ul").animate({left:0},1000,
+                    function(){
+                        $("[page='1']").remove();
+                        $("[page='0']").attr("page",1);
+                        $(".slide ul li:first-child").before("<li page='0'></li>");
+                        $(".slide ul").attr("style","left:-1020px");
+                    });
+                }else if(move_type == 2){
+                    // move left
+                    $(".slide ul").animate({left:"-2040px"},1000,
+                    function(){
+                        $("[page='1']").remove();//在这拉取数据填充进li里
+                        $("[page='2']").attr("page",1);
+                        $(".slide ul").append("<li page='2'></li>");
+                        $(".slide ul").attr("style","left:-1020px");
+                        flag = 0;
+                    });
+                }
+            },"json");
+        }
+        
         function bottomBtnToggle(){
             
             $("#btn-follow").toggle();
@@ -196,6 +267,15 @@
                 var user_id = $('#user_id').val();
                 console.log(head_url);
 
+                var head_url_ori = $('#userHead').data('ori');
+                var user_name_ori = $('#userName input[name=user_name]').data('ori');
+                var user_occupation_ori = $('#userTitle input[name=user_occupation]').data('ori');
+                var user_introduction_ori = $('#userIntroduction input[name=user_introduction]').data('ori');
+
+                $('#userName').html(user_name_ori);
+                $('#userTitle').html(user_occupation_ori);
+                $('#userIntroduction').html(user_introduction_ori);
+
                 
                 $.post(url, {
                     'user_id':user_id,
@@ -244,6 +324,8 @@
 
                 },
             });
+            
+            loadPersonalProject(1,1);
             
         });
     </script>

@@ -10,10 +10,17 @@ $class_user=new class_user();
 
 $current_user = $class_user->get_current_user();
 
+// 排序方式
 $sort_rule = 'new';
+// 关键字查询
+$search_word = '';
 
 if (array_key_exists('sort', $_GET)){
     $sort_rule = $_GET['sort'];
+}
+
+if (array_key_exists('search', $_GET)){
+    $search_word = $_GET['search'];
 }
 
 // 导航 当前页面控制
