@@ -54,13 +54,15 @@ status＝'user_exist'/'available'
 include_once "../config.php";
 include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
+include_once ROOT_PATH."class/class_invitation_code.php";
 //include_once ROOT_PATH."class/class_invitation_code.php";
 $class_session=new class_session();
 $class_user=new class_user();
+
 //$class_invitation_code=new class_invitation_code();
 function check_invitation_code($invitation_code){
 	//检测是否需要验证码
-	
+	$class_invitation_code=new class_invitation_code();
 	//检测验证码是否合格
 	$res=$class_invitation_code->check_code($invitation_code);
 	if($res['status']=='used'||$res['status']=='nocode')
@@ -73,7 +75,15 @@ function check_invitation_code($invitation_code){
 }
 
 // 注册
-
+/*$status=$class_invitation_code->check_code($_POST["invite_code"]);
+if($status['status']!='unused')
+{
+     return 0;
+}
+else
+{
+     return 1;
+}*/
 if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
 {
 	//检测是否需要验证码以及验证码是否合格
@@ -85,6 +95,8 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
 	}
     */
     //  组织数据
+	//验证邀请码
+	
     $arr=array();
 
     $arr['user_passcode']=md5($_POST['password']);
@@ -101,7 +113,11 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
        $result['status']='user_exist';
 	    echo json_encode($result);
     }
-
+    if(check_invitation_code($_POST["invite_code"]))
+	{
+	   $result['status']='邀请码无效！';
+	    echo json_encode($result);
+	}
    
     else{
         //插入数据库

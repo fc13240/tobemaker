@@ -31,7 +31,7 @@ $page_level_script = '<script src="./assets/global/scripts/metronic.js" type="te
 <script src="./assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="./assets/user/pages/scripts/invitation_user.js"></script>
+<script src="./assets/user/pages/scripts/invitation_list.js"></script>
 <script>
 jQuery(document).ready(function() {       
     Metronic.init(); // init metronic core components
@@ -47,7 +47,7 @@ include 'view/header.php';
 
 include 'view/leftnav.php';
 
-include 'view/invitation_user.php';
+include 'view/invitation_list.php';
 
 include 'view/quick_bar.php';
 
