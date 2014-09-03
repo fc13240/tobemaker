@@ -426,4 +426,61 @@ class class_idea
         $result = $this->db->query($sql);
     }
     //
+
+
+    public function get_ideanum_by_userid($type,$user_id){
+
+      if($type=='pass')
+      {
+        $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and user_id=".$user_id;
+      }
+      elseif ($type=='produce') {
+        # code...
+        $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and user_id=".$user_id;
+
+      }
+      elseif ($type=='pass_produce') {
+        # code...
+        $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`user_id`=".$user_id;
+      }
+
+      elseif ($type=='all') {
+        # code...
+        $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`user_id`=".$user_id;
+      }
+
+      $res=$this->db->get_results($sql,ARRAY_A);
+      $num=$res[0]['count(*)'];
+
+      return $num;
+
+    }
+
+
+    public function get_ideas_by_userid($type,$user_id,$start,$length){
+
+      if($type=='pass')
+      {
+        $sql="SELECT * from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and user_id=".$user_id." limit ".$start.",".$length;
+      }
+      elseif ($type=='produce') {
+        # code...
+        $sql="SELECT * from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and user_id=".$user_id." limit ".$start.",".$length;
+
+      }
+      elseif ($type=='pass_produce') {
+        # code...
+        $sql="SELECT * from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`user_id`=".$user_id." limit ".$start.",".$length;
+      }
+
+      elseif ($type=='all') {
+        # code...
+        $sql="SELECT * from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`user_id`=".$user_id." limit ".$start.",".$length;
+      }
+
+     // echo $sql;
+      $res=$this->db->get_results($sql,ARRAY_A);
+      return $res;
+
+    }
 }

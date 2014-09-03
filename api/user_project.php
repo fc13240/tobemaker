@@ -7,71 +7,28 @@ api功能  获取某个用户所有项目信息
 */
 include_once "../config.php";
 include_once ROOT_PATH."class/class_idea.php";
+include_once ROOT_PATH."class/class_session.php";
+include_once ROOT_PATH."class/class_user.php";
+
+$class_session=new class_session();
+$class_user=new class_user();
+
+$current_user = $class_user->get_current_user();
+
     $class_idea=new class_idea();
     $start=isset($_POST['start'])?$_POST['start']:0;
-    $length=isset($_POST['length'])?$_POST['length']:6;
+    $length=isset($_POST['length'])?$_POST['length']:4;
+    $type=$_POST['type'];
+    $user_id=$current_user['user_id'];
 
-    if ($_POST['user_id']>0) {
-        # code...
-        //装备参数
-        $user_id=$_POST['user_id'];
-
-        if($_POST['type']=="pass")
-        {
-            //获取总共数量
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and user_id=".$user_id;
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and `idea_info`.`user_id`=`user_info`.`user_id` and `idea_info`.`user_id`=".$user_id." limit ".$start.",".$length;
-
-            $res=$class_idea->select($sql);
+    $num=$class_idea->get_ideanum_by_userid($type,$user_id);
+    $res=$class_idea->get_ideas_by_userid($type,$user_id,$start,$length);
             $records=array();
             $records['data']=array();
             $records['data']=$res;
             $records['num_of_all']=$num;
             echo json_encode($records);
             exit();
-        }
 
-
-        if($_POST['type']=="produce"){
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and user_id=".$user_id;
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and `idea_info`.`user_id`=`user_info`.`user_id` and `idea_info`.`user_id`=".$user_id." limit ".$start.",".$length;
-
-            $res=$class_idea->select($sql);
-            $records=array();
-            $records['data']=array();
-            $records['data']=$res;
-            $records['num_of_all']=$num;
-            echo json_encode($records);
-            exit();
-        }
-
-        if($_POST['type']=="pass_produce"){
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`user_id`=".$user_id;
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`user_id`=`user_info`.`user_id` and `idea_info`.`user_id`=".$user_id." limit ".$start.",".$length;
-
-            $res=$class_idea->select($sql);
-            $records=array();
-            $records['data']=array();
-            $records['data']=$res;
-            $records['num_of_all']=$num;
-            echo json_encode($records);
-            exit();
-        }
-    }
-    
+  
 ?>
