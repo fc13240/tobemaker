@@ -239,7 +239,71 @@ div.close:hover {
 	color: #FFFFFF!important;
 	cursor:pointer;
 }
+.appear {
+	animation: appear 1s linear 1s 1 forwards;
+/* Firefox: */
+-moz-animation: appear 1s linear 1s 1 forwards;
+/* Safari 和 Chrome: */
+-webkit-animation: appear 1s linear 1s 1 forwards;
+/* Opera: */
+-o-animation: appear 1s linear 1s 1 forwards;
+}
+@keyframes appear
+{
+0%   {opacity: 0;}
+100% {opacity: 1;}
+}
 
+@-moz-keyframes appear /* Firefox */
+{
+0%   {opacity: 0;}
+100% {opacity: 1;}
+}
+
+@-webkit-keyframes appear /* Safari 和 Chrome */
+{
+0%   {opacity: 0;}
+100% {opacity: 1;}
+}
+
+@-o-keyframes appear /* Opera */
+{
+0%   {opacity: 0;}
+100% {opacity: 1;}
+}
+
+.disappear {
+	animation: disappear 1s linear 1 forwards;
+/* Firefox: */
+-moz-animation: disappear 1s linear 1 forwards;
+/* Safari 和 Chrome: */
+-webkit-animation: disappear 1s linear 1 forwards;
+/* Opera: */
+-o-animation: disappear 1s linear 1 forwards;
+}
+@keyframes disappear
+{
+0%   {opacity: 1;}
+100% {opacity: 0;}
+}
+
+@-moz-keyframes disappear /* Firefox */
+{
+0%   {opacity: 1;}
+100% {opacity: 0;}
+}
+
+@-webkit-keyframes disappear /* Safari 和 Chrome */
+{
+0%   {opacity: ;: 1;}
+100% {opacity: 0;}
+}
+
+@-o-keyframes disappear /* Opera */
+{
+0%   {opacity: 1;}
+100% {opacity: 0;}
+}
 .login{
     position: fixed;
     left: 0;

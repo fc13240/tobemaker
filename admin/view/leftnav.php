@@ -39,14 +39,14 @@
 				</li>
                                 <li class="<?= @$page_level[0] == 'idea' ? 'active open' : '' ?>">
 					<a href="javascript:;">
-					<i class="icon-basket"></i>
+					<i class="icon-layers"></i>
 					<span class="title">项目</span>
 					<span class="arrow <?= @$page_level[0] == 'idea' ? 'open' : '' ?>"></span>
 					</a>
                                         <ul class="sub-menu">
                                                 <li class="<?= @$page_level[1] == 'idea_list' ? 'active' : '' ?>">
                                                         <a href="idea_list.php">
-							<i class="icon-home"></i>
+							<i class="icon-list"></i>
 							项目列表</a>
 						</li>
 <!--                                                <li class="<?= @$page_level[1] == 'idea_detail' ? 'active' : '' ?>">
@@ -62,7 +62,7 @@
 
 						<li class="<?= @$page_level[1] == 'idea_recommend' ? 'active' : '' ?>">
                                                         <a href="idea_recommend.php">
-							<i class="icon-home"></i>
+							<i class="icon-like"></i>
 							推荐排序</a>
 						</li>
 					</ul>
@@ -76,61 +76,61 @@
                                         <ul class="sub-menu">
                                                 <li class="<?= @$page_level[1] == 'product_add' ? 'active' : '' ?>">
                                                         <a href="product_add.php">
-							<i class="icon-home"></i>
+							<i class="icon-note"></i>
 							新商品</a>
 						</li>
                                                 <li class="<?= @$page_level[1] == 'product_list' ? 'active' : '' ?>">
                                                         <a href="product_list.php">
-							<i class="icon-home"></i>
+							<i class="icon-handbag"></i>
 							商品列表</a>
 						</li>
 						<li class="<?= @$page_level[1] == 'product_category_list' ? 'active' : '' ?>">
                                                         <a href="product_category_list.php">
-							<i class="icon-home"></i>
+							<i class="icon-grid"></i>
 							商品目录</a>
 						</li>
 					</ul>
 				</li>
                                 <li class="<?= @$page_level[0] == 'user' ? 'active open' : '' ?>">
 					<a href="javascript:;">
-					<i class="icon-basket"></i>
+					<i class="icon-user"></i>
 					<span class="title">用户</span>
 					<span class="arrow <?= @$page_level[0] == 'user' ? 'open' : '' ?>"></span>
 					</a>
                                         <ul class="sub-menu">
                                                 <li class="<?= @$page_level[1] == 'user_add' ? 'active' : '' ?>">
                                                         <a href="user_add.php">
-							<i class="icon-home"></i>
+							<i class="icon-user-follow"></i>
 							新用户</a>
 						</li>
                                                 <li class="<?= @$page_level[1] == 'user_list' ? 'active' : '' ?>">
                                                         <a href="user_list.php">
-							<i class="icon-home"></i>
+							<i class="icon-users"></i>
 							用户列表</a>
 						</li>
 					</ul>
 				</li>
                                 <li class="last <?= @$page_level[0] == 'auth' ? 'active open' : '' ?>">
 					<a href="javascript:;">
-					<i class="icon-basket"></i>
+					<i class="icon-badge"></i>
 					<span class="title">权限</span>
 					<span class="arrow <?= @$page_level[0] == 'auth' ? 'open' : '' ?>"></span>
 					</a>
                                         <ul class="sub-menu">
                                                 <li class="<?= @$page_level[1] == 'group_add' ? 'active' : '' ?>">
                                                         <a href="group_add.php">
-							<i class="icon-home"></i>
+							<i class="icon-flag"></i>
 							新群组</a>
 						</li>
                                                 <li class="<?= @$page_level[1] == 'group_list' ? 'active' : '' ?>">
                                                         <a href="group_list.php">
-							<i class="icon-home"></i>
+							<i class="icon-calculator"></i>
 							群组列表</a>
 						</li>
 						</li>
 						   <li class="<?= @$page_level[1] == 'auth_assign' ? 'active' : '' ?>">
                                                         <a href="auth_assign.php">
-							<i class="icon-home"></i>
+							<i class="icon-directions"></i>
 							权限分配</a>
 						</li>
 					</ul>
