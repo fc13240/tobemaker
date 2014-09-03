@@ -72,7 +72,7 @@ class class_invitation_code
     // 查询是否可用
     function check_code($code){
     	$arr = array();
-    	$sql="SELECT  * from `invitation_code`where code=".$code;
+    	$sql="SELECT  * from `invitation_code`where `code`=".$code;
     	$res=$this->db->get_results($sql,ARRAY_A);
     	if(count($res)==0)
     	{
@@ -89,9 +89,20 @@ class class_invitation_code
     	return $arr;
     }
 
-
+  //启用邀请码
+  function enable_code($code_id)
+  {
+       $sql="UPDATE`invitation_code`set `used`=0 where `id`=".$code_id;
+    	$this->db->query($sql);
+  }
+  //禁用邀请码
+  function unable_code($code_id)
+  {
+      $sql="UPDATE`invitation_code`set `used`=1 where `id`=".$code_id;
+    	$this->db->query($sql);
+  }
     function mark_used($code){
-    	$sql="UPDATE`invitation_code`set `used`=1 where code=".$code;
+    	$sql="UPDATE`invitation_code`set `used`=1 where `code`=".$code;
     	$this->db->query($sql);
     }
 

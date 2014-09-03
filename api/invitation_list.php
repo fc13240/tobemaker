@@ -14,6 +14,26 @@ $status_list = array(
   array("danger" => "已禁用")
   
 );
+if(array_key_exists('action',$_POST))
+{
+   $act=$_POST["action"];
+   if($act=='enable')
+   {
+      $id=$_POST["code_id"];
+	  $class_invitation_code->enable_code($id);
+	  $res=array();
+	  $res["status"]="success";
+	  echo json_encode($res);
+   }
+   elseif($act=='unable')
+   {
+       $id=$_POST["code_id"];
+	  $class_invitation_code->unable_code($id);
+	  $res=array();
+	  $res["status"]="success";
+	  echo json_encode($res);
+   }
+}
 if(array_key_exists('draw',$_REQUEST))
 {
  # code...
@@ -46,19 +66,19 @@ $real_length=$end-$iDisplayStart+1;
 $datalist=$class_invitation_code->get_part_code($iDisplayStart,$real_length);
 $real_length= count($datalist);
 for($i = 0; $i < $real_length; $i++) {
-   $status = $status_list[0];
+   $status = $status_list[1];
    $strclolor='green code-enable';
-	if($datalist[$i]["used"]!=0)
+	if($datalist[$i]["used"]==0)
 	{
-	  $status = $status_list[1];
+	  $status = $status_list[0];
 	  $strclolor='red code-unable';
 	}
   $id = $datalist[$i]["id"];
   $records["data"][] = array(
     
-    $id,
+    '<label name="id">'.$id.'</label>',
     $datalist[$i]["code"],
-	'<span class="label label-sm label-'.(key($status)).' pf-status">'.(current($status)).'</span>',
+	'<span class="label label-sm label-'.(key($status)).' invite-status">'.(current($status)).'</span>',
 	'<a  class="btn btn-xs '.$strclolor.'" "><i class="fa fa-search"></i>'.($strclolor=='green code-enable'?'启用':'禁用').'</a>'
      
 	

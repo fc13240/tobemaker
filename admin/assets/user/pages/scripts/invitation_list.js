@@ -91,36 +91,44 @@ var TableManaged = function () {
             },
         });
         
-        // 注册点击批准事件
-        table.on('click', 'tbody tr .idea-pass', function(){
+        // 注册点击启用邀请码
+        table.on('click', 'tbody tr .code-enable', function(){
             var $tr = $(this).parents('tr');
-            var ideaId = $tr.find('input[type="checkbox"]').val();
+            var code_id = $tr.find('label[name="id"]').text();
 //            alert("批准 "+ideaId);
-            $.post(ideaProcessUrl, $.param({'action':'idea_pass', 'ideaId':[ideaId]}), function(data, textStatus){
+            $.post(ideaProcessUrl, $.param({'action':'enable', 'code_id':code_id}), function(data, textStatus){
                 if (data.status == "success"){
-                    $status = $tr.find('.idea-status');
+                    $status = $tr.find('.invite-status');
                     $status.removeClass();
-                    $status.addClass('label label-sm label-success idea-status');
-                    $status.text('已批准');
+                    $status.addClass('label label-sm label-success invite-status');
+                    $status.text('正常');
+					$btn=$tr.find('.code-enable');
+					$btn.removeClass();
+					$btn.addClass('btn btn-xs red code-unable');
+					$btn.html('<i class="fa fa-search"></i>禁用');
                 }else{
-                    alert("状态修改失败");                            
+                    alert("启用失败");                            
                 }
             },'json');
         });
         
-        // 注册点击拒绝事件
-        table.on('click', 'tbody tr .idea-reject', function(){
+        // 注册点击禁用邀请码事件
+        table.on('click', 'tbody tr .code-unable', function(){
             var $tr = $(this).parents('tr');
-            var ideaId = $tr.find('input[type="checkbox"]').val();
+            var code_id = $tr.find('label[name="id"]').text();
 //         alert("拒绝 "+ideaId);
-            $.post(ideaProcessUrl, $.param({'action':'idea_reject', 'ideaId':[ideaId]}), function(data, textStatus){
+            $.post(ideaProcessUrl, $.param({'action':'unable', 'code_id':code_id}), function(data, textStatus){
                 if (data.status == "success"){
-                    $status = $tr.find('.idea-status');
+                    $status = $tr.find('.invite-status');
                     $status.removeClass();
-                    $status.addClass('label label-sm label-danger idea-status');
-                    $status.text('已拒绝');
+                    $status.addClass('label label-sm label-danger invite-status');
+                    $status.text('已禁用');
+					$btn=$tr.find('.code-unable');
+					$btn.removeClass();
+					$btn.addClass('btn btn-xs green code-enable');
+					$btn.html('<i class="fa fa-search"></i>启用');
                 }else{
-                    alert("状态修改失败");                            
+                    alert("禁用失败");                            
                 }
             },'json');
         });
