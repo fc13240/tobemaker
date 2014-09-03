@@ -4,6 +4,8 @@ include_once '../config.php';
 include_once '../class/class_product.php';
 include_once '../class/class_file.php';
 include_once ROOT_PATH."class/class_group_auth.php";
+include_once '../class/class_check.php';
+$class_check=new class_check();
 $class_group_auth=new class_group_auth();
 //判断权限
 if(!$class_group_auth->check_auth("admin"))
@@ -65,16 +67,47 @@ jQuery(document).ready(function() {
 });
 </script>
 ';
+function alertMsg($msg,$status)
+{
+    if($status=='error')
+    {
+       echo '<script>alert("'.$msg.'");history.go(-1);</script>';
+    }
+	else
+	{
+	   echo '<script>alert("'.$msg.'");</script>';
+	}
+}
 //获取目录数量及内容
 $product=new class_product();
 $strsql='select * from `product_category`';
 $categoryList=$product->select($strsql);
 $file=new class_file();
+$imgUrl='';
 //保存表单内容到数据库
 if(array_key_exists('category',$_POST))
 {
+if(!empty($_POST["img_url"]))
 $imgUrl=$file->save($_POST["img_url"]);
-
+//验证表单内容合法性
+if(empty($imgUrl))
+{
+   alertMsg('图片不能为空！',"error");
+}
+elseif(strlen(trim($_POST["link"]))<=0)
+{
+  alertMsg("链接不能为空！","error");
+}
+elseif(!empty($_POST["discount"])&&!$class_check->is_double_p($_POST["discount"]))
+{
+   alertMsg("现价金额数据不合法！","error");
+}
+elseif(!empty($_POST["price"])&&!$class_check->is_double_p($_POST["price"]))
+{
+  alertMsg("原价金额数据不合法！","error");
+}
+else
+{
 $time = time();
 $arr= array("pf_name"=>$_POST["name"],"pf_image"=>$imgUrl,
             "pf_link"=>$_POST["link"],"pf_label"=>$_POST["label"],
@@ -82,6 +115,7 @@ $arr= array("pf_name"=>$_POST["name"],"pf_image"=>$imgUrl,
 			"pc_id"=>$_POST["category"],"pf_addDate"=>date("y-m-d",$time));
 
 $result=$product->insert('product_info',$arr);
+}
 }
 include 'view/header.php';
 

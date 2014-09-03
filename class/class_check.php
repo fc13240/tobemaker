@@ -86,7 +86,7 @@ function password_able($password,$minLength,$maxLength)
  //验证非负浮点数
  function is_double_p($num)
  {
-    if(preg_match("^d+(.d+)?$",$num))
+    if(preg_match("/^\+?(:?(:?\d+\.\d+)|(:?\d+))$/",$num))
 	{
 	   return true;
 	   

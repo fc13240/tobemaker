@@ -86,9 +86,16 @@ $isContain=null;
 }
 else
 {
+if(strlen(trim($_POST["name"]))<=1||strlen(trim($_POST["name"]))>16)
+{
+   echo '<script>alert("目录名称长度应在2-16之间");history.go(-1);</script>';
+}
+else
+{
   $arr=array("pc_name"=>$_POST["name"],"pc_id"=>$_POST["pc_id"],"pc_status"=>$_POST["status"]);
   
   $result=$product->update_category($_POST["pc_id"],$arr);
+  }
   
 }
   }

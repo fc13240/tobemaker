@@ -3,7 +3,9 @@
 include_once '../config.php';
 include_once '../class/class_product.php';
 include_once '../class/class_file.php';
+include_once '../class/class_check.php';
 include_once ROOT_PATH."class/class_group_auth.php";
+$class_check=new class_check();
 $class_group_auth=new class_group_auth();
 //判断权限
 if(!$class_group_auth->check_auth("admin"))
@@ -55,10 +57,17 @@ jQuery(document).ready(function() {
 $product=new class_product();
 if(array_key_exists('name',$_POST))
 {
+if(strlen(trim($_POST["name"]))<=1||strlen(trim($_POST["name"]))>16)
+{
+   echo '<script>alert("目录名称长度应在2-16之间");history.go(-1);</script>';
+}
+else
+{
     $time=time();
     $arr=array("pc_name"=>$_POST["name"],"pc_addDate"=>date("y-m-d",$time));
 	$result=$product->insert('product_category',$arr);
 	//成功后弹出成功信息
+}
 }
 include 'view/header.php';
 
