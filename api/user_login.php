@@ -71,7 +71,26 @@ function check_invitation_code($invitation_code){
 		return 1;
 	}
 }
-
+//验证是否是邮箱
+function is_email($user_email)
+{
+    $chars = "/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,6}\$/i";
+    if (strpos($user_email, '@') !== false && strpos($user_email, '.') !== false)
+    {
+        if (preg_match($chars, $user_email))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
 // 注册
 
 if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
@@ -97,24 +116,39 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
     $checkres=$class_user->select_by_email($arr['user_email']);
     if(count($checkres)>0){
         //存在该用户名
-
+       $result=array();
        $result['status']='user_exist';
 	    echo json_encode($result);
     }
 
    
     else{
+	     if(!is_email($arr['user_email']))
+		 {
+		    $result=array();
+		    $result['status']='email_unable';
+	        echo json_encode($result);
+		 }
+		  elseif(strlen(trim($_POST['password']))<=0)
+          {
+		    $result=array();
+            $result['status']='password_empty！';
+			echo json_encode($result);
+          }
         //插入数据库
+		else
+		{
         $class_user->insert_user('user_info',$arr);
         
         // 登录
         $class_session->login($arr['user_email'], $arr['user_passcode']);
-        
+         $result=array();
         $result['status']='success';
         //验证码不可用
        // $class_invitation_code->delete_code($_POST['code']);
 
 	   echo json_encode($result);
+	   }
         
     }
 
@@ -126,10 +160,31 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
 
 elseif(array_key_exists("action",$_POST)&&$_POST['action']=='login'){
     
-
+   if(strlen(trim($_POST["user_email"]))<=0)
+   {
+       $result=array();
+		    $result['status']='email_empty';
+	        echo json_encode($result);
+   }
+   elseif(!is_email($_POST["user_email"]))
+   { 
+       $result=array();
+		    $result['status']='email_unable';
+	        echo json_encode($result);
+   }
+   elseif(strlen(trim($_POST['password']))<=0)
+   {
+    $result=array();
+            $result['status']='password_empty！';
+			echo json_encode($result);
+   }
+   else{
+   
     $result=$class_session->login();
+	echo json_encode($result);
+	}
     //没有错误  登录成功
-    echo json_encode($result);
+    
 }
 
 elseif(array_key_exists("action",$_POST)&&$_POST['action']=='logout'){
