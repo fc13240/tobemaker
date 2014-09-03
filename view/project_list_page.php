@@ -188,7 +188,8 @@
             "length":length, 
             "type":"pass", 
             "user_id":<?=(array_key_exists('user_id', $current_user) ? $current_user['user_id']: '')?>,
-            "sort_rule":'<?=$sort_rule?>',}, function(data, textStatus){
+            "sort_rule":'<?=$sort_rule?>',
+            "q":'<?=$search_word?>',}, function(data, textStatus){
             // set up content
             var $container = $("[page='"+move_type+"']");
             $container.html('');

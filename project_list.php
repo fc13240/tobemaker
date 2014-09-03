@@ -13,7 +13,7 @@ $current_user = $class_user->get_current_user();
 // 排序方式
 $sort_rule = 'new';
 // 关键字查询
-$search_word = '';
+$search_word = null;
 
 if (array_key_exists('sort', $_GET)){
     $sort_rule = $_GET['sort'];
