@@ -22,7 +22,13 @@
 					<input type="hidden" id="user_id" value="<?=@$user_id?>">
                     <a href="javascript:void 0"><a href="javascript:void 0"><?php echo $item[0]['user_name'];?></a>
                 </div>
-                <div class="subtitle"><?php echo $item[0]['tags'];?></div>
+                <div class="subtitle"><?php //echo $item[0]['tags'];
+                $tag_array = split(',', $item[0]['tags']);
+                foreach($tag_array as $tag_item){
+                	echo '<span class="tag">'.$tag_item.'</span>';
+                }
+                	
+                	?></div>
                 <div class="emailme">
                     <a href="javascript:void 0" id="addAttention" data-url="<?=BASE_URL?>api/attention.php"><img src="asset/10.png" alt=""></a>
 					<a href="javascript:void 0" id="deleteAttention" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>

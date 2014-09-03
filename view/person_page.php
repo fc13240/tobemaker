@@ -57,7 +57,14 @@
     <div class="middle-margin">
         <div class="minepro list">
             <dl>
-                <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
+                <dd><a href="item.html"><img src="asset/13.png" alt="" class="person-img__blur"><div class="person-img-shield">
+                	<p class="state">集赞中</p>
+                	<p class="title">可以唱歌的淋浴头</p>
+                	<p class="justify"><i class="fa fa-info"></i>
+                	                	<!--<i class="fa fa-pencil-square-o"></i>-->
+                	                	<i class="fa fa-trash-o"></i>
+                	                	</p class="justify">
+                </div></a></dd>
             </dl>
             <dl>
                 <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
