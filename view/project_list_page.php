@@ -210,7 +210,7 @@
                 
                 $container.append('\
             <dl>\
-                <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" alt=""></a></dd>\
+                <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" class="h273" alt=""></a></dd>\
                 <dt>'+ item.name +'</dt>\
                 <dd><div class="bar"><div class="done" style="width: '+timePercent+'%"></div></div></dd>\
                 <dd>\

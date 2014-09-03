@@ -203,7 +203,7 @@ form.lgn {
 .share .pic .picture label{
     display: block;
     margin: 5%;
-    margin-bottom: 0;
+    margin-top: 0;
 }
 .share .pic .picture img{
     width: 90%;
@@ -745,6 +745,15 @@ form.lgn {
     width: 100%;
     height: auto;
 }
+
+.list dl dd img.h200{
+    height: 200px;
+}
+
+.list dl dd img.h273{
+    height: 273px;
+}
+
 .list dl dd a.avatar{
     width: 40px;
     height: 40px;
@@ -819,6 +828,11 @@ form.lgn {
     position: relative;
     height: 1034px;
 }
+
+.slide--h220{
+    height: 220px;
+}
+
 .slide ul{
     width:3060px;
     position: absolute;
@@ -850,24 +864,6 @@ form.lgn {
 .clear{
     clear: both;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-   style.css
-     关于页面  免责页面  联系页面
-   Created by walkbird on 2014-08-14.
-   Copyright 2014 walkbird. All rights reserved.
-*/
 
 h1.title {
 	width: 100%;
@@ -994,7 +990,6 @@ span.tag:after {
 	background-color: rgba(255,255,255,0.6);
 	text-align: left;
 }
-
 
 .person-img-shield .state {
 	color: #999;
