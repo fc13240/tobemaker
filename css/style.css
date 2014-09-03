@@ -743,7 +743,7 @@ form.lgn {
 }
 .list dl dd img{
     width: 100%;
-    height: auto;
+    height: 200px;
 }
 .list dl dd a.avatar{
     width: 40px;
@@ -819,6 +819,11 @@ form.lgn {
     position: relative;
     height: 1034px;
 }
+
+.slide--h220{
+    height: 220px;
+}
+
 .slide ul{
     width:3060px;
     position: absolute;
@@ -850,24 +855,6 @@ form.lgn {
 .clear{
     clear: both;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-   style.css
-     关于页面  免责页面  联系页面
-   Created by walkbird on 2014-08-14.
-   Copyright 2014 walkbird. All rights reserved.
-*/
 
 h1.title {
 	width: 100%;
@@ -994,7 +981,6 @@ span.tag:after {
 	background-color: rgba(255,255,255,0.6);
 	text-align: left;
 }
-
 
 .person-img-shield .state {
 	color: #999;

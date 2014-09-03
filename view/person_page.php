@@ -56,7 +56,7 @@
     </div>
     <div class="middle-margin">
         <div id="myProjectBlock" class="minepro list" data-url="<?=BASE_URL.'api/user_project.php'?>">
-            <div id="myProjectList" class="slide">
+            <div id="myProjectList" class="slide slide--h220">
                 <ul>
                     <li page="0"></li>
                     <li page="1">
@@ -128,27 +128,17 @@
                 // set up content
                 var $container = $("[page='"+move_type+"']");
                 $container.html('');
-
+                
+                maxPageNo = Math.ceil( parseInt(data.num_of_all) / pageSize );
                 for (var i=0; data.data != undefined && i<data.data.length; i++){
                     var item = data.data[i];
-
-                    // process date
-                    var startTime = new Date(item.begin_time);
-                    var endTime = new Date(item.end_time);
-                    var nowTime = new Date();
-                    var timePercent = parseInt(((nowTime - startTime)/(endTime - startTime))*100);
-
-                    if (timePercent > 100)
-                        timePercent = 100;
-                    if (timePercent < 0)
-                        timePercent = 0;
 
                     $container.append('\
                     <dl>\
                         <dd>\
-                            <img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'"  class="" >\
+                            <img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/233x200!"  class="" >\
                             <div class="person-img-shield">\
-                                <p class="state"></p>\
+                                <p class="state">'+ item.status_name +'</p>\
                                 <a href="project.php?idea_id='+ item.idea_id +'"><p class="title">'+item.name+'</p></a>\
                                 <p class="justify">\
                                     <a href="project.php?idea_id='+ item.idea_id +'">\
@@ -165,9 +155,8 @@
                         </dd>\
                     </dl>\
                     ');
-                    $('.person-img-shield').hide();
-
                 }
+                $('.person-img-shield').hide();
 
                 if (move_type == 0){
                     // move right
@@ -364,6 +353,20 @@
             $('#myProjectList').on('mouseout' ,'.person-img-shield', function(){
                 $(this).hide();
                 $(this).prev().removeClass('person-img__blur');
+            });
+            
+            $('#myProjectBlock .next').click(function(){
+                if (pageNow < maxPageNo){
+                    pageNow++;
+                    loadPersonalProject(pageNow, 2);
+                }
+            });
+
+            $('#myProjectBlock .prev').click(function(){
+                if (pageNow > 1){
+                    pageNow--;
+                    loadPersonalProject(pageNow, 0);
+                }
             });
             loadPersonalProject(1,1);
             
