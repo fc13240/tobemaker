@@ -13,6 +13,10 @@ class class_check
 	//验证邮箱
 	function is_email($user_email)
 {
+if(empty($user_email))
+{
+  return false;
+}
     $chars = "/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,6}\$/i";
     if (strpos($user_email, '@') !== false && strpos($user_email, '.') !== false)
     {
@@ -33,6 +37,10 @@ class class_check
 //验证手机号码
 function is_mobile($moblie)
 {
+    if(empty($mobile))
+	{
+	  return true;
+	}
    if(preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/",$mobile)){    
     //验证通过    
       return true;   
