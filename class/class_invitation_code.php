@@ -37,6 +37,7 @@ class class_invitation_code
 
     //删除邀请码
     function delete_code($code){
+	$code = $this->db->escape($code);
     	//$code=rand(10000,100000);
     	$sql="DELETE from `invitation_code`where code=".$code;
     	$this->db->query($sql);
@@ -51,6 +52,8 @@ class class_invitation_code
 	//获取部分邀请码注册用户
 	function get_part_user_code($begin,$length)
 	{
+	$begin = $this->db->escape($begin);
+	$length = $this->db->escape($length);
 	   $sql='select `user_info`.* , `invitation_code`.* from `user_info` ,`invitation_code` where `user_invite_code`!=\'\' and `invitation_code`.`code`=`user_info`.`user_invite_code` order by `code` desc limit '.$begin.','.$length.'';
 	   $result=$this->db->get_results($sql,ARRAY_A);
 	   return $result;
@@ -58,6 +61,8 @@ class class_invitation_code
 	//获取部分邀请码
 	function get_part_code($begin,$length)
 	{
+	$begin = $this->db->escape($begin);
+	$length = $this->db->escape($length);
 	    $sql='select `invitation_code`.* from `invitation_code` where 1 limit '.$begin.','.$length.'';
 	   $result=$this->db->get_results($sql,ARRAY_A);
 	   return $result;
@@ -71,6 +76,7 @@ class class_invitation_code
 	}
     // 查询是否可用
     function check_code($code){
+	   $code = $this->db->escape($code);
     	$arr = array();
     	$sql="SELECT  * from `invitation_code`where `code`=".$code;
     	$res=$this->db->get_results($sql,ARRAY_A);
@@ -92,12 +98,14 @@ class class_invitation_code
   //启用邀请码
   function enable_code($code_id)
   {
+     $code_id = $this->db->escape($code_id);
        $sql="UPDATE`invitation_code`set `used`=0 where `id`=".$code_id;
     	$this->db->query($sql);
   }
   //禁用邀请码
   function unable_code($code_id)
   {
+       $code_id = $this->db->escape($code_id);
       $sql="UPDATE`invitation_code`set `used`=1 where `id`=".$code_id;
     	$this->db->query($sql);
   }

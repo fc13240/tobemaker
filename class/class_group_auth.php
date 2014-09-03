@@ -26,7 +26,8 @@ include_once ROOT_PATH."class/class_session.php";
 
         // ------- 获取用户所在的权限组 -------
         // 权限组类型：anonymous(0) / none(-1) / "group name"
-
+        $action_name=$this->db->escape($action_name);
+	  
         $user_group = 0;
         $user_session=new class_session();
         // 判断用户是否登录
@@ -56,6 +57,7 @@ include_once ROOT_PATH."class/class_session.php";
     }
     // ---------  增删改查基本操作 - 开始
     public function select($sql_select){
+	$sql_select=$this->db->escape($sql_select);
         $result = $this->db->get_results($sql_select, ARRAY_A);  
         if(count($result)>0) 
         {return $result;
@@ -69,7 +71,8 @@ include_once ROOT_PATH."class/class_session.php";
    // 在表中增加数据  输入表名和数组字段
 
      function insert($group_id,$action_name){
-	
+	     $group_id=$this->db->escape($group_id);
+		 $action_name=$this->db->escape($action_name);
 	     if(!$this->check_is_unique($group_id,$action_name))
             {
 			     $sql='insert into `group_auth` (`group_name`,`action_name`) values('.$group_id.',\''.$action_name.'\')';
@@ -85,17 +88,23 @@ include_once ROOT_PATH."class/class_session.php";
     
     // 更新表中某个字段
     private function update_one($table_name,$col_name,$value){
+	$table_name=$this->db->escape($table_name);
+	  $col_name=$this->db->escape($col_name);
+	   $value=$this->db->escape($value);
         $sql_query="update ".$table_name." set ".$col_name."=".$value;
         $this->db->query($sql_query);
     }
     //删除某个id的 权限
     public function delete_auth($auth_id){
+	 $auth_id=$this->db->escape($auth_id);
 	$sql='delete from `group_auth` where `auth_id`='.$auth_id;
 	$this->db->query($sql);
     }
 	// 删除某个组的某个权限
      public function delete_group_auth($group_id,$action_name)
 	 {
+	 $group_id=$this->db->escape($group_id);
+	   $action_name=$this->db->escape($action_name);
 	    $sql='delete from `group_auth` where `group_name`='.$group_id.' and `action_name`=\''.$action_name.'\'';
 		$this->db->query($sql);
 	 }
@@ -112,7 +121,7 @@ include_once ROOT_PATH."class/class_session.php";
     
 	 public function get_all_auth($group_id)
 	 {
-	 
+	    $group_id=$this->db->escape($group_id);
         $sql='SELECT  `group_auth`.`action_name` from `group_auth` where `group_name`='.$group_id;
         $result = $this->db->get_results($sql,ARRAY_A);
        // $res = json_encode($result);
@@ -121,7 +130,9 @@ include_once ROOT_PATH."class/class_session.php";
    
     //验证是否重复
     public function check_is_unique($group_id,$action_name)
-	{
+	{ 
+	     $group_id=$this->db->escape($group_id);
+	   $action_name=$this->db->escape($action_name);
 	   $sql='select * from `group_auth` where `group_name`='.$group_id.' and `action_name`=\''.$action_name.'\'';
 	    $result = $this->db->get_results($sql,ARRAY_A);
 		return count($result);
