@@ -14,9 +14,9 @@
         <div class="slogan">
             大家的想法都在这里，喜欢的话不妨点赞支持一下吧！
         </div>
-        <div>
-            <a href="?sort=recommend" class="<?=($sort_rule=="recommend"? 'red':'')?>">推荐</a>
-            <a href="?sort=new" class="<?=($sort_rule=="new"? 'red':'')?>">最新</a>
+        <div style="margin-left: 40px;margin-bottom:10px ;">
+            <a href="?sort=recommend" class="<?=($sort_rule=="recommend"? 'red':'')?>" style="margin-right: 20px;">推荐</a>
+            <a href="?sort=new" class="<?=($sort_rule=="new"? 'red':'')?>" style="margin-right: 20px;">最新</a>
             <a href="?sort=hot" class="<?=($sort_rule=="hot"? 'red':'')?>">最热</a>
         </div>
         <div id="idea-list-block" class="content list">
@@ -211,7 +211,7 @@
                 $container.append('\
             <dl>\
                 <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" class="h273" alt=""></a></dd>\
-                <dt>'+ item.name +'</dt>\
+                <dt>'+ item.name +'<span class="deadline"><i class="fa fa-clock-o"></i>剩余100天</span></dt>\
                 <dd><div class="bar"><div class="done" style="width: '+timePercent+'%"></div></div></dd>\
                 <dd>\
                     <a href="#" class="avatar"><img class="circle" src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\

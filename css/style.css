@@ -330,7 +330,7 @@ form.lgn {
 .ttl .title{
     float: left;
     font-family: Lantingchaoxi;
-    font-size: 80px;
+    font-size: 36px;
     line-height: 120px;
     color: #6f6f6f;
     text-align: center;
@@ -1028,3 +1028,25 @@ span.tag:after {
 .justify i{
 	color: #000000;
 }
+
+.red {
+	color: #ff1400;
+}
+
+.deadline{
+	float: right;
+	font-style: italic;
+	font-weight: 100;
+	color: #9c9c9c;
+	font-size: 12px;
+	line-height: 19px;
+}
+
+
+
+
+
+
+
+
+
