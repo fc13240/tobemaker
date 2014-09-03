@@ -21,8 +21,23 @@ $class_idea=new class_idea();
 $current_user = $class_user->get_current_user();
 $user_id=$current_user['user_id'];
 $arr['user_name']=$_POST['user_name'];
-
-
+//表单验证
+if(strlen(trim($_POST['user_name']))<=1||strlen(trim($_POST['user_name']))>16)
+{
+   $records['status']='user_name_length';
+	echo json_encode($records);
+}
+elseif(strlen(trim($_POST['user_occupation']))<=1||strlen(trim($_POST['user_occupation']))>16)
+{
+ $records['status']='user_occupation_length';
+	echo json_encode($records);
+}
+elseif(strlen(trim($_POST['user_occupation']))>200)
+{
+   $records['status']='user_introduction_length';
+	echo json_encode($records);
+}
+else{
 //七牛处理图片
 $qiniu= new class_qiniu();
 $pic_url=$_POST['head_url'];
@@ -54,5 +69,5 @@ else {
 	$records['status']='error';
 	echo json_encode($records);
 }
-
+}
 ?>

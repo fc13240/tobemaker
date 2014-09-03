@@ -134,7 +134,7 @@ var TableManaged = function () {
 					$tr.find('input[name="group_name"]').hide();
                 if (data.status == "success"){
 				   
-                    $tr.find('span[name="name"]').val($name);
+                    $tr.find('span[name="name"]').text($name);
 					//成功信息
 		            
                     
@@ -151,6 +151,8 @@ var TableManaged = function () {
 		   var $tr=$(this).parents('tr');
 		    $tr.find('.edit-confirm').hide();
 		            $tr.find('.edit-cancel').hide();
+					$tr.find('.edit-confirm').hide();
+					$tr.find('input[name="group_name"]').hide();
 					 $tr.find('span[name="name"]').show();
 					$tr.find('.group-edit').show();
 					$tr.find('.group-delete').show();
