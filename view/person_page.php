@@ -122,7 +122,7 @@
             $.post(url, {
                 "start":start, 
                 "length":length, 
-                "type":"pass_produce", 
+                "type":"all", 
                 "user_id":<?=(array_key_exists('user_id', $current_user) ? $current_user['user_id']: '')?>,
                 }, function(data, textStatus){
                 // set up content
