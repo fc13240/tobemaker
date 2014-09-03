@@ -25,40 +25,48 @@
             <div class="section">
                 <div class="flow">
                     <label>众造模式</label>
-                    <ul>
-                        <li>
+                    <ul id="stage_list">
+                        <li data-stage="share">
                             <img src="asset/21.png" alt="">
                             <span>· · ·</span>
                             <p>分享创意</p>
                         </li>
-                        <li>
+                        <li data-stage="like">
                             <img src="asset/22.png" alt="">
                             <span>· · ·</span>
-                            <p>分享创意</p>
+                            <p>点赞</p>
                         </li>
-                        <li>
+                        <li data-stage="exame">
                             <img src="asset/23.png" alt="">
                             <span>· · ·</span>
-                            <p>分享创意</p>
+                            <p>审核</p>
                         </li>
-                        <li>
+                        <li data-stage="deep">
                             <img src="asset/24.png" alt="">
                             <span>· · ·</span>
-                            <p>分享创意</p>
+                            <p>深化</p>
                         </li>
-                        <li>
+                        <li data-stage="produce">
                             <img src="asset/25.png" alt="">
                             <span>· · ·</span>
-                            <p>分享创意</p>
+                            <p>生产销售</p>
                         </li>
-                        <li>
+                        <li data-stage="money">
                             <img src="asset/26.png" alt="">
-                            <p>分享创意</p>
+                            <p>分红</p>
                         </li>
 
                         <br class="clear"/>
                     </ul>
-                    <p>在这里，自由分享你创意与设计，说不定她会让大家的生活更便利。</p>
+                    <div id="tobe_stage_msg">
+                        <p id="tobe_stage_basic">在这里，自由分享你创意与设计，说不定她会让大家的生活更便利。</p>
+                        <p id="tobe_stage_share">生活里总有东西让你看着不爽？用着不爽？别抱怨了，跟我们说说你的创意与设计，一起改变吧！</p>
+                        <p id="tobe_stage_like">你真的灰常喜欢这个创意 or 设计吗？那就负责的点击“超喜欢”告诉我们吧！说不定她将被量产进入你我的生活。</p>
+                        <p id="tobe_stage_exame">从设计、生产、市场等角度，对大家支持的创意与设计进行最后的筛选、评审，保证其产品化的顺利进行。</p>
+                        <p id="tobe_stage_deep">在产品量产前，我们将和普通用户、创意 or 设计提出者进行深度的沟通和交流，完善产品细节，力保用户体验。</p>
+                        <p id="tobe_stage_produce">我们帮助成熟的创意和设计产品化，量产，销售。在tobeMaker的电商平台你可以买到所有你支持、喜爱的产品。</p>
+                        <p id="tobe_stage_money">作为作品的创意 or 设计提出者，你将获得该产品销售后所得净利润30%的分红，鼓励更多分享。</p>
+                    <div>
                     <a href="#" id="goup"><i class="fa fa-angle-up fa-5x"></i></a>
 
                 </div>
@@ -236,7 +244,17 @@
         
         $(".close").click(function(){
            hideAll();
-		});
+        });
+        $("#tobe_stage_msg p").hide();
+        $("#tobe_stage_basic").show();
+        
+        $("#stage_list").on("mouseover", "li", function(){
+            var stage_name = $(this).data('stage');
+            $("#tobe_stage_msg p").hide();
+        
+            $("#tobe_stage_"+stage_name).show();
+            
+        });
     });
 
 </script>
