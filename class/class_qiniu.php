@@ -14,7 +14,11 @@ class class_qiniu{
       public $bucket = BUCKET;
 
     function class_qiniu(){
-        Qiniu_SetKeys($this->accessKey, $this->secretKey);
+
+     $accessKey = ACCESS_KEY;
+     $secretKey = SECRET_KEY;
+     $bucket = BUCKET;
+     Qiniu_SetKeys($this->accessKey, $this->secretKey);
     }
 
 
@@ -40,13 +44,25 @@ class class_qiniu{
     }
     //移动
     public function move($file1,$file2){
+        Qiniu_SetKeys($this->accessKey, $this->secretKey);
         $client = new Qiniu_MacHttpClient(null);
         $err = Qiniu_RS_Move($client, $this->bucket, $file1, $this->bucket, $file2);
+        if ($err !== null) {
+            var_dump($err);
+        } else {
+           // echo "Success!";
+        }
     }
-
     //复制
     public function copy($file1,$file2){
+        Qiniu_SetKeys($this->accessKey, $this->secretKey);
         $client = new Qiniu_MacHttpClient(null);
         $err = Qiniu_RS_Copy($client, $this->bucket, $file1, $this->bucket, $file2);
+
+        if ($err !== null) {
+            var_dump($err);
+        } else {
+           // echo "Success!";
+        }
     }
 }
