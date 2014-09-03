@@ -19,215 +19,72 @@ type="pass_prduce" 获取集赞和待生产的项目
 include_once "../config.php";
 include_once ROOT_PATH."class/class_idea.php";
 include_once ROOT_PATH."class/class_like.php";
+include_once ROOT_PATH."class/class_session.php";
+include_once ROOT_PATH."class/class_user.php";
 
+$class_session=new class_session();
+$class_user=new class_user();
 
+$current_user = $class_user->get_current_user();
+
+$num_of_all=null;
     $class_idea=new class_idea();
     $class_like=new class_like();
     //如果发送了用户id，则获取是否喜欢的信息，否则默认不喜欢
-    if(array_key_exists('user_id', $_POST))
+    if(array_key_exists('user_id', $current_user))
     {
-        $get_likeit=true;
-        $user_id=$_POST['user_id'];
+        $get_likeit=1;
+        $user_id=$current_user['user_id'];
     }
     else{
-        $get_likeit=false;
+        $get_likeit=0;
+        $user_id=null;
     }
 
+
+    if(array_key_exists('q', $_POST)){
+            //装备参数
+    $key_word="%".$_POST['q']."%";
+    $type=$_POST['type'];
+
+    ////获取总数
+        $num_of_all=$class_idea->search_num_by_key_word($key_word,$type);
+        $start=isset($_POST['start'])?$_POST['start']:0;
+        $length=isset($_POST['length'])?$_POST['length']:6;
+        //  获取当前页面数据
+        $data=$class_idea->search_part_by_key_word($key_word,$type,$start,$length);
+
+         // 标记是否喜欢
+        $data=$class_like->check_like_by_group($data,$user_id,$get_likeit);
+        //
+        $result['num_of_all']=$num_of_all;
+        $result['num_of_currentpage']=count($data);
+        $result['data']=$data;
+        echo json_encode($result);
+        exit();
+    }
+
+    else{
    // echo $_POST['type'];
     $start=isset($_POST['start'])?$_POST['start']:0;
     $length=isset($_POST['length'])?$_POST['length']:6;
     //装备参数
+    $sort_key=$_POST['sort_rule'];
+    $type=$_POST['type'];
+//获取总数
+    $num_of_all=$class_idea->get_ideanum_sort_by_rule($sort_key,$type);
+    //  获取当前页面数据
+    $data=$class_idea->get_idea_key_sort_by_rule($sort_key,$type,$start,$length);
+    // 标记是否喜欢
+    $data=$class_like->check_like_by_group($data,$user_id,$get_likeit);
 
-    if(array_key_exists('sort_rule', $_POST))
-    {
-        if($_POST['sort_rule']=='new')
-        {
-            $sort_rule='create_time';
-        }
-        elseif($_POST['sort_rule']=='hot')
-        {
-            $sort_rule='sum_like';
-        }
-        elseif($_POST['sort_rule']=='recommend')
-        {
-            $sort_rule='is_recommend';
-        }
-    }
-    else{
-        $sort_rule='is_recommend';
-    }
-        if($_POST['type']=="pass")
-        {
-            $status_id=4;
-
-
-            if($sort_rule=='is_recommend'){
-
-                $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and idea_status=4 and is_recommend>0";
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4  and `idea_info`.`is_recommend`>0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
-
-            $res=$class_idea->select($sql);
-
-            }
-            else{
-
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4";
-
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=4 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
-
-            $res=$class_idea->select($sql);
-        }
-            $i=0;
-            $tmp=count($res);
-            while ($i<$tmp) {
-                # code...
-                if($get_likeit==true){
-                    $idea_id=$res[$i]['idea_id'];
-                    $check_like=$class_like->get_like_info($idea_id,$user_id);
-                    if($check_like==1)
-                    {
-                        $res[$i]['likeit']=1;
-                    }
-                    else{
-                        $res[$i]['likeit']=0;
-                    }
-                    $i++;
-                }
-                else{
-                    $res[$i]['likeit']=0;
-                    $i++;
-                }
-            }
-            $records=array();
-            $records['data']=array();
-            $records['data']=$res;
-            $records['num_of_all']=$num;
+    $records=array();
+    $records['data']=array();
+    $records['data']=$data;
+            $records['num_of_all']=$num_of_all;
             echo json_encode($records);
             exit();
         }
-
-        //抓数据
-        elseif ($_POST['type']=="produce") {
-            # code...
-            $status_id=5;
-             if($sort_rule=='is_recommend'){
-                $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and idea_status=5 and `idea_info`.`is_recommend`>0";
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5  and `idea_info`.`is_recommend`>0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
-
-            $res=$class_idea->select($sql);
-
-            }
-            else{
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5";
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_status`=5 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
-
-            $res=$class_idea->select($sql);
-        }
-            $i=0;$tmp=count($res);
-            while ($i<$tmp) {
-                # code...
-                if($get_likeit==true){
-                    $idea_id=$res[$i]['idea_id'];
-                    $check_like=$class_like->get_like_info($idea_id,$user_id);
-                    if($check_like==1)
-                    {
-                        $res[$i]['likeit']=1;
-                    }
-                    else{
-                        $res[$i]['likeit']=0;
-                    }
-                    $i++;
-                }
-                else{
-                    $res[$i]['likeit']=0;
-                    $i++;
-                }
-
-            }
-            $records=array();
-            $records['data']=array();
-            $records['data']=$res;
-            $records['num_of_all']=$num;
-            echo json_encode($records);
-            exit();
-        }
-        elseif ($_POST['type']=="pass_produce") {
-            # code...
-
-            //获取总共数量
-
-            if($sort_rule=='is_recommend'){
-
-                $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and idea_status=5 and `idea_info`.`is_recommend`>0";
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`is_recommend`>0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."`  desc limit ".$start.",".$length;
-
-            $res=$class_idea->select($sql);
-
-            }
-            else{
-            $sql="SELECT count(*) from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5)";
-
-            $res=$class_idea->select($sql);
-            $num=$res[0]['count(*)'];
-
-            // 获取数据
-            $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and (`idea_info`.`idea_status`=4 or `idea_info`.`idea_status`=5) and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`".$sort_rule."` desc limit ".$start.",".$length;
-            $res=$class_idea->select($sql);
-        }
-            $i=0;$num=count($res);
-            while ($i<$num) {
-                # code...
-                if($get_likeit==true){
-                    $idea_id=$res[$i]['idea_id'];
-                    $check_like=$class_like->get_like_info($idea_id,$user_id);
-                    if($check_like==1)
-                    {
-                        $res[$i]['likeit']=1;
-                    }
-                    else{
-                        $res[$i]['likeit']=0;
-                    }
-                    $i++;
-                }
-                else{
-                    $res[$i]['likeit']=0;
-                    $i++;
-                }
-            }
-            $records=array();
-            $records['data']=array();
-            $records['data']=$res;
-            $records['num_of_all']=$num;
-            echo json_encode($records);
-            exit();
-
-        }
- 
     
 ?>
 
