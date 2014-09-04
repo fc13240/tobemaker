@@ -29,7 +29,7 @@ class class_user
     
 
     function query_sql($sql){
-	   $sql=$this->db->escape($sql);
+	   //$sql=$this->db->escape($sql);
       $this->db->query($sql);
     }
     // 添加用户

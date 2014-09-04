@@ -41,7 +41,7 @@ $user=new class_user();
 $user_session=new class_session();
 if(!$user_session->check_login())
 {
-   echo '<script>alert("您尚未登录请登陆！");window.location.href="index.php";</script>';
+   $user_session->changePage(BASE_URL."error.php");
 }
 //获取用户信息
 $userid=$_SESSION["user_id"];

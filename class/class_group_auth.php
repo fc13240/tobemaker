@@ -57,7 +57,7 @@ include_once ROOT_PATH."class/class_session.php";
     }
     // ---------  增删改查基本操作 - 开始
     public function select($sql_select){
-	$sql_select=$this->db->escape($sql_select);
+	//$sql_select=$this->db->escape($sql_select);
         $result = $this->db->get_results($sql_select, ARRAY_A);  
         if(count($result)>0) 
         {return $result;

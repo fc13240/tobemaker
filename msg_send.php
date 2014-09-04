@@ -6,6 +6,10 @@ include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
 $user=new class_user();
 $user_session=new class_session();
+if(!$user_session->check_login())
+{
+   $user_session->changePage(BASE_URL."error.php");
+}
 $message=new class_message();
 //验证用户是否登录
  if (!$user_session->check_login())
