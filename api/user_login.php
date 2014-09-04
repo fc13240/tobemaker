@@ -133,7 +133,7 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
        $result['status']='user_exist';
 	    echo json_encode($result);
     }
-    if(check_invitation_code($_POST["invite_code"]))
+    if(!check_invitation_code($_POST["invite_code"]))
 	{
 	   $result['status']='邀请码无效！';
 	    echo json_encode($result);
