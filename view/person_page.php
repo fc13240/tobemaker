@@ -40,8 +40,8 @@
             <label id="upload-progress-label"></label>
             <br/>
             <input class="user_name" type="text" value="<?=$user_info['user_name']?>" />
-            <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job">
-            <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>">
+            <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" />
+            <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" />
                 <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><img src="asset/32.png" alt=""></a>
             <a href="javascript:void 0;" id="btn_user_cancle"><img src="asset/32.png" alt=""></a>
 
@@ -287,9 +287,9 @@
                     if (data.status == "success"){
                         
                         $('#my_info_view .head').attr('src', head_url );
-                        $('#my_info_view .user_name').val( user_name );
-                        $('#my_info_view .occupation').val( user_occupation );
-                        $('#my_info_view .self_intro').val( user_introduction );
+                        $('#my_info_view .user_name').text( user_name );
+                        $('#my_info_view .occupation').text( user_occupation );
+                        $('#my_info_view .self_intro').text( user_introduction );
 
                     }else{
                         
