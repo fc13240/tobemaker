@@ -26,11 +26,13 @@ $user_id=$current_user['user_id'];
 
 //如果是评论请求
 if(array_key_exists('saytext', $_POST)){
-    $idea_id=intval($_POST['idea_id']);
-    $class_comment->add_comment($idea_id,$user_id,$_POST["saytext"]);
-    $url="Location:".BASE_URL."project.php?idea_id=".$idea_id;
-    header($url);
-    exit();
+    
+	if(strlen(trim($_POST["saytext"]))<=0)
+	{
+	    //返回错误信息
+		echo '<script>alert("评论内容不能为空");history.go(-1);</script>';return;
+	}
+    $class_comment->add_comment($_POST["idea_id"],$user_id,$_POST["saytext"]);
 }
 
 //如果预览  如果预览请求

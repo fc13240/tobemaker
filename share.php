@@ -16,6 +16,10 @@ $upToken=$qiniu->get_token_to_upload_idea();
 // 导航 当前页面控制
 $current_page = 'share';
 $page_level = explode('-', $current_page);
+
+
+include 'view/share_page.php';
+
 //保存提交的想法
 if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 {
@@ -41,11 +45,29 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 
    //写数据库保存想法
 	$arr['name']=$_POST['title'];
+	if(strlen(trim($_POST['title']))>15||strlen(trim($_POST['title']))<=0)
+	{
+	   //返回错误信息
+	   echo '<script>alert("标题长度不正确，不能为空或超过15字！");history.go(-1);</script>';
+	   return;
+	}
 	$arr['content']=$_POST['content'];
+	if(strlen(trim($_POST['content']))<=0)
+	{
+	   //返回错误信息
+	    echo '<script>alert("内容不能为空！");history.go(-1);</script>';
+	   return;
+	}
 	$arr['create_time']='now()';
 	$arr['picture_url']=$pic_url;
 	$arr['tags']=$_POST['tags'];
-	if(array_key_exists('cover_display', $_POST))// 是否显示封面  数据库默认显示
+	if(count(explode(',',$_POST['tags']))>5)
+	{
+	   //返回错误信息
+	   echo '<script>alert("标签过多！不能超过5个！");history.go(-1);</script>';
+	   return;
+	}
+	if(array_key_exists('cover-display', $_POST))
 	{
 		$arr['cover_display']=1;
 	}
@@ -61,6 +83,5 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 	$new_idea_id=$new_idea->insert("idea_info",$arr);
 	$url="Location:".BASE_URL."project.php?idea_id=".$new_idea_id;
 	header($url);
-	exit();
+
 }
-include 'view/share_page.php';
