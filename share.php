@@ -49,10 +49,10 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 
    //写数据库保存想法
 	$arr['name']=$_POST['title'];
-	if(strlen(trim($_POST['title']))>15||strlen(trim($_POST['title']))<=0)
+	if(strlen(trim($_POST['title']))>15||strlen(trim($_POST['title']))<=1)
 	{
 	   //返回错误信息
-	   echo '<script>alert("标题长度不正确，不能为空或超过15字！");history.go(-1);</script>';
+	   echo '<script>alert("标题长度不正确，应介于2-15之间！");history.go(-1);</script>';
 	   return;
 	}
 	$arr['content']=$_POST['content'];

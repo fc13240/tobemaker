@@ -5,6 +5,8 @@
    */
 include_once "../config.php";
 include_once ROOT_PATH."class/class_idea.php";
+include_once ROOT_PATH."class/class_check.php";
+$class_check=new class_check();
 $class_idea=new class_idea();
 $iTotalRecords =$class_idea->get_all_idea_num();
 
@@ -42,7 +44,7 @@ $status_list = array(
   array("success" => "已批准积赞中"),
   array("success"=>"待产"),
   array("success"=>"生产完成"),
-  array("success"=>"下线"),
+  array("danger"=>"下线"),
   array("danger"=>"积赞失败需下线")
 );
 
@@ -56,24 +58,89 @@ $status_list = array(
 
 if(isset($_POST["action"])&&isset($_POST["ideaId"])){
   $act=$_POST["action"];
+  //下线
+  if($act=='idea_offline')
+  {
+     $idea_id=$_POST["ideaId"];
+	 $class_idea->mark_offline($idea_id);
+	 $res= array();
+      $res['status']='success';
+      echo json_encode($res);
+  }
+  //转为待产
+  elseif($act=='idea_product')
+  {
+       $idea_id=$_POST["ideaId"];
+	 $class_idea->mark_product($idea_id);
+	 $res= array();
+      $res['status']='success';
+      echo json_encode($res);
+  }
+     //通过审核
+  elseif($act=="idea_pass")
+  {
+  //echo json_encode($_POST);
   $idea_id=$_POST["ideaId"];
   $num=count($idea_id);
   $i=0;
-     //通过审核
-  if($act=="idea_pass")
+  $tags=explode(',',$_POST["tags"]);
+  //表单验证
+  if(strlen(trim($_POST["title"]))<=1||strlen(trim($_POST["title"]))>15)
   {
+      $res= array();
+      $res['status']='title_length';
+      echo json_encode($res);
+  }
+  elseif(count($tags)>=6)
+  {
+      $res= array();
+      $res['status']='tags_amount';
+      echo json_encode($res);
+      
+  }
+  elseif(strlen(trim($_POST["content"]))<=0)
+  {
+      $res= array();
+      $res['status']='content_length';
+      echo json_encode($res);
+  }
+  elseif(strlen(trim($_POST["starttime"]))<=0)
+  {
+      $res= array();
+      $res['status']='starttime_error';
+      echo json_encode($res);
+  }
+  elseif(strlen(trim($_POST["starttime"]))<=0)
+  {
+      $res= array();
+      $res['status']='endtime_error';
+      echo json_encode($res);
+  }
+  elseif($_POST["target"]<=0)
+  {
+       $res= array();
+      $res['status']='target_amount_error';
+      echo json_encode($res);
+  }
+  else{
     while ( $i< $num) {
       # code...
       $class_idea->mark_pass($idea_id[$i]);
+	  $arr=array("name"=>$_POST["title"],"tags"=>$_POST["tags"],"content"=>$_POST["content"],"is_recommend"=>$_POST["command"],"begin_time"=>$_POST["starttime"],"end_time"=>$_POST["endtime"],"target"=>$_POST["target"]);
+	  $class_idea->update_idea($idea_id[$i],$arr);
       $i=$i+1;
     }
       $res= array();
       $res['status']='success';
       echo json_encode($res);
+	  }
      // exit();
   }
      //未通过审核
   elseif ($act=="idea_reject") {
+  $idea_id=$_POST["ideaId"];
+  $num=count($idea_id);
+  $i=0;
     # code...
     while ( $i< $num) {
       # code...
@@ -146,9 +213,9 @@ elseif ($_POST['order'][0]['column']==5 or $_POST['order'][0]['column']==1) {
     $datalist[$i]["user_name"],
     $datalist[$i]["brief"],
     '<span class="label label-sm label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
-    '<a href="javascript:;" class="btn btn-xs blue idea-pass"><i class="fa fa-search"></i>批准</a>'
-      . '<a href="javascript:;" class="btn btn-xs red idea-reject"><i class="fa fa-search"></i>拒绝</a>'
-      . '<a href="./idea_detail_all.php?idea_id='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>查看</a>',
+    
+     '<a href="javascript:;" class="btn btn-xs red idea-reject"><i class="fa fa-search"></i>拒绝</a>'
+      . '<a href="./idea_detail_all.php?idea_id='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>编辑</a>',
   );
 }
 if (isset($_REQUEST["customActionType"]) && $_REQUEST["customActionType"] == "group_action") {

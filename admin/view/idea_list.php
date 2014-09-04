@@ -71,11 +71,7 @@ Version: 3.1.3
                                                                     </button>
 
                                                             </div>
-                                                            <div class="btn-group">
-                                                                    <button id="sample_editable_1_pass" class="btn blue">
-                                                                    批准项目 <i class="fa fa-plus"></i>
-                                                                    </button>
-                                                            </div>
+                                                            
                                                             <div class="btn-group">
                                                                     <button id="sample_editable_1_reject" class="btn red">
                                                                     拒绝项目 <i class="fa fa-plus"></i>
