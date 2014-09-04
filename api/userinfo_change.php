@@ -38,44 +38,44 @@ elseif(strlen(trim($_POST['user_occupation']))>200)
 	echo json_encode($records);
 }
 else{
-//七牛处理图片
-//$qiniu= new class_qiniu();
-$pic_url=$_POST['head_url'];
-//$url_array = explode("/", $pic_url);
-//$key = end($url_array);
-//$key1 ="upload/".$user_id."/head/".$key;
+	//七牛处理图片
+	//$qiniu= new class_qiniu();
+	$pic_url=$_POST['head_url'];
+	//$url_array = explode("/", $pic_url);
+	//$key = end($url_array);
+	//$key1 ="upload/".$user_id."/head/".$key;
 
-// $qiniu->move($key,$key1);
-// $pic_url=QINIU_DOWN.$key1;
+	// $qiniu->move($key,$key1);
+	// $pic_url=QINIU_DOWN.$key1;
 
-//
-$arr['head_pic_url']=$pic_url;
-$arr['occupation']=$_POST['user_occupation'];
-$arr['self_intro']=$_POST['user_introduction'];
-$res=$class_user->update($user_id,$arr);
-if(strlen(trim($arr['user_name']))<=0||strlen(trim($arr['user_name']))>40)
-{
-   # code...
-	$records['status']='error';
-	echo json_encode($records);
-}
-else
-{
+	//
+	$arr['head_pic_url']=$pic_url;
+	$arr['occupation']=$_POST['user_occupation'];
+	$arr['self_intro']=$_POST['user_introduction'];
+	$res=$class_user->update($user_id,$arr);
+	if(strlen(trim($arr['user_name']))<=0||strlen(trim($arr['user_name']))>40)
+	{
+	   # code...
+		$records['status']='error';
+		echo json_encode($records);
+	}
+	else
+	{
 
-$sql="UPDATE `idea_info` set user_name='".$arr['user_name']."' where user_id=".$user_id;
+	$sql="UPDATE `idea_info` set user_name='".$arr['user_name']."' where user_id=".$user_id;
 
-$class_idea->db->query($sql);
-if($res==1)
-{
-	$records['status']='success';
-	//$url="Location:".BASE_URL."person.php?user_id=".$user_id;
-	//header($url);
-	echo json_encode($records);
+	$class_idea->db->query($sql);
+		if($res==1)
+		{
+			$records['status']='success';
+			//$url="Location:".BASE_URL."person.php?user_id=".$user_id;
+			//header($url);
+			echo json_encode($records);
+		}
+		else {
+			# code...
+			$records['status']='error';
+			echo json_encode($records);
+		}
+	}
 }
-else {
-	# code...
-	$records['status']='error';
-	echo json_encode($records);
-}
-}
-?>
