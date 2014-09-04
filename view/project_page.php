@@ -330,7 +330,7 @@
                 }
         );
         $("#weibobtn").click(function(){
-           $("#weibo").removeClass("hide");
+            $("#weibo").removeClass("hide");
             $("#weibo").siblings("div").addClass("blur");
         });
         $("#weixinbtn").click(function(){
