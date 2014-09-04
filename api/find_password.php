@@ -62,7 +62,20 @@ function check_change(){
 	global $class_findpass;
 	$mail=$_POST['user_email'];
 	if(array_key_exists('old_password', $_POST)){
-
+        //表单验证
+		if(!$class_check->is_email($mail))
+		{
+		   $result['status']='email_error';
+			echo json_encode($result);
+			exit();
+		}
+		elseif(strlen(trim($_POST['new_password']))<=6||strlen(trim($_POST['new_password']))>16)
+		{
+		    $result['status']='password_length_error';
+			echo json_encode($result);
+			exit();
+		}
+		else{
 		$res=$class_user->select_by_email($mail);
 		if(count($res)==0)
 		{
@@ -83,6 +96,7 @@ function check_change(){
 			echo json_encode($result);
 			exit();
 			}
+		}
 		}
 	}
 
