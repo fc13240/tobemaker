@@ -236,9 +236,16 @@ ul li{
     font-size: 13px;
     text-align: left;
 }
+.login .weixin #qrcode{
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .login .weixin img{
     width: 150px;
 }
+
 .login .weixin p{
     margin: 0 0 50px 0;
     text-align: center;

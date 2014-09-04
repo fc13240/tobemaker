@@ -143,7 +143,7 @@
 <div class="login hide" id="weixin">
     <div class="form border dark">
         <div class="weixin">
-            <img src="asset/34.png" alt="">
+            <div id="qrcode"></div>
             <p>用微信<span>扫一扫</span>上方的二维码，
                 <br/>
                 即可分享给您的微信好友或朋友圈。</p>
@@ -156,6 +156,7 @@
 <script type="text/javascript" src="./js/jquery.qqFace.js"></script>
 <script type="text/javascript" src="./js/jquery-migrate-1.1.1.js"></script>
 <script type="text/javascript" src="./js/jQuery.pin.js"></script>
+<script type="text/javascript" src="./js/qrcode.min.js"></script>
 
 <script>
     
@@ -267,6 +268,18 @@
         return str;
     }
     
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 150,
+            height : 150
+    });
+    
+    function makeCode () {		
+            
+            var url = '<?=BASE_URL?>project_mobile.php?idea_id=<?=$idea_id?>';
+
+            qrcode.makeCode(url);
+    }
+    
     $(function(){
         $('.emotion').qqFace({
             id : 'facebox',
@@ -323,6 +336,7 @@
         $("#weixinbtn").click(function(){
             $("#weixin").removeClass("hide");
             $("#weixin").siblings("div").addClass("blur");
+            makeCode();
         });
         
         function hideAll(){
