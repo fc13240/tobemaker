@@ -450,8 +450,20 @@ class class_idea
         $result = $this->db->query($sql);
     }
     //
-
-
+    //标记为下线
+	public function mark_offline($idea_id)
+	{
+	    $idea_id = $this->db->escape($idea_id);
+		$sql='update `idea_info` set `idea_status`=7 where `idea_id`='.$idea_id;
+		$result = $this->db->query($sql);
+	}
+    //转为待产
+	public function mark_product($idea_id)
+	{
+	    $idea_id = $this->db->escape($idea_id);
+		$sql='update `idea_info` set `idea_status`=5 where `idea_id`='.$idea_id;
+		$result = $this->db->query($sql);
+	}
     public function get_ideanum_by_userid($type,$user_id){
 
       if($type=='pass')
