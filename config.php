@@ -1,11 +1,11 @@
 <?php
 
-define('HOSTNAME','http://localhost/');
+define('HOSTNAME','http://www.tobemaker.com/');
 
-define('DESIGNMG_VERSION','0.1');
+define('DESIGNMG_VERSION','1.0');
 define('ROOT_PATH',  dirname(__FILE__).'/');
 
-define('BASE_URL', 'http://localhost/tobemaker/');
+define('BASE_URL', 'http://www.tobemaker.com/');
 
 /*
  * MySQL
@@ -13,15 +13,13 @@ define('BASE_URL', 'http://localhost/tobemaker/');
  */
 //define('DATABASE_HOST', 'localhost');
 define('DATABASE_HOST', '127.0.0.1');
-define('DATABASE_NAME', 'idea');
+define('DATABASE_NAME', 'tobemaker');
 define('DATABASE_USER', 'root');
-define('DATABASE_PASSWORD', '');
+define('DATABASE_PASSWORD', 'aeb5c71b');
 
 /*
  * Database Tables
  */
-define('TABLENAME_AD', 'ad_img');
-define('TABLENAME_USER', 'user');
 
 define('ACCESS_KEY','-KZQqWyVFjjfoQDpkVb_Z1q-T7BrBKTJZfhEQ3XW');
 define('SECRET_KEY','_L0dnTqGE8PhJ1zNB3c97oX7pPge9TDzkKALu9gW');
