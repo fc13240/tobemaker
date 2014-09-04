@@ -137,6 +137,7 @@ ul li{
 .login form input[type="password"]
 {
     display: block;
+    outline-color: red;
     width: 300px;
     height: 30px;
     padding: 5px 10px;
@@ -843,6 +844,7 @@ form.lgn {
 .mine.edit input[type="text"]{
     display: block;
     border: none;
+    outline-color: red;
     border-bottom: 1px #b4b4b4 solid;
     width: 300px;
     height: 28px;
