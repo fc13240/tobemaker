@@ -108,6 +108,21 @@
 							<i class="icon-users"></i>
 							用户列表</a>
 						</li>
+                                                <li class="<?= @$page_level[1] == 'invitation_code' ? 'active' : '' ?>">
+                                                        <a href="invitation_code.php">
+							<i class="icon-users"></i>
+							新邀请码</a>
+						</li>
+                                                <li class="<?= @$page_level[1] == 'invitation_list' ? 'active' : '' ?>">
+                                                        <a href="invitation_list.php">
+							<i class="icon-users"></i>
+							邀请码列表</a>
+						</li>
+                                                <li class="<?= @$page_level[1] == 'invitation_user' ? 'active' : '' ?>">
+                                                        <a href="invitation_user.php">
+							<i class="icon-users"></i>
+							邀请码使用</a>
+						</li>
 					</ul>
 				</li>
                                 <li class="last <?= @$page_level[0] == 'auth' ? 'active open' : '' ?>">
