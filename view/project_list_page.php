@@ -157,8 +157,21 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
+    
+<div class="login hide" id="weixin">
+    <div class="form border dark">
+        <div class="weixin">
+            <div id="qrcode"></div>
+            <p>用微信<span>扫一扫</span>上方的二维码，
+                <br/>
+                即可分享给您的微信好友或朋友圈。</p>
+        </div>
+
+    </div>
+</div>
 
 <?php include "bottom_js.php" ?>
+<script type="text/javascript" src="./js/qrcode.min.js"></script>
 
 <!--换页按钮定位相关js-->
 <!--需要jQuery-->
@@ -172,6 +185,18 @@
             $(".next").height( $(window).height() );
             $(".next").css("line-height" , $(window).height()+"px");
             $(".next").css("left" , ($(window).width() - 1020)/2 + 1040 +"px");
+    }
+    
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 150,
+            height : 150
+    });
+    
+    function makeCode (idea_id) {		
+            
+            var url = '<?=BASE_URL?>project_mobile.php?idea_id='+idea_id;
+
+            qrcode.makeCode(url);
     }
     
     var pageSize = 6;
@@ -202,7 +227,9 @@
                 var endTime = new Date(item.end_time);
                 var nowTime = new Date();
                 var timePercent = parseInt(((nowTime - startTime)/(endTime - startTime))*100);
-                
+                var leftDays = Math.ceil( (endTime - nowTime)/(24*3600*1000));
+                if (leftDays < 0)
+                    leftDays = 0;
                 if (timePercent > 100)
                     timePercent = 100;
                 if (timePercent < 0)
@@ -211,7 +238,7 @@
                 $container.append('\
             <dl>\
                 <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" class="h273" alt=""></a></dd>\
-                <dt>'+ item.name +'<span class="deadline"><i class="fa fa-clock-o"></i>剩余100天</span></dt>\
+                <dt>'+ item.name +'<span class="deadline"><i class="fa fa-clock-o"></i>剩余' + leftDays + '天</span></dt>\
                 <dd><div class="bar"><div class="done" style="width: '+timePercent+'%"></div></div></dd>\
                 <dd>\
                     <a href="#" class="avatar"><img class="circle" src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\
@@ -219,7 +246,7 @@
                     <span>发布</span>\
                 </dd>\
                 <dd>\
-                    <div class="button"><a href="#">分享</a></div>\
+                    <div class="button"><a class="weixinbtn" href="javascript:0;" data-idea_id="'+item.idea_id+'">分享</a></div>\
                     <div class="button"><a href="project.php?idea_id='+ item.idea_id +'#commentForm">评论</a><span>'+ (item.sum_comment == null ? 0 : item.sum_comment) +'</span></div>\
                     <div class="button"><a class="like_btn '+ (item.likeit == 0 ? '':'red') +'" href="javascript:void 0" data-idea_id="'+ item.idea_id +'" data-url="<?=BASE_URL."api/like.php"?>" >超喜欢</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
                 </dd>\
@@ -247,6 +274,12 @@
                     flag = 0;
                 });
             }
+            
+            $('#idea-list-content').on('click', '.weixinbtn', function(){
+                $("#weixin").removeClass("hide");
+                $("#weixin").siblings("div").addClass("blur");
+                makeCode($(this).data('idea_id'));
+            });
             
             // set up page nav
             var $pageNav = $('#project-pagenum');
@@ -314,6 +347,23 @@
                     alert("已标记喜欢，请勿重复提交");
                 }
             },'json');
+        });
+        
+        function hideAll(){
+            $(".login").addClass("hide");
+            $("#weixin").siblings("div").removeClass("blur");
+            $("#weibo").siblings("div").removeClass("blur");
+        }
+        
+        $(document).keydown(function(event){ 
+
+            if (event.keyCode == 27){
+                hideAll();
+            }
+        });
+        
+        $('#weixin').click(function(){
+            hideAll();
         });
     });
 </script>
