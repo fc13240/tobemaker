@@ -99,7 +99,9 @@
         </div>
         <div class="pendant left">
             <ul>
-                <li><a href="javascript:void 0" class="red">分&nbsp;&nbsp;&nbsp;&nbsp;享</a></li>
+                <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
+                    <div id="sharein"><i id="weixinbtn">微 信</i><i id="weibobtn">微 博</i></div>
+                </li>
                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
                 <li><a id="like_btn" class="<?=($is_like_item==1?'red':'')?>" href="javascript:void 0" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>">超喜欢</a></li>
             </ul>
@@ -114,11 +116,47 @@
 <div id="footer">
     <?php include "footer.php" ?>
 </div>
+    
+<div class="login hide" id="weibo">
+    <div class="form border dark" style="z-index:1;">
+        <div class="weibo" >
+            <h2>分享到微博</h2>
+            <form action="#">
+                <textarea></textarea>
+                <div class="info">
+                    <img src="asset/16.png" alt="">
+                    <div>
+                        <h5>【可以唱歌的杯子】</h5>
+                        <p>这是一款可以唱歌的杯子啊，这是一款可以唱歌的杯子啊......</p>
+                    </div>
+                </div>
+                <div class="link">
+                    <span>来自</span><a href="#">tobeMaker.com</a><span>的分享链接</span>
+                    <button>分 享</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="login hide" id="weixin">
+    <div class="form border dark">
+        <div class="weixin">
+            <div id="qrcode"></div>
+            <p>用微信<span>扫一扫</span>上方的二维码，
+                <br/>
+                即可分享给您的微信好友或朋友圈。</p>
+        </div>
+
+    </div>
+</div>
 
 <?php include "bottom_js.php" ?>
 <script type="text/javascript" src="./js/jquery.qqFace.js"></script>
 <script type="text/javascript" src="./js/jquery-migrate-1.1.1.js"></script>
 <script type="text/javascript" src="./js/jQuery.pin.js"></script>
+<script type="text/javascript" src="./js/qrcode.min.js"></script>
 
 <script>
     
@@ -230,6 +268,18 @@
         return str;
     }
     
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 150,
+            height : 150
+    });
+    
+    function makeCode () {		
+            
+            var url = '<?=BASE_URL?>project_mobile.php?idea_id=<?=$idea_id?>';
+
+            qrcode.makeCode(url);
+    }
+    
     $(function(){
         $('.emotion').qqFace({
             id : 'facebox',
@@ -263,8 +313,60 @@
             },'json');
         });
         
+        $("#share").hover(
+                function(){
+                    $("#sharein").show();
+                },
+                function(){
+                    $("#sharein").hide();
+                }
+        );
+        $("#sharein").hover(
+                function(){
+                    $("#sharein").show();
+                },
+                function(){
+                    $("#sharein").hide();
+                }
+        );
+        $("#weibobtn").click(function(){
+           $("#weibo").removeClass("hide");
+            $("#weibo").siblings("div").addClass("blur");
+        });
+        $("#weixinbtn").click(function(){
+            $("#weixin").removeClass("hide");
+            $("#weixin").siblings("div").addClass("blur");
+            makeCode();
+        });
+        
+        function hideAll(){
+            $(".login").addClass("hide");
+            $("#weixin").siblings("div").removeClass("blur");
+            $("#weibo").siblings("div").removeClass("blur");
+        }
+        $(document).keydown(function(event){ 
+
+            if (event.keyCode == 27){
+                hideAll();
+            }
+        });
+        
+        $('#weixin').click(function(){
+            hideAll();
+        });
+        
+        $('#weibo').click(function(){
+            hideAll();
+        });
+        
+        $('.weibo').click(function(event){
+            event.stopPropagation();
+        });
+        
         pageNow = 1;
         loadIdeaPage(pageNow);
+        
+        
 
     });
 </script>

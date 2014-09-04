@@ -87,7 +87,7 @@
                 <span>还没有账号？</span>
                 <a href="#" id='reg_btn'>立即注册></a>
             </div>
-            <div class="close">X</div>
+            <!--<div class="close">X</div>-->
         </form>
     </div>
 </div>
@@ -101,7 +101,7 @@
             <input type="text" name="inviteCode" placeholder="邀请码">
                 <input type="checkbox"><span>我已经认真阅读并同意<a href="login_agreement.html">《使用协议》</a></span>
             <input type="button" value="注册">
-            <div class="close">X</div>
+            <!--<div class="close">X</div>-->
         </form>
     </div>
     <p>关注微信公众号：sidarsm，回复邮箱，获取邀请码</p>
@@ -116,7 +116,7 @@
             <div>
                 <a href="#" id="login2">又想起来了>></a>
             </div>
-            <div class="close">X</div>
+            <!--<div class="close">X</div>-->
         </form>
     </div>
 </div>
@@ -254,6 +254,14 @@
         
             $("#tobe_stage_"+stage_name).show();
             
+        });
+        
+        $('#login_form, #register_form, #forget_form').click(function(){
+            hideAll();
+        });
+        
+        $(".form").click(function(event){
+            event.stopPropagation();
         });
     });
 
