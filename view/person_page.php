@@ -11,48 +11,46 @@
 </div>
 <div id="center">
     <div class="middle">
-        <div class="mine">
-            <img id="userHead" class="circle" src="<?=$user_info['head_pic_url']?>"
-             alt="头像读取错误">
-                <a href="#" id="btn-upload" style="display: none;" data-url="<?=BASE_URL?>api/user.php" title="上传图片">
-                    <form>
-                    <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/" /><i class="fa fa-chevron-circle-up"></i>
-                    <input id="head_pic_url" type="hidden" name="img_url" value=""/>
-                   
-    <input name="token" type="hidden" value=<?php
-    echo "\"".$upToken."\"";
-
-    ?>>
-                    </form>
-                </a>
+        <div id="my_info_view" class="mine">
+            <img class="head circle" src="<?=$user_info['head_pic_url']?>" alt=""/>
             <br/>
-            <h2 id="userName"><?php
-            echo $user_info['user_name'];
-            ?></h2>
+            <h2 class="user_name"><?=$user_info['user_name']?></h2>
             <br/>
-            <span id="userTitle"><?php
-            echo $user_info['occupation'];
-            ?></span>
+            <span class="occupation"><?=$user_info['occupation']?></span>
             <br/>
-            <p id="userIntroduction">
-            <?php
-            echo $user_info['self_intro'];
-            ?>
-            
-            </p>
+            <p class="self_intro"><?=$user_info['self_intro']?></p>
             <br/>
             <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
             <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
             <a id="btn-msg" href="<?=BASE_URL?>msg_send.php?userid=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o"></i></a>
-            <a href="javascript:0" id="btn-modify"><i class="fa fa-pencil"></i></a>
-            <a href="javascript:0" id="btn-comfirm" style="display: none;" data-url="<?=BASE_URL?>api/userinfo_change.php" ><i class="fa fa-check blue"></i></a>
-            <a href="javascript:0" id="btn-cancle" style="display: none;" ><i class="fa fa-times red"></i></a>
+            <a href="javascript:0;" id="btn-modify"><i class="fa fa-pencil"></i></a>
+            <a href="javascript:0;" id="btn-modify-password"><i class="fa fa-pencil"></i></a>
+        </div>
+        
+        <div id="my_info_edit" class="mine edit hide">
+            <div class="avatarupload">
+                <img src="<?=$user_info['head_pic_url']?>" alt="" class="head circle blur">
+                <div></div>
+                <form>
+                    <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/" />
+                    <input id="head_pic_url" type="hidden" name="img_url" value="<?=$user_info['head_pic_url']?>"/>
+                    <input name="token" type="hidden" value="<?=$upToken?>" />
+                </form>
+            </div>
+            <label id="upload-progress-label"></label>
+            <br/>
+            <input class="user_name" type="text" value="<?=$user_info['user_name']?>" />
+            <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job">
+            <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>">
+                <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><img src="asset/32.png" alt=""></a>
+            <a href="javascript:void 0;" id="btn_user_cancle"><img src="asset/32.png" alt=""></a>
 
         </div>
+        
         <input type="hidden" id="user_id" name="user_id" value=<?php 
             echo $user_info['user_id']." />";
             ?>
-			<input type="hidden" id="session_userid" name="session_userid" value="<?=@$_SESSION["user_id"]?>" />
+        <input type="hidden" id="session_userid" name="session_userid" value="<?=@$_SESSION["user_id"]?>" />
     </div>
     <div class="middle-margin">
         <div id="myProjectBlock" class="minepro list" data-url="<?=BASE_URL.'api/user_project.php'?>">
@@ -103,6 +101,19 @@
 </div>
 <div id="footer">
     <?php include "footer.php" ?>
+</div>
+    
+
+<div class="login hide" id="pwdchange">
+    <div class="form border dark">
+        <h1>密码更改</h1>
+        <form action="#">
+        <input type="password" placeholder="当前密码">
+        <input type="password" placeholder="新密码">
+        <input type="password" placeholder="确认新密码">
+        <input type="submit" value="确认">
+        </form>
+    </div>
 </div>
 
 <?php include "bottom_js.php" ?>
@@ -181,53 +192,30 @@
             },"json");
         }
         
-        function bottomBtnToggle(){
-            
-            $("#btn-follow").toggle();
-            $("#btn-msg").toggle();
-            $("#btn-modify").toggle();
-            
-            $("#btn-comfirm").toggle();
-            $("#btn-cancle").toggle();
-            
-            $("#btn-upload").toggle();
-        };
-        
         function rollBack(){
-            var head_url = $('#userHead').data('ori');
-            var user_name = $('#userName input[name=user_name]').data('ori');
-            var user_occupation = $('#userTitle input[name=user_occupation]').data('ori');
-            var user_introduction = $('#userIntroduction input[name=user_introduction]').data('ori');
-
-            $('#userHead').attr('src', head_url);
-            $('#userName').html(user_name);
-            $('#userTitle').html(user_occupation);
-            $('#userIntroduction').html(user_introduction);
+            
+            $('#my_info_edit .head').attr('src', $('#my_info_view .head').attr('src'));
+            $('#my_info_edit .user_name').val( $('#my_info_view .user_name').text());
+            $('#my_info_edit .occupation').val( $('#my_info_view .occupation').text());
+            $('#my_info_edit .self_intro').val( $('#my_info_view .self_intro').text());
+            $('#head_pic_url').val($('#my_info_view .head').attr('src'));
+            
         }
         
         $(document).ready(function(){
             
-            $("#btn-comfirm").hide();
-            $("#btn-modify").show();
-            
             $("#btn-modify").click(function(){
-                var headUrl = $('#userHead').attr('src');
-                $('#userHead').data('ori', headUrl);
-                
-                var data = $('#userName').text();
-                $('#userName').html('<input type="text" name="user_name" value="'+data+'" data-ori="'+data+'" />');
-                
-                data = $('#userTitle').text();
-                $('#userTitle').html('<input type="text" name="user_occupation" value="'+data+'" data-ori="'+data+'" />');
-                
-                data = $('#userIntroduction').text();
-                $('#userIntroduction').html('<input type="text" name="user_introduction" value="'+data+'" data-ori="'+data+'" />');
-                
-                bottomBtnToggle();
+                // 进入编辑模式
+                $('#my_info_view').addClass('hide');
+                $('#my_info_edit').removeClass('hide');
+            });
+            
+            $("#btn-modify-password").click(function(){
+                // 修改密码
                 
             });
 			
-			//注册关注事件
+            //注册关注事件
             $("#btn-follow").click(function(){
 			var attention_userid = $('#user_id').val();
 			var userid=$("#session_userid").val();
@@ -249,52 +237,45 @@
                         
                     }
                 },'json');
-			});
-			//注册取消关注事件
-			 $("#btn-cancel").click(function(){
-			var attention_userid = $('#user_id').val();
-			var userid=$("#session_userid").val();
-			var url=$(this).data('url');
-			$.post(url, {
-			        'action':'delete',
-                    'userid':userid,
-                    'attention_userid':attention_userid
-                    
-                    }, function(data, textStatus){
+            });
+            //注册取消关注事件
+             $("#btn-cancel").click(function(){
+                    var attention_userid = $('#user_id').val();
+                    var userid=$("#session_userid").val();
+                    var url=$(this).data('url');
+                    $.post(url, {
+                            'action':'delete',
+                'userid':userid,
+                'attention_userid':attention_userid
+
+                }, function(data, textStatus){
                     if (data.status == "success"){
-					var $control=$("#btn-cancel");
+                                        var $control=$("#btn-cancel");
                         $control.hide();
                         $("#btn-follow").show();
                         alert("取消成功")
                     }else{
                         //rollBack();
                         alert("取消关注失败");
-                        
+
                     }
                 },'json');
-			});
-            $("#btn-comfirm").click(function(){
+            });
+            
+            // 个人信息修改提交
+            $("#btn_user_submit").click(function(){
+                
                 var url = $(this).data('url');
-                if($('#head_pic_url').val()==""){
-                    var head_url = $('#userHead').data('ori');
-                }
-                else {var head_url=$('#head_pic_url').val();}
-               // console.log(head_url);
-                var user_name = $('#userName input[name=user_name]').val();
-                var user_occupation = $('#userTitle input[name=user_occupation]').val();
-                var user_introduction = $('#userIntroduction input[name=user_introduction]').val();
-                var user_id = $('#user_id').val();
-                console.log(head_url);
-
-                var head_url_ori = $('#userHead').data('ori');
-                var user_name_ori = $('#userName input[name=user_name]').data('ori');
-                var user_occupation_ori = $('#userTitle input[name=user_occupation]').data('ori');
-                var user_introduction_ori = $('#userIntroduction input[name=user_introduction]').data('ori');
-
-                $('#userName').html(user_name_ori);
-                $('#userTitle').html(user_occupation_ori);
-                $('#userIntroduction').html(user_introduction_ori);
-
+                
+                var head_url = $('#head_pic_url').val();
+                var user_name = $('#my_info_edit .user_name').val();
+                var user_occupation = $('#my_info_edit .occupation').val();
+                var user_introduction = $('#my_info_edit .self_intro').val();
+                
+                var user_id = <?=$user_info['user_id']?>;
+                
+                $('#my_info_view').removeClass('hide');
+                $('#my_info_edit').addClass('hide');
                 
                 $.post(url, {
                     'user_id':user_id,
@@ -304,27 +285,28 @@
                     'user_introduction':user_introduction
                     }, function(data, textStatus){
                     if (data.status == "success"){
-                        $('#userName').html(user_name);
-                        $('#userTitle').html(user_occupation);
-                        $('#userIntroduction').html(user_introduction);
+                        
+                        $('#my_info_view .head').attr('src', head_url );
+                        $('#my_info_view .user_name').val( user_name );
+                        $('#my_info_view .occupation').val( user_occupation );
+                        $('#my_info_view .self_intro').val( user_introduction );
 
                     }else{
+                        
                         rollBack();
                         alert("个人信息修改失败！"+data.status);
                         
                     }
                 },'json');
                 
-                bottomBtnToggle();
-                
             });
             
-            $("#btn-cancle").click(function(){
+            $("#btn_user_cancle").click(function(){
+                
+                $('#my_info_view').removeClass('hide');
+                $('#my_info_edit').addClass('hide');
                 
                 rollBack();
-                
-                bottomBtnToggle();
-                
             });
             
             $('#fileSelect').fileupload({
@@ -334,13 +316,15 @@
                         alert("错误：" + data.result.err_msg);
                     }else{
                         var url="<?=QINIU_DOWN?>"+ data.result.key;
-                        console.log(url);
-                        $("#userHead").attr('src', url);
+//                        console.log(url);
+                        $('#my_info_edit .head').attr('src', url);
                         $("#head_pic_url").val(url);
+                        $('#upload-progress-label').text('');
                     }
                 },
                 progress: function (e, data) {
-
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#upload-progress-label').text(progress+'%');
                 },
             });
             

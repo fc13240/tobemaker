@@ -99,7 +99,7 @@
                 $('#upload-progress-label').text('');
             },
             progress: function (e, data) {
-                console.log(data);
+//                console.log(data);
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#upload-progress-label').text(progress+'%');
             },
