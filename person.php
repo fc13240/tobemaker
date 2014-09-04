@@ -13,6 +13,10 @@ $upToken=$qiniu->get_token_to_upload_head();
 $current_page = 'person';
 $page_level = explode('-', $current_page);
 $class_session=new class_session();
+if(!$class_session->check_login())
+{
+   $class_session->changePage(BASE_URL."error.php");
+}
 $class_user=new class_user();
 
 $current_user = $class_user->get_current_user();

@@ -43,7 +43,12 @@ class class_session
         }
         
     }
-    
+    //未登录跳转页面
+	public function changePage($url)
+	{
+	     $url="Location:".$url."?parameter=unlog";
+         header($url);
+	}
     // 登录
     public function login($username = '', $password = ''){
         if ($username == ''){

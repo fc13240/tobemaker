@@ -7,6 +7,10 @@ include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_user.php";
 include_once ROOT_PATH."class/class_group_auth.php";
 $class_session=new class_session();
+if(!$class_session->check_login())
+{
+   $class_session->changePage(BASE_URL."error.php");
+}
 $class_user=new class_user();
 $class_group_auth=new class_group_auth();
 $current_user = $class_user->get_current_user();

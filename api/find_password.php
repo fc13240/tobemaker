@@ -4,8 +4,9 @@ include_once ROOT_PATH."class/class_user.php";
 include_once ROOT_PATH."class/class_session.php";
 include_once ROOT_PATH."class/class_invitation_code.php";
 include_once ROOT_PATH."class/class_findpass_code.php";
+include_once ROOT_PATH."class/class_check.php";
 require_once ROOT_PATH."class/class.smtp.php";
-
+$class_check=new class_check();
 $class_user =new class_user();
 $class_session=new class_session();
 $class_findpass=new class_findpass_code();
@@ -130,6 +131,9 @@ $smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody, $mailtype)
 //  验证是否可以找回
 if(array_key_exists("action",$_POST)&&$_POST['action']=='findpass')
 {
+     //验证邮箱格式
+	 if($class_check->is_email($_POST['user_email']))
+	 {
 	//获取信息
 	 $mail=$_POST['user_email'];
 
@@ -152,6 +156,12 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='findpass')
 	$result['status']='success';
 	echo json_encode($result);
 	exit();
+	}
+	else
+	{
+	   $result['status']='email_error';
+	echo json_encode($result);
+	}
 
 }
 
