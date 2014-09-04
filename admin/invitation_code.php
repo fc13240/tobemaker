@@ -15,7 +15,7 @@ if(!$class_group_auth->check_auth("admin"))
 	//return;
   }
 // 导航 当前页面控制
-$current_page = 'invote-invote_code';
+$current_page = 'user-invitation_code';
 $page_level = explode('-', $current_page);
 
 $page_level_style = '
@@ -59,7 +59,7 @@ include 'view/header.php';
 
 include 'view/leftnav.php';
 
-include 'view/invote_code.php';
+include 'view/invitation_code.php';
 
 include 'view/quick_bar.php';
 

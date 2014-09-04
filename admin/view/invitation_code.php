@@ -177,7 +177,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="btn-group">
-											<a href="invote_list.php"><button id="sample_editable_1_new" class="btn green">
+											<a href="invitation_list.php"><button id="sample_editable_1_new" class="btn green">
 											邀请码详情 <i class="fa fa-plus"></i>
 											</button></a>
                                                                                         

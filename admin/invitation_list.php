@@ -13,7 +13,7 @@ if(!$class_group_auth->check_auth("admin"))
 	//return;
   }
 // 导航 当前页面控制
-$current_page = 'product-product_list';
+$current_page = 'user-invitation_list';
 $page_level = explode('-', $current_page);
 
 $page_level_style = '
