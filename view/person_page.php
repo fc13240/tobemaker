@@ -106,12 +106,12 @@
 
 <div class="login hide" id="pwdchange">
     <div class="form border dark">
-        <h1>密码更改</h1>
-        <form action="#">
-        <input type="password" placeholder="当前密码">
-        <input type="password" placeholder="新密码">
-        <input type="password" placeholder="确认新密码">
-        <input type="submit" value="确认">
+        <h1 style="text-align:center;">密码更改</h1>
+        <form id="changepwdForm" action="" >
+            <input type="password" name="password_ori" placeholder="当前密码">
+            <input type="password" name="new_pass" placeholder="新密码">
+            <input type="password" name="new_pass_again" placeholder="确认新密码">
+            <input type="button" data-url="<?=BASE_URL?>api/find_password.php" value="确认">
         </form>
     </div>
 </div>
@@ -212,9 +212,62 @@
             
             $("#btn-modify-password").click(function(){
                 // 修改密码
+                $('#pwdchange').removeClass('hide');
+                $("#pwdchange").siblings("div").addClass("blur");
                 
+                $('#changepwdForm input[name=password_ori]').val('');
+                $('#changepwdForm input[name=new_pass]').val('');
+                $('#changepwdForm input[name=new_pass_again]').val('');
             });
-			
+            
+            function hideAll(){
+                $("#pwdchange").addClass("hide");
+                $("#pwdchange").siblings("div").removeClass("blur");
+            }
+            $(document).keydown(function(event){ 
+
+                if (event.keyCode == 27){
+                    hideAll();
+                }
+            });
+
+            $('#pwdchange').click(function(){
+                hideAll();
+            });
+            
+            $('#pwdchange .form').click(function(event){
+                event.stopPropagation();
+            });
+            
+            $('#changepwdForm input[type=button]').click(function(){
+                var url = $(this).data('url');
+                
+                var oldPass = $('#changepwdForm input[name=password_ori]').val();
+                var newPass = $('#changepwdForm input[name=new_pass]').val();
+                var newPass_again = $('#changepwdForm input[name=new_pass_again]').val();
+                
+                if (newPass != newPass_again){
+                    alert('两次密码密码不一致');
+                    return;
+                }
+                
+                var user_email = '<?=$user_info['user_email']?>';
+                
+                $.post(url, {
+                    'action':'resetpass',
+                    'user_email':user_email,
+                    'old_password':oldPass,
+                    'new_password':newPass,
+                }, function(data, textStatus){
+                    if (data['status'] == 'success'){
+                        alert("修改密码成功");
+                        hideAll();
+                    }else{
+                        alert(data['status']);
+                    }
+                },'json');
+            });
+        
             //注册关注事件
             $("#btn-follow").click(function(){
 			var attention_userid = $('#user_id').val();

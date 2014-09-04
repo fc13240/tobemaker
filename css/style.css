@@ -148,7 +148,7 @@ ul li{
 .login form input[type="checkbox"]{
     margin-left: 100px;
 }
-.login form input[type="submit"]{
+.login form input[type="button"]{
     display: block;
     margin: 10px auto;
     width: 320px;
