@@ -16,11 +16,11 @@
             <div class="ttl">
                 <div class="title"><?php echo $item[0]['name'];?></div>
                 <div class="author">
-                    <a href="javascript:void 0"><img src="asset/15.png" alt=""></a>
+                    <a href="<?=BASE_URL.'person.php'?>?user_id=<?=@$item[0]["user_id"]?>"><img src="<?php echo @$item[0]['head_pic_url'] == '' ? 'asset/12.png' : $item[0]['head_pic_url']; ?>" alt=""></a>
                     <br />
 					<input type="hidden" id="author_id" value="<?=@$item[0]["user_id"]?>">
 					<input type="hidden" id="user_id" value="<?=@$user_id?>">
-                    <a href="javascript:void 0"><a href="javascript:void 0"><?php echo $item[0]['user_name'];?></a>
+                    <a href="<?=BASE_URL.'person.php'?>?user_id=<?=@$item[0]["user_id"]?>"><?php echo $item[0]['user_name'];?></a>
                 </div>
                 <div class="subtitle"><?php //echo $item[0]['tags'];
                 $tag_array = split(',', $item[0]['tags']);

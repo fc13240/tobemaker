@@ -330,7 +330,7 @@ form.lgn {
 .ttl .title{
     float: left;
     font-family: Lantingchaoxi;
-    font-size: 36px;
+    font-size: 80px;
     line-height: 120px;
     color: #6f6f6f;
     text-align: center;
@@ -1028,25 +1028,47 @@ span.tag:after {
 .justify i{
 	color: #000000;
 }
-
-.red {
-	color: #ff1400;
+.webview{
+    width: 100%;
+    text-align: center;
 }
-
-.deadline{
-	float: right;
-	font-style: italic;
-	font-weight: 100;
-	color: #9c9c9c;
-	font-size: 12px;
-	line-height: 19px;
+.webview h1{
+    font-family: Lantingchaoxi;
+    font-size: 2em;
+    text-align: center;
 }
-
-
-
-
-
-
-
-
-
+.webview label{
+    text-align: center;
+    font-size: 1em;
+}
+.webview .avatar{
+    padding-top: 30px;
+    width: 60px;
+    height: 60px;
+}
+.webview strong{
+    font-size: 0.8em;
+    color: #000000;
+}
+.webview .content{
+    margin: 30px;
+}
+.webview .content p{
+    color: #000000;
+    font-size: 1em;
+    line-height: 1.5em;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+.webview .content img{
+    width: 100%;
+}
+.webview .content span{
+    display: block;
+    text-align: left;
+    margin: 50px 0;
+}
+.webview .content span a{
+    color: #0066cc;
+}
