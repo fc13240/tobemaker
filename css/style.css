@@ -259,7 +259,6 @@ ul li{
 
 
 .top{
-    margin-top: 20px;
     border-bottom: #e8e7ed 1px solid;
     height: 60px;
 }
@@ -1343,3 +1342,26 @@ span.tag:after {
 	color: red;
 }
 
+html,body {
+	height: 100%;
+}
+#center {
+	height: auto;
+	min-height: 100%;
+	padding-bottom: 80px;
+}
+#footer {
+	position: relative;
+	margin-top: -80px;
+	clear:both;
+}
+.clearfix:after {content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
