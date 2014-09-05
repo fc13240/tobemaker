@@ -98,7 +98,8 @@ input[type="search"].sb-search-input {
 	color: #9c9c9c;
 	/*background: #e67e22;*/
 	z-index: 90;
-	font-size: 22px;
+	font-size: 20px;
+        line-height: 22px;
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
