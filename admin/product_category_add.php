@@ -40,7 +40,7 @@ else
 	$result=$product->insert('product_category',$arr);
 	//成功后弹出成功信息
 	 echo '<script type="text/javascript"> alert("添加成功！")</script>';
-	  changeTo(BASE_URL."admin/product_category_list.php")
+	  changeTo(BASE_URL."admin/product_category_list.php");
 }
 }
 
