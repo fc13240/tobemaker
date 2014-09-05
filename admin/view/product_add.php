@@ -73,7 +73,7 @@ Version: 3.1.3
 													<label class="col-md-3 control-label">商品目录</label>
 													<div class="col-md-4">
 													
-														<select class="form-control input-circle" id="category" name="category">
+														<select class="form-control " id="category" name="category">
 														<?php
 														for($i=0;$i<count($categoryList);$i++)
 														{
@@ -86,7 +86,7 @@ Version: 3.1.3
 												<div class="form-group">
 													<label class="col-md-3 control-label">商品名称</label>
 													<div class="col-md-4">
-														<input id="name" name="name" type="text" class="form-control input-circle" placeholder="输入商品名称">
+														<input id="name" name="name" type="text" class="form-control" placeholder="输入商品名称">
 														
 														<span class="help-block">
 														 </span>
@@ -100,7 +100,7 @@ Version: 3.1.3
 															<i class="fa fa-envelope"></i>
 															</span>-->
 															<img alt="" src="" name="image" id="image" />
-															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="http://up.qiniu.com/">
+															<input id="fileSelect" type="file" name="file" class="form-control" data-url="http://up.qiniu.com/">
 															<!--<p id="fileurl_display" name="fileurl_display"></p>-->
 															<input name="token" type="hidden" value="<?=$upToken?>" />
 															<input id="fileurl" type="hidden" name="img_url" value=""/>
@@ -111,7 +111,7 @@ Version: 3.1.3
 													<label class="col-md-3 control-label">商品链接</label>
 													<div class="col-md-4">
 														
-															<input id="link" name="link" type="text" class="form-control input-circle" placeholder="链接地址">
+															<input id="link" name="link" type="text" class="form-control" placeholder="链接地址">
 															
 													</div>
 												</div>
@@ -119,7 +119,7 @@ Version: 3.1.3
 													<label class="col-md-3 control-label">商品标签</label>
 													<div class="col-md-4">
 														
-															<input id="label" name="label" type="text" class="form-control input-circle" placeholder="不填则不显示">
+															<input id="label" name="label" type="text" class="form-control" placeholder="不填则不显示">
 														
 													</div>
 												</div>
@@ -127,14 +127,14 @@ Version: 3.1.3
 													<label class="col-md-3 control-label">原价</label>
 													<div class="col-md-4">
 														
-															<input id="price" name="price" type="text" class="form-control input-circle" placeholder="不填则不显示">
+															<input id="price" name="price" type="text" class="form-control" placeholder="不填则不显示">
 														
 													</div>
 												</div>
 												<div class="form-group last">
 													<label class="col-md-3 control-label">现价</label>
 													<div class="col-md-4">
-														<input id="discount" name="discount" type="text" class="form-control  input-circle" placeholder="现价">
+														<input id="discount" name="discount" type="text" class="form-control" placeholder="现价">
 													</div>
 												</div>
 												
@@ -142,8 +142,7 @@ Version: 3.1.3
 											<div class="form-actions">
 												<div class="row">
 													<div class="col-md-offset-3 col-md-9">
-														<button type="submit" class="btn btn-circle blue">添加</button>
-														
+														<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> 添加</button>
 													</div>
 												</div>
 											</div>
