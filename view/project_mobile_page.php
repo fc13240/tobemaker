@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?=$item[0]['name']?> - tobeMaker</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <?php include "top_css.php" ?>
 </head>
 <body style="min-width: inherit">
 <div class="webview">
