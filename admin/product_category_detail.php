@@ -58,6 +58,8 @@ $isContain=null;
  if($_POST["status"]=='删除')
 {
     $product->delete_category($_POST["pc_id"]);
+	echo '<script type="text/javascript"> alert("删除成功！")</script>';
+	changeTo(BASE_URL."admin/product_category_list.php");
 }
 else
 {
