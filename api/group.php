@@ -11,7 +11,20 @@ $group=new class_group();
 $group_auth=new class_group_auth();
 $user=new class_user();
 $iTotalRecords =$group->get_group_num();
-
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_strlen')){
+        return mb_strlen($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 //if (array_key_exists('action', $_REQUEST)){
 //
 //    var_dump($_REQUEST);
@@ -54,7 +67,13 @@ if(isset($_POST["action"])&&isset($_POST["groupId"])){
  if($act=='edit')
  {
  $value=$_POST["name"];
-  if(!$group->check_is_unique($value,$group_id))
+ if(abslength(trim($value))<=1||abslength(trim($value))>16)
+ {
+    $res= array();
+     $res['status']='error';
+     echo json_encode($res);
+ }
+  elseif(!$group->check_is_unique($value,$group_id))
   {
   $group->update_one($group_id,'group_name',$value);
      $res= array();

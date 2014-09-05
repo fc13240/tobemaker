@@ -20,8 +20,26 @@ $upToken=$qiniu->get_token_to_upload_idea();
 // 导航 当前页面控制
 $current_page = 'share';
 $page_level = explode('-', $current_page);
-
-
+include 'view/share_page.php';
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_strlen')){
+        return mb_strlen($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
+}
 //保存提交的想法
 if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 {
@@ -47,7 +65,9 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 
    //写数据库保存想法
 	$arr['name']=$_POST['title'];
-	if(strlen(trim($_POST['title']))>15||strlen(trim($_POST['title']))<=1)
+    //var_dump($_POST);
+	//echo count($_POST['title']);
+	if(abslength(trim($_POST['title']))>15||abslength(trim($_POST['title']))<=1)
 	{
 	   //返回错误信息
 	   echo '<script>alert("标题长度不正确，应介于2-15之间！");history.go(-1);</script>';
@@ -83,9 +103,8 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 	// 插入数据库
 	$new_idea= new class_idea();
 	$new_idea_id=$new_idea->insert("idea_info",$arr);
-	$url="Location:".BASE_URL."project.php?idea_id=".$new_idea_id;
-	header($url);
+	
+	changeTo(BASE_URL."project_list.php");
 
 }
 
-include 'view/share_page.php';

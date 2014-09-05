@@ -74,6 +74,20 @@ function check_invitation_code($invitation_code){
 		return 1;
 	}
 }
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_abslength')){
+        return mb_abslength($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 //验证是否是邮箱
 function is_email($user_email)
 {
@@ -177,7 +191,7 @@ if(array_key_exists("action",$_POST)&&$_POST['action']=='register')
 
 elseif(array_key_exists("action",$_POST)&&$_POST['action']=='login'){
     
-   if(strlen(trim($_POST["user_email"]))<=0)
+   if(abslength(trim($_POST["user_email"]))<=0)
    {
        $result=array();
 		    $result['status']='email_empty';
