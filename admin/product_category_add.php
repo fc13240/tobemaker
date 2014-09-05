@@ -5,6 +5,11 @@ include_once '../class/class_product.php';
 include_once '../class/class_file.php';
 include_once '../class/class_check.php';
 include_once ROOT_PATH."class/class_group_auth.php";
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
+}
 $class_check=new class_check();
 $class_group_auth=new class_group_auth();
 //判断权限
@@ -35,6 +40,7 @@ else
 	$result=$product->insert('product_category',$arr);
 	//成功后弹出成功信息
 	 echo '<script type="text/javascript"> alert("添加成功！")</script>';
+	  changeTo(BASE_URL."admin/product_category_list.php")
 }
 }
 
