@@ -10,7 +10,7 @@ if(!$class_session->check_login())
 {
    $class_session->changePage(BASE_URL."error.php");
 }
-}
+
 $class_user=new class_user();
 $class_group_auth=new class_group_auth();
 $current_user = $class_user->get_current_user();
@@ -29,17 +29,35 @@ $current_page = 'changeshare';
 $page_level = explode('-', $current_page);
 $new_idea= new class_idea();
 
+
+if(array_key_exists('idea_id',$_GET)){
+    $idea_id=intval($_GET['idea_id']);
+}else{
+    die('参数错误');
+}
+
+// 获取项目信息
+$idea_infolist=$new_idea->get_idea_by_id($idea_id);
+$idea_info=$idea_infolist[0];
+
+
+
+// 检查是否是自己的项目
+if ($current_user['user_id'] != $idea_info['user_id']){
+    die('没有编辑该项目的权限');
+}
+
 //  对修改请求的处理保存提交的修改
 if(array_key_exists('act',$_POST)&&$_POST['act']=='change_share')
 {
-       if(!$class_group_auth->check_auth("submitproject")) {
-    //echo '<script>alert("对不起，您没有权限！");history.go(-1);</script>';
-       die('对不起，您没有权限！');
-     // return;
-     }
-
+    // 检查是否有提交项目的权限，
+    if(!$class_group_auth->check_auth("submitproject")) {
+ //echo '<script>alert("对不起，您没有权限！");history.go(-1);</script>';
+        die('对不起，您没有权限！');
+  // return;
+    }
     
-        //保存图片
+    //保存图片
 
     $arr= array();
     $arr['user_id']=$current_user['user_id'];
@@ -62,12 +80,12 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='change_share')
     $arr['tags']=$_POST['tags'];
     if(array_key_exists('cover_display', $_POST))// 是否显示封面  数据库默认显示
     {
-      echo "yes";
+//      echo "yes";
         $arr['cover_display']=1;
     }
     else
     {
-      echo "no";
+//      echo "no";
       $arr['cover_display']=0;
     }
     $new_idea->update_idea($idea_id,$arr);
@@ -78,18 +96,11 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='change_share')
     $change_info['last_change_time']='now()';
 
     $new_idea->insert("idea_manage",$change_info);   
-	$url="Location:".BASE_URL."project.php?idea_id=".$idea_id;
-	header($url);
+    $url="Location:".BASE_URL."project.php?idea_id=".$idea_id;
+    header($url);
     exit();
 }
 
+    
+include 'view/changeshare_page.php';
 
-if(array_key_exists('idea_id',$_GET)){
-    $idea_id=intval($_GET['idea_id']);
-    $idea_infolist=$new_idea->get_idea_by_id($idea_id);
-    $idea_info=$idea_infolist[0];
-    include 'view/changeshare_page.php';
-}
-else{
-    echo "no info";
-}

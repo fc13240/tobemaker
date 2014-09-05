@@ -155,7 +155,7 @@
                                     <a href="project.php?idea_id='+ item.idea_id +'">\
                                         <i class="fa fa-info"></i>\
                                     </a>\
-                                    <a href="share.php?idea_id='+ item.idea_id +'">\
+                                    <a href="changeshare.php?idea_id='+ item.idea_id +'">\
                                         <i class="fa fa-pencil-square-o"></i>\
                                     </a>\
                                     <a href="project.php?idea_id='+ item.idea_id +'">\
