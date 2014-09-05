@@ -330,7 +330,7 @@
             var idea_id = $(this).data("idea_id");
             
             var user_id = <?=$current_user['user_id']?>;
-            $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
+            $.post(url, {'idea_id':idea_id, 'user_id':user_id,'buy':1}, function(data,textStatus){
                 var status = data['status'];
                 if (status == "success"){
                     // 标记“喜欢”按钮为红色表示已经标记为喜欢
@@ -343,7 +343,7 @@
                     
                 }else if (status == "error"){
                     alert("系统错误，请联系管理员");
-                }else if (status == "like_delete"){
+                }else if (status == "buy_delete"){
                    // 标记“喜欢”按钮为红色还原
                     the_like_btn.removeClass();
 					the_like_btn.addClass("like_btn");
