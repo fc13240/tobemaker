@@ -22,8 +22,6 @@ $current_page = 'share';
 $page_level = explode('-', $current_page);
 
 
-include 'view/share_page.php';
-
 //保存提交的想法
 if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 {
@@ -89,3 +87,5 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 	header($url);
 
 }
+
+include 'view/share_page.php';
