@@ -139,7 +139,7 @@
                                     <a href="changeshare.php?idea_id='+ item.idea_id +'">\
                                         <i class="fa fa-pencil-square-o"></i>\
                                     </a>\
-                                    <a class="idea_delete" data-url="<?=BASE_URL?>api/share.php" data-id="'+item.idea_id+'" data-status="'+item['idea_status']+'">\
+                                    <a href="javascript:0;" class="idea_delete" data-url="<?=BASE_URL?>api/share.php" data-id="'+item.idea_id+'" data-status="'+item['idea_status']+'">\
                                         <i class="fa fa-trash-o"></i>\
                                     </a>\
                                 </p>\
@@ -234,30 +234,31 @@
             });
             //项目删除事件
 			
-			dl.on('click', 'dd div p .idea_delete',function(){
-			    var url=$(this).data('url');
-			    var idea_id=$(this).data('id');
-				var status=$(this).data('status');
-				if(status>=5)
-				{
-				   alert('此状态项目无法删除！');
-				}
-				else
-				{
-				   $.post(url, {
-                    'action':'delete',
-                    'id':idea_id,
-                }, function(data, textStatus){
-                    if (data['status'] == 'success'){
-                        alert("删除成功");
-                        var $dl = $(this).parents('dl');
-						$dl.remove();
-                    }else{
-                        alert(data['status']);
-                    }
-                },'json');
-				}
-			});
+            $("#myProjectList").on('click', '.idea_delete',function(){
+                        var $delete_btn = $(this);
+                        var url=$(this).data('url');
+                        var idea_id=$(this).data('id');
+                            var status=$(this).data('status');
+                            if(status>=5)
+                            {
+                               alert('此状态项目无法删除！');
+                            }
+                            else
+                            {
+                               $.post(url, {
+                'action':'delete',
+                'id':idea_id,
+            }, function(data, textStatus){
+                if (data['status'] == 'success'){
+                    alert("删除成功");
+                    var $dl = $delete_btn.parents('dl');
+                                            $dl.remove();
+                }else{
+                    alert(data['status']);
+                }
+            },'json');
+                            }
+                    });
             $('#pwdchange').click(function(){
                 hideAll();
             });

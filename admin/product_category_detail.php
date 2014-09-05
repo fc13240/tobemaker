@@ -38,7 +38,11 @@ $category=$product->get_category_by_id($_GET["productID"]);
 	if($action=='view')
     $strDisplay=' disabled="disabled" ';
 	
-
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
+}
 // 表单处理
 if(array_key_exists('name',$_POST))
 {
@@ -67,6 +71,7 @@ else
   
   $result=$product->update_category($_POST["pc_id"],$arr);
    echo '<script type="text/javascript"> alert("更新成功！")</script>';
+   changeTo(BASE_URL."admin/product_category_detail.php?action=edit&productID=".$_POST["pc_id"]);
   }
   
 }
