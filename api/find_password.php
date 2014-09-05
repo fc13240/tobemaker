@@ -53,7 +53,30 @@ status＝'oldpass_error'/'success'
 */
  
 
-
+//验证邮箱
+	function is_email($user_email)
+{
+if(empty($user_email))
+{
+  return false;
+}
+    $chars = "/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,6}\$/i";
+    if (strpos($user_email, '@') !== false && strpos($user_email, '.') !== false)
+    {
+        if (preg_match($chars, $user_email))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
 
 //处理找回密码请求
 //检测请求是否合格
@@ -63,7 +86,7 @@ function check_change(){
 	$mail=$_POST['user_email'];
 	if(array_key_exists('old_password', $_POST)){
         //表单验证
-		if(!$class_check->is_email($mail))
+		if(!is_email($mail))
 		{
 		   $result['status']='email_error';
 			echo json_encode($result);
