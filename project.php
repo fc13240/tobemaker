@@ -63,7 +63,7 @@ elseif(!empty($_GET["idea_id"])){   // 默认显示主页
 	$item=$class_idea->get_idea_by_id($idea_id);
     
 	if($item[0]["idea_status"]<5)
-    $is_like_item = $class_like->get_like_info($idea_id, $user_id);
+    $is_like_item = $class_like->get_wantbuy_info($idea_id, $user_id);
     else
 	{
 	  $is_like_item = $class_like->get_wantbuy_info($idea_id, $user_id);

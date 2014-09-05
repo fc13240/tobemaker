@@ -113,6 +113,7 @@
         var length = pageSize;
         var url = $('#project-pagenum').data("url");
         $.post(url, {
+		    'buy':1,
             "start":start, 
             "length":length, 
             "type":"produce", 

@@ -18,7 +18,13 @@ class class_like
         $this->db = new ezSQL_mysql(DATABASE_USER,DATABASE_PASSWORD, DATABASE_NAME, DATABASE_HOST);
         $this->db->query("SET NAMES 'UTF8'");
     }
-
+   //获取喜欢数目
+   function get_like_num($idea_id)
+   {
+     $idea_id = $this->db->escape($idea_id);
+	 $sql="select * from idea_like where `idea_id`=".$idea_id." and `like_type`=0";
+	  return count($this->db->get_results($sql));
+   }
 
     function get_like_info($idea_id,$user_id=null){
 
@@ -178,7 +184,29 @@ class class_like
         }
 
     }
-
+ public function check_buy_by_group($data,$user_id,$flag){
+       $i=0;$tmp=count($data);
+            while ($i<$tmp) {
+                # code...
+                if($flag===1){
+                    $idea_id=$data[$i]['idea_id'];
+                    $check_like=$this->get_wantbuy_info($idea_id,$user_id);
+                    if($check_like==1)
+                    {
+                        $data[$i]['likeit']=1;
+                    }
+                    else{
+                        $data[$i]['likeit']=0;
+                    }
+                    $i++;
+                }
+                else{
+                    $data[$i]['likeit']=0;
+                    $i++;
+                }
+            }
+            return $data;
+    }
 
     public function check_like_by_group($data,$user_id,$flag){
        $i=0;$tmp=count($data);

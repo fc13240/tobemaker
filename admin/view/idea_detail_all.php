@@ -103,7 +103,7 @@ Version: 3.1.3
                                         		<td><input type="datetime" disabled="disabled" name="create_time" value=<?php echo "\"".$idea_list[0]["create_time"]."\"/>";?></td>
                                         		<td><input type="text" disabled="disabled" name="sum_comment" value=<?php echo "\"".$idea_list[0]["sum_comment"]."\"/>";?></td>
                                         		<td>
-                                        			<input type="text" disabled="disabled" name="sum_like" value=<?php echo "\"".$idea_list[0]["sum_like"]."\"/>";?>
+                                        			<input type="text" disabled="disabled" name="sum_like" value="<?=@$likenum?>"/>
                                         		</td>
                                         		
                                         		<td>
@@ -297,6 +297,7 @@ Version: 3.1.3
 	$.post(Url, $.param({'action':'idea_pass', 'ideaId':[idea_id],'title':title,'tags':tags,'content':content,'command':command,'starttime':starttime,'endtime':endtime,'target':target}), function(data, textStatus){
                if(data.status=='success'){
 			     alert("操作成功！");
+                window.location.href="idea_detail_all.php";
 			   }else{
 			   alert("操作失败"+data.status);
 			   }
@@ -310,6 +311,7 @@ Version: 3.1.3
 	$.post(Url, $.param({'action':'idea_reject', 'ideaId':[idea_id]}), function(data, textStatus){
                if(data.status=='success'){
 			     alert("操作成功！");
+				 window.location.href="idea_detail_all.php";
 			   }else{
 			   alert("操作失败！");
 			   }
@@ -323,6 +325,7 @@ Version: 3.1.3
 	$.post(Url, $.param({'action':'idea_product', 'ideaId':idea_id}), function(data, textStatus){
                if(data.status=='success'){
 			     alert("操作成功！");
+				 window.location.href="idea_detail_all.php";
 			   }else{
 			   alert("操作失败！");
 			   }
@@ -336,6 +339,7 @@ Version: 3.1.3
 	$.post(Url, $.param({'action':'idea_offline', 'ideaId':idea_id}), function(data, textStatus){
               if(data.status=='success'){
 			     alert("操作成功！");
+				 window.location.href="idea_detail_all.php";
 			   }else{
 			   alert("操作失败！");
 			   }
