@@ -24,103 +24,7 @@
                 <ul>
                     <li page="0"></li>
                     <li page="1">
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                            <dd>
-                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                                <a href="#" class="author">糯米团子</a>
-                                <span>发布</span>
-                            </dd>
-                            <dd>
-                                <div class="button"><a href="#">分享</a></div>
-                                <div class="button"><a href="#">评论</a><span>23</span></div>
-                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                            </dd>
-
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                            <dd>
-                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                                <a href="#" class="author">糯米团子</a>
-                                <span>发布</span>
-                            </dd>
-                            <dd>
-                                <div class="button"><a href="#">分享</a></div>
-                                <div class="button"><a href="#">评论</a><span>23</span></div>
-                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                            </dd>
-
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                            <dd>
-                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                                <a href="#" class="author">糯米团子</a>
-                                <span>发布</span>
-                            </dd>
-                            <dd>
-                                <div class="button"><a href="#">分享</a></div>
-                                <div class="button"><a href="#">评论</a><span>23</span></div>
-                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                            </dd>
-
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                            <dd>
-                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                                <a href="#" class="author">糯米团子</a>
-                                <span>发布</span>
-                            </dd>
-                            <dd>
-                                <div class="button"><a href="#">分享</a></div>
-                                <div class="button"><a href="#">评论</a><span>23</span></div>
-                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                            </dd>
-
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                            <dd>
-                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                                <a href="#" class="author">糯米团子</a>
-                                <span>发布</span>
-                            </dd>
-                            <dd>
-                                <div class="button"><a href="#">分享</a></div>
-                                <div class="button"><a href="#">评论</a><span>23</span></div>
-                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                            </dd>
-
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                            <dt>云品良木@韩版 简约风 卡通动物 大容量 铁皮盒 学生文具盒 12款</dt>
-                            <dd><div class="bar"><div class="done" style="width: 60%"></div></div></dd>
-                            <dd>
-                                <a href="#" class="avatar"><img src="asset/12.png" alt=""></a>
-                                <a href="#" class="author">糯米团子</a>
-                                <span>发布</span>
-                            </dd>
-                            <dd>
-                                <div class="button"><a href="#">分享</a></div>
-                                <div class="button"><a href="#">评论</a><span>23</span></div>
-                                <div class="button"><a href="#">超喜欢</a><span>23</span></div>
-                            </dd>
-
-                        </dl>
-                        <br class="clear"/>
+                        <p>加载中，请稍后</p>
                     </li>
                     <li page="2"></li>
 
@@ -330,7 +234,7 @@
             var idea_id = $(this).data("idea_id");
             
             var user_id = <?=$current_user['user_id']?>;
-            $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
+            $.post(url, {'idea_id':idea_id, 'user_id':user_id,'buy':1}, function(data,textStatus){
                 var status = data['status'];
                 if (status == "success"){
                     // 标记“喜欢”按钮为红色表示已经标记为喜欢
@@ -343,7 +247,7 @@
                     
                 }else if (status == "error"){
                     alert("系统错误，请联系管理员");
-                }else if (status == "like_delete"){
+                }else if (status == "buy_delete"){
                    // 标记“喜欢”按钮为红色还原
                     the_like_btn.removeClass();
 					the_like_btn.addClass("like_btn");

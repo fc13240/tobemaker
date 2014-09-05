@@ -16,13 +16,14 @@
             <br/>
             <h2 class="user_name"><?=$user_info['user_name']?></h2>
             <br/>
-            <span class="occupation"><?=$user_info['occupation']?></span>
+            <span class="occupation"><?=$user_info['occupation']==''?'还没有输入您的职位':$user_info['occupation']?></span>
             <br/>
-            <p class="self_intro"><?=$user_info['self_intro']?></p>
+            <p class="self_intro"><?=$user_info['self_intro']==''?'还没有输入您的个人介绍，点击下方的笔编辑':$user_info['self_intro']?></p>
             <br/>
-            <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
-            <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
-            <a id="btn-msg" href="<?=BASE_URL?>msg_send.php?userid=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o ired"></i></a>
+            <!--<a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>-->
+            <!--<a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>-->
+            <!--<a id="btn-msg" href="<?=BASE_URL?>msg_send.php?userid=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o ired"></i></a>-->
+            
             <a href="javascript:0;" id="btn-modify"><i class="fa fa-pencil ired"></i></a>
             <a href="javascript:0;" id="btn-modify-password"><i class="fa fa-unlock-alt ired"></i></a>
         </div>
@@ -42,8 +43,8 @@
             <input class="user_name" type="text" value="<?=$user_info['user_name']?>" />
             <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" />
             <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" />
-                <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-times ired"></i></a>
-            <a href="javascript:void 0;" id="btn_user_cancle"><i class="fa fa-check ired"></i></a>
+                <a href="javascript:void 0;" id="btn_user_cancle" ><i class="fa fa-times ired"></i></a>
+            <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-check ired"></i></a>
 
         </div>
         
@@ -58,29 +59,7 @@
                 <ul>
                     <li page="0"></li>
                     <li page="1">
-                        <dl>
-                            <dd>
-                                <img src="asset/13.png" alt="" class="">
-                                <div class="person-img-shield">
-                                    <p class="state">集赞中</p>
-                                    <p class="title">可以唱歌的淋浴头</p>
-                                    <p class="justify">
-                                        <i class="fa fa-info"></i>
-                                        <!--<i class="fa fa-pencil-square-o"></i>-->
-                                        <i class="fa fa-trash-o"></i>
-                                    </p>
-                                </div>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                        </dl>
+                        <p>加载中，请稍后</p>
                     </li>
                     <li page="2"></li>
                 </ul>

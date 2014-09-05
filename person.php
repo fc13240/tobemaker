@@ -29,6 +29,7 @@ if(array_key_exists('user_id', $_GET)){
 		header("Location:".BASE_URL);
 	}else{
 		$user_info=$user_info[0];
+//                var_dump($user_info);
 	}
 }else{
     $user_id = $_SESSION['user_id'];

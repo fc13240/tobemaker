@@ -51,6 +51,7 @@ elseif(array_key_exists('title', $_POST)){
     }
     $item[0]['tags'] = $_POST['tags'];
     $item[0]['user_name']=$current_user['user_name'];
+	$item[0]['idea_status'] = 0;
     $is_like_item = 0;
 }
 
@@ -58,9 +59,15 @@ elseif(!empty($_GET["idea_id"])){   // 默认显示主页
     //有id 则请求id对应详细
     $idea_id=$_GET["idea_id"]; //有请求的idea
     // 调用view来显示
-    $class_idea=new class_idea();
+	$class_idea=new class_idea();
+	$item=$class_idea->get_idea_by_id($idea_id);
+    
+	if($item[0]["idea_status"]<5)
     $is_like_item = $class_like->get_like_info($idea_id, $user_id);
-    $item=$class_idea->get_idea_by_id($idea_id);
+    else
+	{
+	  $is_like_item = $class_like->get_wantbuy_info($idea_id, $user_id);
+	}
 
 }else{
     die("页面传入参数错误");

@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" type="text/css" href="css/style-index.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
-    <?php include "top_css.php" ?>
+    <link rel="stylesheet" href="./fonts/Font-Awesome/css/font-awesome.min.css">
     
 </head>
 <body class="index">
@@ -80,8 +80,8 @@
     <div class="form">
         <img src="asset/29.png" alt="">
         <form id="loginForm" action="" method="post" data-url="<?=BASE_URL."api/user_login.php"?>">
-            <input type="text" name="username" placeholder="tobeMaker邮箱" value="test">
-            <input type="password" name="password" placeholder="密码" value="123">
+            <input type="text" name="username" placeholder="tobeMaker邮箱" />
+            <input type="password" name="password" placeholder="密码" />
             <input type="button" value="登录">
             <div>
                 <a href="#" id="forget">忘记密码>></a>

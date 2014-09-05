@@ -16,7 +16,7 @@
             <div class="ttl">
                 <div class="title"><?php echo $item[0]['name'];?></div>
                 <div class="author">
-                    <a href="<?=BASE_URL.'person.php'?>?user_id=<?=@$item[0]["user_id"]?>"><img src="<?php echo @$item[0]['head_pic_url'] == '' ? 'asset/12.png' : $item[0]['head_pic_url']; ?>" alt=""></a>
+                    <a href="<?=BASE_URL.'person.php'?>?user_id=<?=@$item[0]["user_id"]?>"><img class="circle" src="<?php echo @$item[0]['head_pic_url'] == '' ? 'asset/12.png' : $item[0]['head_pic_url']; ?>?imageMogr/v2/thumbnail/60x60!" alt=""></a>
                     <br />
 					<input type="hidden" id="author_id" value="<?=@$item[0]["user_id"]?>">
 					<input type="hidden" id="user_id" value="<?=@$user_id?>">
@@ -61,37 +61,16 @@
                     <em>2000</em>
                     <p>还可以输入</p>
                 </form>
-
-
             </div>
 
         </div>
         <div class="comment">
             <h1>全部评论</h1>
             <ul id="comment-list-content">
-                        <li>
-                            <div class="commenter">
-                                <a href="javascript:void 0"><img src="asset/15.png" alt=""></a>
-                                <br />
-                                <a href="javascript:void 0">评论者名称</a>
-                            </div>
-                            <div class="text">
-                        评论内容
-                        <img src="asset/17.png" alt="">
-                            </div>
-                        </li>
-               
+                        <p>加载中，请稍等</p>
             </ul>
             <div id="comment-pagenum" class="pagenum" data-url="<?=BASE_URL?>api/get_comment.php">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">7</a>
-                <a href="#">8</a>
-                <a href="#">9</a>
+                
             </div>
 
 
@@ -301,13 +280,13 @@
             var idea_id = $(this).data("idea_id");
             //TODO:从当前登录用户信息中获取用户id
             var user_id = $('#user_id').val();
-            $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
+            $.post(url, {'idea_id':idea_id, 'user_id':user_id,'buy':1}, function(data,textStatus){
                 var status = data['status'];
                 if (status == "success"){
                     $("#like_btn").addClass("red");
                 }else if (status == "error"){
                     alert("系统错误，请联系管理员");
-                }else if (status == "like_delete"){
+                }else if (status == "buy_delete"){
                     // 标记“喜欢”按钮为红色还原
                     $("#like_btn").removeClass();
 					

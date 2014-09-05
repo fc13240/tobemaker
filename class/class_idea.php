@@ -90,8 +90,9 @@ class class_idea
 
     public function get_idea_by_id($idea_id){
 	$idea_id=$this->db->escape($idea_id);
-      $sql="SELECT * from `idea_info`, `idea_status` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_id`=".$idea_id;
+      $sql="SELECT `idea_info`.*, `idea_status`.*, `user_info`.`head_pic_url` from `idea_info`, `idea_status`, `user_info` where `user_info`.`user_id` = `idea_info`.`user_id` and `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_id`=".$idea_id;
       $result = $this->db->get_results($sql, ARRAY_A);  
+      
       return $result;
     }
 
@@ -126,6 +127,7 @@ class class_idea
       }
       $aa=rtrim($aa,",");
       $sql="UPDATE idea_info SET ".$aa." where idea_id=".$idea_id;
+      
       $this->db->query($sql);
     }
 
