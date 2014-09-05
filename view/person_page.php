@@ -42,8 +42,8 @@
             <input class="user_name" type="text" value="<?=$user_info['user_name']?>" />
             <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" />
             <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" />
-                <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-times ired"></i></a>
-            <a href="javascript:void 0;" id="btn_user_cancle"><i class="fa fa-check ired"></i></a>
+                <a href="javascript:void 0;" id="btn_user_cancle" ><i class="fa fa-times ired"></i></a>
+            <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-check ired"></i></a>
 
         </div>
         
