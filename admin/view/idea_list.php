@@ -65,7 +65,7 @@ Version: 3.1.3
                                     <div class="table-toolbar">
                                             <div class="row">
                                                     <div class="col-md-6">
-                                                          
+
                                                     </div>
                                                     
                                             </div>
