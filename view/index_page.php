@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" type="text/css" href="css/style-index.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
-    <?php include "top_css.php" ?>
+    <link rel="stylesheet" href="./fonts/Font-Awesome/css/font-awesome.min.css">
     
 </head>
 <body class="index">
