@@ -30,9 +30,9 @@
                 	
                 	?></div>
                 <div class="emailme">
-                    <a href="javascript:void 0" id="addAttention" data-url="<?=BASE_URL?>api/attention.php"><img src="asset/10.png" alt=""></a>
+                    <!--<a href="javascript:void 0" id="addAttention" data-url="<?=BASE_URL?>api/attention.php"><img src="asset/10.png" alt=""></a>
 					<a href="javascript:void 0" id="deleteAttention" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
-                    <a href="<?=BASE_URL?>msg_send.php?userid=<?=@$item[0]["user_id"]?>"><img src="asset/11.png" alt=""></a>
+                    <a href="<?=BASE_URL?>msg_send.php?userid=<?=@$item[0]["user_id"]?>"><img src="asset/11.png" alt=""></a>-->
                 </div>
                 <br class="clear"/>
             </div>
