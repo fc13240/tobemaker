@@ -64,11 +64,25 @@ function changeTo($url)
 {
    echo '<script>location.href ="'.$url.'";</script>';
 }
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_abslength')){
+        return mb_abslength($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 //表单处理
 $group=new class_group();
 if(array_key_exists('group_name',$_POST))
 {
-if(strlen(trim($_POST["group_name"]))<=1||strlen(trim($_POST["group_name"]))>16)
+if(abslength(trim($_POST["group_name"]))<=1||abslength(trim($_POST["group_name"]))>16)
 {
     echo '<script>alert("群组名称不合法，长度应在2-16之间");history.go(-1);</script>';
 }

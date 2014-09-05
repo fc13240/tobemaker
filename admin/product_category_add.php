@@ -24,12 +24,25 @@ if(!$class_group_auth->check_auth("admin"))
 // 导航 当前页面控制
 $current_page = 'product-product_add';
 $page_level = explode('-', $current_page);
-
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_abslength')){
+        return mb_abslength($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 //保存表单内容到数据库
 $product=new class_product();
 if(array_key_exists('name',$_POST))
 {
-if(strlen(trim($_POST["name"]))<=1||strlen(trim($_POST["name"]))>16)
+if(abslength(trim($_POST["name"]))<=1||abslength(trim($_POST["name"]))>16)
 {
    echo '<script>alert("目录名称长度应在2-16之间");history.go(-1);</script>';
 }

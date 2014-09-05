@@ -12,7 +12,7 @@
 <div id="center">
     <div class="middle-margin">
         <div class="slogan">
-            大家的想法都在这里，喜欢的话不妨点赞支持一下吧！
+            大家的创意设计都在这里，喜欢的话不妨点赞支持一下！
         </div>
         <div style="margin-left: 40px;margin-bottom:10px ;">
             <a href="?sort=recommend" class="<?=($sort_rule=="recommend"? 'red':'')?>" style="margin-right: 20px;">推荐</a>

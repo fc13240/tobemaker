@@ -12,13 +12,13 @@
 <div id="center">
     <div class="middle">
         <div id="my_info_view" class="mine">
-            <img class="head circle" src="<?=$user_info['head_pic_url']?>" alt=""/>
+            <img class="head circle" src="<?=($user_info['head_pic_url']==""?'asset/12.png':$user_info['head_pic_url'])?>" alt=""/>
             <br/>
             <h2 class="user_name"><?=$user_info['user_name']?></h2>
             <br/>
             <span class="occupation"><?=$user_info['occupation']==''?'还没有输入您的职位':$user_info['occupation']?></span>
             <br/>
-            <p class="self_intro"><?=$user_info['self_intro']==''?'还没有输入您的个人介绍，点击下方的笔编辑':$user_info['self_intro']?></p>
+            <p class="self_intro"><?=$user_info['self_intro']==''?'还没有输入您的个人介绍，点击下方的“笔”来添加':$user_info['self_intro']?></p>
             <br/>
             <!--<a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>-->
             <!--<a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>-->
@@ -30,7 +30,7 @@
         
         <div id="my_info_edit" class="mine edit hide">
             <div class="avatarupload">
-                <img src="<?=$user_info['head_pic_url']?>" alt="" class="head circle blur">
+                <img src="<?=($user_info['head_pic_url']==""?'asset/12.png':$user_info['head_pic_url'])?>" alt="" class="head circle blur">
                 <div></div>
                 <form>
                     <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/" />
@@ -40,9 +40,9 @@
             </div>
             <label id="upload-progress-label"></label>
             <br/>
-            <input class="user_name" type="text" value="<?=$user_info['user_name']?>" />
-            <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" />
-            <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" />
+            <input class="user_name" type="text" value="<?=$user_info['user_name']?>" placeholder="输入用户名"/>
+            <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" placeholder="输入职位" />
+            <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" placeholder="输入个人介绍" />
                 <a href="javascript:void 0;" id="btn_user_cancle" ><i class="fa fa-times ired"></i></a>
             <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-check ired"></i></a>
 
@@ -205,6 +205,13 @@
         }
         
         $(document).ready(function(){
+            
+            var editMode = <?=(array_key_exists('edit', $_GET)?'true':'false')?>;
+            
+            if (editMode == true){
+                $('#my_info_view').addClass('hide');
+                $('#my_info_edit').removeClass('hide');
+            }
             
             $("#btn-modify").click(function(){
                 // 进入编辑模式
@@ -450,7 +457,7 @@ echo '<script>$("#btn-follow").remove();</script>';
 }
 elseif($_GET["user_id"]!=$_SESSION["user_id"])
 {
-   echo '<script>$("#btn-modify").remove();</script>';
+   echo '<script>$("#btn-modify").remove();$("#btn-modify-password").remove();</script>';
    //获取用户是否被关注
 $attention=new class_attention();
 if($attention->checkunique($_SESSION["user_id"],$_GET["user_id"]))

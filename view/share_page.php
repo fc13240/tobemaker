@@ -16,14 +16,19 @@
         <div class="share">
             <div class="pic">
                 <div class="picture">
+                	<label id="title_preview">标题</label>
                     <img id="coverPreview" src="asset/14.png" alt="">
-                    <label id="title_preview">标题</label>
                 </div>
-                <p>*上述内容均为原创作品</p>
-                <p>*上述内容均为现实可实现的</p>
+                <p>请保证：</p>
+                <p>* 分享内容均为你的原创创意或原创设计；</p>
+                <p>* 分享的创意和设计均属于生活家居用品范畴，非智能硬件；</p>
+                <p>* 分享的创意和设计均是现实技术可实现的。</p>
 
             </div>
             <div class="form">
+            	<div class="form--rhombus">
+            		
+            	</div>
                 <form id="idea-form" method="POST">
                     <label>标题</label>
                     <input id="title_input_text" name="title" type="text">
@@ -61,7 +66,7 @@
             <div class="submit">
                 <div class="out">
                     <div>
-                        <button class="save">保存</button>
+                        <button class="save">提交</button>
                         <button class="view">预览</button>
                     </div>
                 </div>

@@ -55,7 +55,20 @@ $status_list = array(
 1,如果是修改请求项目状态
 则做出相应修改
 */
-
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_strlen')){
+        return mb_strlen($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 if(isset($_POST["action"])&&isset($_POST["ideaId"])){
   $act=$_POST["action"];
   //下线
@@ -85,7 +98,7 @@ if(isset($_POST["action"])&&isset($_POST["ideaId"])){
   $i=0;
   $tags=explode(',',$_POST["tags"]);
   //表单验证
-  if(strlen(trim($_POST["title"]))<=1||strlen(trim($_POST["title"]))>15)
+  if(abslength(trim($_POST["title"]))<=1||abslength(trim($_POST["title"]))>15)
   {
       $res= array();
       $res['status']='title_length';
@@ -98,19 +111,19 @@ if(isset($_POST["action"])&&isset($_POST["ideaId"])){
       echo json_encode($res);
       
   }
-  elseif(strlen(trim($_POST["content"]))<=0)
+  elseif(abslength(trim($_POST["content"]))<=0)
   {
       $res= array();
       $res['status']='content_length';
       echo json_encode($res);
   }
-  elseif(strlen(trim($_POST["starttime"]))<=0)
+  elseif(abslength(trim($_POST["starttime"]))<=0)
   {
       $res= array();
       $res['status']='starttime_error';
       echo json_encode($res);
   }
-  elseif(strlen(trim($_POST["starttime"]))<=0)
+  elseif(abslength(trim($_POST["starttime"]))<=0)
   {
       $res= array();
       $res['status']='endtime_error';
