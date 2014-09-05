@@ -42,8 +42,8 @@
             <input class="user_name" type="text" value="<?=$user_info['user_name']?>" />
             <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" />
             <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" />
-                <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-times ired"></i></a>
-            <a href="javascript:void 0;" id="btn_user_cancle"><i class="fa fa-check ired"></i></a>
+                <a href="javascript:void 0;" id="btn_user_cancle" ><i class="fa fa-times ired"></i></a>
+            <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-check ired"></i></a>
 
         </div>
         
@@ -58,29 +58,7 @@
                 <ul>
                     <li page="0"></li>
                     <li page="1">
-                        <dl>
-                            <dd>
-                                <img src="asset/13.png" alt="" class="">
-                                <div class="person-img-shield">
-                                    <p class="state">集赞中</p>
-                                    <p class="title">可以唱歌的淋浴头</p>
-                                    <p class="justify">
-                                        <i class="fa fa-info"></i>
-                                        <!--<i class="fa fa-pencil-square-o"></i>-->
-                                        <i class="fa fa-trash-o"></i>
-                                    </p>
-                                </div>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                        </dl>
-                        <dl>
-                            <dd><a href="item.html"><img src="asset/13.png" alt=""></a></dd>
-                        </dl>
+                        <p>加载中，请稍后</p>
                     </li>
                     <li page="2"></li>
                 </ul>

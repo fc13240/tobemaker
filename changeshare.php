@@ -78,6 +78,13 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='change_share')
     $arr['create_time']='now()';
     $arr['picture_url']=$pic_url;
     $arr['tags']=$_POST['tags'];
+    if(count(explode(',',$_POST['tags']))>5)
+    {
+       //返回错误信息
+       echo '<script>alert("标签过多！不能超过5个！");history.go(-1);</script>';
+       return;
+    }
+    
     if(array_key_exists('cover_display', $_POST))// 是否显示封面  数据库默认显示
     {
 //      echo "yes";
