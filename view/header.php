@@ -22,12 +22,12 @@
             </div>
         </div>
         <div class="lgnhover">
-            <a href="#">关注</a>
+            <!--<a href="#">关注</a>
             <span>|</span>
             <a href="#">粉丝</a>
             <span>|</span>
             <a href="#">私信</a>
-            <span>|</span>
+            <span>|</span>-->
             <a href="<?=BASE_URL.'logout.php'?>">注销</a>
         </div>
     </div>
