@@ -1393,3 +1393,24 @@ html,body {
 * html .clearfix { height: 1%;}
 .clearfix {display: block;}
 /* End hide from IE-mac */
+
+#prev,#next {
+	position: fixed;
+	font-size: 80px;
+	
+}
+#prev div a,#next div a{
+	display: block;
+	color: #d1cfdc;
+	font-family: Lantingchaoxi;
+	transform: scale(0.5,2);	
+}
+
+.beta {
+	font-family: Verdana;
+	font-size: 10px;
+	font-style: italic;
+	position: absolute;
+	top: 31px;
+	left: 140px;
+}
