@@ -78,7 +78,7 @@ Version: 3.1.3
                                                                                         
 										</div>
                                            <div class="btn-group">
-                                                                                        <a href="product_category_add.php"><button id="sample_editable_1_pass" class="btn blue">
+                                                                                        <a href="product_category_add.php"><button  class="btn blue">
 											添加商品目录 <i class="fa fa-plus"></i>
 											</button></a>
                                                                                 </div>                                      
