@@ -6,6 +6,12 @@
     <?php include "top_css.php" ?>
 </head>
 <body>
+	<!--<div class="prev" id="prev">
+        <div><a href="javascript:0"><</a></div>
+    </div>
+    <div class="next" id="next">
+        <div><a href="javascript:0">></a></div>
+    </div>-->
 <div id="top">
     <?php include "header.php" ?>
 </div>
