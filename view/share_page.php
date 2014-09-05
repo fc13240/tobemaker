@@ -66,7 +66,7 @@
             <div class="submit">
                 <div class="out">
                     <div>
-                        <button class="save">保存</button>
+                        <button class="save">提交</button>
                         <button class="view">预览</button>
                     </div>
                 </div>
