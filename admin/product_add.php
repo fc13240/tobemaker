@@ -5,6 +5,10 @@ include_once '../class/class_product.php';
 include_once '../class/class_file.php';
 include_once ROOT_PATH."class/class_group_auth.php";
 include_once '../class/class_check.php';
+include_once '../class/class_qiniu.php';
+//上传suo xu
+$qiniu= new class_qiniu();
+$upToken=$qiniu->get_token_to_upload_head();
 $class_check=new class_check();
 $class_group_auth=new class_group_auth();
 //判断权限
@@ -30,6 +34,11 @@ function alertMsg($msg,$status)
 	{
 	   echo '<script>alert("'.$msg.'");</script>';
 	}
+}
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
 }
 //获取目录数量及内容
 $product=new class_product();
@@ -69,6 +78,8 @@ $arr= array("pf_name"=>$_POST["name"],"pf_image"=>$imgUrl,
 
 $result=$product->insert('product_info',$arr);
 alertMsg("添加成功！","success");
+$url=BASE_URL."admin/product_list.php";
+changeTo($url);
 }
 }
 
