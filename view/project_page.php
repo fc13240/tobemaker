@@ -301,13 +301,13 @@
             var idea_id = $(this).data("idea_id");
             //TODO:从当前登录用户信息中获取用户id
             var user_id = $('#user_id').val();
-            $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
+            $.post(url, {'idea_id':idea_id, 'user_id':user_id,'buy':1}, function(data,textStatus){
                 var status = data['status'];
                 if (status == "success"){
                     $("#like_btn").addClass("red");
                 }else if (status == "error"){
                     alert("系统错误，请联系管理员");
-                }else if (status == "like_delete"){
+                }else if (status == "buy_delete"){
                     // 标记“喜欢”按钮为红色还原
                     $("#like_btn").removeClass();
 					

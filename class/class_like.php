@@ -24,7 +24,7 @@ class class_like
 
         $idea_id = $this->db->escape($idea_id);
         $user_id=$this->db->escape($user_id);
-        $sql="select * from idea_like where `idea_id`=".$idea_id." and `liker_id`=".$user_id;
+        $sql="select * from idea_like where `idea_id`=".$idea_id." and `liker_id`=".$user_id." and `like_type`=0";
         // 有过点赞记录直接返回
         if(count($this->db->get_results($sql))>0)
         {
@@ -34,8 +34,36 @@ class class_like
             return 0;
         }
     }
-
-
+    //获取想买记录
+	function get_wantbuy_info($idea_id,$user_id)
+	{
+	    $idea_id = $this->db->escape($idea_id);
+        $user_id=$this->db->escape($user_id);
+        $sql="select * from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id." and `like_type`=1";
+		$result=$this->db->get_results($sql,ARRAY_A);
+		//return $result;
+        // 有过点赞记录直接返回
+        if(count($result)>0)
+        {
+            return 1;
+        }
+        else{
+            return 0;
+        }
+	}
+//---------添加想买记录
+	public function add_buy($idea_id,$user_id)
+	{
+	    $idea_id = $this->db->escape($idea_id);
+        $user_id=$this->db->escape($user_id);
+		 $tmp=$this->db->get_results("SELECT * FROM idea_info WHERE `idea_id` = ".$idea_id,ARRAY_A);
+        $idea_name=$tmp[0]["name"];
+		$sql="insert into `idea_like`(`idea_id`,`liker_id`,idea_name,`like_time`,`like_type`) values (".$idea_id.",".$user_id.",\"".$idea_name."\", now(),1)";
+        $this->db->query($sql);
+		 $sql="update `idea_info` set `sum_like`=`sum_like`+1 where `idea_id`=".$idea_id;
+        $this->db->query($sql);
+		return 1;
+	}
 
     ///----------增加点赞记录
      public function add_like($idea_id,$user_id=null)
@@ -47,10 +75,10 @@ class class_like
         
         $tmp=$this->db->get_results("SELECT * FROM idea_info WHERE `idea_id` = ".$idea_id,ARRAY_A);
         $idea_name=$tmp[0]["name"];
-        $sql="insert into idea_like(`idea_id`,`liker_id`,`idea_name`,`like_time`) values (".$idea_id.",".$user_id.",\"".$idea_name."\", now())";
+        $sql="insert into `idea_like`(`idea_id`,`liker_id`,`idea_name`,`like_time`) values (".$idea_id.",".$user_id.",\"".$idea_name."\", now())";
        
         $this->db->query($sql);
-        $sql="update idea_info set sum_like=sum_like+1 where idea_id=".$idea_id;
+        $sql="update `idea_info` set `sum_like`=`sum_like`+1 where `idea_id`=".$idea_id;
         $this->db->query($sql);
         $this->check_to_change_produce($idea_id);
             return 1;
@@ -63,7 +91,7 @@ class class_like
         //如果没有 修改两张表  idea_like——点赞关系表 和 和idea_info中的sum_like字段
         $idea_id = $this->db->escape($idea_id);
         $user_id=$this->db->escape($user_id);
-        $sql="select * from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id;
+        $sql="select * from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id." and `like_type`=0";
         // 没有过点赞记录直接返回
         if(count($this->db->get_results($sql))==0)
         {
@@ -73,7 +101,31 @@ class class_like
         else{
             $tmp=$this->db->get_results("SELECT * FROM `idea_info` WHERE `idea_id` = ".$idea_id,ARRAY_A);
             $idea_name=$tmp[0]["name"];
-            $sql="delete  from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id;
+            $sql="delete  from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id." and `like_type`=0";
+            $this->db->query($sql);
+            $sql="update `idea_info` set `sum_like`=`sum_like`-1 where `idea_id`=".$idea_id;
+            $this->db->query($sql);
+            return true;
+        }
+    }
+	//取消超想买
+     public function delet_buy($idea_id,$user_id)
+    {
+        //先查询是是否有点赞记录，如果有则直接返回true
+        //如果没有 修改两张表  idea_like——点赞关系表 和 和idea_info中的sum_like字段
+        $idea_id = $this->db->escape($idea_id);
+        $user_id=$this->db->escape($user_id);
+        $sql="select * from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id." and `like_type`=1";
+        // 没有过点赞记录直接返回
+        if(count($this->db->get_results($sql))==0)
+        {
+            return true;
+        }
+        //取消点赞
+        else{
+            $tmp=$this->db->get_results("SELECT * FROM `idea_info` WHERE `idea_id` = ".$idea_id,ARRAY_A);
+            $idea_name=$tmp[0]["name"];
+            $sql="delete  from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id." and `like_type`=1";
             $this->db->query($sql);
             $sql="update `idea_info` set `sum_like`=`sum_like`-1 where `idea_id`=".$idea_id;
             $this->db->query($sql);
@@ -81,11 +133,22 @@ class class_like
         }
     }
 
-
     //--------获取点赞数目
     public function get_sum_like($idea_id){
         $idea_id = $this->db->escape($idea_id);
-    	$sql="select sum_like from idea_info where `idea_id`=".$idea_id;
+    	$sql="select `sum_like` from `idea_info` where `idea_id`=".$idea_id;
+    	$result=$this->db->get_results($sql,ARRAY_A);
+    	if($result[0]["sum_like"]>0){
+    		return $result[0]["sum_like"];
+    	}
+    	else {
+    		return 0;
+    	}
+    }
+	//--------获取超想买数目
+    public function get_sum_buy($idea_id){
+        $idea_id = $this->db->escape($idea_id);
+    	$sql="select `sum_like` from `idea_info` where `idea_id`=".$idea_id;
     	$result=$this->db->get_results($sql,ARRAY_A);
     	if($result[0]["sum_like"]>0){
     		return $result[0]["sum_like"];
@@ -104,8 +167,11 @@ class class_like
         $idea_status=$res[0]['idea_status'];
         //  积赞超过目标
         if($sum>=$limit&&intval($idea_status)==4){
-            $sql="UPDATE `idea_info` set idea_status=5 where idea_id=".$idea_id;
+            $sql="UPDATE `idea_info` set `idea_status`=5 where `idea_id`=".$idea_id;
             $this->db->query($sql);
+			//超喜欢清零
+			$sql="update `idea_info` set `sum_like`=0 where `idea_id`=".$idea_id;
+			$this->db->query($sql);
         }
         else{
             return 0;
