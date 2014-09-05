@@ -4,9 +4,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker</title>
+    
     <link rel="stylesheet" type="text/css" href="css/style-index.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
-    <link rel="stylesheet" type="text/css" href="fonts/Font-Awesome/css/font-awesome.min.css"/>
+    <?php include "top_css.php" ?>
     
 </head>
 <body class="index">
@@ -271,10 +272,6 @@
         });
     });
 
-</script>
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd2289fe0f6d090638e4fa53929e4b152' type='text/javascript'%3E%3C/script%3E"));
 </script>
 
 </body>

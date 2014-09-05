@@ -32,6 +32,9 @@ define('MAIL_ADDRESS', 'tobemaker@126.com');
 define('MAIL_PASS', 'tobemaker1');
 define('MAIL_USER', 'tobemaker');
 
+// 百度统计相关
+define('BAIDUTJ_APPID', 'd2289fe0f6d090638e4fa53929e4b152');
+
 // 检查当前访问域名与设置的BASE_URL是否一致，避免出现跨站ajax的错误
 if ( $_SERVER['HTTP_HOST'] != HOSTNAME ){
     header('Localhost: '.BASE_URL);
