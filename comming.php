@@ -14,6 +14,14 @@ $class_user=new class_user();
 
 $current_user = $class_user->get_current_user();
 
+// 排序方式
+$sort_rule = 'new';
+// 关键字查询
+$search_word = null;
+
+if (array_key_exists('sort', $_GET)){
+    $sort_rule = $_GET['sort'];
+}
 // 导航 当前页面控制
 $current_page = 'comming';
 $page_level = explode('-', $current_page);
