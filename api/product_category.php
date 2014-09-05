@@ -6,7 +6,7 @@
 include_once "../config.php";
 include_once ROOT_PATH."class/class_product.php";
 $class_product=new class_product();
-$iTotalRecords =$class_product->get_all_product_num();
+$iTotalRecords =$class_product->get_all_category_num();
 
 //if (array_key_exists('action', $_REQUEST)){
 //
@@ -80,7 +80,7 @@ $records = array();
 $records["data"] = array(); 
 
 $end = $iDisplayStart + $iDisplayLength;
-$end = $end > $iTotalRecords ? $iTotalRecords : $end;
+$end = $end > $iTotalRecords ? $iTotalRecords+1 : $end;
 $real_length=$end-$iDisplayStart;
 
  // 获取数据

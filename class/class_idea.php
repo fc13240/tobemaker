@@ -83,7 +83,12 @@ class class_idea
 
     // 删除idea信息
   
-    public function delete(){
+    public function delete($idea_id){
+	$idea_id=$this->db->escape($idea_id);
+      $sql='delete from `idea_info` where `idea_id`='.$idea_id;
+       $this->db->query($sql);  
+      
+      
     }
     // 获取某个id详细信息
 

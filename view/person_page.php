@@ -122,8 +122,10 @@
                 maxPageNo = Math.ceil( parseInt(data.num_of_all) / pageSize );
                 for (var i=0; data.data != undefined && i<data.data.length; i++){
                     var item = data.data[i];
-
-                    $container.append('\
+                    var str='';
+					if(item['idea_status']<5)
+					{
+					  str='\
                     <dl>\
                         <dd>\
                             <img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/233x200!"  class="h200" >\
@@ -137,14 +139,35 @@
                                     <a href="changeshare.php?idea_id='+ item.idea_id +'">\
                                         <i class="fa fa-pencil-square-o"></i>\
                                     </a>\
-                                    <a href="project.php?idea_id='+ item.idea_id +'">\
+                                    <a class="idea_delete" data-url="<?=BASE_URL?>api/share.php" data-id="'+item.idea_id+'" data-status="'+item['idea_status']+'">\
                                         <i class="fa fa-trash-o"></i>\
                                     </a>\
                                 </p>\
                             </div>\
                         </dd>\
                     </dl>\
-                    ');
+                    ';
+					}
+					else
+					{
+					    str='\
+                    <dl>\
+                        <dd>\
+                            <img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/233x200!"  class="h200" >\
+                            <div class="person-img-shield">\
+                                <p class="state">'+ item.status_name +'</p>\
+                                <a href="project.php?idea_id='+ item.idea_id +'"><p class="title">'+item.name+'</p></a>\
+                                <p class="justify">\
+                                    <a href="project.php?idea_id='+ item.idea_id +'">\
+                                        <i class="fa fa-info"></i>\
+                                    </a>\
+                                </p>\
+                            </div>\
+                        </dd>\
+                    </dl>\
+                    ';
+					}
+                    $container.append(str);
                 }
                 $('.person-img-shield').hide();
 
@@ -209,7 +232,32 @@
                     hideAll();
                 }
             });
-
+            //项目删除事件
+			
+			dl.on('click', 'dd div p .idea_delete',function(){
+			    var url=$(this).data('url');
+			    var idea_id=$(this).data('id');
+				var status=$(this).data('status');
+				if(status>=5)
+				{
+				   alert('此状态项目无法删除！');
+				}
+				else
+				{
+				   $.post(url, {
+                    'action':'delete',
+                    'id':idea_id,
+                }, function(data, textStatus){
+                    if (data['status'] == 'success'){
+                        alert("删除成功");
+                        var $dl = $(this).parents('dl');
+						$dl.remove();
+                    }else{
+                        alert(data['status']);
+                    }
+                },'json');
+				}
+			});
             $('#pwdchange').click(function(){
                 hideAll();
             });

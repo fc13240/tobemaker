@@ -46,7 +46,11 @@ $idea_info=$idea_infolist[0];
 if ($current_user['user_id'] != $idea_info['user_id']){
     die('没有编辑该项目的权限');
 }
-
+//检查是否允许修改
+if($idea_info['idea_status']>=5)
+{
+   die('该状态下的项目不能修改');
+}
 //  对修改请求的处理保存提交的修改
 if(array_key_exists('act',$_POST)&&$_POST['act']=='change_share')
 {
