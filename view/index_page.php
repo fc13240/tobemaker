@@ -170,7 +170,6 @@
         $("#index").removeClass("blur");
         $(".background").removeClass("blur");
         $(".section").removeClass("blur");
-        $('#flowSection').show();
     }
     $(document).keydown(function(event){ 
         
