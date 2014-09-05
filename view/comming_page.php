@@ -238,10 +238,10 @@
                 $container.append('\
             <dl>\
                 <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/318x273!" class="h273" alt=""></a></dd>\
-                <dt>'+ item.name +'<span class="deadline"><i class="fa fa-clock-o"></i>剩余' + leftDays + '天</span></dt>\
+                <dt><a href="project.php?idea_id='+ item.idea_id +'">'+ item.name +'</a><span class="deadline"><i class="fa fa-clock-o"></i>剩余' + leftDays + '天</span></dt>\
                 <dd><div class="bar"><div class="done" style="width: '+timePercent+'%"></div></div></dd>\
                 <dd>\
-                    <a href="#" class="avatar"><img class="circle" src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\
+                    <a href="<?=BASE_URL?>person.php?user_id='+item.user_id+'" class="avatar"><img class="circle" src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'?imageMogr/v2/thumbnail/40x40!" alt=""></a>\
                     <a href="<?=BASE_URL?>person.php?user_id='+item.user_id+'" class="author">'+ item.user_name +'</a>\
                     <span>发布</span>\
                 </dd>\
