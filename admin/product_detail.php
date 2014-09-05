@@ -5,6 +5,10 @@ include_once '../class/class_product.php';
 include_once '../class/class_file.php';
 include_once ROOT_PATH."class/class_group_auth.php";
 include_once '../class/class_check.php';
+include_once '../class/class_qiniu.php';
+//上传suo xu
+$qiniu= new class_qiniu();
+$upToken=$qiniu->get_token_to_upload_head();
 $class_check=new class_check();
 $class_group_auth=new class_group_auth();
 //判断权限
@@ -59,7 +63,11 @@ if(array_key_exists('action',$_GET))
 }
 
 include 'view/product_detail_page.php';
-
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
+}
 // 表单处理
 if(array_key_exists('name',$_POST))
 {
@@ -98,5 +106,7 @@ else{
   alertMsg("更新成功！","success");
   }
   //成功信息
+  $url=BASE_URL."admin/product_detail.php?action=eait&productID=".$_POST["pf_id"];
+changeTo($url);
 }
 }

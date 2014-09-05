@@ -228,8 +228,10 @@
 													<?php
 													if($action=='edit')
 													{
-													echo '<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="'.BASE_URL.'api/tmpfileupload.php">
-															
+													echo '<img alt="" src="" name="image" id="image" />
+															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="http://up.qiniu.com/">
+															<!--<p id="fileurl_display" name="fileurl_display"></p>-->
+															<input name="token" type="hidden" value="'.$upToken.'" />
 															<input id="fileurl" type="hidden" name="img_url" value=""/>';
 													}
 													?>
@@ -250,7 +252,7 @@
 													<label class="control-label col-md-3">手机号 
 													</label>
 													<div class="col-md-4">
-													<input type="text" class="form-control" name="user_moble" id="user_mobile" value="<?=@$userInfo[0]["user_mobile"]?>" <?php echo $strDisplay; ?> />
+													<input type="text" class="form-control" name="user_mobile" id="user_mobile" value="<?=@$userInfo[0]["user_mobile"]?>" <?php echo $strDisplay; ?> />
 														
 														
 													</div>

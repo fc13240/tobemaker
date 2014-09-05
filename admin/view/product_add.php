@@ -99,8 +99,10 @@ Version: 3.1.3
 															<span class="input-group-addon input-circle-left">
 															<i class="fa fa-envelope"></i>
 															</span>-->
-															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="<?= BASE_URL ?>api/tmpfileupload.php">
-															<p id="fileurl_display" name="fileurl_display"></p>
+															<img alt="" src="" name="image" id="image" />
+															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="http://up.qiniu.com/">
+															<!--<p id="fileurl_display" name="fileurl_display"></p>-->
+															<input name="token" type="hidden" value="<?=$upToken?>" />
 															<input id="fileurl" type="hidden" name="img_url" value=""/>
 														<!--</div>-->
 													</div>
@@ -189,21 +191,24 @@ jQuery(document).ready(function() {
     QuickSidebar.init(); // init quick sidebar
     Demo.init(); // init demo features
     TableManaged.init();
-	$(\'#fileSelect\').fileupload({
-            dataType: \'json\',
-            done: function (e, data) {
-                if (data.result.url == null){
-                    alert("错误：" + data.result.err_msg);
-                }else{
-                    //$("#coverPreview").attr(\'src\', data.result.url);
-                    $("#fileurl").val(data.result.url);
-					$("#fileurl_display").text(data.result.url);
+	$("#fileSelect").fileupload({
+                dataType: 'json',
+                done: function (e, data) {
+                    if (data.result.key == null){
+                        alert("错误：" + data.result.err_msg);
+                    }else{
+                        var url="<?=QINIU_DOWN?>"+ data.result.key;
+                        console.log(url);
+                        $('#image').attr('src', url);
+                        $("#fileurl").val(url);
+                        $('#upload-progress-label').text('');
+                    }
+                },
+                progress: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#upload-progress-label').text(progress+'%');
                 }
-            },
-            progress: function (e, data) {
-
-            },
-        });
+            });     
 		
     
 });
