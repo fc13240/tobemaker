@@ -16,9 +16,9 @@
             <br/>
             <h2 class="user_name"><?=$user_info['user_name']?></h2>
             <br/>
-            <span class="occupation"><?=$user_info['occupation']==''?'':$user_info['occupation']?></span>
+            <span class="occupation"><?=$user_info['occupation']==''?'还没有输入您的职位':$user_info['occupation']?></span>
             <br/>
-            <p class="self_intro"><?=$user_info['self_intro']==''?'':$user_info['self_intro']?></p>
+            <p class="self_intro"><?=$user_info['self_intro']==''?'还没有输入您的个人介绍，点击下方的“笔”来添加':$user_info['self_intro']?></p>
             <br/>
             <!--<a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>-->
             <!--<a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>-->
