@@ -22,9 +22,9 @@
             <br/>
             <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
             <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
-            <a id="btn-msg" href="<?=BASE_URL?>msg_send.php?userid=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o"></i></a>
-            <a href="javascript:0;" id="btn-modify"><i class="fa fa-pencil"></i></a>
-            <a href="javascript:0;" id="btn-modify-password"><i class="fa fa-pencil"></i></a>
+            <a id="btn-msg" href="<?=BASE_URL?>msg_send.php?userid=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o ired"></i></a>
+            <a href="javascript:0;" id="btn-modify"><i class="fa fa-pencil ired"></i></a>
+            <a href="javascript:0;" id="btn-modify-password"><i class="fa fa-unlock-alt ired"></i></a>
         </div>
         
         <div id="my_info_edit" class="mine edit hide">
@@ -42,8 +42,8 @@
             <input class="user_name" type="text" value="<?=$user_info['user_name']?>" />
             <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" />
             <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" />
-                <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><img src="asset/32.png" alt=""></a>
-            <a href="javascript:void 0;" id="btn_user_cancle"><img src="asset/32.png" alt=""></a>
+                <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-times ired"></i></a>
+            <a href="javascript:void 0;" id="btn_user_cancle"><i class="fa fa-check ired"></i></a>
 
         </div>
         

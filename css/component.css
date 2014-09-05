@@ -40,7 +40,7 @@
 	font-family: inherit;
 	font-size: 14px;
 	color: #ff1400;
-	border-bottom: 1px solid #efb480;
+	border-bottom: 1px solid #FF0000;
 }
 
 input[type="search"].sb-search-input {
@@ -49,19 +49,19 @@ input[type="search"].sb-search-input {
 }
 
 .sb-search-input::-webkit-input-placeholder {
-	color: #efb480;
+	color: #FF0000;
 }
 
 .sb-search-input:-moz-placeholder {
-	color: #efb480;
+	color: #FF0000;
 }
 
 .sb-search-input::-moz-placeholder {
-	color: #efb480;
+	color: #FF0000;
 }
 
 .sb-search-input:-ms-input-placeholder {
-	color: #efb480;
+	color: #FF0000;
 }
 
 .sb-icon-search,
@@ -78,6 +78,10 @@ input[type="search"].sb-search-input {
 	text-align: center;
 	cursor: pointer;
 }
+.sb-icon-search:hover {
+	color: #FF0000;
+}
+
 
 .sb-search-submit {
 	background: #fff; /* IE needs this */
@@ -118,7 +122,7 @@ input[type="search"].sb-search-input {
 .sb-search.sb-search-open .sb-icon-search,
 .no-js .sb-search .sb-icon-search {
 	/*background: #da6d0d;*/
-	color: #efb480;
+	color: #FF0000;
 	z-index: 11;
 }
 
