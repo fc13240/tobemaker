@@ -27,7 +27,7 @@
             <div class="form">
                 <form id="idea-form" method="POST">
                     <label>标题</label>
-                    <input name="title" type="text" value="<?=$idea_info['name']?>" >
+                    <input id="title_input_text" name="title" type="text" value="<?=$idea_info['name']?>" >
 
                     <label>作者<span></span></label>
                     <input name="author" type="text" disabled="true" value="<?=$idea_info['user_name']?>" />                    
@@ -38,13 +38,11 @@
                         <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/">
                         <input id="fileurl" type="hidden" name="img_url" value="<?=$idea_info['picture_url']?>" />
                     </div>
-                    <input name="cover_display" type="checkbox" value="1"><span>封面图片显示在正文中</span>
+                    <input name="cover_display" type="checkbox" value="1" <?=$idea_info['cover_display']==1?'checked="checked"':''?> ><span>封面图片显示在正文中</span>
                     <label>标签<span>（标签之前用英文逗号分隔，最多5个标签）</span></label>
                     <input id="tmpTagText" type="text" value="<?=$idea_info['tags']?>" />
                     <input id="trueTagText" name="tags" type="hidden" value="<?=$idea_info['tags']?>" />
                     <div id="tagView"><i>修改后标签效果在此预览</i></div>
-                    
-                    <input id="trueTagText" name="tags" type="hidden" />
                     <label class="last">正文</label>
                     <div class="textdiv">
                     <textarea id="editor" name="content" placeholder="这里输入内容" autofocus>
@@ -94,7 +92,7 @@
                 if (data.result.key == null){
                     alert("错误：" + data.result.err_msg);
                 }else{
-                    var url="http://yzzwordpress.qiniudn.com/"+ data.result.key;
+                    var url="<?=QINIU_DOWN?>"+ data.result.key;
                     $("#coverPreview").attr('src', url);
                     $("#fileurl").val(url);
                 }
@@ -129,10 +127,18 @@
             $('#tagView').html('');
             for (var i=0; i<5 && i<labelArr.length; i++){
                 trueLabelArr.push(labelArr[i]);
-                $('#tagView').append(labelArr[i]+',');
+                $('#tagView').append('<span class="tag">' + labelArr[i] + '</span>');
             }
-            $('#tagView').html(trueLabelArr.join(','));
+//          $('#tagView').html(trueLabelArr.join(','));
             $('#trueTagText').val(trueLabelArr.join(','));
+        });
+        
+        $('#title_input_text').keyup(function(){
+            var title_val = $(title_input_text).val();
+            if (title_val == ''){
+                title_val = "标题";
+            }
+            $('#title_preview').text(title_val);
         });
     });
 

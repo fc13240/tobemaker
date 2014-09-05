@@ -61,37 +61,16 @@
                     <em>2000</em>
                     <p>还可以输入</p>
                 </form>
-
-
             </div>
 
         </div>
         <div class="comment">
             <h1>全部评论</h1>
             <ul id="comment-list-content">
-                        <li>
-                            <div class="commenter">
-                                <a href="javascript:void 0"><img src="asset/15.png" alt=""></a>
-                                <br />
-                                <a href="javascript:void 0">评论者名称</a>
-                            </div>
-                            <div class="text">
-                        评论内容
-                        <img src="asset/17.png" alt="">
-                            </div>
-                        </li>
-               
+                        <p>加载中，请稍等</p>
             </ul>
             <div id="comment-pagenum" class="pagenum" data-url="<?=BASE_URL?>api/get_comment.php">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">7</a>
-                <a href="#">8</a>
-                <a href="#">9</a>
+                
             </div>
 
 
