@@ -58,9 +58,9 @@ class class_like
         $user_id=$this->db->escape($user_id);
 		 $tmp=$this->db->get_results("SELECT * FROM idea_info WHERE `idea_id` = ".$idea_id,ARRAY_A);
         $idea_name=$tmp[0]["name"];
-		$sql="insert into `idea_like`(`idea_id`,`liker_id`,idea_name,`like_time`,`like_type`) values (".$idea_id.",".$user_id.",\"".$idea_name."\", now(),1)";
+	$sql="insert into `idea_like`(`idea_id`,`liker_id`,idea_name,`like_time`,`like_type`) values (".$idea_id.",".$user_id.",\"".$idea_name."\", now(),1)";
         $this->db->query($sql);
-		 $sql="update `idea_info` set `sum_like`=`sum_like`+1 where `idea_id`=".$idea_id;
+	$sql="update `idea_info` set `sum_like`=`sum_like`+1 where `idea_id`=".$idea_id;
         $this->db->query($sql);
 		return 1;
 	}
