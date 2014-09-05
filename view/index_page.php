@@ -19,9 +19,9 @@
                     <a href="#" id="godown"><i class="fa fa-angle-down fa-2x first"></i></a>
                 </div>
             </div>
-            <div class="section">
+            <div id="flowSection" class="section" style="display: none;">
                 <div class="flow">
-                    <label>众造模式</label>
+                    <label >众造模式</label>
                     <ul id="stage_list">
                         <li data-stage="share">
                             <img src="asset/21.png" alt="">
@@ -259,6 +259,8 @@
         $(".form").click(function(event){
             event.stopPropagation();
         });
+        
+        $('#flowSection').show();
     });
 
 </script>
