@@ -63,7 +63,7 @@ class class_like
         //如果没有 修改两张表  idea_like——点赞关系表 和 和idea_info中的sum_like字段
         $idea_id = $this->db->escape($idea_id);
         $user_id=$this->db->escape($user_id);
-        $sql="select * from idea_like where `idea_id`=".$idea_id." and `user_id`=".$liker_id;
+        $sql="select * from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id;
         // 没有过点赞记录直接返回
         if(count($this->db->get_results($sql))==0)
         {
@@ -71,11 +71,11 @@ class class_like
         }
         //取消点赞
         else{
-            $tmp=$this->db->get_results("SELECT * FROM idea_info WHERE `idea_id` = ".$idea_id,ARRAY_A);
+            $tmp=$this->db->get_results("SELECT * FROM `idea_info` WHERE `idea_id` = ".$idea_id,ARRAY_A);
             $idea_name=$tmp[0]["name"];
-            $sql="delete * from idea_like where idea_id=".$idea_id." and liker_id=".$user_id;
+            $sql="delete  from `idea_like` where `idea_id`=".$idea_id." and `liker_id`=".$user_id;
             $this->db->query($sql);
-            $sql="update idea_info set sum_like=sumlike-1";
+            $sql="update `idea_info` set `sum_like`=`sum_like`-1 where `idea_id`=".$idea_id;
             $this->db->query($sql);
             return true;
         }

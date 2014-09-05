@@ -1,11 +1,11 @@
 <?php
 
-define('HOSTNAME','http://localhost/');
+define('HOSTNAME','localhost');
 
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
 
-define('BASE_URL', 'http://localhost/tobemaker/');
+define('BASE_URL', 'http://'.HOSTNAME.'/tobemaker/');
 
 /*
  * MySQL
@@ -17,15 +17,10 @@ define('DATABASE_NAME', 'idea');
 define('DATABASE_USER', 'root');
 define('DATABASE_PASSWORD', '');
 
-/*
- * Database Tables
- */
-define('TABLENAME_AD', 'ad_img');
-define('TABLENAME_USER', 'user');
-
-define('ACCESS_KEY','-KZQqWyVFjjfoQDpkVb_Z1q-T7BrBKTJZfhEQ3XW');
-define('SECRET_KEY','_L0dnTqGE8PhJ1zNB3c97oX7pPge9TDzkKALu9gW');
-define('BUCKET', 'yzzwordpress');
+// 七牛云存储配置
+define('ACCESS_KEY','RTmVwPnuQZv2HKjM6_HUQYmS-nSEIHEtUn5U0a68');
+define('SECRET_KEY','bm9caZ5h6cEC3ErGiwwvYRo4zsyKEVkLGlhDLM3-');
+define('BUCKET', 'tobemaker-pub');
 define('QINIU_UP','http://up.qiniu.com/');
 define('QINIU_DOWN','http://'.BUCKET.'.qiniudn.com/');
 
@@ -35,3 +30,9 @@ define('MAIL_HOST','smtp.126.com');
 define('MAIL_ADDRESS', 'tobemaker@126.com');
 define('MAIL_PASS', 'tobemaker1');
 define('MAIL_USER', 'tobemaker');
+
+
+// 检查当前访问域名与设置的BASE_URL是否一致，避免出现跨站ajax的错误
+if ( $_SERVER['HTTP_HOST'] == HOSTNAME ){
+    header('Localhost: '.BASE_URL);
+}

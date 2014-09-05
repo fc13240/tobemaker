@@ -191,8 +191,9 @@
 															<i class="fa fa-envelope"></i>
 															</span>-->
 															<img alt="" src="" name="image" id="image" />
-															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="<?= BASE_URL ?>api/tmpfileupload.php">
+															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="http://up.qiniu.com/">
 															<!--<p id="fileurl_display" name="fileurl_display"></p>-->
+															<input name="token" type="hidden" value="<?=$upToken?>" />
 															<input id="fileurl" type="hidden" name="img_url" value=""/>
 														<!--</div>-->
 													</div>

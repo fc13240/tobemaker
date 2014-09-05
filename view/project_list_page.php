@@ -237,18 +237,18 @@
                 
                 $container.append('\
             <dl>\
-                <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'" class="h273" alt=""></a></dd>\
-                <dt>'+ item.name +'<span class="deadline"><i class="fa fa-clock-o"></i>剩余' + leftDays + '天</span></dt>\
+                <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/318x273!" class="h273" alt=""></a></dd>\
+                <dt><a href="project.php?idea_id='+ item.idea_id +'">'+ item.name +'</a><span class="deadline"><i class="fa fa-clock-o"></i>剩余' + leftDays + '天</span></dt>\
                 <dd><div class="bar"><div class="done" style="width: '+timePercent+'%"></div></div></dd>\
                 <dd>\
-                    <a href="#" class="avatar"><img class="circle" src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'" alt=""></a>\
+                    <a href="<?=BASE_URL?>person.php?user_id='+item.user_id+'" class="avatar"><img class="circle" src="'+(item['head_pic_url']==undefined?'asset/15.png':item['head_pic_url'])+'?imageMogr/v2/thumbnail/40x40!" alt=""></a>\
                     <a href="<?=BASE_URL?>person.php?user_id='+item.user_id+'" class="author">'+ item.user_name +'</a>\
                     <span>发布</span>\
                 </dd>\
                 <dd>\
                     <div class="button"><a class="weixinbtn" href="javascript:0;" data-idea_id="'+item.idea_id+'">分享</a></div>\
                     <div class="button"><a href="project.php?idea_id='+ item.idea_id +'#commentForm">评论</a><span>'+ (item.sum_comment == null ? 0 : item.sum_comment) +'</span></div>\
-                    <div class="button"><a class="like_btn '+ (item.likeit == 0 ? '':'red') +'" href="javascript:void 0" data-idea_id="'+ item.idea_id +'" data-url="<?=BASE_URL."api/like.php"?>" >超喜欢</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
+                    <div class="button"><a class="like_btn '+ (item.likeit == 0 ? '':'red') +'" href="javascript:void 0" data-idea_id="'+ item.idea_id +'" data-url="<?=BASE_URL."api/like.php"?>" >'+(item.idea_status>=5?'超想买':'超喜欢')+'</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
                 </dd>\
             </dl>');
                 
@@ -343,8 +343,15 @@
                     
                 }else if (status == "error"){
                     alert("系统错误，请联系管理员");
-                }else if (status == "like_already"){
-                    alert("已标记喜欢，请勿重复提交");
+                }else if (status == "like_delete"){
+                     // 标记“喜欢”按钮为红色还原
+                    the_like_btn.removeClass();
+					the_like_btn.addClass("like_btn");
+                    // 修改喜欢数量-1
+                    var $likeCntNode = the_like_btn.next('span');
+                    var likeCnt = $likeCntNode.text();
+                    likeCnt = parseInt(likeCnt) - 1;
+                    $likeCntNode.text(likeCnt);
                 }
             },'json');
         });

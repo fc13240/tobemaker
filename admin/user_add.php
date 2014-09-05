@@ -5,9 +5,14 @@ include_once '../class/class_user.php';
 include_once '../class/class_file.php';
 include_once '../class/class_group.php';
 include_once '../class/class_check.php';
+include_once '../class/class_qiniu.php';
 include_once ROOT_PATH."class/class_group_auth.php";
 $class_group_auth=new class_group_auth();
 $class_check=new class_check();
+//上传suo xu
+$qiniu= new class_qiniu();
+$upToken=$qiniu->get_token_to_upload_head();
+
 //判断权限
 if(!$class_group_auth->check_auth("admin"))
   {
@@ -41,34 +46,42 @@ $page_level_script = '<script src="./assets/global/scripts/metronic.js" type="te
     <script src="./assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
 <script src="./assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
 <script>
-
+     
 jQuery(document).ready(function() {       
     Metronic.init(); // init metronic core components
     Layout.init(); // init current layout
     QuickSidebar.init(); // init quick sidebar
     Demo.init(); // init demo features
     TableManaged.init();
-	$(\'#fileSelect\').fileupload({
-            dataType: \'json\',
-            done: function (e, data) {
-                if (data.result.url == null){
-                    alert("错误：" + data.result.err_msg);
-                }else{
-                    //$("#coverPreview").attr(\'src\', data.result.url);
-                    $("#fileurl").val(data.result.url);
-					$("#fileurl_display").text(data.result.url);
-					$("#image").attr(\'src\', data.result.url);
+	$("#fileSelect").fileupload({
+                dataType: \'json\',
+                done: function (e, data) {
+                    if (data.result.key == null){
+                        alert("错误：" + data.result.err_msg);
+                    }else{
+                        var url="'.QINIU_DOWN.'"+ data.result.key;
+                        console.log(url);
+                        $(\'#image\').attr(\'src\', url);
+                        $("#fileurl").val(url);
+                        $(\'#upload-progress-label\').text(\'\');
+                    }
+                },
+                progress: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $(\'#upload-progress-label\').text(progress+\'%\');
                 }
-            },
-            progress: function (e, data) {
-
-            },
-        });
+            });      
+	
 		
     
 });
 </script>
 ';
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
+}
 //获取群组信息
 $file=new class_file();
 $group=new class_group();
@@ -147,6 +160,7 @@ $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"se
 }	
 //返回成功信息
 alertMsg("添加成功！","success");
+changeTo(BASE_URL."admin/user_list.php");
 }
              
 

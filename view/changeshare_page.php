@@ -17,10 +17,8 @@
         <div class="share">
             <div class="pic">
                 <div class="picture">
-                    <label>标题</label>
-                    <img id="coverPreview" src=<?php
-                    echo "\"".$idea_info['picture_url']."\"";
-                    ?> alt="">
+                    <img id="coverPreview" src="<?=$idea_info['picture_url']?>" alt="">
+                    <label id="title_preview"><?=$idea_info['name']?></label>
                 </div>
                 <p>*上述内容均为原创作品</p>
                 <p>*上述内容均为现实可实现的</p>
@@ -29,39 +27,24 @@
             <div class="form">
                 <form id="idea-form" method="POST">
                     <label>标题</label>
-                    <input name="title" type="text" value=<?php
-                    echo "\"".$idea_info['name']."\"";
-                    ?>
-                    >
+                    <input name="title" type="text" value="<?=$idea_info['name']?>" >
 
                     <label>作者<span></span></label>
-                    <input name="author" type="text" disabled="true" value=
-                    <?php
-                    echo "\"".$idea_info['user_name']."\"";
-                    ?>
-                    >                    
-    <input name="token" type="hidden" value=<?php
-    echo "\"".$upToken."\"";
-    ?>>
+                    <input name="author" type="text" disabled="true" value="<?=$idea_info['user_name']?>" />                    
+                    <input name="token" type="hidden" value="<?=$upToken?>" />
                     <label>封面<span>（大图片建议尺寸 900像素*500像素）</span></label>
                     <div class="fileupload">
                         <div>上传<i id='upload-progress-label'></i></div>
                         <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/">
-                        <input id="fileurl" type="hidden" name="img_url" value=<?php
-                    echo "\"".$idea_info['picture_url']."\"";
-                    ?>
-                    />
+                        <input id="fileurl" type="hidden" name="img_url" value="<?=$idea_info['picture_url']?>" />
                     </div>
                     <input name="cover_display" type="checkbox" value="1"><span>封面图片显示在正文中</span>
                     <label>标签<span>（标签之前用英文逗号分隔，最多5个标签）</span></label>
-                    <input id="tmpTagText" type="text" value=
-                    <?php
-                    echo $idea_info['tags'];
-
-                    ?>
-                    />
+                    <input id="tmpTagText" type="text" value="<?=$idea_info['tags']?>" />
+                    <input id="trueTagText" name="tags" type="hidden" value="<?=$idea_info['tags']?>" />
+                    <div id="tagView"><i>修改后标签效果在此预览</i></div>
+                    
                     <input id="trueTagText" name="tags" type="hidden" />
-                    <div id="tagView">d</div>
                     <label class="last">正文</label>
                     <div class="textdiv">
                     <textarea id="editor" name="content" placeholder="这里输入内容" autofocus>
