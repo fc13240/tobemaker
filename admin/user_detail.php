@@ -5,9 +5,13 @@ include_once '../class/class_user.php';
 include_once '../class/class_file.php';
 include_once '../class/class_group.php';
 include_once '../class/class_check.php';
+include_once '../class/class_qiniu.php';
 include_once ROOT_PATH."class/class_group_auth.php";
 $class_check=new class_check();
 $class_group_auth=new class_group_auth();
+//上传suo xu
+$qiniu= new class_qiniu();
+$upToken=$qiniu->get_token_to_upload_head();
 //判断权限
 if(!$class_group_auth->check_auth("admin"))
   {
@@ -46,21 +50,24 @@ jQuery(document).ready(function() {
     QuickSidebar.init(); // init quick sidebar
     Demo.init(); // init demo features
     TableManaged.init();
-	$(\'#fileSelect\').fileupload({
-            dataType: \'json\',
-            done: function (e, data) {
-                if (data.result.url == null){
-                    alert("错误：" + data.result.err_msg);
-                }else{
-                    //$("#coverPreview").attr(\'src\', data.result.url);
-                    $("#fileurl").val(data.result.url);
-					$("#image").attr(\'src\', data.result.url);
+	$("#fileSelect").fileupload({
+                dataType: \'json\',
+                done: function (e, data) {
+                    if (data.result.key == null){
+                        alert("错误：" + data.result.err_msg);
+                    }else{
+                        var url="'.QINIU_DOWN.'"+ data.result.key;
+                        console.log(url);
+                        $(\'#image\').attr(\'src\', url);
+                        $("#fileurl").val(url);
+                        $(\'#upload-progress-label\').text(\'\');
+                    }
+                },
+                progress: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $(\'#upload-progress-label\').text(progress+\'%\');
                 }
-            },
-            progress: function (e, data) {
-
-            },
-        });
+            });     
 });
 </script>
 ';
@@ -103,7 +110,11 @@ include 'view/user_detail_page.php';
 include 'view/quick_bar.php';
 
 include 'view/footer.php';
-
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
+}
 
 //表单处理
 if(array_key_exists('real_name',$_POST))
@@ -150,12 +161,18 @@ if($_POST["activity"]!='删除')
 			 "description"=>$_POST["description"],"occupation"=>$_POST["occupation"]);
 			 }
   $result=$user->update($_POST["user_id"],$arr);
-  alertMsg("更新成功！");
+  
+  alertMsg("更新成功！","success");
+  $thisUrl=BASE_URL."admin/user_detail.php?action=edit&user_id=".$_POST["user_id"];
+ changeTo($thisUrl);
  }
  else
  {
     $user->delete($_POST["user_id"]);
+	
 	alertMsg("删除成功！","success");
+	 $thisUrl=BASE_URL."admin/user_list.php";
+    changeTo($thisUrl);
  }
   }
   //成功信息
