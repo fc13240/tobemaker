@@ -10,7 +10,7 @@
 <body class="index">
 <div id="index">
     <div class="main">
-        <img src="asset/index_new.jpg" alt="" class="background">
+        <img src="asset/index.jpg" alt="" class="background">
         <div id="fullpage" class="front">
             <div class="section" id="section1">
                 <div class="loginbtn">

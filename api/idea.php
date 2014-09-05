@@ -37,15 +37,15 @@ function update_one_idea( $idea_id,$arr){
 }
 
 $status_list = array(
-  array("danger" => "等待完善"),
-  array("danger" => "新建想法"),
-  array("warning" => "等待审核"),
+  array("info" => "等待完善"),
+  array("info" => "新建想法"),
+  array("info" => "等待审核"),
   array("danger" => "已拒绝"),
-  array("success" => "已批准积赞中"),
-  array("success"=>"待产"),
+  array("warning" => "已批准积赞中"),
+  array("primary"=>"待产"),
   array("success"=>"生产完成"),
-  array("danger"=>"下线"),
-  array("danger"=>"积赞失败需下线")
+  array("default"=>"下线"),
+  array("default"=>"积赞失败需下线")
 );
 
 
@@ -225,10 +225,10 @@ elseif ($_POST['order'][0]['column']==5 or $_POST['order'][0]['column']==1) {
     $datalist[$i]["name"],
     $datalist[$i]["user_name"],
     $datalist[$i]["brief"],
-    '<span class="label label-sm label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
+    '<span class="label label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
     
-     '<a href="javascript:;" class="btn btn-xs red idea-reject"><i class="fa fa-search"></i>拒绝</a>'
-      . '<a href="./idea_detail_all.php?idea_id='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>编辑</a>',
+     '<a href="javascript:;" class="btn btn-xs red-sunglo idea-reject"><i class="fa fa-times"></i> 拒绝</a>'
+      . '<a href="./idea_detail_all.php?idea_id='.$id.'" class="btn btn-xs blue-hoki idea-view"><i class="fa fa-pencil"></i> 编辑</a>',
   );
 }
 if (isset($_REQUEST["customActionType"]) && $_REQUEST["customActionType"] == "group_action") {
@@ -280,7 +280,7 @@ for($i = 0; $i < $real_length; $i++) {
     $datalist[$i]["name"],
     $datalist[$i]["user_name"],
     $datalist[$i]["brief"],
-    '<span class="label label-sm label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
+    '<span class="label label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
     '<a href="javascript:;" class="btn btn-xs blue idea-pass"><i class="fa fa-search"></i>批准</a>'
       . '<a href="javascript:;" class="btn btn-xs red idea-reject"><i class="fa fa-search"></i>拒绝</a>'
       . '<a href="./idea_detail_all.php?idea_id='.$id.'" class="btn btn-xs default idea-view"><i class="fa fa-search"></i>查看</a>',
