@@ -17,15 +17,10 @@ define('DATABASE_NAME', 'idea');
 define('DATABASE_USER', 'root');
 define('DATABASE_PASSWORD', '');
 
-/*
- * Database Tables
- */
-define('TABLENAME_AD', 'ad_img');
-define('TABLENAME_USER', 'user');
-
-define('ACCESS_KEY','-KZQqWyVFjjfoQDpkVb_Z1q-T7BrBKTJZfhEQ3XW');
-define('SECRET_KEY','_L0dnTqGE8PhJ1zNB3c97oX7pPge9TDzkKALu9gW');
-define('BUCKET', 'yzzwordpress');
+// 七牛云存储配置
+define('ACCESS_KEY','RTmVwPnuQZv2HKjM6_HUQYmS-nSEIHEtUn5U0a68');
+define('SECRET_KEY','bm9caZ5h6cEC3ErGiwwvYRo4zsyKEVkLGlhDLM3-');
+define('BUCKET', 'tobemaker-pub');
 define('QINIU_UP','http://up.qiniu.com/');
 define('QINIU_DOWN','http://'.BUCKET.'.qiniudn.com/');
 
