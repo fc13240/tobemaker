@@ -51,6 +51,7 @@ elseif(array_key_exists('title', $_POST)){
     }
     $item[0]['tags'] = $_POST['tags'];
     $item[0]['user_name']=$current_user['user_name'];
+	$item[0]['idea_status'] = 0;
     $is_like_item = 0;
 }
 
