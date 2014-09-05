@@ -1,19 +1,16 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker</title>
-    
-    <link rel="stylesheet" type="text/css" href="css/style-index.css">
+    <link rel="stylesheet" type="text/css" href="css/style-index.min.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
     <link rel="stylesheet" href="./fonts/Font-Awesome/css/font-awesome.min.css">
-    
 </head>
 <body class="index">
 <div id="index">
     <div class="main">
-        <img src="asset/index.jpg" alt="" class="background">
+        <img src="asset/index_new.jpg" alt="" class="background">
         <div id="fullpage" class="front">
             <div class="section" id="section1">
                 <div class="loginbtn">
@@ -21,7 +18,6 @@
                     <a href="#" id="register"><span>注册</span></a>
                     <a href="#" id="godown"><i class="fa fa-angle-down fa-2x first"></i></a>
                 </div>
-
             </div>
             <div class="section">
                 <div class="flow">
@@ -56,7 +52,6 @@
                             <img src="asset/26.png" alt="">
                             <p>分红</p>
                         </li>
-
                         <br class="clear"/>
                     </ul>
                     <div id="tobe_stage_msg">
@@ -69,12 +64,10 @@
                         <p id="tobe_stage_money">作为作品的创意 or 设计提出者，你将获得该产品销售后所得净利润30%的分红，鼓励更多分享。</p>
                     <div>
                     <a href="#" id="goup"><i class="fa fa-angle-up fa-2x" style="transform: scale(4,1);"></i></a>
-
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 <div id="login_form" class="login hide">
     <div class="form">
@@ -88,7 +81,6 @@
                 <span>还没有账号？</span>
                 <a href="#" id='reg_btn'>立即注册></a>
             </div>
-            <!--<div class="close">X</div>-->
         </form>
     </div>
 </div>
@@ -102,7 +94,6 @@
             <input type="text" name="inviteCode" placeholder="邀请码" />
             <input type="checkbox" name="readMsg" /><span>我已经认真阅读并同意<a href="login_agreement.html">《使用协议》</a></span>
             <input type="button" value="注册">
-            <!--<div class="close">X</div>-->
         </form>
     </div>
     <p>关注微信公众号：sidarsm，回复邮箱，获取邀请码</p>
@@ -117,16 +108,14 @@
             <div>
                 <a href="#" id="login2">又想起来了>></a>
             </div>
-            <!--<div class="close">X</div>-->
         </form>
     </div>
 </div>
     
-<script src="js/jquery.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/jquery-ui-1.10.3.min.js"></script>
 <script src="js/jquery.fullPage.min.js"></script>
 <script src="js/placeholder.js"></script>
-
 <script>
     $(function(){
         $('#fullpage').fullpage();

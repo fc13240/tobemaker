@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>share</title>
     <?php include "top_css.php" ?>
-    <script type="text/javascript" src="js/md5.js"></script> 
     <link rel="stylesheet" type="text/css" href="css/redactor.css">
     <link rel="stylesheet" type="text/css" href="css/simditor.css"/>
 </head>
