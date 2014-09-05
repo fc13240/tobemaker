@@ -6,7 +6,6 @@
     <?php include "top_css.php" ?>
     <link rel="stylesheet" type="text/css" href="css/redactor.css">
     <link rel="stylesheet" type="text/css" href="css/simditor.css"/>
-     <link rel="stylesheet" href="css/jquery.feedback.css" type="text/css" />
 </head>
 <body>
 <div id="top">
@@ -17,7 +16,6 @@
         <div class="share">
             <div class="pic">
                 <div class="picture">
-                	
                     <img id="coverPreview" src="asset/14.png" alt="">
                     <label id="title_preview">标题</label>
                 </div>
@@ -77,7 +75,6 @@
         </div>
 
     </div>
-<div id="feedback-anchor"></div>
 </div>
 <div id="footer">
     <?php include "footer.php" ?>
@@ -88,7 +85,7 @@
     <script src="admin/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
     <script src="admin/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
 	<script src="js/simditor-all.min.js" type="text/javascript" charset="utf-8"></script>
-  	<script src="js/jquery.feedback.js"></script>
+  	
     <script>
     $(document).ready(function(){
         $('#content').redactor();
@@ -155,9 +152,6 @@
 			 toolbar:  ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table',  'link', 'image', 'hr', '|', 'indent', 'outdent'],
 		});
     </script>
-     <script type="text/javascript">
-    Feedback.init();
-      
-  </script>
+     
 </body>
 </html>
