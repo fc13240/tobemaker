@@ -14,6 +14,7 @@ function addlike($user_id,$idea_id){
 	$res=$class_like->get_like_info($idea_id,$user_id);
 	if($res==1)
 	{
+	    $class_like->delet_like($idea_id,$user_id);
 		return return_result(1);
 	}
 	else {
@@ -34,7 +35,7 @@ function addlike($user_id,$idea_id){
 function return_result($status){
 	$arr=array();
 	if($status==1){
-		$arr['status']='like_already';
+		$arr['status']='like_delete';
 	}
 	elseif ($status==2) {
 		# code...
