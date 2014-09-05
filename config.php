@@ -37,5 +37,5 @@ define('MAIL_USER', 'tobemaker');
 
 // 检查当前访问域名与设置的BASE_URL是否一致，避免出现跨站ajax的错误
 if ( $_SERVER['HTTP_HOST'] != HOSTNAME ){
-    header('Localhost: '.BASE_URL);
+    header('Location: '.BASE_URL);
 }
