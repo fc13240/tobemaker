@@ -1,11 +1,11 @@
 <?php
 
-define('HOSTNAME','http://localhost/');
+define('HOSTNAME','localhost');
 
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
 
-define('BASE_URL', 'http://localhost/tobemaker/');
+define('BASE_URL', 'http://'.HOSTNAME.'/tobemaker/');
 
 /*
  * MySQL
@@ -31,3 +31,8 @@ define('MAIL_ADDRESS', 'tobemaker@126.com');
 define('MAIL_PASS', 'tobemaker1');
 define('MAIL_USER', 'tobemaker');
 
+
+// 检查当前访问域名与设置的BASE_URL是否一致，避免出现跨站ajax的错误
+if ( $_SERVER['HTTP_HOST'] == HOSTNAME ){
+    header('Localhost: '.BASE_URL);
+}
