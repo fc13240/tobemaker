@@ -12,7 +12,7 @@
 }*/
 a,p,div,h1,h2{
     color: #9c9c9c;
-    font-family: 微软雅黑;
+    font-family: "microsoft yahei";
 }
 a{
     text-decoration: none;
@@ -70,15 +70,17 @@ body.index{
     height: 100%;
 }
 #index .section .loginbtn{
-    width: 800px;
+    width: 1000px;
     margin: 300px auto 0 auto;
+    position: relative;
+    top: -100px;
 }
 #index .section .loginbtn a{
     float: left;
     display: block;   
     width: 60px;
     height: 60px;
-    margin: 20px 0 0 30px;
+    margin: 20px 30px 0 0px;
 }
 #login,#register {
 	border-radius: 50%;

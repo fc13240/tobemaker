@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>tobeMaker</title>
-    <link rel="stylesheet" type="text/css" href="css/style-index.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style-index.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
     <link rel="stylesheet" href="./fonts/Font-Awesome/css/font-awesome.min.css">
 </head>
@@ -24,32 +24,32 @@
                     <label >众造模式</label>
                     <ul id="stage_list">
                         <li data-stage="share">
-                            <img src="asset/21.png" alt="">
+                            <img src="asset/index_1.png" alt="">
                             <span>· · ·</span>
                             <p>分享创意</p>
                         </li>
                         <li data-stage="like">
-                            <img src="asset/22.png" alt="">
+                            <img src="asset/index_2.png" alt="">
                             <span>· · ·</span>
                             <p>点赞</p>
                         </li>
                         <li data-stage="exame">
-                            <img src="asset/23.png" alt="">
+                            <img src="asset/index_3.png" alt="">
                             <span>· · ·</span>
                             <p>审核</p>
                         </li>
                         <li data-stage="deep">
-                            <img src="asset/24.png" alt="">
+                            <img src="asset/index_4.png" alt="">
                             <span>· · ·</span>
                             <p>深化</p>
                         </li>
                         <li data-stage="produce">
-                            <img src="asset/25.png" alt="">
+                            <img src="asset/index_5.png" alt="">
                             <span>· · ·</span>
                             <p>生产销售</p>
                         </li>
                         <li data-stage="money">
-                            <img src="asset/26.png" alt="">
+                            <img src="asset/index_6.png" alt="">
                             <p>分红</p>
                         </li>
                         <br class="clear"/>
