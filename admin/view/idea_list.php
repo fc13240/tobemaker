@@ -66,15 +66,15 @@ Version: 3.1.3
                                             <div class="row">
                                                     <div class="col-md-6">
                                                             <div class="btn-group">
-                                                                    <button id="sample_editable_1_new" class="btn green">
+                                                                    <button id="sample_editable_1_new" class="btn green-meadow">
                                                                     添加项目 <i class="fa fa-plus"></i>
                                                                     </button>
 
                                                             </div>
                                                             
                                                             <div class="btn-group">
-                                                                    <button id="sample_editable_1_reject" class="btn red">
-                                                                    拒绝项目 <i class="fa fa-plus"></i>
+                                                                    <button id="sample_editable_1_reject" class="btn red-sunglo">
+                                                                    拒绝项目 <i class="fa fa-times"></i>
                                                                     </button>
                                                             </div>
                                                     </div>
