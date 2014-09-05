@@ -311,6 +311,7 @@ ul li{
 .top .lgnhover{
     position: absolute;
     right: -14px;
+    right: 45px;
     top: 60px;
     padding: 10px 0;
     display: none;
@@ -319,6 +320,7 @@ ul li{
 .top .lgnhover a,.top .lgnhover span{
     font-size: 13px;
 }
+
 form.lgn {
 	float: right;
 }

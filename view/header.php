@@ -26,8 +26,8 @@
             <span>|</span>
             <a href="#">粉丝</a>
             <span>|</span>
-            <a href="#">私信</a>-->
-            <span>|</span>
+            <a href="#">私信</a>
+            <span>|</span>-->
             <a href="<?=BASE_URL.'logout.php'?>">注销</a>
         </div>
     </div>
