@@ -217,7 +217,7 @@
                 if (data['status'] != 'success'){
                     alert(data['status']);
                 }else{
-                    location.href = 'person.php';
+                    location.href = 'person.php?edit';
                 }
             }, 'json');
         });
