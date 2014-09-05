@@ -130,21 +130,25 @@
         $("#fullpage").fullpage.moveSectionUp();
     });
     $("#login").click(function(){
+        $('#flowSection').hide();
         $(".login").addClass("hide");
         $("#login_form").removeClass("hide");
         blur();
     });
     $("#login2").click(function(){
+        $('#flowSection').hide();
         $(".login").addClass("hide");
         $("#login_form").removeClass("hide");
         blur();
     });
     $("#register,#reg_btn").click(function(){
+        $('#flowSection').hide();
         $(".login").addClass("hide");
         $("#register_form").removeClass("hide");
         blur();
     });
     $("#forget").click(function(){
+        $('#flowSection').hide();
         $(".login").addClass("hide");
         $("#forget_form").removeClass("hide");
         blur();
@@ -161,10 +165,12 @@
     }
     
     function hideAll(){
+        $('#flowSection').show();
         $(".login").addClass("hide");
         $("#index").removeClass("blur");
         $(".background").removeClass("blur");
         $(".section").removeClass("blur");
+        $('#flowSection').show();
     }
     $(document).keydown(function(event){ 
         
