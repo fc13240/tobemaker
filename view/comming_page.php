@@ -248,7 +248,7 @@
                 <dd>\
                     <div class="button"><a class="weixinbtn" href="javascript:0;" data-idea_id="'+item.idea_id+'">分享</a></div>\
                     <div class="button"><a href="project.php?idea_id='+ item.idea_id +'#commentForm">评论</a><span>'+ (item.sum_comment == null ? 0 : item.sum_comment) +'</span></div>\
-                    <div class="button"><a class="like_btn '+ (item.likeit == 0 ? '':'red') +'" href="javascript:void 0" data-idea_id="'+ item.idea_id +'" data-url="<?=BASE_URL."api/like.php"?>" >超喜欢</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
+                    <div class="button"><a class="like_btn '+ (item.likeit == 0 ? '':'red') +'" href="javascript:void 0" data-idea_id="'+ item.idea_id +'" data-url="<?=BASE_URL."api/like.php"?>" >'+(item.idea_status>=5?'超想买':'超喜欢')+'</a><span>'+ (item.sum_like == null ? 0 : item.sum_like) +'</span></div>\
                 </dd>\
             </dl>');
                 
@@ -343,8 +343,15 @@
                     
                 }else if (status == "error"){
                     alert("系统错误，请联系管理员");
-                }else if (status == "like_already"){
-                    alert("已标记喜欢，请勿重复提交");
+                }else if (status == "like_delete"){
+                   // 标记“喜欢”按钮为红色还原
+                    the_like_btn.removeClass();
+					the_like_btn.addClass("like_btn");
+                    // 修改喜欢数量-1
+                    var $likeCntNode = the_like_btn.next('span');
+                    var likeCnt = $likeCntNode.text();
+                    likeCnt = parseInt(likeCnt) - 1;
+                    $likeCntNode.text(likeCnt);
                 }
             },'json');
         });
