@@ -549,6 +549,7 @@ form.lgn {
     font-size: 18px;
     color: #6f6f6f;
     border-right: #6f6f6f 1px solid;
+    text-align: center;
 }
 .ttl .emailme{
     float: left;
@@ -1337,3 +1338,8 @@ span.tag:after {
 .webview .content span a{
     color: #0066cc;
 }
+
+.ired:hover {
+	color: red;
+}
+
