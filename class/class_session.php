@@ -30,7 +30,7 @@ class class_session
         // Initialise database object and establish a connection
         // at the same time - db_user / db_password / db_name / db_host
         $this->db = new ezSQL_mysql(DATABASE_USER,DATABASE_PASSWORD, DATABASE_NAME, DATABASE_HOST);
-        
+        $this->db->query("SET NAMES utf8");
     }
     
     // 判断是否登录
