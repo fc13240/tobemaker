@@ -103,7 +103,7 @@
                     <div id="sharein"><i id="weixinbtn">微 信</i><i id="weibobtn">微 博</i></div>
                 </li>
                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
-                <li><a id="like_btn" class="<?=($is_like_item==1?'red':'')?>" href="javascript:void 0" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>">超喜欢</a></li>
+                <li><a id="like_btn" class="<?=($is_like_item==1?'red':'')?>" href="javascript:void 0" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>"><?php echo($item[0]['idea_status']>=5?'超想买':'超喜欢'); ?>超喜欢</a></li>
             </ul>
         </div>
         <div class="pendant right">
