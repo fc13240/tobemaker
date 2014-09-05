@@ -122,7 +122,7 @@ Version: 3.1.3
 						    ?>
 							</table>
 							<input type="hidden" name="change_recommend" value="1" />
-							<input type="submit" value="提交修改" />
+							<button type="submit" class="btn btn-success">提交修改</button>
 						</form>
 						</div>
 					</div>
