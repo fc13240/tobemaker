@@ -18,35 +18,6 @@ if(!$class_group_auth->check_auth("admin"))
 $current_page = 'product-product_category_detail';
 $page_level = explode('-', $current_page);
 
-$page_level_style = '
-<link rel="stylesheet" type="text/css" href="./assets/global/plugins/select2/select2.css"/>
-<link rel="stylesheet" type="text/css" href="./assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
-';
-
-$page_level_plugins = '
-<script type="text/javascript" src="./assets/global/plugins/select2/select2.min.js"></script>
-<script type="text/javascript" src="./assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="./assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
-';
-
-$page_level_script = '<script src="./assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script src="./assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
-<script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="./assets/user/pages/scripts/product_list.js"></script>
-   <script src="./assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
-<script src="./assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
-<script>
-jQuery(document).ready(function() {       
-    Metronic.init(); // init metronic core components
-    Layout.init(); // init current layout
-    QuickSidebar.init(); // init quick sidebar
-    Demo.init(); // init demo features
-    TableManaged.init();
-	
-});
-</script>
-';
 //参数错误检测
 if(empty($_GET["productID"])||empty($_GET["action"]))
 {
@@ -108,12 +79,4 @@ else
   
   //成功信息
 }
-include 'view/header.php';
-
-include 'view/leftnav.php';
-
 include 'view/product_category_detail_page.php';
-
-include 'view/quick_bar.php';
-
-include 'view/footer.php';
