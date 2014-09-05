@@ -33,7 +33,7 @@
                     <?php
                     echo "\"".$current_user['user_name']."\"";
                     ?>
-                    >                    
+                    >
 
     <input name="token" type="hidden" value=<?php
     echo "\"".$upToken."\"";

@@ -17,10 +17,8 @@
         <div class="share">
             <div class="pic">
                 <div class="picture">
-                    <label>标题</label>
-                    <img id="coverPreview" src=<?php
-                    echo "\"".$idea_info['picture_url']."\"";
-                    ?> alt="">
+                    <img id="coverPreview" src="asset/14.png" alt="">
+                    <label id="title_preview">标题</label>
                 </div>
                 <p>*上述内容均为原创作品</p>
                 <p>*上述内容均为现实可实现的</p>
@@ -54,14 +52,11 @@
                     </div>
                     <input name="cover_display" type="checkbox" value="1"><span>封面图片显示在正文中</span>
                     <label>标签<span>（标签之前用英文逗号分隔，最多5个标签）</span></label>
-                    <input id="tmpTagText" type="text" value=
-                    <?php
-                    echo $idea_info['tags'];
-
-                    ?>
-                    />
+                    <input id="tmpTagText" type="text" value="<?=$idea_info['tags']?>" />
+                    <input id="trueTagText" name="tags" type="hidden" value="<?=$idea_info['tags']?>" />
+                    <div id="tagView"><i>修改后标签效果在此预览</i></div>
+                    
                     <input id="trueTagText" name="tags" type="hidden" />
-                    <div id="tagView">d</div>
                     <label class="last">正文</label>
                     <div class="textdiv">
                     <textarea id="editor" name="content" placeholder="这里输入内容" autofocus>
