@@ -457,7 +457,7 @@ echo '<script>$("#btn-follow").remove();</script>';
 }
 elseif($_GET["user_id"]!=$_SESSION["user_id"])
 {
-   echo '<script>$("#btn-modify").remove();</script>';
+   echo '<script>$("#btn-modify").remove();$("#btn-modify-password").remove();</script>';
    //获取用户是否被关注
 $attention=new class_attention();
 if($attention->checkunique($_SESSION["user_id"],$_GET["user_id"]))

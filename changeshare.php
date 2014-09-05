@@ -82,6 +82,26 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='change_share')
     $arr['create_time']='now()';
     $arr['picture_url']=$pic_url;
     $arr['tags']=$_POST['tags'];
+	//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_abslength')){
+        return mb_abslength($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
+	if(abslength(trim($_POST['title']))<=1||abslength(trim($_POST['title']))>15)
+	{
+	   //返回错误信息
+       echo '<script>alert("标题字数应在2-15之间！");history.go(-1);</script>';
+       return;
+	}
     if(count(explode(',',$_POST['tags']))>5)
     {
        //返回错误信息

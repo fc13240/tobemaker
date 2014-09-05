@@ -10,6 +10,20 @@ class class_check
 	{
 	   
 	}
+	//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_abslength')){
+        return mb_abslength($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 	//验证邮箱
 	function is_email($user_email)
 {
@@ -56,7 +70,7 @@ function password_able($password,$minLength,$maxLength)
 	{
 	    return 'space_exist';
 	}
-	elseif(strlen($password)>$maxLength||strlen($password)<$minLength)
+	elseif(abslength($password)>$maxLength||abslength($password)<$minLength)
 	{
 	    return 'length_unable';
 		
@@ -73,7 +87,7 @@ function password_able($password,$minLength,$maxLength)
 	  {
 	      return 'space_exist';
 	  }
-	  elseif(strlen($user_name)>$maxLength||strlen($user_name)<$minLength)
+	  elseif(abslength($user_name)>$maxLength||abslength($user_name)<$minLength)
 	{
 	    return 'length_unable';
 		

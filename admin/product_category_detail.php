@@ -37,7 +37,20 @@ $category=$product->get_category_by_id($_GET["productID"]);
 	$strDisplay='';
 	if($action=='view')
     $strDisplay=' disabled="disabled" ';
-	
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_abslength')){
+        return mb_abslength($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}	
 //跳转页面
 function changeTo($url)
 {
@@ -58,10 +71,12 @@ $isContain=null;
  if($_POST["status"]=='删除')
 {
     $product->delete_category($_POST["pc_id"]);
+	echo '<script type="text/javascript"> alert("删除成功！")</script>';
+	changeTo(BASE_URL."admin/product_category_list.php");
 }
 else
 {
-if(strlen(trim($_POST["name"]))<=1||strlen(trim($_POST["name"]))>16)
+if(abslength(trim($_POST["name"]))<=1||abslength(trim($_POST["name"]))>16)
 {
    echo '<script>alert("目录名称长度应在2-16之间");history.go(-1);</script>';
 }
