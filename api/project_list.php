@@ -42,7 +42,7 @@ $num_of_all=null;
     }
 
 
-    if(array_key_exists('q', $_POST)&&strlen($_POST['q'])>0){
+    if(array_key_exists('q', $_POST)&&strlen($_POST['q'])>0&&!array_key_exists('buy', $_POST)){
             //装备参数
     $key_word="%".$_POST['q']."%";
     $type=$_POST['type'];
@@ -64,7 +64,7 @@ $num_of_all=null;
         exit();
     }
 
-    else{
+    elseif(!array_key_exists('buy', $_POST)){
     $start=isset($_POST['start'])?$_POST['start']:0;
     $length=isset($_POST['length'])?$_POST['length']:6;
     //装备参数
@@ -84,6 +84,27 @@ $num_of_all=null;
             echo json_encode($records);
             exit();
         }
+    elseif(array_key_exists('buy', $_POST))
+	{
+	   $start=isset($_POST['start'])?$_POST['start']:0;
+    $length=isset($_POST['length'])?$_POST['length']:6;
+    //装备参数
+    $sort_key=$_POST['sort_rule'];
+    $type=$_POST['type'];
+//获取总数
+    $num_of_all=$class_idea->get_ideanum_sort_by_rule($sort_key,$type);
+    //  获取当前页面数据
+    $data=$class_idea->get_idea_key_sort_by_rule($sort_key,$type,$start,$length);
+    // 标记是否喜欢
+    $data=$class_like->check_buy_by_group($data,$user_id,$get_likeit);
+
+    $records=array();
+    $records['data']=array();
+    $records['data']=$data;
+            $records['num_of_all']=$num_of_all;
+            echo json_encode($records);
+            exit();
+	}
     
 ?>
 

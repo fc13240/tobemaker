@@ -3,6 +3,8 @@
 include_once '../config.php';
 include_once ROOT_PATH.'class/class_idea.php';
 include_once ROOT_PATH."class/class_group_auth.php";
+include_once ROOT_PATH.'class/class_like.php';
+$class_like=new class_like();
 $class_group_auth=new class_group_auth();
 //判断权限
 if(!$class_group_auth->check_auth("admin"))
@@ -17,6 +19,7 @@ if(!$class_group_auth->check_auth("admin"))
 header("Content-Type: text/html; charset=utf-8");
 // 获取数据开始
 $idea=new class_idea();
+//获取想买数目
 //如果是修改请求
 function alertMsg($msg,$status)
 {
@@ -70,6 +73,8 @@ elseif(isset($_GET["idea_id"]))
 	$idea_id=$_GET["idea_id"];
 	$idea_list=$idea->get_idea_by_id($idea_id);
 	//var_dump($idea_list);
+	//获取喜欢数目
+	$likenum=$class_like->get_like_num($idea_id);
 }
 
 else{
