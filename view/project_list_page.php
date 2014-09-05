@@ -141,7 +141,7 @@
                 
                 $container.append('\
             <dl>\
-                <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/318x273!" class="h273" alt=""></a></dd>\
+                <dd><a href="project.php?idea_id='+ item.idea_id +'"><img src="'+(item['picture_url']==undefined?'asset/12.png':item['picture_url'])+'?imageMogr/v2/thumbnail/318x273!" class="h273" alt=""></a></dd>\
                 <dt><a href="project.php?idea_id='+ item.idea_id +'">'+ item.name +'</a><span class="deadline"><i class="fa fa-clock-o"></i>剩余' + leftDays + '天</span></dt>\
                 <dd><div class="bar"><div class="done" style="width: '+timePercent+'%"></div></div></dd>\
                 <dd>\
