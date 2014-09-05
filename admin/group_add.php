@@ -59,6 +59,11 @@ include 'view/group_add.php';
 include 'view/quick_bar.php';
 
 include 'view/footer.php';
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
+}
 //表单处理
 $group=new class_group();
 if(array_key_exists('group_name',$_POST))
@@ -76,6 +81,7 @@ if(!$result)
 $result=$group->insert($_POST["group_name"]);
 //返回成功信息
 echo '<script>alert("添加成功");</script>';
+changeTo(BASE_URL."admin/group_list.php");
 }
 else
 {
