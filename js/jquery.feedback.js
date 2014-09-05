@@ -21,7 +21,7 @@
 
     Feedback.prototype.default_options = {
       placeholder: '对网站有什么想吐槽的？告诉我哦~',
-      send_callback: function(data) {$.post('http://tobemaker.zycc.net/api/feedback.php', {'msg':data, 'userid':'tobemaker_user'},function(data, textStatus){})},
+      send_callback: function(data) {$.post('http://tobemaker.zycc.net/api/feedback.php', {'msg':data, 'userid':window.location.href},function(data, textStatus){})},
       thanks_message: "<p>谢谢你的意见!我会努力的！</p>\n<div class=\"indent\">\n  - tobemaker</div>",
       button_name: "发送"
     };
