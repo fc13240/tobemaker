@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta property="wb:webmaster" content="7eb59a96dc1771ba" />
     <title>tobeMaker</title>
     <link rel="stylesheet" type="text/css" href="css/style-index.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
