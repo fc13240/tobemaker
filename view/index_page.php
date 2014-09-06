@@ -180,6 +180,11 @@
             hideAll();
         }
     });
+    $("input[type=text]").keydown(function(event){
+        if (event.keyCode == 13){
+            $(this).siblings('input[type=button]').trigger("click");
+        }
+    });
         
     $(document).ready(function(){
         

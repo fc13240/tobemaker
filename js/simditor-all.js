@@ -174,7 +174,7 @@
 
     Uploader.prototype.opts = {
       url: 'http://localhost/tobemaker/api/tmpfileupload.php',
-      params: {'ds':'sdf',},
+      params: null,
       fileKey: 'upload_file',
       connectionCount: 3,
       leaveConfirm: '正在上传文件，如果离开上传会自动取消'
