@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wb="http://open.weibo.com/wb" >
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
     <title>tobeMaker-item</title>
     <?php include "top_css.php" ?>
     <link rel="stylesheet" type="text/css" href="css/simditor.css"/>
@@ -79,7 +80,7 @@
         <div class="pendant left">
             <ul>
                 <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
-                    <div id="sharein"><i id="weixinbtn">微 信</i><i id="weibobtn">微 博</i></div>
+                    <div id="sharein"><i id="weixinbtn">微 信</i><wb:share-button id="weibo" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text=""></wb:share-button></div>
                 </li>
                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
                 <li><a id="like_btn" class="<?=($is_like_item==1?'red':'')?>" href="javascript:void 0" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>"><?php echo($item[0]['idea_status']>=5?'超想买':'超喜欢'); ?></a></li>
@@ -216,6 +217,8 @@
                     }
                 },'json');
 			});
+			//填充分享内容
+			
 			//注册取消关注事件
 			 $("#deleteAttention").click(function(){
 			var attention_userid = $('#author_id').val();
