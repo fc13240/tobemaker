@@ -47,12 +47,13 @@ $categoryList=$product->select($strsql);
 $file=new class_file();
 $imgUrl='';
 //保存表单内容到数据库
+//var_dump($_POST);
 if(array_key_exists('category',$_POST))
 {
-if(!empty($_POST["img_url"]))
-$imgUrl=$file->save($_POST["img_url"]);
+//if(!empty($_POST["img_url"]))
+//$imgUrl=$file->save($_POST["img_url"]);
 //验证表单内容合法性
-if(empty($imgUrl))
+if(empty($_POST["img_url"]))
 {
    alertMsg('图片不能为空！',"error");
 }
@@ -71,7 +72,7 @@ elseif(!empty($_POST["price"])&&!$class_check->is_double_p($_POST["price"]))
 else
 {
 $time = time();
-$arr= array("pf_name"=>$_POST["name"],"pf_image"=>$imgUrl,
+$arr= array("pf_name"=>$_POST["name"],"pf_image"=>$_POST["img_url"],
             "pf_link"=>$_POST["link"],"pf_label"=>$_POST["label"],
 			"pf_price"=>$_POST["price"],"pf_discount"=>$_POST["discount"],
 			"pc_id"=>$_POST["category"],"pf_addDate"=>date("y-m-d",$time));
