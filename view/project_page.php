@@ -51,7 +51,7 @@
             </div>
            
             <div class="commentbox">
-                <form id="commentForm" action="<?=BASE_URL?>project.php" method="POST" >
+                <form id="commentForm" action="<?=BASE_URL?>project.php?idea_id=<?=$idea_id?>" method="POST" >
                     <label>评论</label>
                     <textarea id="saytext" name="saytext"></textarea>
                     <a href="javascript:void 0" class="emotion">添加表情</a>
@@ -59,7 +59,7 @@
                     <input type="hidden" name="idea_id" value="<?=$idea_id?>"/>
                     <input class="sub_btn" type="submit" value="评论">
                     <p>个字符</p>
-                    <em>2000</em>
+                    <em id="commentWordLeft">2000</em>
                     <p>还可以输入</p>
                 </form>
             </div>
@@ -283,6 +283,16 @@
         });
         $(".pendant").pin({
             minWidth : 1220
+        });
+        
+        $('#saytext').keyup(function(event){
+            var left = 2000 - $('#saytext').val().length;
+            $('#commentWordLeft').text(left);
+            if (left < 0){
+                $(this).siblings('input[type=submit]').hide();
+            }else{
+                $(this).siblings('input[type=submit]').show();
+            }
         });
 
         $("#like_btn").click(function(){
