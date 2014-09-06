@@ -153,11 +153,8 @@ elseif(!$class_check->is_mobile($_POST["user_mobile"]))
 }
 else{
 
-$imgUrl='';
-if(!empty($_POST["img_url"]))
-{
-  $imgUrl=$file->save($_POST["img_url"]);
-}
+$imgUrl=$_POST["img_url"];
+
 if($_POST["activity"]!='删除')
 {
   if(!empty($imgUrl))
