@@ -192,6 +192,12 @@ class class_idea
             $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`is_recommend` >0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`is_recommend` desc limit ".$start.",".$length;
       }
       $res=$this->db->get_results($sql,ARRAY_A);
+	  
+	  for($i=0;$i<count($res);$i++)
+	  {
+	     $sql='select * from `idea_comment` where `idea_id`=\''.$res[$i]["idea_id"].'\'';
+		 $res[$i]["sum_comment"]=count($this->db->get_results($sql,ARRAY_A));
+	  }
       return $res;
      }
 
