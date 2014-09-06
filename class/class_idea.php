@@ -209,7 +209,7 @@ class class_idea
 
               $user_info = $class_user->select( $res[$i]['user_id'] );
               
-              $res[$i]["user_name"] = $user_info[$i]['user_name'];
+              $res[$i]["user_name"] = $user_info[0]['user_name'];
         }
         
       return $res;
