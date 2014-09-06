@@ -25,7 +25,7 @@
             <a href="?sort=recommend" class="<?=($sort_rule=="recommend"? 'red':'')?>" style="margin-right: 20px;">推荐</a>
             <a href="?sort=new" class="<?=($sort_rule=="new"? 'red':'')?>" style="margin-right: 20px;">最新</a>
             <a href="?sort=hot" class="<?=($sort_rule=="hot"? 'red':'')?>">最热</a>
-			<wb:share-button appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text="测试哈哈哈"></wb:share-button>
+			
         </div>
         <div id="idea-list-block" class="content list">
             <div id="idea-list-content" class="slide">

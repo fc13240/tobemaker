@@ -4,6 +4,10 @@ include_once '../config.php';
 include_once ROOT_PATH.'class/class_idea.php';
 include_once ROOT_PATH."class/class_group_auth.php";
 include_once ROOT_PATH.'class/class_like.php';
+include_once '../class/class_qiniu.php';
+//上传suo xu
+$qiniu= new class_qiniu();
+$upToken=$qiniu->get_token_to_upload_head();
 $class_like=new class_like();
 $class_group_auth=new class_group_auth();
 //判断权限
@@ -21,6 +25,11 @@ header("Content-Type: text/html; charset=utf-8");
 $idea=new class_idea();
 //获取想买数目
 //如果是修改请求
+//跳转页面
+function changeTo($url)
+{
+   echo '<script>location.href ="'.$url.'";</script>';
+}
 function alertMsg($msg,$status)
 {
     if($status=='error')
@@ -35,6 +44,7 @@ function alertMsg($msg,$status)
 if(isset($_POST["idea_id"]))
 {
    //表单验证
+   $tags=explode(',',$_POST["tags"]);
   if(strlen(trim($_POST["name"]))<=1||strlen(trim($_POST["name"]))>15)
   {
       alertMsg("标题长度有误，应介于2-15之间！","error");
@@ -55,13 +65,13 @@ if(isset($_POST["idea_id"]))
   }
   else{
 	$id=$_POST["idea_id"];
-	$arr=$_POST;
+	$arr=array("name"=>$_POST["name"],"tags"=>$_POST["tags"],"picture_url"=>$_POST["img_url"],"content"=>$_POST["content"],"is_recommend"=>$_POST["is_recommend"],"begin_time"=>$_POST["begin_time"],"end_time"=>$_POST["end_time"],"target"=>$_POST["target"]);
 	$idea->update_idea($id,$arr);
 	//注册修改时间
 	$change_info=array();
-    
-	$url="Location:".BASE_URL."admin/idea_detail_all.php?idea_id=".$id;
-	header($url);
+    alertMsg("修改成功！","success");
+	$url=BASE_URL."admin/idea_detail_all.php?idea_id=".$id;
+	changeTo($url);
 	exit();
 	}
 }

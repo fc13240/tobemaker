@@ -72,7 +72,18 @@ Version: 3.1.3
                                         </div>
                                     </div>
 
-
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">图片</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <img alt="" src="<?=@$idea_list[0]["picture_url"]?>?imageMogr/v2/thumbnail/318x273!" name="image" id="image" />
+															<input id="fileSelect" type="file" name="file" class="form-control input-circle" data-url="http://up.qiniu.com/">
+															<!--<p id="fileurl_display" name="fileurl_display"></p>-->
+															<input name="token" type="hidden" value="<?=$upToken?>" />
+															<input id="fileurl" type="hidden" name="img_url" value="<?=@$idea_list[0]["picture_url"]?>"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                     
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">内容</label>
@@ -212,6 +223,8 @@ Version: 3.1.3
     <script src="./assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
     <script src="./assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
     <script src="./assets/admin/pages/scripts/form-samples.js"></script>
+	 <script src="./assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
+     <script src="./assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
     <script type="text/javascript" src="<?=BASE_URL?>js/simditor-all.min.js"></script>
     <script>
 	function showBtn(data)
@@ -282,6 +295,25 @@ Version: 3.1.3
         QuickSidebar.init(); // init quick sidebar
         Demo.init(); // init demo features
        FormSamples.init();
+	   $("#fileSelect").fileupload({
+                dataType: 'json',
+                done: function (e, data) {
+                    if (data.result.key == null){
+                        alert("错误：" + data.result.err_msg);
+                    }else{
+                        var url="<?=QINIU_DOWN?>"+ data.result.key;
+                        console.log(url);
+                        $('#image').attr('src', url+'?imageMogr/v2/thumbnail/318x273!');
+                        $("#fileurl").val(url);
+                        //$('#upload-progress-label').text('');
+                    }
+                },
+                progress: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#upload-progress-label').text(progress+'%');
+                }
+            });      
+	
     });
 	//注册批准事件
 	$("#pass").click(function(){
