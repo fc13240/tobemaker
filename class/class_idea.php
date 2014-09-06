@@ -199,11 +199,17 @@ class class_idea
       }
       $res=$this->db->get_results($sql,ARRAY_A);
       
-      $class_user = new class_user();
-      
-      $user_info = $class_user->select( $res[0]['user_id'] );
+      if (count($res) > 0){
+          
+        $class_user = new class_user();
+        
+        foreach($res as $res_id => $res_item){
+            $user_info = $class_user->select( $res[$res_id]['user_id'] );
 
-      $res[0]['user_name'] = $user_info[0]['user_name'];
+            $res[$res_id]['user_name'] = $user_info[0]['user_name'];
+        }
+        
+      }
       
       return $res;
      }
