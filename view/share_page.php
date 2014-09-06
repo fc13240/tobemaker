@@ -84,7 +84,7 @@
     <script src="js/redactor.js"></script>
     <script src="admin/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js" ></script>
     <script src="admin/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js" ></script>
-	<script src="js/simditor-all.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/simditor-all.js" type="text/javascript" charset="utf-8"></script>
   	
     <script>
     $(document).ready(function(){
@@ -150,8 +150,8 @@
 		var editor = new Simditor({
 			textarea: $('#editor'),
 			 toolbar:  ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table',  'link', 'image', 'hr', '|', 'indent', 'outdent'],
-			  upload: true,
-			 pasteImage: true,
+//			  upload: true,
+//			 pasteImage: true,
 		});
     </script>
      

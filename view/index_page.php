@@ -90,8 +90,8 @@
         <img src="asset/29.png" alt="">
         <form id="regForm" action="" method="post" data-url="<?=BASE_URL."api/user_login.php"?> ">
             <input type="text" name="username" placeholder="tobeMaker邮箱"/>
-            <input type="text" name="password" placeholder="密码"/>
-            <i class="fa fa-eye fa-2x" style="position: absolute;top: 248px;left: 387px;"></i>
+            <input id="regPassword" type="password" name="password" placeholder="密码"/>
+            <i id="watchRegPassword" class="fa fa-eye fa-2x" style="position: absolute;top: 248px;left: 387px;"></i>
             <!--<input type="password" name="passwordAgain" placeholder="确认密码">-->
             <input type="text" name="inviteCode" placeholder="邀请码" />
             <input type="checkbox" name="readMsg" /><span>我已经认真阅读并同意<a href="login_agreement.html">《使用协议》</a></span>
@@ -182,6 +182,11 @@
         
     $(document).ready(function(){
         
+        $('#watchRegPassword').hover(function(){
+            $('#regPassword').attr('type','text');
+        },function(){
+            $('#regPassword').attr('type','password');
+        });
         
         $('#loginForm input[type=button]').click(function(){
             var url = $('#loginForm').data('url');
