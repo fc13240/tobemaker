@@ -55,7 +55,7 @@ elseif(array_key_exists('title', $_POST)){
     $is_like_item = 0;
 }
 
-elseif(!empty($_GET["idea_id"])){   // 默认显示主页
+if(!empty($_GET["idea_id"])){   // 默认显示主页
     //有id 则请求id对应详细
     $idea_id=$_GET["idea_id"]; //有请求的idea
     // 调用view来显示
