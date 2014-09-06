@@ -180,7 +180,7 @@
             hideAll();
         }
     });
-    $("input[type=text]").keydown(function(event){
+    $("input[type=text], input[type=password]").keydown(function(event){
         if (event.keyCode == 13){
             $(this).siblings('input[type=button]').trigger("click");
         }
