@@ -163,7 +163,7 @@ if($_POST["activity"]!='删除')
   if(!empty($imgUrl))
   {
   $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],
-             "birth"=>$_POST["birth"],"head_pic_url"=>$imagUrl,"user_email"=>$_POST["email"],
+             "birth"=>$_POST["birth"],"head_pic_url"=>$_POST["img_url"],"user_email"=>$_POST["email"],
 			 "user_mobile"=>$_POST["user_mobile"],"money"=>$_POST["money"],"user_group"=>$_POST["group"],"self_intro"=>$_POST["self_intro"],
 			 "description"=>$_POST["description"],"occupation"=>$_POST["occupation"]);
 			 }
