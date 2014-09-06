@@ -25,6 +25,20 @@ header("Content-Type: text/html; charset=utf-8");
 $idea=new class_idea();
 //获取想买数目
 //如果是修改请求
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_abslength')){
+        return mb_abslength($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 //跳转页面
 function changeTo($url)
 {
@@ -45,7 +59,7 @@ if(isset($_POST["idea_id"]))
 {
    //表单验证
    $tags=explode(',',$_POST["tags"]);
-  if(strlen(trim($_POST["name"]))<=1||strlen(trim($_POST["name"]))>15)
+  if(abslength(trim($_POST["name"]))<=1||abslength(trim($_POST["name"]))>15)
   {
       alertMsg("标题长度有误，应介于2-15之间！","error");
   }
@@ -54,7 +68,7 @@ if(isset($_POST["idea_id"]))
       alertMsg("标签数量过多！","error");
       
   }
-  elseif(strlen(trim($_POST["content"]))<=0)
+  elseif(abslength(trim($_POST["content"]))<=0)
   {
       alertMsg("内容不能为空！","error");
   }
