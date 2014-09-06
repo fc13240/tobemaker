@@ -92,7 +92,7 @@ function check_change(){
 			echo json_encode($result);
 			exit();
 		}
-		elseif(strlen(trim($_POST['new_password']))<=6||strlen(trim($_POST['new_password']))>16)
+		elseif(strlen(trim($_POST['new_password']))<6||strlen(trim($_POST['new_password']))>16)
 		{
 		    $result['status']='password_length_error';
 			echo json_encode($result);

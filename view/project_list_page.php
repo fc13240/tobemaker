@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wb="http://open.weibo.com/wb" >
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
     <title>tobeMaker-idea</title>
     <?php include "top_css.php" ?>
 </head>
@@ -24,6 +25,7 @@
             <a href="?sort=recommend" class="<?=($sort_rule=="recommend"? 'red':'')?>" style="margin-right: 20px;">推荐</a>
             <a href="?sort=new" class="<?=($sort_rule=="new"? 'red':'')?>" style="margin-right: 20px;">最新</a>
             <a href="?sort=hot" class="<?=($sort_rule=="hot"? 'red':'')?>">最热</a>
+			
         </div>
         <div id="idea-list-block" class="content list">
             <div id="idea-list-content" class="slide">

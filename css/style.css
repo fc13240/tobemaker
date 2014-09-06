@@ -1421,3 +1421,7 @@ html,body {
 	height: 20px;
 	border-radius: 6px;
 }
+.commentbox p,.commentbox em{
+	margin-top: 7px;
+	margin-left: 2px;
+}

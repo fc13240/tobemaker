@@ -141,7 +141,7 @@ class class_user
         $i++;
       }
       $aa=rtrim($aa,",");
-      $sql="UPDATE user_info SET ".$aa." where user_id=".$userid;
+      $sql="UPDATE `user_info` SET ".$aa." where `user_id`=".$userid;
 	  
       $this->db->query($sql);
       return 1;

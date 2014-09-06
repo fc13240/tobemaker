@@ -72,6 +72,20 @@ elseif(!empty($_GET["idea_id"])){   // 默认显示主页
 }else{
     die("页面传入参数错误");
 }
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_strlen')){
+        return mb_strlen($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 
 include 'view/project_page.php';
 

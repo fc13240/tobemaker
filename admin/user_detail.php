@@ -110,12 +110,26 @@ include 'view/user_detail_page.php';
 include 'view/quick_bar.php';
 
 include 'view/footer.php';
+//计算字符串长度
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_strlen')){
+        return mb_strlen($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 //跳转页面
 function changeTo($url)
 {
    echo '<script>location.href ="'.$url.'";</script>';
 }
-
+//var_dump($_POST);
 //表单处理
 if(array_key_exists('real_name',$_POST))
 {
@@ -160,8 +174,9 @@ if($_POST["activity"]!='删除')
 			 "user_mobile"=>$_POST["user_mobile"],"money"=>$_POST["money"],"user_group"=>$_POST["group"],"self_intro"=>$_POST["self_intro"],
 			 "description"=>$_POST["description"],"occupation"=>$_POST["occupation"]);
 			 }
+			 
   $result=$user->update($_POST["user_id"],$arr);
-  
+  //var_dump($result);
   alertMsg("更新成功！","success");
   $thisUrl=BASE_URL."admin/user_detail.php?action=edit&user_id=".$_POST["user_id"];
  changeTo($thisUrl);
