@@ -83,7 +83,7 @@
                     <div id="sharein"><i id="weixinbtn">微 信</i><!--<wb:share-button id="weibo" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text=""></wb:share-button>--></div>
                 </li>
                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
-                <li><a id="like_btn" class="<?=($is_like_item==1?'red':'')?>" href="javascript:void 0" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>"><?php echo($item[0]['idea_status']>=5?'超想买':'超喜欢'); ?></a></li>
+                <li><a id="like_btn" class="<?=($is_like_item==1?'red':'')?>" href="javascript:void 0" data-status="<?=@$item[0]['idea_status']?>" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>"><?php echo($item[0]['idea_status']>=5?'超想买':'超喜欢'); ?></a></li>
             </ul>
         </div>
         <div class="pendant right">
@@ -298,8 +298,11 @@
         $("#like_btn").click(function(){
             var url = $(this).data("url");
             var idea_id = $(this).data("idea_id");
+			var status=$(this).data('status');
             //TODO:从当前登录用户信息中获取用户id
             var user_id = $('#user_id').val();
+			if(status>=5)
+			{
             $.post(url, {'idea_id':idea_id, 'user_id':user_id,'buy':1}, function(data,textStatus){
                 var status = data['status'];
                 if (status == "success"){
@@ -313,6 +316,23 @@
                     
                 }
             },'json');
+			}
+			else
+			{
+			    $.post(url, {'idea_id':idea_id, 'user_id':user_id}, function(data,textStatus){
+                var status = data['status'];
+                if (status == "success"){
+                    $("#like_btn").addClass("red");
+                }else if (status == "error"){
+                    alert("系统错误，请联系管理员");
+                }else if (status == "like_delete"){
+                    // 标记“喜欢”按钮为红色还原
+                    $("#like_btn").removeClass();
+					
+                    
+                }
+            },'json');
+			}
         });
         
         $("#share").hover(

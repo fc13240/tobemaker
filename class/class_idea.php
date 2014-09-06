@@ -200,11 +200,18 @@ class class_idea
       $res=$this->db->get_results($sql,ARRAY_A);
       
       $class_user = new class_user();
-      
-      $user_info = $class_user->select( $res[0]['user_id'] );
+        
+	  
+        for($i=0;$i<count($res);$i++)
+        {
+           $sql='select * from `idea_comment` where `idea_id`=\''.$res[$i]["idea_id"].'\'';
+              $res[$i]["sum_comment"]=count($this->db->get_results($sql,ARRAY_A));
 
-      $res[0]['user_name'] = $user_info[0]['user_name'];
-      
+              $user_info = $class_user->select( $res[$i]['user_id'] );
+              
+              $res[$i]["user_name"] = $user_info[$i]['user_name'];
+        }
+        
       return $res;
      }
 
