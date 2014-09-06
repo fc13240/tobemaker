@@ -6,7 +6,7 @@
 include_once ROOT_PATH."include/ez_sql_core.php";
 include_once ROOT_PATH."include/ez_sql_mysql.php";
 include_once ROOT_PATH."class/class_pagesurpport.php";
-
+include_once ROOT_PATH."class/class_user.php";
 
 
  /*----------idea_类 
@@ -60,7 +60,7 @@ class class_idea
                else{
                 $bb=$bb.$values[$i].",";
                }
-                          $i=$i+1;         
+            $i=$i+1;
         }
         $aa=rtrim($aa,",");
         $bb=rtrim($bb,",");
@@ -96,7 +96,13 @@ class class_idea
     public function get_idea_by_id($idea_id){
 	$idea_id=$this->db->escape($idea_id);
       $sql="SELECT `idea_info`.*, `idea_status`.*, `user_info`.`head_pic_url` from `idea_info`, `idea_status`, `user_info` where `user_info`.`user_id` = `idea_info`.`user_id` and `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`idea_id`=".$idea_id;
-      $result = $this->db->get_results($sql, ARRAY_A);  
+      $result = $this->db->get_results($sql, ARRAY_A); 
+
+      $class_user = new class_user();
+      
+      $user_info = $class_user->select( $result[0]['user_id'] );
+
+      $result[0]['user_name'] = $user_info[0]['user_name'];
       
       return $result;
     }
@@ -192,6 +198,13 @@ class class_idea
             $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`, `idea_status`,`user_info` where `idea_info`.`idea_status`=`idea_status`.`status_id` and `idea_info`.`is_recommend` >0 and `idea_info`.`user_id`=`user_info`.`user_id` order by `idea_info`.`is_recommend` desc limit ".$start.",".$length;
       }
       $res=$this->db->get_results($sql,ARRAY_A);
+      
+      $class_user = new class_user();
+      
+      $user_info = $class_user->select( $res[0]['user_id'] );
+
+      $res[0]['user_name'] = $user_info[0]['user_name'];
+      
       return $res;
      }
 
