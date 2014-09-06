@@ -95,7 +95,7 @@ elseif(!empty($_POST["price"])&&!$class_check->is_double_p($_POST["price"]))
 }
 else{
   if(!empty($imgUrl))
-  $arr=array("pf_name"=>$_POST["name"],"pf_image"=>$imgUrl,"pf_link"=>$_POST["link"],
+  $arr=array("pf_name"=>$_POST["name"],"pf_image"=>$_POS["img_url"],"pf_link"=>$_POST["link"],
              "pf_label"=>$_POST["label"],"pf_price"=>$_POST["price"],"pf_discount"=>$_POST["discount"],
 			 "pf_status"=>$_POST["status"],"pf_sort"=>$_POST["sort"]);
   else
