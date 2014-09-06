@@ -80,7 +80,7 @@
         <div class="pendant left">
             <ul>
                 <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
-                    <div id="sharein"><i id="weixinbtn">微 信</i><wb:share-button id="weibo" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text=""></wb:share-button></div>
+                    <div id="sharein"><i id="weixinbtn">微 信</i><!--<wb:share-button id="weibo" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text=""></wb:share-button>--></div>
                 </li>
                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
                 <li><a id="like_btn" class="<?=($is_like_item==1?'red':'')?>" href="javascript:void 0" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>"><?php echo($item[0]['idea_status']>=5?'超想买':'超喜欢'); ?></a></li>
@@ -218,7 +218,14 @@
                 },'json');
 			});
 			//填充分享内容
-			
+			//function addWeiboDefault()
+			//{
+			  // var title="<?=$item[0]['name']?>";
+			   //var content="<?=$item[0]['content']?>"
+			    //content =content.substr(0,100);
+				//content+="<a href='<?=BASE_URL?>project.php?idea_id=<?=@$item[0]['idea_id']?>'>详情</a>"
+				//$("#weibo").attr("default_text",title+content);
+			//}
 			//注册取消关注事件
 			 $("#deleteAttention").click(function(){
 			var attention_userid = $('#author_id').val();
@@ -344,13 +351,13 @@
             hideAll();
         });
         
-        $('.weibo').click(function(event){
-            event.stopPropagation();
-        });
+        //$('.weibo').click(function(event){
+           // event.stopPropagation();
+        //});
         
         pageNow = 1;
         loadIdeaPage(pageNow);
-        
+        //addWeiboDefault();
         
 
     });
