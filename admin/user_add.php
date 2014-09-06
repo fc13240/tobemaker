@@ -109,11 +109,11 @@ function alertMsg($msg,$status)
 //表单处理
 $user=new class_user();
 
-$imgUrl='';
-if(!empty($_POST["img_url"]))
-{
-  $imgUrl=$file->save($_POST["img_url"]);
-}
+$imgUrl=$_POST["img_url"];
+//if(!empty())
+///{
+  //$imgUrl=$file->save($_POST["img_url"]);
+///}
 if(array_key_exists('real_name',$_POST))
 {
 //验证表单提交数据合法性

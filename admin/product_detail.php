@@ -77,9 +77,9 @@ if($_POST["status"]=='删除')
 }
 else
 {
-$imgUrl='';
-if(!empty($_POST["img_url"]))
-  $imgUrl=$file->save($_POST["img_url"]);
+$imgUrl=$_POST["img_url"];
+//if(!empty($_POST["img_url"]))
+  //$imgUrl=$file->save($_POST["img_url"]);
   //表单提交验证
 if(strlen(trim($_POST["link"]))<=0)
 {
