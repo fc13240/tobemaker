@@ -39,7 +39,7 @@
             </div>
             <div class="simditor" style="border: none;">
             	 <div class="atc simditor-body">
-                <p><?php echo $item[0]['content'];?></p>
+                     
                 <?php 
                 if(isset($item[0]['cover_display'])&&intval($item[0]['cover_display'])==1){
                 ?>
@@ -47,6 +47,9 @@
                 <?php
                 }
                 ?>
+                    
+                <p><?php echo $item[0]['content'];?></p>
+                
             </div>
             </div>
             
