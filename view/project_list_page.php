@@ -39,10 +39,10 @@
                 </ul>
             </div>
 
-            <div class="prev">
+            <div class="prev" style="display: none;">
                 <div><a href="javascript:0"><</a></div>
             </div>
-            <div class="next">
+            <div class="next" style="display: none;">
                 <div><a href="javascript:0">></a></div>
             </div>
 
@@ -51,14 +51,6 @@
         </div>
         <div id="project-pagenum" class="pagenum" data-url="<?=BASE_URL."api/project_list.php"?>">
             <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">7</a>
-            <a href="#">8</a>
-            <a href="#">9</a>
 
         </div>
 
@@ -221,6 +213,9 @@
         a();
         pageNow = 1;
         loadIdeaPage(pageNow, 1);
+        
+        $('#idea-list-block .next').show();
+        $('#idea-list-block .prev').show();
         
         $('#idea-list-block .next').click(function(){
             if (pageNow < maxPageNo){
