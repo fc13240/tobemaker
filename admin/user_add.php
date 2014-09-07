@@ -109,11 +109,11 @@ function alertMsg($msg,$status)
 //表单处理
 $user=new class_user();
 
-$imgUrl='';
-if(!empty($_POST["img_url"]))
-{
-  $imgUrl=$file->save($_POST["img_url"]);
-}
+$imgUrl=$_POST["img_url"];
+//if(!empty())
+///{
+  //$imgUrl=$file->save($_POST["img_url"]);
+///}
 if(array_key_exists('real_name',$_POST))
 {
 //验证表单提交数据合法性
@@ -145,7 +145,7 @@ else{
 if(!empty($imgUrl))
   {
 $arr=array("user_name"=>$_POST["user_name"],"real_name"=>$_POST["real_name"],"sex"=>$_POST["sex"],"user_passcode"=>$_POST["password"],
-             "birth"=>$_POST["birth"],"head_pic_url"=>$imagUrl,"user_email"=>$_POST["email"],
+             "birth"=>$_POST["birth"],"head_pic_url"=>$_POST["img_url"],"user_email"=>$_POST["email"],
 			 "user_mobile"=>$_POST["mobile"],"money"=>$_POST["money"],"user_group"=>$_POST["group"],
 			 "occupation"=>$_POST["occupation"]);
 			 $result=$user->insert($arr);
