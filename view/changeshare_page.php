@@ -20,11 +20,16 @@
                     <img id="coverPreview" src="<?=$idea_info['picture_url']?>" alt="">
                     <label id="title_preview"><?=$idea_info['name']?></label>
                 </div>
-                <p>*上述内容均为原创作品</p>
-                <p>*上述内容均为现实可实现的</p>
+                <p>请保证：</p>
+                <p>* 分享内容均为你的原创创意或原创设计；</p>
+                <p>* 分享的创意和设计均属于生活家居用品范畴，非智能硬件；</p>
+                <p>* 分享的创意和设计均是现实技术可实现的。</p>
 
             </div>
             <div class="form">
+                <div class="form--rhombus">
+                    
+                </div>
                 <form id="idea-form" method="POST">
                     <label>标题</label>
                     <input id="title_input_text" name="title" type="text" value="<?=$idea_info['name']?>" >
@@ -44,6 +49,10 @@
                     <input id="trueTagText" name="tags" type="hidden" value="<?=$idea_info['tags']?>" />
                     <div id="tagView"><i>修改后标签效果在此预览</i></div>
                     <label class="last">正文</label>
+                    <div class="fileupload" style="width: 160px;">
+                        <div>插入图片到正文<i id='upload-progress-label-for-content'></i></div>
+                        <input id="fileSelectForContent" type="file" name="file" data-url="http://up.qiniu.com/">
+                    </div>
                     <div class="textdiv">
                     <textarea id="editor" name="content" placeholder="这里输入内容" autofocus>
                     <?php
@@ -62,7 +71,7 @@
             <div class="submit">
                 <div class="out">
                     <div>
-                        <button class="save">提交</button>
+                        <button class="save">保存</button>
                         <button class="view">预览</button>
                     </div>
                 </div>
@@ -105,6 +114,24 @@
             },
         });
 
+        $('#fileSelectForContent').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                if (data.result.key == null){
+                    alert("错误：" + data.result.err_msg);
+                }else{
+                    var url="<?=QINIU_DOWN?>"+ data.result.key;
+                    
+                    $('.simditor-body').append('<img src="'+url+'">');
+                }
+                $('#upload-progress-label-for-content').text('');
+            },
+            progress: function (e, data) {
+                
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#upload-progress-label-for-content').text(progress+'%');
+            },
+        });
         
         $('button.save').click(function(){
             $('#idea-form').action="../changeshare.php";
