@@ -23,9 +23,11 @@ textarea{
     overflow: hidden;
 }
 button,input[type="submit"]{
-
+    border: none;
+    color: #ffffff;
+    background: #df3b42;
+    cursor: pointer;
 }
-
 
 body{
     margin: 0;
@@ -790,6 +792,10 @@ form.lgn {
     width: 150px;
     height: 150px;
 }
+.mine img.small{
+    width: 80px;
+    height: 80px;
+}
 .mine h2,.mine span{
     color: #636363;
     font-family: Lantingchaoxi;
@@ -805,19 +811,43 @@ form.lgn {
     margin-bottom: 0;
 }
 .mine a {
-	display: inline-block;
-	width: 40px;
-	height: 40px;
+	/*display: inline-block;*/
+	/*width: 40px;*/
+	/*height: 40px;*/
 	font-size: 14px;
+        color: #000000;
 	line-height: 40px;
-	font-weight: 100;
+	/*font-weight: 100;*/
+        vertical-align: middle;
 }
-
+.mine a.active{
+    color: #ff1400;
+}
 .mine a img{
     width: 40px;
     height: 40px;
 }
 
+.mine span.line{
+    font-size: 16px;
+    padding: 0 10px;
+    line-height: 16px;
+    vertical-align: middle;
+}
+.mine .to{
+    position: relative;
+    line-height: 36px;
+    width: auto;
+    font-size: 18px;
+}
+.mine .to span{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -30px;
+    font-size: 18px;
+    line-height: 20px;
+}
 .mine .blue{
     color: #00AAFF;
 }
@@ -879,7 +909,201 @@ form.lgn {
     height: 30px;
     margin: 12px;
 }
-
+.mine.slide{
+    height: auto;
+    border: none;
+    height: 393px;
+    text-align: center;
+}
+.mine.slide .user{
+    float: left;
+    width: 105px;
+    margin: 10px;
+}
+.mine.slide .user img{
+    width: 70px;
+    height: 70px;
+}
+.mine.slide .user a{
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #000000;
+}
+.mine.slide .user a:hover{
+    text-decoration: underline;
+}
+.mine.msg{
+    border: none;
+    margin-bottom: 50px;
+}
+.mine.msg p,.mine.msg span,.mine.msg label{
+    font-family: 微软雅黑;
+    color: #000000;
+}
+.mine.msg textarea{
+    display: block;
+    margin: 0 auto;
+    width: 98%;
+    height: 200px;
+    padding: 1%;
+    font-size: 16px;
+}
+.mine.msg .msglist{
+    width: 700px;
+    margin: 0 auto;
+}
+.mine.msg .msglist > div{
+    border-bottom: #d9d7e2 1px solid;
+    margin-bottom: 10px;
+}
+.mine.msg .msglist .avatar{
+    float: left;
+    width: 60px;
+    height: 60px;
+}
+.mine.msg .msglist .avatar img{
+    width: 100%;
+    height: 100%;
+}
+.mine.msg .msglist .msgcontent{
+    padding-top: 10px;
+    margin-left: 80px;
+    min-height: 70px;
+    position: relative;
+}
+.mine.msg .msglist .msgcontent label{
+    float: left;
+    font-size: 15px;
+}
+.mine.msg .msglist .msgcontent p{
+    font-size: 15px;
+    float: left;
+    width: 500px;
+    margin: 0;
+    text-align: left;
+}
+.mine.msg .msglist .time{
+    width: 120px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.mine.msg .msglist .time span{
+    color: #9c9c9c;
+}
+.mine.msg .msglist .time a{
+    font-size: 13px;
+}
+.mine.msg .msglist .time a:hover{
+    text-decoration: underline;
+}
+.mine.msg .msglist .time a.active{
+    color: #ff1400;
+}
+.mine.msg .msglist .time .a1{
+    float: left;
+    padding-left: 20px;
+}
+.mine.msg .msglist .time .a2{
+    float: right;
+    padding-right: 20px;
+}
+.mine.msg .pagenum a{
+    font-size: 20px;
+    padding: 0 10px;
+}
+.mine.msg .msgreply{
+    width: 600px;
+    margin: 0 auto;
+}
+.mine.msg .msgreply > div{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.mine.msg .msgreply .avatar{
+    width: 100px;
+    height: 60px;
+    text-align: left;
+    float: left;
+}
+.mine.msg .msgreply .avatar img{
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+}
+.mine.msg .msgreply .avatar span{
+    font-family: normal;
+    font-size: 28px;
+    text-align: right;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+.mine.msg .msgreply .msgcontent{
+    margin-left: 100px;
+    min-height: 60px;
+}
+.mine.msg .msgreply .msgcontent p{
+    padding-top: 20px;
+    text-align: left;
+    color: #000000;
+    font-size: 14px;
+    line-height: 2em;
+}
+.mine.msg .msgreply .msgcontent span{
+    color: #9c9c9c;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+.mine.msg .msgreply .msgcontent a{
+    padding: 0 3px;
+    float: right;
+    font-size: 13px;
+}
+.mine.msg .msgreply .msgcontent a:hover{
+    text-decoration: underline;
+}
+.mine.msg .send{
+    width: 700px;
+    margin: 0 auto;
+}
+.mine.msg .send.reply{
+    width: 600px;
+}
+.mine.msg .send.reply textarea{
+    height: 120px;
+}
+.mine.msg .submit{
+    float: right;
+    margin-right: -2px;
+}
+.mine.msg .submit a{
+    font-size: 14px;
+    color: #9c9c9c;
+    line-height: 30px;
+    padding: 0 10px;
+}
+.mine.msg .submit button{
+    margin: 10px 0;
+    width: 80px;
+    height: 30px;
+}
+.mine.pageturn{
+    text-align: center;
+    margin-bottom: 50px;
+    border: none;
+}
+.mine.pageturn a{
+    font-family: Lantingchaoxi;
+    font-size: 50px;
+    padding: 0 10px;
+    color: #9c9c9c;
+}
+.mine.pageturn a:hover{
+    color: #ff1400;
+}
 
 .minepro{
     margin-top: 30px;
