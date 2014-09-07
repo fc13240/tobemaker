@@ -86,6 +86,17 @@ Version: 3.1.3
                                     </div>
                                     
                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">插入图片到正文</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                
+                                                <input id="fileSelectForContent" type="file" name="file" class="form-control input-circle" data-url="http://up.qiniu.com/"><i id="upload-progress-label-for-content"></i>
+                                                <input name="token" type="hidden" value="<?=$upToken?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">内容</label>
                                         <div class="col-md-6">
                                             <div class="input-group">
@@ -167,7 +178,7 @@ Version: 3.1.3
                                         <label class="col-md-3 control-label">筹赞目标</label>
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input type="number" class="form-control" id="target" name="target" value=<?php echo "\"".$idea_list[0]["target"]."\"/>";?>
+                                                <input type="number" class="form-control" id="target" name="target" value="<?=intval($idea_list[0]["target"])<=0 ? '100':$idea_list[0]["target"];?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -312,7 +323,26 @@ Version: 3.1.3
                     var progress = parseInt(data.loaded / data.total * 100, 10);
                     $('#upload-progress-label').text(progress+'%');
                 }
-            });      
+            });     
+            
+            $('#fileSelectForContent').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                if (data.result.key == null){
+                    alert("错误：" + data.result.err_msg);
+                }else{
+                    var url="<?=QINIU_DOWN?>"+ data.result.key;
+                    
+                    $('.simditor-body').append('<img src="'+url+'">');
+                }
+                $('#upload-progress-label-for-content').text('');
+            },
+            progress: function (e, data) {
+                
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#upload-progress-label-for-content').text(progress+'%');
+            },
+        });
 	
     });
 	//注册批准事件

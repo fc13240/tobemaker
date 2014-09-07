@@ -56,6 +56,10 @@
                     <input id="trueTagText" name="tags" type="hidden" />
                     <div id="tagView"><i>标签效果在此预览</i></div>
                     <label class="last">正文</label>
+                    <div class="fileupload" style="width: 160px;">
+                        <div>插入图片到正文<i id='upload-progress-label-for-content'></i></div>
+                        <input id="fileSelectForContent" type="file" name="file" data-url="http://up.qiniu.com/">
+                    </div>
                     <div class="textdiv">
                   		<textarea id="editor" name="content" placeholder="这里输入内容" autofocus></textarea>					
                     </div>
@@ -109,6 +113,25 @@
         });
 
         
+        $('#fileSelectForContent').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                if (data.result.key == null){
+                    alert("错误：" + data.result.err_msg);
+                }else{
+                    var url="<?=QINIU_DOWN?>"+ data.result.key;
+                    
+                    $('.simditor-body').append('<img src="'+url+'">');
+                }
+                $('#upload-progress-label-for-content').text('');
+            },
+            progress: function (e, data) {
+                
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#upload-progress-label-for-content').text(progress+'%');
+            },
+        });
+        
         $('button.save').click(function(){
             $('#idea-form').action="../share.php";
             $('#idea-form').submit();
@@ -147,12 +170,16 @@
 
     </script>
     <script type="text/javascript" charset="utf-8">
-		var editor = new Simditor({
-			textarea: $('#editor'),
-			 toolbar:  ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table',  'link', 'image', 'hr', '|', 'indent', 'outdent'],
-//			  upload: true,
-//			 pasteImage: true,
-		});
+        (function() {
+  var editor;
+
+  editor = new Simditor({
+    textarea: $('#editor'),
+    toolbar:  ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table',  'link', 'image', 'hr', '|', 'indent', 'outdent'],
+  });
+
+}).call(this);
+		
     </script>
      
 </body>

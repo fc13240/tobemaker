@@ -28,6 +28,8 @@ $class_comment=new class_comment();
 
 $user_id=$current_user['user_id']; 
 
+$preview_status = false;
+
 //如果是评论请求
 if(array_key_exists('saytext', $_POST)){
     
@@ -40,7 +42,7 @@ if(array_key_exists('saytext', $_POST)){
 }
 
 //如果预览  如果预览请求
-elseif(array_key_exists('title', $_POST)){
+if(array_key_exists('title', $_POST)){
     //预览页面的数据
     $item[0]['name']=$_POST['title'];
     $item[0]['content']=$_POST['content'];
@@ -53,9 +55,11 @@ elseif(array_key_exists('title', $_POST)){
     $item[0]['user_name']=$current_user['user_name'];
 	$item[0]['idea_status'] = 0;
     $is_like_item = 0;
-}
-
-if(!empty($_GET["idea_id"])){   // 默认显示主页
+    
+    $preview_status = true;
+}else{
+    
+    if(!empty($_GET["idea_id"])){   // 默认显示主页
     //有id 则请求id对应详细
     $idea_id=$_GET["idea_id"]; //有请求的idea
     // 调用view来显示
@@ -69,9 +73,14 @@ if(!empty($_GET["idea_id"])){   // 默认显示主页
 	  $is_like_item = $class_like->get_wantbuy_info($idea_id, $user_id);
 	}
 
-}else{
-    die("页面传入参数错误");
+    }else{
+        die("页面传入参数错误");
+    }
+    
 }
+
+
+
 //计算字符串长度
 function abslength($str)
 {

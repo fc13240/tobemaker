@@ -49,6 +49,8 @@
                 ?>
             </div>
             </div>
+            
+            <?php if ($preview_status == false) { ?>
            
             <div class="commentbox">
                 <form id="commentForm" action="<?=BASE_URL?>project.php?idea_id=<?=$idea_id?>" method="POST" >
@@ -63,8 +65,13 @@
                     <p>还可以输入</p>
                 </form>
             </div>
+            
+            <?php } ?>
 
         </div>
+        
+        <?php if ($preview_status == false) { ?>
+        
         <div class="comment">
             <h1>全部评论</h1>
             <ul id="comment-list-content">
@@ -89,6 +96,8 @@
         <div class="pendant right">
             <a href="#top"><img src="asset/9.png" alt="" class="backtotop"></a>
         </div>
+        
+        <?php } ?>
 
     </div>
 
