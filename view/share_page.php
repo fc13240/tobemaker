@@ -26,9 +26,9 @@
 
             </div>
             <div class="form">
-            	<div class="form--rhombus">
+            	<!--<div class="form--rhombus">
             		
-            	</div>
+            	</div>-->
                 <form id="idea-form" method="POST">
                     <label>标题</label>
                     <input id="title_input_text" name="title" type="text">
@@ -44,7 +44,7 @@
 
     ?>>
 
-                    <label>封面<span>（大图片建议尺寸 900像素*500像素）</span></label>
+                    <label>封面<span>（图片建议尺寸900像素*500像素，无文字）</span></label>
                     <div class="fileupload">
                         <div>上传<i id='upload-progress-label'></i></div>
                         <input id="fileSelect" type="file" name="file" data-url="http://up.qiniu.com/">
@@ -56,8 +56,9 @@
                     <input id="trueTagText" name="tags" type="hidden" />
                     <div id="tagView"><i>标签效果在此预览</i></div>
                     <label class="last">正文</label>
-                    <div class="fileupload" style="width: 160px;">
+                    <div class="fileupload">
                         <div>插入图片到正文<i id='upload-progress-label-for-content'></i></div>
+                        <span>（上传图片最大不超过2M）</span>
                         <input id="fileSelectForContent" type="file" name="file" data-url="http://up.qiniu.com/">
                     </div>
                     <div class="textdiv">
