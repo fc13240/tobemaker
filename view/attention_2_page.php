@@ -30,8 +30,8 @@
                     </ul>
                 </div>
                 <div class="mine pageturn">
-                    <a href="javascript:void(0)" id="prev"><</a>
-                    <a href="javascript:void(0)" id="next">></a>
+                    <a href="javascript:void(0)" id="prev1"><</a>
+                    <a href="javascript:void(0)" id="next1">></a>
                 </div>
 
             </div>
