@@ -313,7 +313,7 @@ ul li{
 .top .lgnhover{
     position: absolute;
     right: -14px;
-    right: 45px;
+    /*right: 45px;*/
     top: 60px;
     padding: 10px 0;
     display: none;
@@ -322,7 +322,9 @@ ul li{
 .top .lgnhover a,.top .lgnhover span{
     font-size: 13px;
 }
-
+.top .lgnhover a:hover {
+	color: red;
+}
 form.lgn {
 	float: right;
 }
@@ -552,6 +554,10 @@ form.lgn {
 .share .submit button.view{
     background: #ffffff;
     border: #dfdfdf 1px solid;
+    color: rgb(150,150,150);
+}
+.share .submit button.view:hover {
+	color: rgb(100,100,100);
 }
 .item{
     padding: 30px;
@@ -610,8 +616,16 @@ form.lgn {
 .ttl .emailme{
     float: left;
     width: 178px;
-    height: 36px;
+    padding-top: 8px;
+    height: 32px;
     text-align: center;
+}
+.ttl .emailme a{
+	display: inline-block;
+	width: 60px;	
+}
+.ttl .emailme a#deleteAttention{
+	font-size: 14px;
 }
 .ttl .emailme img{
     height: 36px;
@@ -857,14 +871,18 @@ form.lgn {
     margin-bottom: 0;
 }
 .mine a {
-	/*display: inline-block;*/
-	/*width: 40px;*/
-	/*height: 40px;*/
+	display: inline-block;
+	width: 40px;
+	height: 40px;
 	font-size: 14px;
-        color: #000000;
+        /*color: #000000;*/
 	line-height: 40px;
-	/*font-weight: 100;*/
         vertical-align: middle;
+}
+.delete {
+	width: 60px!important;
+	height: 40px;
+	line-height: 14px!important;
 }
 .mine a.active{
     color: #ff1400;
@@ -879,6 +897,7 @@ form.lgn {
     padding: 0 10px;
     line-height: 16px;
     vertical-align: middle;
+    color: rgb(180,180,180);
 }
 .mine .to{
     position: relative;
@@ -971,13 +990,16 @@ form.lgn {
     height: 70px;
 }
 .mine.slide .user a{
-    display: block;
-    margin-top: 5px;
-    font-size: 13px;
-    color: #000000;
+    /*display: block;*/
+    font-size: 14px;
+    width: auto;
+    font-weight: bold;
+    color: rgb(4,4,4);
+    text-align: center;
 }
 .mine.slide .user a:hover{
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+   color: rgb(100,100,100);
 }
 .mine.msg{
     border: none;
@@ -1016,15 +1038,20 @@ form.lgn {
     padding-top: 10px;
     margin-left: 80px;
     min-height: 70px;
+        padding-bottom: 10px;
     position: relative;
 }
-.mine.msg .msglist .msgcontent label{
-    float: left;
+.mine.msg .msglist .msgcontent label {
+	width: 100%!important;
+}
+.mine.msg .msglist .msgcontent label a{
+	width: 100%!important;
+    text-align: left;
+    color: #000000;
     font-size: 15px;
 }
 .mine.msg .msglist .msgcontent p{
     font-size: 15px;
-    float: left;
     width: 500px;
     margin: 0;
     text-align: left;
@@ -1080,23 +1107,26 @@ form.lgn {
 }
 .mine.msg .msgreply .avatar span{
     font-family: normal;
-    font-size: 28px;
+    font-size: 26px;
     text-align: right;
     padding-left: 20px;
     vertical-align: middle;
+    line-height: 2em;
 }
 .mine.msg .msgreply .msgcontent{
     margin-left: 100px;
     min-height: 60px;
+
 }
 .mine.msg .msgreply .msgcontent p{
-    padding-top: 20px;
+    padding-top: 23px;
     text-align: left;
     color: #000000;
-    font-size: 14px;
-    line-height: 2em;
+    font-size: 16px;
+    line-height: 1.2em;
 }
 .mine.msg .msgreply .msgcontent span{
+	padding-top: 10px;
     color: #9c9c9c;
     font-size: 14px;
     display: block;
@@ -1711,4 +1741,8 @@ i#weixinbtn {
 	color: rgb(180,180,180);
 	font-style: normal;
 	
+}
+#info a {
+	width: 80px;
+	font-size: 18px;
 }
