@@ -9,14 +9,17 @@ include_once ROOT_PATH."class/class_user.php";
 $user_session=new class_session();
 
 //判断是否登陆
-$user=new class_user();
+$class_user=new class_user();
+$current_user = $class_user->get_current_user();
+
 if(!$user_session->check_login())
 {
    $user_session->changePage(BASE_URL."error.php");
 }
 //获取用户信息
 $userid=$_SESSION["user_id"];
-$userInfo=$user->select($userid);
+$userInfo=$class_user->select($userid);
+
 
 
 // 导航 当前页面控制

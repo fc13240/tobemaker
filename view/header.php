@@ -23,9 +23,9 @@
             </div>
         </div>
         <div class="lgnhover">
-            <a href="<?=BASE_URL.'attention.php?type=to_me'?>">关注</a>
+            <a href="<?=BASE_URL.'attention.php?type=from_me'?>">关注</a>
             <span>|</span>
-            <a href="<?=BASE_URL.'attention.php?type=from_me'?>">粉丝</a>
+            <a href="<?=BASE_URL.'attention.php?type=to_me'?>">粉丝</a>
             <span>|</span>
             <a href="<?=BASE_URL.'msg.php'?>">私信</a>
             <span>|</span>
