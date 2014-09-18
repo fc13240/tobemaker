@@ -20,9 +20,9 @@
             <br/>
             <p class="self_intro"><?=$user_info['self_intro']==''?'还没有输入您的个人介绍，点击下方的“笔”来添加':$user_info['self_intro']?></p>
             <br/>
-            <!--<a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>-->
-            <!--<a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>-->
-            <!--<a id="btn-msg" href="<?=BASE_URL?>msg_send.php?userid=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o ired"></i></a>-->
+            <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
+            <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
+            <a id="btn-msg" href="<?=BASE_URL?>msg_send_2.php?to_user=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o ired"></i></a>
             
             <a href="javascript:0;" id="btn-modify"><i class="fa fa-pencil ired"></i></a>
             <a href="javascript:0;" id="btn-modify-password"><i class="fa fa-unlock-alt ired"></i></a>
