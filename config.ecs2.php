@@ -32,6 +32,12 @@ define('MAIL_ADDRESS', 'tobemaker@126.com');
 define('MAIL_PASS', 'tobemaker1');
 define('MAIL_USER', 'tobemaker');
 
+// 类自动加载函数，当类找不到定义时，会调用这个函数
+// 故要求每个类名都要与它的文件名相同
+
+function __autoload($class_name) {
+    require_once ROOT_PATH. 'class/' . strtolower($class_name) . '.php';
+}
 // 百度统计相关
 define('BAIDUTJ_APPID', 'd2289fe0f6d090638e4fa53929e4b152');
 
