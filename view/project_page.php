@@ -213,7 +213,7 @@ if($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])){
     echo "var is_attention_on = true;";
 }else{
     echo "var is_attention_on = false;";
-}
+} 
 ?>
                                                         if (is_attention_on){
                                                             $("#addAttention").hide();
