@@ -22,7 +22,7 @@ var AttentionListModule = function() {
                     
                 }
 
-                html += '" alt=""><a href="'+_base_url+'person.php?user_id='+this.userod+'">' + this.user_name + '</a></div>';
+                html += '" alt=""><a href="'+_base_url+'person.php?user_id='+this.userid+'">' + this.user_name + '</a></div>';
                 $list_content.append(html);
             });
 

@@ -462,7 +462,8 @@ elseif($_GET["user_id"]!=$_SESSION["user_id"])
 $attention=new class_attention();
 if($attention->checkunique($_SESSION["user_id"],$_GET["user_id"]))
 {
-echo '<script>$("#btn-follow").empty();$("#btn-folloy").removeClass();$("#btn-follow").addClass("delete");$("#btn-follow").append("取消关注")</script>';
+//echo '<script>$("#btn-follow").empty();$("#btn-folloy").removeClass();$("#btn-follow").addClass("delete");$("#btn-follow").append("取消关注")</script>';
+echo '<script>$("#btn-follow").hide(); $("#btn-cancel").show();</script>';
     //将关注符号改为取消关注
 }
 }
