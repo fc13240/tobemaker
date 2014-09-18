@@ -11,13 +11,14 @@
 <body class="index">
 <div id="index">
     <div class="main">
-        <img src="asset/index.jpg" alt="" class="background">
+    	<img src="asset/index-logo.png" alt="" class="index-logo">
+        <img src="asset/index.png" alt="" class="index-img">
         <div id="fullpage" class="front">
             <div class="section" id="section1">
                 <div class="loginbtn">
-                    <a href="#" id="login"><span>登陆</span></a>
-                    <a href="#" id="register"><span>注册</span></a>
-                    <a href="#" id="godown"><i class="fa fa-angle-down fa-2x first"></i></a>
+                    <a href="#" id="login">登陆</a>
+                    <a href="#" id="register">注册</a>
+                    <a href="#" id="godown"><i class="fa fa-angle-down fa-3x first" style="color: rgb(251,251,251);"></i></a>
                 </div>
             </div>
             <div id="flowSection" class="section" style="display: none;">
@@ -64,7 +65,7 @@
                         <p id="tobe_stage_produce">我们帮助成熟的创意和设计产品化，量产，销售。在tobeMaker的电商平台你可以买到所有你支持、喜爱的产品。</p>
                         <p id="tobe_stage_money">作为作品的创意 or 设计提出者，你将获得该产品销售后所得净利润30%的分红，鼓励更多分享。</p>
                     <div>
-                    <a href="#" id="goup"><i class="fa fa-angle-up fa-2x" style="transform: scale(4,1);"></i></a>
+                    <a href="#" id="goup"><i class="fa fa-angle-up fa-2x" style="color: rgb(251,251,251);"></i></a>
                 </div>
             </div>
         </div>

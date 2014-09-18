@@ -87,17 +87,17 @@
 
 
         </div>
-        <div class="pendant left">
-            <ul>
+        <div class="pendant left" style="height: 600px;">
+            <ul class="js-pin" style="margin-top: 200px;">
                 <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
-                    <div id="sharein"><i id="weixinbtn">微 信</i><!--<wb:share-button id="weibo" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text=""></wb:share-button>--></div>
+                    <div id="sharein"><i id="weixinbtn">微信</i><!--<wb:share-button id="weibo" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text=""></wb:share-button>--></div>
                 </li>
                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
                 <li><a id="like_btn" class="<?=($is_like_item==1?'red':'')?>" href="javascript:void 0" data-status="<?=@$item[0]['idea_status']?>" data-idea_id="<?=$idea_id?>" data-url="<?=BASE_URL."api/like.php"?>"><?php echo($item[0]['idea_status']>=5?'超想买':'超喜欢'); ?></a></li>
             </ul>
         </div>
         <div class="pendant right">
-            <a href="#top"><img src="asset/9.png" alt="" class="backtotop"></a>
+            <a href="#top" style="position: fixed;top: 190px;"><img src="asset/9.png" alt="" class="backtotop js-headno" style="display: none;"></a>
         </div>
         
         <?php } ?>
@@ -280,9 +280,29 @@
 
             qrcode.makeCode(url);
     }
+    $(window).scroll(
+    	function() {
+    		
+    		var top = document.body.scrollTop || document.documentElement.scrollTop;
+    		
+    		if(top < 100)
+    			$(".js-headno").css("display","none");
+    		else
+    			$(".js-headno").css("display","inline");
+
+    			
+//  		if($(".js-headno").scrollTop() == 0)
+//  			$(".js-headno").css("display","none");
+//  		else
+//  			$(".js-headno").css("display","block");
+    	}
     
+    
+    );
+   
+
     $(function(){
-        $('.emotion').qqFace({
+    	        $('.emotion').qqFace({
             id : 'facebox',
             assign:'saytext',
             path:'asset/arclist/'	//表情存放的路径
@@ -293,8 +313,12 @@
     //        alert(replace_em(str));
 //           $("#show").html(replace_em(str));
         });
-        $(".pendant").pin({
-            minWidth : 1220
+//      $(".pendant").pin({
+//          minWidth : 1220
+//      });
+        $(".js-pin").pin({
+//          minWidth : 1220,
+            containerSelector: ".pendant"
         });
         
         $('#saytext').keyup(function(event){
@@ -403,6 +427,7 @@
         
 
     });
+    
 </script>
 
 </body>
