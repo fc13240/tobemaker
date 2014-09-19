@@ -86,6 +86,15 @@ Version: 3.1.3
                                     </div>
                                     
                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">封面图片显示在正文中</label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input name="cover_display" type="checkbox" value="1" <?=@$idea_list[0]['cover_display']==1?'checked="checked"':''?> >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">插入图片到正文</label>
                                         <div class="col-md-4">
                                             <div class="input-group">

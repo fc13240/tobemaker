@@ -57,8 +57,11 @@ function alertMsg($msg,$status)
 }
 if(isset($_POST["idea_id"]))
 {
+    
+//    var_dump($_POST);
+//    exit();
    //表单验证
-   $tags=explode(',',$_POST["tags"]);
+   $tags=explode(' ',$_POST["tags"]);
   if(abslength(trim($_POST["name"]))<=1||abslength(trim($_POST["name"]))>15)
   {
       alertMsg("标题长度有误，应介于2-15之间！","error");
@@ -79,7 +82,28 @@ if(isset($_POST["idea_id"]))
   }
   else{
 	$id=$_POST["idea_id"];
-	$arr=array("name"=>$_POST["name"],"tags"=>$_POST["tags"],"picture_url"=>$_POST["img_url"],"content"=>$_POST["content"],"is_recommend"=>$_POST["is_recommend"],"begin_time"=>$_POST["begin_time"],"end_time"=>$_POST["end_time"],"target"=>$_POST["target"]);
+	$arr=array(
+            "name"=>$_POST["name"],
+            "tags"=>$_POST["tags"],
+            "picture_url"=>$_POST["img_url"],
+            "content"=>$_POST["content"],
+            "is_recommend"=>$_POST["is_recommend"],
+            "begin_time"=>$_POST["begin_time"],
+            "end_time"=>$_POST["end_time"],
+            "target"=>$_POST["target"],
+        );
+        
+        if(array_key_exists('cover_display', $_POST))// 是否显示封面  数据库默认显示
+        {
+    //      echo "yes";
+            $arr['cover_display']=1;
+        }
+        else
+        {
+    //      echo "no";
+          $arr['cover_display']=0;
+        }
+        
 	$idea->update_idea($id,$arr);
 	//注册修改时间
 	$change_info=array();

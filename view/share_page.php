@@ -51,7 +51,7 @@
                         <input id="fileurl" type="hidden" name="img_url" value=""/>
                     </div>
                     <input name="cover_display" type="checkbox" value="1"><span>封面图片显示在正文中</span>
-                    <label>标签<span>（标签之前用英文逗号分隔，最多5个标签）</span></label>
+                    <label>标签<span>（标签之前用空格分隔，最多5个标签）</span></label>
                     <input id="tmpTagText" type="text" />
                     <input id="trueTagText" name="tags" type="hidden" />
                     <div id="tagView"><i>标签效果在此预览</i></div>
@@ -148,7 +148,7 @@
         });
         
         $('#tmpTagText').keyup(function(){
-            var labelArr = $(this).val().split(',');
+            var labelArr = $(this).val().split(' ');
             var trueLabelArr = new Array();
             console.log(labelArr);
             $('#tagView').html('');
@@ -157,7 +157,7 @@
                 $('#tagView').append('<span class="tag">' + labelArr[i] + '</span>');
             }
 //          $('#tagView').html(trueLabelArr.join(','));
-            $('#trueTagText').val(trueLabelArr.join(','));
+            $('#trueTagText').val(trueLabelArr.join(' '));
         });
         
         $('#title_input_text').keyup(function(){

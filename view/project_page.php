@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="subtitle"><?php
                                         //echo $item[0]['tags'];
-                                        $tag_array = split(',', $item[0]['tags']);
+                                        $tag_array = split(' ', $item[0]['tags']);
                                         foreach ($tag_array as $tag_item) {
                                             echo '<span class="tag">' . $tag_item . '</span>';
                                         }

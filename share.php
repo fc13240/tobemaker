@@ -83,7 +83,7 @@ if(array_key_exists('act',$_POST)&&$_POST['act']=='create_share')
 	$arr['create_time']='now()';
 	$arr['picture_url']=$pic_url;
 	$arr['tags']=$_POST['tags'];
-	if(count(explode(',',$_POST['tags']))>5)
+	if(count(explode(' ',$_POST['tags']))>5)
 	{
 	   //返回错误信息
 	   echo '<script>alert("标签过多！不能超过5个！");history.go(-1);</script>';
