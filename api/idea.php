@@ -227,7 +227,8 @@ elseif ($_POST['order'][0]['column']==5 or $_POST['order'][0]['column']==1) {
     $datalist[$i]["brief"],
     '<span class="label label-'.(key($status)).' idea-status">'.(current($status)).'</span>',
     
-     '<a href="javascript:;" class="btn btn-xs red-sunglo idea-reject"><i class="fa fa-times"></i> 拒绝</a>'
+     '<a href="javascript:;" class="btn btn-xs red-sunglo idea-reject"><i class="fa fa-times"></i> 拒绝</a>'.
+      '<a href="./like_detail.php?idea_id='.$id.'" class="btn btn-xs blue idea-view"><i class="fa fa-pencil"></i> 查看点赞</a>'
       . '<a href="./idea_detail_all.php?idea_id='.$id.'" class="btn btn-xs blue-hoki idea-view"><i class="fa fa-pencil"></i> 编辑</a>',
   );
 }
