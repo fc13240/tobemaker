@@ -54,8 +54,9 @@ include_once ROOT_PATH."class/class_user.php";
             if($data[$i]['comment_like_sum']>=$top3_min)
             {
                 $data[$i]['is_digest']=1;
-                $data[$i]['is_like']=$class_comment->check_comment_like(2,$data[$i]['id']);
+
             }
+            $data[$i]['is_like']=$class_comment->check_comment_like(2,$data[$i]['id']);
             $i++;
         }
 
