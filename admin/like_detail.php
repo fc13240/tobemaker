@@ -19,4 +19,5 @@ $page_level = explode('-', $current_page);
 $idea_id=$_GET['idea_id'];
 $like_info=new class_like();
 $list=$like_info->get_like_detail($idea_id);
+$buy_list=$like_info->get_wantbuy_detail_info($idea_id);
 include 'view/like_detail.php';

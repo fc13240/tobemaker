@@ -68,6 +68,16 @@ class class_like {
         $this->db->query($sql);
         return 1;
     }
+    
+    //  获取想买详细列表记录
+    
+    function get_wantbuy_detail_info($idea_id) {
+        $idea_id = $this->db->escape($idea_id);
+        $sql = "select `idea_like`.* ,`user_info`.`user_name`, `user_info`.`user_email` from `idea_like` ,`user_info` where `idea_like`.`liker_id`=`user_info`.`user_id` and `idea_like`.`like_type`=1 and `idea_like`.`idea_id`=" . $idea_id;
+        $result = $this->db->get_results($sql, ARRAY_A);
+        return $result;
+    }
+    
 
     ///----------增加点赞记录
     public function add_like($idea_id, $user_id = null) {
@@ -79,7 +89,6 @@ class class_like {
         $tmp = $this->db->get_results("SELECT * FROM idea_info WHERE `idea_id` = " . $idea_id, ARRAY_A);
         $idea_name = $tmp[0]["name"];
         $sql = "insert into `idea_like`(`idea_id`,`liker_id`,`idea_name`,`like_time`) values (" . $idea_id . "," . $user_id . ",\"" . $idea_name . "\", now())";
-
         $this->db->query($sql);
         $sql = "update `idea_info` set `sum_like`=`sum_like`+1 where `idea_id`=" . $idea_id;
         $this->db->query($sql);
@@ -224,7 +233,9 @@ class class_like {
     // 获取点赞详细信息
     public function get_like_detail($idea_id) 
     {
-        $sql = "SELECT `idea_like`.* ,`user_info`.`user_name` from `idea_like`,`user_info` where `user_info`.`user_id`=`idea_like`.`liker_id` and `idea_like`.`idea_id`=" . $idea_id;
+
+        $sql = "SELECT `idea_like`.* ,`user_info`.`user_name`,`user_info`.`user_email` from `idea_like`,`user_info` where `user_info`.`user_id`=`idea_like`.`liker_id` and `idea_like`.`idea_id`=" . $idea_id." and `idea_like`.`like_type`=0";
+        
         $res = $this->db->get_results($sql, ARRAY_A);
         return $res;
     }
