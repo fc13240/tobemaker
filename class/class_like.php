@@ -224,7 +224,7 @@ class class_like {
     // 获取点赞详细信息
     public function get_like_detail($idea_id) 
     {
-        $sql = "SELECT `idea_like`.* ,`user_info`.`user_name` from `idea_like`,`user_info` where `user_info`.`user_id`=`idea_like`.`liker_id` and `idea_like`.`idea_id`=" . $idea_id;
+        $sql = "SELECT `idea_like`.* ,`user_info`.`user_name`,`user_info`.`user_email` from `idea_like`,`user_info` where `user_info`.`user_id`=`idea_like`.`liker_id` and `idea_like`.`idea_id`=" . $idea_id;
         $res = $this->db->get_results($sql, ARRAY_A);
         return $res;
     }

@@ -82,6 +82,9 @@ Version: 3.1.3
                                             <th>
                                                      点赞人
                                             </th>
+                                             <th>
+                                                     邮箱
+                                            </th>
                                             <th>
                                                      点赞时间
                                             </th>
@@ -100,6 +103,9 @@ Version: 3.1.3
                                         </td>
                                         <td>
                                             <?php echo $list[$i]['user_name'];?>
+                                        </td>
+                                        <td>
+                                            <?php echo $list[$i]['user_email'];?>
                                         </td>
                                         <td>
                                             <?php echo $list[$i]['like_time'];?>
