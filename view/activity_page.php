@@ -14,9 +14,9 @@
         <div id="center">
             <div class="middle">
                 <div class="item">
-
+                    <a href="<?=$new_activity['activity_url'];?>">
                     <img src="<?=$new_activity['pic_url'];?>" style="width:1000px;height: auto;"/>
-
+                    </a>
                     <div class="pendant left" style="height: 600px;">
                         <ul class="js-pin" style="margin-top: 200px;">
                             <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
