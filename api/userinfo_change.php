@@ -65,6 +65,7 @@ else{
 	$arr['head_pic_url']=$pic_url;
 	$arr['occupation']=$_POST['user_occupation'];
 	$arr['self_intro']=$_POST['user_introduction'];
+        $arr['school']=$_POST['school'];
 	$res=$class_user->update($user_id,$arr);
 	if(abslength(trim($arr['user_name']))<=0||abslength(trim($arr['user_name']))>40)
 	{
