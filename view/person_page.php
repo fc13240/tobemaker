@@ -16,11 +16,13 @@
             <br/>
             <h2 class="user_name"><?=$user_info['user_name']?></h2>
             <br/>
+            <span class="college">北京大学</span>
+            <span style="position: absolute;left: 50%;margin-left: -4px;">|</span>
             <span class="occupation"><?=$user_info['occupation']==''?'还没有输入您的职位':$user_info['occupation']?></span>
             <br/>
             <p class="self_intro"><?=$user_info['self_intro']==''?'还没有输入您的个人介绍，点击下方的“笔”来添加':$user_info['self_intro']?></p>
             <br/>
-            <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">取消关注</a>
+            <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">粉丝数</a>
             <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
             <a id="btn-msg" href="<?=BASE_URL?>msg_send_2.php?to_user=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o ired"></i></a>
             
@@ -43,8 +45,8 @@
             <input class="user_name" type="text" value="<?=$user_info['user_name']?>" placeholder="输入用户名"/>
             <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" placeholder="输入职位" />
             <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" placeholder="输入个人介绍" />
-                <a href="javascript:void 0;" id="btn_user_cancle" ><i class="fa fa-times ired"></i></a>
-            <a href="javascript:void 0;" id="btn_user_submit" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-check ired"></i></a>
+                <a href="javascript:void 0;" id="btn_user_cancle" style="margin-top: 10px;"><i class="fa fa-times ired"></i></a>
+            <a href="javascript:void 0;" id="btn_user_submit" style="margin-top: 10px;" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-check ired"></i></a>
 
         </div>
         

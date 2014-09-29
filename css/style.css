@@ -81,6 +81,7 @@ ul li{
 }
 #top{
     height: 64px;
+    
 }
 #center{
 
@@ -261,8 +262,9 @@ ul li{
 
 
 .top{
-    border-bottom: #e8e7ed 1px solid;
+    border-bottom: rgb(215,215,215) 1px solid;
     height: 60px;
+    background-color: #ffffff;
 }
 .top .logo{
     display: block;
@@ -276,12 +278,12 @@ ul li{
     display: inline;
 }
 .top .nav ul{
-    width: 400px;
+    width: 450px;
     margin: 0 0 0 150px;
 }
 .top .nav ul li{
     width: 60px;
-    margin: 0 20px 0 20px;
+    margin: 0 15px 0 15px;
 }
 .top .nav ul li a{
     display: block;
@@ -988,9 +990,12 @@ form.lgn {
 .mine.slide .user img{
     width: 70px;
     height: 70px;
+    display: block;
+    margin-left: 17.5px;
 }
 .mine.slide .user a{
-    /*display: block;*/
+	overflow: hidden;
+    display: block;
     font-size: 14px;
     width: auto;
     font-weight: bold;
@@ -1384,7 +1389,7 @@ form.lgn {
     font-size: 80px;
     font-family: Lantingchaoxi;
     color: #d1cfdc;
-    transform:scale(0.5,2);
+    /*transform:scale(0.5,2);*/
 }
 .list div.prev a:hover,.list div.next a:hover{
     color: #ff1400;
@@ -1743,6 +1748,17 @@ i#weixinbtn {
 	
 }
 #info a {
-	width: 80px;
+	width: 120px;
 	font-size: 18px;
+}
+.college
+{
+	position: absolute;
+	right: 50%;
+	margin-right: 10px;
+}
+.occupation {
+	position: absolute;
+	left: 50%;	
+	margin-left: 10px;
 }
