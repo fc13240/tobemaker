@@ -112,6 +112,9 @@ class class_comment
         $sql="SELECT * from idea_comment where `idea_id`=".$idea_id." and `comment_like_sum`>0 order by `comment_like_sum` desc";
         $result=$this->db->get_results($sql,ARRAY_A);
         $sum=count($result);
+        if ($sum == 0){
+            return '1';
+        }
         return $result[$sum-1]['comment_like_sum'];
     }
     //删除评论，暂时没有需求

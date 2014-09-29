@@ -91,7 +91,7 @@
                                                             <ul class="js-pin" style="margin-top: 200px;">
                                                                 <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
                                                                     <div id="sharein"><i id="weixinbtn">微信</i><i id="weibobtn">微博</i>
-                                                                        
+
                                                                     </div>
                                                                 </li>
                                                                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
@@ -119,10 +119,10 @@
                                                                     <textarea></textarea>
                                                                     <div class="info">
                                                                         <img src="asset/16.png" alt="" />
-                                                                            <div>
-                                                                                <h5>【可以唱歌的杯子】</h5>
-                                                                                <p>这是一款可以唱歌的杯子啊，这是一款可以唱歌的杯子啊......</p>
-                                                                            </div>
+                                                                        <div>
+                                                                            <h5>【可以唱歌的杯子】</h5>
+                                                                            <p>这是一款可以唱歌的杯子啊，这是一款可以唱歌的杯子啊......</p>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="link">
                                                                         <span>来自</span><a href="#">tobeMaker.com</a><span>的分享链接</span>
@@ -180,7 +180,7 @@
                                                                     $container.append('\
                                                                 <li>\
                                                                     <div class="commenter">\
-                                                                        <a href="javascript:void 0"><img src="' + (item['head_pic_url'] == undefined ? 'asset/15.png' : item['head_pic_url']) + '" alt=""></a>\
+                                                                        <a href="javascript:void 0"><img class="circle" src="' + (item['head_pic_url'] == undefined ? 'asset/15.png' : item['head_pic_url']) + '" alt=""></a>\
                                                                         <br />\
                                                                         <a href="<?= BASE_URL . 'person.php?user_id=' ?>' + item['sender_id'] + '">' + item['user_name'] + '</a>\
                                                                     </div>\
@@ -407,7 +407,7 @@ if ($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])) {
 //                                                                                $("#sharein").hide();
 //                                                                            }
 //                                                                    );
-                                                                    $("#share").click(function(){
+                                                                    $("#share").click(function() {
                                                                         $("#weixinbtn").trigger("click");
                                                                     });
                                                                     $("#weibobtn").click(function() {
