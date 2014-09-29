@@ -15,14 +15,14 @@
             <div class="middle">
                 <div class="item">
 
-					<img src="./asset/21.jpg" style="width:1000px;height: auto;"/>
+                    <img src="./asset/21.jpg" style="width:1000px;height: auto;"/>
 
                     <div class="pendant left" style="height: 600px;">
                         <ul class="js-pin" style="margin-top: 200px;">
                             <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
                                 <div id="sharein"></div>
                             </li>
-                            <li><a href="#commentForm">求票</a></li>
+                            <li><a href="">求票</a></li>
                         </ul>
                     </div>
                     <div class="pendant right">
@@ -42,6 +42,35 @@
             <script type="text/javascript" src="./js/jQuery.pin.js"></script>
             <script type="text/javascript" src="./js/qrcode.min.js"></script>
 
+            <script>
+                $(function() {
+                    $(".js-pin").pin({
+                        //          minWidth : 1220,
+                        containerSelector: ".pendant"
+                    });
+
+                });
+
+                $(window).scroll(
+                        function() {
+
+                            var top = document.body.scrollTop || document.documentElement.scrollTop;
+
+                            if (top < 100)
+                                $(".js-headno").css("display", "none");
+                            else
+                                $(".js-headno").css("display", "inline");
+
+
+                            //  		if($(".js-headno").scrollTop() == 0)
+                            //  			$(".js-headno").css("display","none");
+                            //  		else
+                            //  			$(".js-headno").css("display","block");
+                        }
+
+
+                );
+            </script>
 
     </body>
 </html>

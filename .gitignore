@@ -4,3 +4,4 @@ tmp/*
 upload/*
 -upload/index.php
 .project
+config.php
