@@ -8,6 +8,7 @@
                 <li><a class=" <?= @$page_level[0] == 'project_list' ? 'active' : '' ?> " href="project_list.php" target="_top">项目</a></li>
                 <li><a class=" <?= @$page_level[0] == 'comming' ? 'active' : '' ?> " href="comming.php" target="_top">待产</a></li>
                 <li><a class=" <?= @$page_level[0] == 'shop' ? 'active' : '' ?> " href="shop.php" target="_top">商店</a></li>
+                <li><a class=" <?= @$page_level[0] == 'activity' ? 'active' : '' ?> " href="activity.php" target="_top">活动</a></li>
                 <br class="clear"/>
             </ul>
 

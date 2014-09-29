@@ -11,7 +11,7 @@
 <body class="index">
 <div id="index">
     <div class="main">
-    	<img src="asset/index-logo.png" alt="" class="index-logo">
+    	<img src="asset/logo.png" alt="" class="index-logo" style="opacity: 0.8;">
         <img src="asset/index.png" alt="" class="index-img">
         <div id="fullpage" class="front">
             <div class="section" id="section1">
