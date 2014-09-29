@@ -16,7 +16,7 @@
             <br/>
             <h2 class="user_name"><?=$user_info['user_name']?></h2>
             <br/>
-            <span class="college"><?=$user_info['school']?></span>
+            <span class="college"><?=$user_info['school']==''?'还没有输入您的学校':$user_info['school']?></span>
             <span style="position: absolute;left: 50%;margin-left: -4px;">|</span>
             <span class="occupation"><?=$user_info['occupation']==''?'还没有输入您的职位':$user_info['occupation']?></span>
             <br/>
