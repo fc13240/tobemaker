@@ -52,7 +52,7 @@ Version: 3.1.3
 								<div class="portlet box green">
 									<div class="portlet-title">
 										<div class="caption">
-											<i class="fa fa-gift"></i>商品添加
+											<i class="fa fa-gift"></i>活动添加
 										</div>
 										<div class="tools">
 											<a href="javascript:;" class="collapse">
@@ -67,26 +67,15 @@ Version: 3.1.3
 									</div>
 									<div class="portlet-body form">
 										<!-- BEGIN FORM-->
-										<form  class="form-horizontal"  id="form1" method="POST"> 
+                                                                                <form  class="form-horizontal"  id="form1" method="POST" action="activity.php"> 
 											<div class="form-body">
 											<div class="form-group">
-													<label class="col-md-3 control-label">商品目录</label>
-													<div class="col-md-4">
-													
-														<select class="form-control " id="category" name="category">
-														<?php
-														for($i=0;$i<count($categoryList);$i++)
-														{
-														echo '<option value="'.$categoryList[$i]["pc_id"].'">'.$categoryList[$i]["pc_name"].'</option>';
-														}
-														?>
-														</select>
-													</div>
+												
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label">商品名称</label>
+													<label class="col-md-3 control-label">活动名称</label>
 													<div class="col-md-4">
-														<input id="name" name="name" type="text" class="form-control" placeholder="输入商品名称">
+														<input id="name" name="name" type="text" class="form-control" placeholder="输入活动名称">
 														
 														<span class="help-block">
 														 </span>
@@ -108,35 +97,22 @@ Version: 3.1.3
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label">商品链接</label>
+													<label class="col-md-3 control-label">活动链接</label>
 													<div class="col-md-4">
 														
-															<input id="link" name="link" type="text" class="form-control" placeholder="链接地址">
+															<input id="link" name="activity_url"  type="text" class="form-control" placeholder="链接地址">
 															
 													</div>
 												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label">商品标签</label>
+                                                                                                <div class="form-group">
+													<label class="col-md-3 control-label">求票链接</label>
 													<div class="col-md-4">
 														
-															<input id="label" name="label" type="text" class="form-control" placeholder="不填则不显示">
-														
+															<input id="link" name="link"  type="text" class="form-control" placeholder="链接地址">
+															
 													</div>
 												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label">原价</label>
-													<div class="col-md-4">
-														
-															<input id="price" name="price" type="text" class="form-control" placeholder="不填则不显示">
-														
-													</div>
-												</div>
-												<div class="form-group last">
-													<label class="col-md-3 control-label">现价</label>
-													<div class="col-md-4">
-														<input id="discount" name="discount" type="text" class="form-control" placeholder="现价">
-													</div>
-												</div>
+												
 												
 											</div>
 											<div class="form-actions">

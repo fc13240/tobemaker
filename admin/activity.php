@@ -1,7 +1,7 @@
 <?php
 
 include_once '../config.php';
-include_once '../class/class_product.php';
+include_once '../class/class_activity.php';
 include_once '../class/class_file.php';
 include_once ROOT_PATH."class/class_group_auth.php";
 include_once '../class/class_check.php';
@@ -38,20 +38,13 @@ function alertMsg($msg,$status)
 //跳转页面
 function changeTo($url)
 {
-   echo '<script>location.href ="'.$url.'";</script>';
+   //echo '<script>location.href ="'.$url.'";</script>';
 }
 //获取目录数量及内容
-$product=new class_product();
-$strsql='select * from `product_category`';
-$categoryList=$product->select($strsql);
-$file=new class_file();
-$imgUrl='';
+$activity=new class_activity();
 //保存表单内容到数据库
-//var_dump($_POST);
-if(array_key_exists('category',$_POST))
-{
-//if(!empty($_POST["img_url"]))
-//$imgUrl=$file->save($_POST["img_url"]);
+var_dump($_POST);
+if(array_key_exists('img_url', $_POST)){
 //验证表单内容合法性
 if(empty($_POST["img_url"]))
 {
@@ -61,27 +54,33 @@ elseif(strlen(trim($_POST["link"]))<=0)
 {
   alertMsg("链接不能为空！","error");
 }
-elseif(!empty($_POST["discount"])&&!$class_check->is_double_p($_POST["discount"]))
-{
-   alertMsg("现价金额数据不合法！","error");
-}
-elseif(!empty($_POST["price"])&&!$class_check->is_double_p($_POST["price"]))
-{
-  alertMsg("原价金额数据不合法！","error");
-}
 else
 {
 $time = time();
-$arr= array("pf_name"=>$_POST["name"],"pf_image"=>$_POST["img_url"],
-            "pf_link"=>$_POST["link"],"pf_label"=>$_POST["label"],
-			"pf_price"=>$_POST["price"],"pf_discount"=>$_POST["discount"],
-			"pc_id"=>$_POST["category"],"pf_addDate"=>date("y-m-d",$time));
+$_head="http:";
+if(!strstr($_POST['link'], $_head))
+{
+    $link="http://".$_POST['link'];
+}
+ else {
+    $link=$_POST['link'];
+}
 
-$result=$product->insert('product_info',$arr);
+if(!strstr($_POST['activity_url'], $_head))
+{
+    $ac_link="http://".$_POST['activity_url'];
+}
+ else {
+    $ac_link=$_POST['activity_url'];
+}
+
+$arr= array("activity_name"=>$_POST["name"],"pic_url"=>$_POST["img_url"],
+            "qiu_piao_url"=>$link,'activity_url'=>$ac_link);
+include 'view/activity_page.php';
+$activity->add_activity($arr);
 alertMsg("添加成功！","success");
-$url=BASE_URL."admin/product_list.php";
-changeTo($url);
 }
 }
-
-include 'view/product_add.php';
+else {
+include 'view/activity_page.php';
+}
