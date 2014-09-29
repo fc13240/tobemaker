@@ -15,9 +15,9 @@
                     <input type="hidden" id="userid" value="<?= @$userid ?>"/>
                     <img src="<?= @$userInfo[0]["head_pic_url"] ?>" alt="" id="avatar" class="small circle">
                         <br/>
-                        <a href="?type=to_me" class=" <?= array_key_exists('type', $_GET) && $_GET['type'] == "to_me" ? "active" : "" ?> " >关注我的</a>
+                        <a href="?type=to_me" class=" <?= array_key_exists('type', $_GET) && $_GET['type'] == "to_me" ? "active" : "" ?> " >100&nbsp;&nbsp;&nbsp;关注我的</a>
                         <span class="line">|</span>
-                        <a href="?type=from_me"  class=" <?= array_key_exists('type', $_GET) && $_GET['type'] == "from_me" ? "active" : "" ?> ">我关注的</a>
+                        <a href="?type=from_me"  class=" <?= array_key_exists('type', $_GET) && $_GET['type'] == "from_me" ? "active" : "" ?> ">我关注的&nbsp;&nbsp;&nbsp;100</a>
                 </div>
                 <div class="mine slide">
                     <ul>

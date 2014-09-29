@@ -65,16 +65,15 @@ body.index{
 }
 
 .index-logo {
-	width: 357px;
-	height: 156px;
+
 	margin: 0 auto;
 	display: block;
 }
 
 .index-img {
-	width: 641px;
-	height: 638px;
-	margin: 0 auto;
+	/*width: 641px;
+	height: 638px;*/
+	margin: 100px auto 0 auto;
 	display: block;
 	position: relative;
 	left: -20px;
@@ -133,7 +132,8 @@ body.index{
     
 }
 #index .flow ul{
-    margin: 20px 0;
+    margin: 20px auto;
+    width: 795px;
 }
 #index .flow ul li{
    	

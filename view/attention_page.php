@@ -19,7 +19,7 @@
                 </a>
             <br>
 			<div>
-			<a id="myattention-btn">我的关注</a>
+			<a id="myattention-btn">100&nbsp;&nbsp;&nbsp;我的关注</a>
 			<a id="attentionme-btn"> 关注我的</a>
 			</div>
             <!--<h2 id="userName">水泡长在驴身上</h2>
