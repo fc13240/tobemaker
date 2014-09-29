@@ -24,7 +24,7 @@
                     <div class="send">
                         <textarea class="msg-content"></textarea>
                         <div class="submit">
-                            <a href="<?=BASE_URL?>msg.php">取消</a>
+                            <a href="javascript:history.go(-1);">取消</a>
                             <button class="msg-send" data-url="<?=BASE_URL?>api/api.php/msg_v2/send" data-jump_url="<?=BASE_URL?>msg.php">发送</button>
                         </div>
                         <br class="clear"/>

@@ -90,7 +90,9 @@
                                                         <div class="pendant left" style="height: 600px;">
                                                             <ul class="js-pin" style="margin-top: 200px;">
                                                                 <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
-                                                                    <div id="sharein"><i id="weixinbtn">微信</i><!--<wb:share-button id="weibo" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text=""></wb:share-button>--></div>
+                                                                    <div id="sharein"><i id="weixinbtn">微信</i><i id="weibobtn">微博</i>
+                                                                        
+                                                                    </div>
                                                                 </li>
                                                                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
                                                                 <li><a id="like_btn" class="<?= ($is_like_item == 1 ? 'red' : '') ?>" href="javascript:void 0" data-status="<?= @$item[0]['idea_status'] ?>" data-idea_id="<?= $idea_id ?>" data-url="<?= BASE_URL . "api/like.php" ?>"><?php echo($item[0]['idea_status'] >= 5 ? '超想买' : '超喜欢'); ?></a></li>
@@ -116,7 +118,7 @@
                                                                 <form action="#">
                                                                     <textarea></textarea>
                                                                     <div class="info">
-                                                                        <img src="asset/16.png" alt="">
+                                                                        <img src="asset/16.png" alt="" />
                                                                             <div>
                                                                                 <h5>【可以唱歌的杯子】</h5>
                                                                                 <p>这是一款可以唱歌的杯子啊，这是一款可以唱歌的杯子啊......</p>
@@ -139,6 +141,9 @@
                                                                 <p>用微信<span>扫一扫</span>上方的二维码，
                                                                     <br/>
                                                                     即可分享给您的微信好友或朋友圈。</p>
+                                                                <p>
+                                                                    <wb:share-button id="weibo_true_body" style="width:95px;position: relative;left: 20px;" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text="<?= $item[0]['user_name'] ?> 发布的众造项目《<?= $item[0]['name'] ?>》。<?= mb_substr(trim(strip_tags($item[0]['content'])), 0, 150) ?>" pic="<?= $item[0]['picture_url'] ?>"></wb:share-button>
+                                                                </p>
                                                             </div>
 
                                                         </div>
@@ -209,16 +214,16 @@
 
 <?php
 $attention = new class_attention();
-if($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])){
+if ($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])) {
     echo "var is_attention_on = true;";
-}else{
+} else {
     echo "var is_attention_on = false;";
-} 
+}
 ?>
-                                                        if (is_attention_on){
+                                                        if (is_attention_on) {
                                                             $("#addAttention").hide();
                                                             $("#deleteAttention").show();
-                                                        }else{
+                                                        } else {
                                                             $("#addAttention").show();
                                                             $("#deleteAttention").hide();
                                                         }
@@ -246,14 +251,14 @@ if($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])){
                                                             }, 'json');
                                                         });
                                                         //填充分享内容
-                                                        //function addWeiboDefault()
-                                                        //{
-                                                        // var title="<?= $item[0]['name'] ?>";
-                                                        //var content="<?= $item[0]['content'] ?>"
-                                                        //content =content.substr(0,100);
-                                                        //content+="<a href='<?= BASE_URL ?>project.php?idea_id=<?= @$item[0]['idea_id'] ?>'>详情</a>"
-                                                        //$("#weibo").attr("default_text",title+content);
-                                                        //}
+                                                        function addWeiboDefault()
+                                                        {
+                                                            var title = "<?= $item[0]['name'] ?>";
+                                                            var content = "<?= $item[0]['content'] ?>"
+                                                            content = content.substr(0, 100);
+                                                            content += "<a href='<?= BASE_URL ?>project.php?idea_id=<?= @$item[0]['idea_id'] ?>'>详情</a>"
+                                                            $("#weibo").attr("default_text", title + content);
+                                                        }
                                                         //注册取消关注事件
                                                         $("#deleteAttention").click(function() {
                                                             var attention_userid = $('#author_id').val();
@@ -285,8 +290,7 @@ if($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])){
                                                             return str;
                                                         }
 
-                                                        var qrcode = new QRCode(document.getElementById("qrcode"), {
-                                                            width: 150,
+                                                        var qrcode = new QRCode(document.getElementById("qrcode"), {width: 150,
                                                             height: 150
                                                         });
 
@@ -387,25 +391,29 @@ if($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])){
                                                                         }
                                                                     });
 
-                                                                    $("#share").hover(
-                                                                            function() {
-                                                                                $("#sharein").show();
-                                                                            },
-                                                                            function() {
-                                                                                $("#sharein").hide();
-                                                                            }
-                                                                    );
-                                                                    $("#sharein").hover(
-                                                                            function() {
-                                                                                $("#sharein").show();
-                                                                            },
-                                                                            function() {
-                                                                                $("#sharein").hide();
-                                                                            }
-                                                                    );
+//                                                                    $("#share").hover(
+//                                                                            function() {
+//                                                                                $("#sharein").show();
+//                                                                            },
+//                                                                            function() {
+//                                                                                $("#sharein").hide();
+//                                                                            }
+//                                                                    );
+//                                                                    $("#sharein").hover(
+//                                                                            function() {
+//                                                                                $("#sharein").show();
+//                                                                            },
+//                                                                            function() {
+//                                                                                $("#sharein").hide();
+//                                                                            }
+//                                                                    );
+                                                                    $("#share").click(function(){
+                                                                        $("#weixinbtn").trigger("click");
+                                                                    });
                                                                     $("#weibobtn").click(function() {
-                                                                        $("#weibo").removeClass("hide");
-                                                                        $("#weibo").siblings("div").addClass("blur");
+                                                                        $("#weibo_true_body").trigger('click');
+//                                                                        $("#weibo").removeClass("hide");
+//                                                                        $("#weibo").siblings("div").addClass("blur");
                                                                     });
                                                                     $("#weixinbtn").click(function() {
                                                                         $("#weixin").removeClass("hide");
@@ -433,13 +441,13 @@ if($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])){
                                                                         hideAll();
                                                                     });
 
-                                                                    //$('.weibo').click(function(event){
-                                                                    // event.stopPropagation();
-                                                                    //});
+                                                                    $('.weibo').click(function(event) {
+                                                                        event.stopPropagation();
+                                                                    });
 
                                                                     pageNow = 1;
                                                                     loadIdeaPage(pageNow);
-                                                                    //addWeiboDefault();
+                                                                    addWeiboDefault();
 
 
                                                                 });
