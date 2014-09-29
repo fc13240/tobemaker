@@ -147,26 +147,33 @@ Version: 3.1.3
                                                      想买人
                                             </th>
                                             <th>
-                                                     点赞时间
+                                                     想买人邮箱
+                                            </th>
+                                            <th>
+                                                     想买时间
                                             </th>
                                     </tr>
                                     </thead>
                                     <?php 
                                     $i=0;
-                                    while ($i<count($list))
+                                    
+                                    while ($i<count($buy_list))
                                     {?>
                                     <tr>
                                         <td>
-                                            <?php echo $list[$i]['idea_id'];?>
+                                            <?php echo $buy_list[$i]['idea_id'];?>
                                         </td>
                                         <td>
-                                            <?php echo $list[$i]['idea_name'];?>
+                                            <?php echo $buy_list[$i]['idea_name'];?>
                                         </td>
                                         <td>
-                                            <?php echo $list[$i]['user_name'];?>
+                                            <?php echo $buy_list[$i]['user_name'];?>
                                         </td>
                                         <td>
-                                            <?php echo $list[$i]['like_time'];?>
+                                            <?php echo $buy_list[$i]['user_email'];?>
+                                        </td>
+                                        <td>
+                                            <?php echo $buy_list[$i]['like_time'];?>
                                         </td>
                                     </tr>
                                     <?php $i++;} ?>
