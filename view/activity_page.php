@@ -15,7 +15,7 @@
             <div class="middle">
                 <div class="item">
 
-
+					<img src="./asset/21.jpg" style="width:1000px;height: auto;"/>
 
                     <div class="pendant left" style="height: 600px;">
                         <ul class="js-pin" style="margin-top: 200px;">
