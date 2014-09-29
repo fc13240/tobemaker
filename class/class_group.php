@@ -143,10 +143,6 @@ include_once ROOT_PATH."class/class_pagesurpport.php";
 	  $result = $this->db->get_results($sql,ARRAY_A);
 	  return count($result);
 	}
-   
-
-   
-     
 
     //
 }
