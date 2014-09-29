@@ -28,7 +28,7 @@ class class_comment
     public function get_all_comment_by_ideaid($idea_id){
          $idea_id = $this->db->escape($idea_id);
     	
-    	$sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc";
+    	$sql="SELECT `idea_comment`.*,`idea_info`.`name`,`user_info`.`user_name` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc";
     	$result=$this->db->get_results($sql,ARRAY_A);
     	
     		return $result;
@@ -39,7 +39,7 @@ class class_comment
     public function get_part_comment_by_ideaid($idea_id,$start,$length){
          $idea_id = $this->db->escape($idea_id);
         
-        $sql="SELECT `idea_comment`.`id`,`idea_comment`.`context`,`idea_comment`.`comment_time`,`idea_comment`.`sender_id`,`idea_comment`.`receiver_id`,`idea_info`.`name`,`user_info`.`user_name` ,`user_info`.`head_pic_url` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc limit ".$start.", ".$length;
+        $sql="SELECT `idea_comment`.*,`idea_info`.`name`,`user_info`.`user_name` ,`user_info`.`head_pic_url` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." order by `idea_comment`.`comment_time` desc limit ".$start.", ".$length;
         $result=$this->db->get_results($sql,ARRAY_A);
             return $result;
 
@@ -106,11 +106,45 @@ class class_comment
         return $result[0]['count(*)'];
     }
 
+    public function get_top3_minnum($idea_id)
+    {
+        $comment_id = $this->db->escape($idea_id);
+        $sql="SELECT * from idea_comment where `idea_id`=".$idea_id." and `comment_like_sum`>0 order by `comment_like_sum` desc";
+        $result=$this->db->get_results($sql,ARRAY_A);
+        $sum=count($result);
+        return $result[$sum-1]['comment_like_sum'];
+    }
     //删除评论，暂时没有需求
-    public function delete_comment(){
+    public function delete_comment()
+    {
 
     }
+    
+
+
+    public function addlike_to_comment($user_id,$comment_id)
+    {
+        $user_id=$this->db->escape($user_id);
+        $comment_id=$this->db->escape($comment_id);
+
+        $sql="INSERT INTO `comment_like`(`liker_id`,`comment_id`) values (".$user_id." , ".$comment_id.")";
+        $this->db->query($sql);
+        $sql="UPDATE `idea_comment` set `comment_like_sum`=`comment_like_sum`+1 where `id` =".$comment_id;
+        $this->db->query($sql);
+        $sql="SELECT * from `idea_comment` where `id`=".$comment_id;
+        $res=$this->db->get_results($sql,ARRAY_A);
+        ;
+        return $res[0];
+    }
+
+    public function check_comment_like($user_id,$comment_id)
+    {
+         $user_id=$this->db->escape($user_id);
+        $comment_id=$this->db->escape($comment_id);
+        $sql="SELECT * from `comment_like` where `comment_id`=".$comment_id." and liker_id=".$user_id;
+        $res=$this->db->get_results($sql,ARRAY_A);
+        ;
+        return count($res);
+    }
 }
-
-
 ?>
