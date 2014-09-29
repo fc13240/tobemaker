@@ -23,7 +23,6 @@ $current_user = $class_user->get_current_user();
 //  准备数据
 if(array_key_exists('user_id', $_GET)){
 	$user_info=$class_user->select($_GET['user_id']);
-        
 	if(count($user_info)==0)
 	{
 		echo "no user";
