@@ -114,6 +114,64 @@ Version: 3.1.3
                                     <?php $i++;} ?>
                                     </table>
                             </div>
+                            
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-globe"></i>想买记录
+                                </div>
+                                <div class="tools">
+                                    <a href="javascript:;" class="collapse">
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                    <div class="table-toolbar">
+                                            <div class="row">
+                                                    <div class="col-md-6">
+
+                                                    </div>
+                                                    
+                                            </div>
+                                    </div>
+                                    <table class="table table-striped table-bordered table-hover" id="idea_like_table">
+                                    <thead>
+                                    <tr>
+                                            <th>
+                                                     想法id
+                                            </th>
+                                            <th>
+                                                     想法名称
+                                            </th>
+                                            <th>
+                                                     想买人
+                                            </th>
+                                            <th>
+                                                     点赞时间
+                                            </th>
+                                    </tr>
+                                    </thead>
+                                    <?php 
+                                    $i=0;
+                                    while ($i<count($list))
+                                    {?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $list[$i]['idea_id'];?>
+                                        </td>
+                                        <td>
+                                            <?php echo $list[$i]['idea_name'];?>
+                                        </td>
+                                        <td>
+                                            <?php echo $list[$i]['user_name'];?>
+                                        </td>
+                                        <td>
+                                            <?php echo $list[$i]['like_time'];?>
+                                        </td>
+                                    </tr>
+                                    <?php $i++;} ?>
+                                    </table>
+                            </div>
                         </div>
                         <!-- END EXAMPLE TABLE PORTLET-->
                     </div>
