@@ -279,7 +279,7 @@ ul li{
 }
 .top .nav ul{
     width: 450px;
-    margin: 0 0 0 150px;
+    margin: 0 0 0 100px;
 }
 .top .nav ul li{
     width: 60px;
@@ -1762,3 +1762,26 @@ i#weixinbtn {
 	left: 50%;	
 	margin-left: 10px;
 }
+.jing {
+	border-radius: 13px;
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	background-color: red;
+	color: #fff;
+}
+.huifu {
+	display: block;
+	position: absolute;
+	right: 200px;
+	bottom: 145px;
+}
+.zantong {
+	display: block;
+	position: absolute;
+	right: 1500px;
+	bottom: 145px;
+}
+
