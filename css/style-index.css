@@ -148,7 +148,7 @@ body.index{
 #index .flow ul li span{
     display: block;
     float: left;
-    
+    letter-spacing: 0px;
     font-size: 20px;
     color: #ffffff;
     text-align: center;
