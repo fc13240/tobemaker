@@ -13,7 +13,7 @@
 </div>
 <div id="center">
     <div class="middle">
-        <div class="share">
+        <div class="share" style="background-color: transparent;">
             <div class="pic">
                 <div class="picture">
                     <img id="coverPreview" src="asset/14.png" alt="">
