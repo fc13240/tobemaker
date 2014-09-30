@@ -11,7 +11,7 @@ var AttentionListModule = function() {
         $list_content.text("无关注数据");
         $.post(api_url, '', function(data, textStatus) {
             console.log(data);
-
+//            $('#to_me_count').text(data.amount);
             $list_content.empty();
             $.each(data.data, function() {
                 html = '<div class="user"><img class="circle" src="';
@@ -34,7 +34,7 @@ var AttentionListModule = function() {
         $list_content.text("无关注数据");
         $.post(api_url, '', function(data, textStatus) {
             console.log(data);
-
+//            $('#from_me_count').text(data.amount);
             $list_content.empty();
             $.each(data.data, function() {
                 html = '<div class="user"><img class="circle" src="';
@@ -50,6 +50,16 @@ var AttentionListModule = function() {
 
         }, 'json');
     }
+    
+    var countInit = function(){
+        var api_url = _base_url + 'api/api.php/attention_v2/count/' + _user_id;
+        $.post(api_url, '', function(data, textStatus) {
+            console.log(data);
+            $('#to_me_count').text(data.to_me_count);
+            $('#from_me_count').text(data.from_me_count);
+            
+        }, 'json');
+    }
 
     return {
         init: function(user_id, type, base_url, list_content_class) {
@@ -58,7 +68,7 @@ var AttentionListModule = function() {
             _length = 24;
             _user_id = user_id
             $list_content = $(list_content_class);
-
+            countInit();
 
             if (type == 'to_me') {
                 tomeInit();

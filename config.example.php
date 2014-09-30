@@ -1,11 +1,11 @@
 <?php
 
-define('HOSTNAME','localhost');
+define('HOSTNAME','localhost' );
 
 define('DESIGNMG_VERSION','0.1');
 define('ROOT_PATH',  dirname(__FILE__).'/');
 
-define('BASE_URL', 'http://'.HOSTNAME.'/tobemaker/');
+define('BASE_URL','http://'.HOSTNAME.'/tobemaker/' );
 
 /*
  * MySQL
@@ -24,6 +24,7 @@ define('BUCKET', 'tobemaker-pub');
 define('QINIU_UP','http://up.qiniu.com/');
 define('QINIU_DOWN','http://'.BUCKET.'.qiniudn.com/');
 
+
 //邮箱工具
 
 define('MAIL_HOST','smtp.126.com');
@@ -37,7 +38,6 @@ define('MAIL_USER', 'tobemaker');
 function __autoload($class_name) {
     require_once ROOT_PATH. 'class/' . strtolower($class_name) . '.php';
 }
-
 // 百度统计相关
 define('BAIDUTJ_APPID', 'd2289fe0f6d090638e4fa53929e4b152');
 
@@ -45,3 +45,5 @@ define('BAIDUTJ_APPID', 'd2289fe0f6d090638e4fa53929e4b152');
 if ( $_SERVER['HTTP_HOST'] != HOSTNAME ){
     header('Location: '.BASE_URL);
 }
+
+

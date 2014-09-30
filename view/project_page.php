@@ -17,7 +17,7 @@
                     <div class="ttl">
                         <div class="title"><?php echo $item[0]['name']; ?></div>
                         <div class="author">
-                            <a href="<?= BASE_URL . 'person.php' ?>?user_id=<?= @$item[0]["user_id"] ?>"><img class="circle" src="<?php echo @$item[0]['head_pic_url'] == '' ? 'asset/12.png' : $item[0]['head_pic_url']; ?>?imageMogr/v2/thumbnail/60x60!" alt=""></a>
+                            <a href="<?= BASE_URL . 'person.php' ?>?user_id=<?= @$item[0]["user_id"] ?>"><img class="circle" src="<?php echo @$item[0]['head_pic_url'] == '' ? 'asset/12.png' : $item[0]['head_pic_url']; ?>?imageMogr/v2/thumbnail/60x60!" alt="" /></a>
                             <br />
                             <input type="hidden" id="author_id" value="<?= @$item[0]["user_id"] ?>">
                                 <input type="hidden" id="user_id" value="<?= @$user_id ?>">
@@ -88,7 +88,7 @@
                                                             <ul style="margin-top: 100px;">
                                                                 <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
                                                                     <div id="sharein"><i id="weixinbtn">微信</i><i id="weibobtn">微博</i>
-                                                                        
+
                                                                     </div>
                                                                 </li>
                                                                 <li><a href="#commentForm">评&nbsp;&nbsp;&nbsp;&nbsp;论</a></li>
@@ -116,10 +116,10 @@
                                                                     <textarea></textarea>
                                                                     <div class="info">
                                                                         <img src="asset/16.png" alt="" />
-                                                                            <div>
-                                                                                <h5>【可以唱歌的杯子】</h5>
-                                                                                <p>这是一款可以唱歌的杯子啊，这是一款可以唱歌的杯子啊......</p>
-                                                                            </div>
+                                                                        <div>
+                                                                            <h5>【可以唱歌的杯子】</h5>
+                                                                            <p>这是一款可以唱歌的杯子啊，这是一款可以唱歌的杯子啊......</p>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="link">
                                                                         <span>来自</span><a href="#">tobeMaker.com</a><span>的分享链接</span>
@@ -139,7 +139,7 @@
                                                                     <br/>
                                                                     即可分享给您的微信好友或朋友圈。</p>
                                                                 <p>
-                                                                    <wb:share-button id="weibo_true_body" style="width:95px;position: relative;left: 20px;" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text="<?= $item[0]['user_name'] ?> 发布的众造项目《<?= $item[0]['name'] ?>》。<?= mb_substr(trim(strip_tags($item[0]['content'])), 0, 150) ?>" pic="<?= $item[0]['picture_url'] ?>"></wb:share-button>
+                                                                    <wb:share-button id="weibo_true_body" style="width:95px;position: relative;left: 20px;" appkey="4SkNjA" addition="number" type="button" ralateUid="5144427096" default_text="<?= $item[0]['user_name'] ?> 发布的众造项目《<?= $item[0]['name'] ?>》。<?= mb_substr(trim(strip_tags($item[0]['content'])), 0, 150) ?>" pic="<?= $item[0]['picture_url'] ?>"></wb:share-button>
                                                                 </p>
                                                             </div>
 
@@ -177,12 +177,14 @@
                                                                     $container.append('\
                                                                 <li>\
                                                                     <div class="commenter">\
-                                                                        <a href="javascript:void 0"><img src="' + (item['head_pic_url'] == undefined ? 'asset/15.png' : item['head_pic_url']) + '" alt=""></a>\
+                                                                        <a href="javascript:void 0"><img class="circle" src="' + (item['head_pic_url'] == undefined ? 'asset/15.png' : item['head_pic_url']) + '" alt=""></a>\
                                                                         <br />\
                                                                         <a href="<?= BASE_URL . 'person.php?user_id=' ?>' + item['sender_id'] + '">' + item['user_name'] + '</a>\
                                                                     </div>\
                                                                     <div class="text">' + item['context'] + '\
-                                                                    </div>\
+                                                                    '+ (item['is_digest'] != "0" ? '<span class="jing">精</span>' : '') +'</div>\
+                                                            <a href="javascript:;" class="huifu" data-msg="引用@'+item['user_name']+' 的话：' + item['abstract'] + '">回复</a>\
+                                                            <a href="javascript:;" data-commentid="'+item['id']+'" class="zantong '+ (item['is_like'] != 0 ? 'red':'') +'">赞同('+ item['comment_like_sum'] +')</a>\
                                                                 </li>');
                                                                 }
 
@@ -208,6 +210,27 @@
                                                             pageNow = current_page;
                                                             loadIdeaPage(pageNow);
                                                         });
+                                                        
+                                                        $('#comment-list-content').on('click', "li .huifu", function(){
+                                                            var msg = $(this).data('msg');
+                                                            $('#saytext').val('');
+                                                            $('#saytext').val(msg+'\n---------\n');
+                                                            $('#saytext').focus();
+                                                        });
+                                                        
+                                                        $('#comment-list-content').on('click', "li .zantong", function(){
+                                                            var api_url = "<?=BASE_URL?>api/get_comment.php";
+                                                            var comment_id = $(this).data('commentid');
+                                                            var theli = $(this);
+//                                                            if ($(this).)
+                                                            $.post(api_url, {'action':'comment_addlike','id':comment_id}, function(data, textStatus){
+                                                                if (data.status == "success"){
+                                                                    theli.addClass('red');
+                                                                    theli.text('赞同('+data.data.comment_like_sum+')')
+                                                                }
+                                                            }, 'json');
+                                                        });
+                                                        
 
 <?php
 $attention = new class_attention();
@@ -404,7 +427,7 @@ if ($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])) {
 //                                                                                $("#sharein").hide();
 //                                                                            }
 //                                                                    );
-                                                                    $("#share").click(function(){
+                                                                    $("#share").click(function() {
                                                                         $("#weixinbtn").trigger("click");
                                                                     });
                                                                     $("#weibobtn").click(function() {

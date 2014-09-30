@@ -73,6 +73,20 @@
 						</li>
 					</ul>
 				</li>
+                                <li class="<?= @$page_level[0] == 'activity' ? 'active open' : '' ?>">
+					<a href="javascript:;">
+					<i class="icon-layers"></i>
+					<span class="title">活动</span>
+					<span class="arrow <?= @$page_level[0] == 'activity' ? 'open' : '' ?>"></span>
+					</a>
+                                        <ul class="sub-menu">
+                                                <li class="<?= @$page_level[1] == 'activity' ? 'active' : '' ?>">
+                                                        <a href="activity.php">
+							<i class="icon-list"></i>
+							活动发布</a>
+						</li>
+                                        </ul>
+                                </li>
                                 <li class="<?= @$page_level[0] == 'product' ? 'active open' : '' ?>">
 					<a href="javascript:;">
 					<i class="icon-basket"></i>

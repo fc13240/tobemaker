@@ -23,7 +23,6 @@ $current_user = $class_user->get_current_user();
 //  准备数据
 if(array_key_exists('user_id', $_GET)){
 	$user_info=$class_user->select($_GET['user_id']);
-        
 	if(count($user_info)==0)
 	{
 		echo "no user";
@@ -32,6 +31,11 @@ if(array_key_exists('user_id', $_GET)){
 		$user_info=$user_info[0];
 //                var_dump($user_info);
 	}
+        
+        // 获取粉丝数
+        $class_attention = new class_Attentionv2();
+        $result_to_me = $class_attention->select_to_me($_GET['user_id']);
+        $to_me_count = count($result_to_me);
 }else{
     $user_id = $_SESSION['user_id'];
     $user_info = $class_user->select($user_id);
