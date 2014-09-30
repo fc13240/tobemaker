@@ -82,13 +82,7 @@
 
             $(function() {
 
-                $(function() {
-                    $(".js-pin").pin({
-                        //          minWidth : 1220,
-                        containerSelector: ".pendant"
-                    });
-
-                });
+                
 
                 var qrcode = new QRCode(document.getElementById("qrcode"), {width: 150,
                     height: 150
