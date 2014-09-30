@@ -19,7 +19,7 @@ $current_user = $class_user->get_current_user();
     $start=isset($_POST['start'])?$_POST['start']:0;
     $length=isset($_POST['length'])?$_POST['length']:4;
     $type=$_POST['type'];
-    $user_id=$current_user['user_id'];
+    $user_id=  array_key_exists('user_id', $_POST) ? $_POST['user_id']:$current_user['user_id'];
 
     $num=$class_idea->get_ideanum_by_userid($type,$user_id);
     $res=$class_idea->get_ideas_by_userid($type,$user_id,$start,$length);

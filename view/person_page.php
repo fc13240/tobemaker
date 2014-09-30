@@ -112,11 +112,20 @@
             var start = (current_page - 1) * pageSize;
             var length = pageSize;
             var url = $('#myProjectBlock').data("url");
+            
+            
+            
+            <?php if (array_key_exists('user_id', $_GET)){ ?>
+                var current_user_id = <?=$_GET['user_id']?>;
+            <?php }else{ ?>
+                var current_user_id = <?=(array_key_exists('user_id', $current_user) ? $current_user['user_id']: '')?>;
+            <?php } ?>
+            
             $.post(url, {
                 "start":start, 
                 "length":length, 
                 "type":"all", 
-                "user_id":<?=(array_key_exists('user_id', $current_user) ? $current_user['user_id']: '')?>,
+                "user_id":current_user_id,
                 }, function(data, textStatus){
                 // set up content
                 var $container = $("[page='"+move_type+"']");
@@ -126,6 +135,7 @@
                 for (var i=0; data.data != undefined && i<data.data.length; i++){
                     var item = data.data[i];
                     var str='';
+                    <?php if (!array_key_exists('user_id', $_GET)){ ?>
 					if(item['idea_status']<5)
 					{
 					  str='\
@@ -170,6 +180,25 @@
                     </dl>\
                     ';
 					}
+                                        
+                    <?php }else{ ?>
+                        str='\
+                    <dl>\
+                        <dd>\
+                            <img src="'+(item['picture_url']==undefined?'asset/13.png':item['picture_url'])+'?imageMogr/v2/thumbnail/233x200!"  class="h200" >\
+                            <div class="person-img-shield">\
+                                <p class="state">'+ item.status_name +'</p>\
+                                <a href="project.php?idea_id='+ item.idea_id +'"><p class="title">'+item.name+'</p></a>\
+                                <p class="justify">\
+                                    <a href="project.php?idea_id='+ item.idea_id +'">\
+                                        <i class="fa fa-info"></i>\
+                                    </a>\
+                                </p>\
+                            </div>\
+                        </dd>\
+                    </dl>\
+                    ';
+                    <?php } ?>
                     $container.append(str);
                 }
                 $('.person-img-shield').hide();
@@ -455,8 +484,9 @@
                     loadPersonalProject(pageNow, 0);
                 }
             });
-            loadPersonalProject(1,1);
             
+            
+            loadPersonalProject(1,1);
         });
     </script>
 <?php
