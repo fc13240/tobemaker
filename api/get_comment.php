@@ -30,7 +30,7 @@ include_once ROOT_PATH."class/class_user.php";
     $class_idea=new class_idea();
     $class_comment=new class_comment();
     $current_user = $class_user->get_current_user();
-    $user_id=1;
+    $user_id=$current_user['user_id'];
     //如果发送了用户id，则获取是否喜欢的信息，否则默认不喜欢
     if(array_key_exists('action', $_POST))
     {
@@ -63,18 +63,17 @@ include_once ROOT_PATH."class/class_user.php";
         $data = array_map('unserialize', array_unique(array_map('serialize', $data_tmp2)));
         //判断是否加精和是否点赞过
         $i=0;
-        while ($i<count($data)) {
-            # code...
-
-            if($data[$i]['comment_like_sum']>=$top3_min)
+        foreach($data as $k => &  $v){
+            
+            if($v['comment_like_sum']>=$top3_min)
             {
-                $data[$i]['is_digest']=1;
+                $v['is_digest']=1;
             }
             else {
-                $data[$i]['is_digest']=0;
+                $v['is_digest']=0;
             }
-            $data[$i]['is_like']=$class_comment->check_comment_like($user_id,$data[$i]['id']);
-            $data[$i]['abstract'] = mb_substr(trim(strip_tags($data[$i]['context'])), 0, 200);
+            $v['is_like']=$class_comment->check_comment_like($user_id,$v['id']);
+            $v['abstract'] = mb_substr(trim(strip_tags($v['context'])), 0, 200);
             $i++;
         }
        
