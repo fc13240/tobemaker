@@ -153,7 +153,7 @@
                             <span>发布</span>\
                         </dd>\
                         <dd>\
-                            <div class="button"><a class="weixinbtn" href="javascript:0;" data-idea_id="' + item.idea_id + '" data-content="'+item.content+'" data-pic="' + (item.picture_url == undefined ? 'asset/12.png' : item['picture_url']) + '?imageMogr/v2/thumbnail/318x273!" >分享</a></div>\
+                            <div class="button"><a class="weixinbtn" href="javascript:0;" data-idea_id="' + item.idea_id + '" >分享</a></div>\
                             <div class="button"><a href="project.php?idea_id=' + item.idea_id + '#commentForm">评论</a><span>' + (item.sum_comment == null ? 0 : item.sum_comment) + '</span></div>\
                             <div class="button"><a class="like_btn ' + (item.likeit == 0 ? '' : 'red') + '" href="javascript:void 0" data-idea_id="' + item.idea_id + '" data-url="<?= BASE_URL . "api/like.php" ?>" >' + (item.idea_status >= 5 ? '超想买' : '超喜欢') + '</a><span>' + (item.sum_like == null ? 0 : item.sum_like) + '</span></div>\
                         </dd>\
