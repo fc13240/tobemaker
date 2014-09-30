@@ -1776,12 +1776,12 @@ i#weixinbtn {
 .huifu {
 	position: relative;
 	right: 200px;
-	bottom: 80px;
+	bottom: -55px;
 }
 .zantong {
 	position: relative;
 	right: 150px;
-	bottom: 80px;
+	bottom: -55px;
 }
 
 .search--input {
