@@ -721,6 +721,7 @@ form.lgn {
     float: none;
     display: table;
     margin-bottom: 10px;
+    position: relative;
 }
 .comment ul li .commenter{
     width: 90px;
@@ -738,6 +739,7 @@ form.lgn {
     line-height: 2em;
     color: #6f6f6f;
     vertical-align: top;
+    word-break: break-all;
 }
 .comment ul li .text{
     float: left;
@@ -970,7 +972,7 @@ form.lgn {
     padding: 0 10px;
     margin: 10px auto 0 auto;
     text-align: center;
-    position: relative;
+    position: static;
 }
 .mine.edit a img{
     width: 30px;
@@ -1774,14 +1776,14 @@ i#weixinbtn {
 	color: #fff;
 }
 .huifu {
-	position: relative;
-	right: 200px;
-	bottom: -55px;
+	position: absolute;
+	right: 150px;
+	bottom: 60px;
 }
 .zantong {
-	position: relative;
-	right: 150px;
-	bottom: -55px;
+	position: absolute;
+	right: 80px;
+	bottom: 60px;
 }
 
 .search--input {

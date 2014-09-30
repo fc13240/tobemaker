@@ -60,7 +60,7 @@
                                                 <label>评论</label>
                                                 <textarea id="saytext" name="saytext"></textarea>
                                                 <a href="javascript:void 0" class="emotion">添加表情</a>
-                                                <input type="checkbox"><span>同时推荐该想法</span>
+                                                <input type="checkbox">
                                                     <input type="hidden" name="idea_id" value="<?= $idea_id ?>"/>
                                                     <input class="sub_btn" type="submit" value="评论">
                                                         <p>个字符</p>
