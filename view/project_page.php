@@ -142,7 +142,7 @@
                                                                     <br/>
                                                                     即可分享给您的微信好友或朋友圈。</p>
                                                                 <p>
-                                                                    <wb:share-button id="weibo_true_body" style="width:95px;position: relative;left: 20px;" appkey="4SkNjA" addition="number" type="button" ralateUid="5285964905" default_text="<?= $item[0]['user_name'] ?> 发布的众造项目《<?= $item[0]['name'] ?>》。<?= mb_substr(trim(strip_tags($item[0]['content'])), 0, 150) ?>" pic="<?= $item[0]['picture_url'] ?>"></wb:share-button>
+                                                                    <wb:share-button id="weibo_true_body" style="width:95px;position: relative;left: 20px;" appkey="4SkNjA" addition="number" type="button" ralateUid="5144427096" default_text="<?= $item[0]['user_name'] ?> 发布的众造项目《<?= $item[0]['name'] ?>》。<?= mb_substr(trim(strip_tags($item[0]['content'])), 0, 150) ?>" pic="<?= $item[0]['picture_url'] ?>"></wb:share-button>
                                                                 </p>
                                                             </div>
 

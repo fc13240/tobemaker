@@ -95,6 +95,7 @@ Version: 3.1.3
 															<input id="fileurl" type="hidden" name="img_url" value=""/>
 														<!--</div>-->
 													</div>
+                                                                                                        <p id="upload-progress-label"></p>
 												</div>
 												<div class="form-group">
 													<label class="col-md-3 control-label">活动链接</label>
@@ -163,7 +164,6 @@ Version: 3.1.3
 jQuery(document).ready(function() {       
     Metronic.init(); // init metronic core components
     Layout.init(); // init current layout
-    QuickSidebar.init(); // init quick sidebar
     Demo.init(); // init demo features
     TableManaged.init();
 	$("#fileSelect").fileupload({
