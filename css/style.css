@@ -81,7 +81,15 @@ ul li{
 }
 #top{
     height: 64px;
-    
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+#center:before {
+	content: ' ';
+	display: block;
+	height: 64px;
+	width: 100%;
 }
 #center{
 
@@ -803,7 +811,8 @@ form.lgn {
 
 }
 .pendant.left{
-    left: -100px;
+    margin-left: -100px;
+    position: fixed;
 }
 .pendant.right{
     right: -100px;

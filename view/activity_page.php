@@ -18,7 +18,7 @@
                         <img src="<?= $new_activity['pic_url']; ?>" style="width:1000px;height: auto;"/>
                     </a>
                     <div class="pendant left" style="height: 600px;">
-                        <ul class="js-pin" style="margin-top: 200px;">
+                        <ul style="margin-top: 100px;">
                             <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
                                 <div id="sharein"></div>
                             </li>
@@ -82,13 +82,7 @@
 
             $(function() {
 
-                $(function() {
-                    $(".js-pin").pin({
-                        //          minWidth : 1220,
-                        containerSelector: ".pendant"
-                    });
-
-                });
+                
 
                 var qrcode = new QRCode(document.getElementById("qrcode"), {width: 150,
                     height: 150
