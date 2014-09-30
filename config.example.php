@@ -13,9 +13,9 @@ define('BASE_URL','http://'.HOSTNAME.'/tobemaker/' );
  */
 //define('DATABASE_HOST', 'localhost');
 define('DATABASE_HOST', '127.0.0.1');
-define('DATABASE_NAME', 'tobemaker');
+define('DATABASE_NAME', 'idea');
 define('DATABASE_USER', 'root');
-define('DATABASE_PASSWORD', 'aeb5c71b');
+define('DATABASE_PASSWORD', '');
 
 // 七牛云存储配置
 define('ACCESS_KEY','RTmVwPnuQZv2HKjM6_HUQYmS-nSEIHEtUn5U0a68');
@@ -45,4 +45,5 @@ define('BAIDUTJ_APPID', 'd2289fe0f6d090638e4fa53929e4b152');
 if ( $_SERVER['HTTP_HOST'] != HOSTNAME ){
     header('Location: '.BASE_URL);
 }
+
 
