@@ -75,11 +75,21 @@ include_once ROOT_PATH."class/class_user.php";
         $comment_id=$_POST['id'];
         $user_id=$current_user['user_id'];
         //逻辑处理
+        
+        //判断是否已经点赞
+        if(!$class_comment->check_comment_like($user_id, $comment_id))
+        {
         $new_idea_comment=$class_comment->addlike_to_comment($user_id,$comment_id);
         //组织数据并返回
         $arr['status']='success';
         $arr['data']=$new_idea_comment;
         echo json_encode($arr);
         exit();
+        }
+        else {
+            $arr['status']='like_already';
+            echo json_encode($arr);
+            exit();
+       }
        }
     }
