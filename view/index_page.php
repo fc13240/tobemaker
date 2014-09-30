@@ -27,27 +27,27 @@
                     <ul id="stage_list">
                         <li data-stage="share">
                             <img src="asset/index_1.png" alt="">
-                            <span>· · ·</span>
+                            <span>. . .</span>
                             <p>分享创意</p>
                         </li>
                         <li data-stage="like">
                             <img src="asset/index_2.png" alt="">
-                            <span>· · ·</span>
+                            <span>. . .</span>
                             <p>点赞</p>
                         </li>
                         <li data-stage="exame">
                             <img src="asset/index_3.png" alt="">
-                            <span>· · ·</span>
+                            <span>. . .</span>
                             <p>审核</p>
                         </li>
                         <li data-stage="deep">
                             <img src="asset/index_4.png" alt="">
-                            <span>· · ·</span>
+                            <span>. . .</span>
                             <p>深化</p>
                         </li>
                         <li data-stage="produce">
                             <img src="asset/index_5.png" alt="">
-                            <span>· · ·</span>
+                            <span>. . .</span>
                             <p>生产销售</p>
                         </li>
                         <li data-stage="money">
