@@ -970,6 +970,7 @@ form.lgn {
     padding: 0 10px;
     margin: 10px auto 0 auto;
     text-align: center;
+    position: relative;
 }
 .mine.edit a img{
     width: 30px;
