@@ -1773,16 +1773,14 @@ i#weixinbtn {
 	color: #fff;
 }
 .huifu {
-	display: block;
-	position: absolute;
-	right: 200px;
-	bottom: 145px;
+	position: relative;
+	right: -600px;
+	bottom: 80px;
 }
 .zantong {
-	display: block;
-	position: absolute;
-	right: 1500px;
-	bottom: 145px;
+	position: relative;
+	right: -650px;
+	bottom: 80px;
 }
 
 .search--input {
