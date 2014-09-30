@@ -1775,13 +1775,13 @@ i#weixinbtn {
 }
 .huifu {
 	position: relative;
-	right: -600px;
-	bottom: 80px;
+	right: 200px;
+	bottom: -55px;
 }
 .zantong {
 	position: relative;
-	right: -650px;
-	bottom: 80px;
+	right: 150px;
+	bottom: -55px;
 }
 
 .search--input {
