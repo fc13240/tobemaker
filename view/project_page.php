@@ -270,15 +270,7 @@ if ($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])) {
                                                                 }
                                                             }, 'json');
                                                         });
-                                                        //填充分享内容
-                                                        function addWeiboDefault()
-                                                        {
-                                                            var title = "<?= $item[0]['name'] ?>";
-                                                            var content = "<?= $item[0]['content'] ?>"
-                                                            content = content.substr(0, 100);
-                                                            content += "<a href='<?= BASE_URL ?>project.php?idea_id=<?= @$item[0]['idea_id'] ?>'>详情</a>"
-                                                            $("#weibo").attr("default_text", title + content);
-                                                        }
+                                                        
                                                         //注册取消关注事件
                                                         $("#deleteAttention").click(function() {
                                                             var attention_userid = $('#author_id').val();
@@ -467,7 +459,7 @@ if ($attention->checkunique($_SESSION["user_id"], @$item[0]["user_id"])) {
 
                                                                     pageNow = 1;
                                                                     loadIdeaPage(pageNow);
-                                                                    addWeiboDefault();
+                                                                    
 
 
                                                                 });
