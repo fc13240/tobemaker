@@ -56,6 +56,7 @@ include_once ROOT_PATH."class/class_user.php";
                 $data[$i]['is_digest']=1;
             }
             $data[$i]['is_like']=$class_comment->check_comment_like($user_id,$data[$i]['id']);
+            $data[$i]['abstract'] = mb_substr(trim(strip_tags($data[$i]['context'])), 0, 200);
             $i++;
         }
 

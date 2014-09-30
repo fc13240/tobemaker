@@ -17,7 +17,7 @@
                     <div class="ttl">
                         <div class="title"><?php echo $item[0]['name']; ?></div>
                         <div class="author">
-                            <a href="<?= BASE_URL . 'person.php' ?>?user_id=<?= @$item[0]["user_id"] ?>"><img class="circle" src="<?php echo @$item[0]['head_pic_url'] == '' ? 'asset/12.png' : $item[0]['head_pic_url']; ?>?imageMogr/v2/thumbnail/60x60!" alt=""></a>
+                            <a href="<?= BASE_URL . 'person.php' ?>?user_id=<?= @$item[0]["user_id"] ?>"><img class="circle" src="<?php echo @$item[0]['head_pic_url'] == '' ? 'asset/12.png' : $item[0]['head_pic_url']; ?>?imageMogr/v2/thumbnail/60x60!" alt="" /></a>
                             <br />
                             <input type="hidden" id="author_id" value="<?= @$item[0]["user_id"] ?>">
                                 <input type="hidden" id="user_id" value="<?= @$user_id ?>">
@@ -185,7 +185,9 @@
                                                                         <a href="<?= BASE_URL . 'person.php?user_id=' ?>' + item['sender_id'] + '">' + item['user_name'] + '</a>\
                                                                     </div>\
                                                                     <div class="text">' + item['context'] + '\
-                                                                    </div>\
+                                                                    '+ (item['is_digest'] != "0" ? '<span class="jing">精</span>' : '') +'</div>\
+                                                            <a href="javascript:;" class="huifu" data-msg="引用@'+item['user_name']+' 的话：' + item['abstract'] + '">回复</a>\
+                                                            <a href="javascript:;" data-commentid="'+item['id']+'" class="zantong '+ (item['is_like'] != 0 ? 'red':'') +'">赞同('+ item['comment_like_sum'] +')</a>\
                                                                 </li>');
                                                                 }
 
@@ -211,6 +213,27 @@
                                                             pageNow = current_page;
                                                             loadIdeaPage(pageNow);
                                                         });
+                                                        
+                                                        $('#comment-list-content').on('click', "li .huifu", function(){
+                                                            var msg = $(this).data('msg');
+                                                            $('#saytext').val('');
+                                                            $('#saytext').val(msg+'\n---------\n');
+                                                            $('#saytext').focus();
+                                                        });
+                                                        
+                                                        $('#comment-list-content').on('click', "li .zantong", function(){
+                                                            var api_url = "<?=BASE_URL?>api/get_comment.php";
+                                                            var comment_id = $(this).data('commentid');
+                                                            var theli = $(this);
+//                                                            if ($(this).)
+                                                            $.post(api_url, {'action':'comment_addlike','id':comment_id}, function(data, textStatus){
+                                                                if (data.status == "success"){
+                                                                    theli.addClass('red');
+                                                                    theli.text('赞同('+data.data.comment_like_sum+')')
+                                                                }
+                                                            }, 'json');
+                                                        });
+                                                        
 
 <?php
 $attention = new class_attention();
