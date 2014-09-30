@@ -44,7 +44,7 @@
             <br/>
             <input class="user_name" type="text" value="<?=$user_info['user_name']?>" placeholder="输入用户名"/>
             <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" placeholder="输入职位" />
-            <input class="occupation" type="text" value="" id="job" placeholder="输入大学" />
+            <input class="occupation" type="text" value="" id="job" placeholder="输入您的大学" />
             <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" placeholder="输入个人介绍" />
                 <a href="javascript:void 0;" id="btn_user_cancle" style="margin-top: 10px;"><i class="fa fa-times ired"></i></a>
             <a href="javascript:void 0;" id="btn_user_submit" style="margin-top: 10px;" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-check ired"></i></a>
