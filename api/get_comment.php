@@ -30,7 +30,7 @@ include_once ROOT_PATH."class/class_user.php";
     $class_idea=new class_idea();
     $class_comment=new class_comment();
     $current_user = $class_user->get_current_user();
-    $user_id=1;
+    $user_id=$current_user['user_id'];
     //如果发送了用户id，则获取是否喜欢的信息，否则默认不喜欢
     if(array_key_exists('action', $_POST))
     {
