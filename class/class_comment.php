@@ -109,13 +109,10 @@ class class_comment
     public function get_top3_minnum($idea_id)
     {
         $comment_id = $this->db->escape($idea_id);
-        $sql="SELECT * from idea_comment where `idea_id`=".$idea_id." and `comment_like_sum`>0 order by `comment_like_sum` desc";
+        //$sql="SELECT * from idea_comment where `idea_id`=".$idea_id." and `comment_like_sum`>0 order by `comment_like_sum` desc limit 0,2";
+        $sql="SELECT `idea_comment`.*,`idea_info`.`name`,`user_info`.`user_name` ,`user_info`.`head_pic_url` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." and `idea_comment`.`comment_like_sum`>0 order by `idea_comment`.`comment_like_sum` desc limit 0,2";
         $result=$this->db->get_results($sql,ARRAY_A);
-        $sum=count($result);
-        if ($sum == 0){
-            return '1';
-        }
-        return $result[$sum-1]['comment_like_sum'];
+        return $result;
     }
     //删除评论，暂时没有需求
     public function delete_comment()

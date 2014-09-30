@@ -30,7 +30,7 @@ include_once ROOT_PATH."class/class_user.php";
     $class_idea=new class_idea();
     $class_comment=new class_comment();
     $current_user = $class_user->get_current_user();
-    $user_id=$current_user['user_id'];
+    $user_id=1;
     //如果发送了用户id，则获取是否喜欢的信息，否则默认不喜欢
     if(array_key_exists('action', $_POST))
     {
@@ -41,12 +41,27 @@ include_once ROOT_PATH."class/class_user.php";
         $idea_id=$_POST['idea_id'];
 
         //获取评论信息
+        //获取评论总数
         $num=$class_comment->get_num_of_comment($idea_id);
-        $data=$class_comment->get_part_comment_by_ideaid($idea_id,$start,$length);
-
+        
+        //获取普通评论和前三评论
+        $data_tmp1=$class_comment->get_part_comment_by_ideaid($idea_id,$start,$length);
+        $top3_data=$class_comment->get_top3_minnum($idea_id);
+        
+        //组织数据
+        $data_num=count($top3_data);
+        if($data_num==0)
+        {
+            $top3_min=1;
+        }
+        else {
+            $top3_min=$top3_data[$data_num-1]['comment_like_sum'];
+        }
+        
+        //合并top3并且去重
+        $data_tmp2=  array_merge($data_tmp1,$top3_data);   
+        $data = array_map('unserialize', array_unique(array_map('serialize', $data_tmp2)));
         //判断是否加精和是否点赞过
-
-        $top3_min=$class_comment->get_top3_minnum($idea_id);
         $i=0;
         while ($i<count($data)) {
             # code...
@@ -55,19 +70,19 @@ include_once ROOT_PATH."class/class_user.php";
             {
                 $data[$i]['is_digest']=1;
             }
+            else {
+                $data[$i]['is_digest']=0;
+            }
             $data[$i]['is_like']=$class_comment->check_comment_like($user_id,$data[$i]['id']);
             $data[$i]['abstract'] = mb_substr(trim(strip_tags($data[$i]['context'])), 0, 200);
             $i++;
         }
-
-
+       
         $arr['num_of_all']=$num;
         $arr['data']=$data;
         echo json_encode($arr);
         exit();
        }
-
-
        //对评论点赞
        if($_POST['action']=="comment_addlike")
        {
