@@ -23,8 +23,10 @@
                 </form>
             </div>-->
             <a href="" style="margin-top: 21px;margin-right: 20px;"><i class="fa fa-search" style="z-index: 100;position: relative;"></i></a>	
-            <input class="search--input" type="search" name="" id="" value="" />
-        	
+            <form action="project_list.php">
+            <input class="search--input" type="search" name="search" id="" value="" />
+            <input class="sb-search-submit" type="submit" value="">
+            </form>
         </div>
         <div class="lgnhover">
             <a href="<?=BASE_URL.'attention.php?type=from_me'?>">关注</a>
