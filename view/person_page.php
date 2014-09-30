@@ -16,7 +16,7 @@
             <br/>
             <h2 class="user_name"><?=$user_info['user_name']?></h2>
             <br/>
-            <span class="college"><?=$user_info['school']==''?'还没有输入您的学校':$user_info['school']?></span>
+            <span class="college user_school"><?=$user_info['school']==''?'还没有输入您的学校':$user_info['school']?></span>
             <span style="position: absolute;left: 50%;margin-left: -4px;">|</span>
             <span class="occupation"><?=$user_info['occupation']==''?'还没有输入您的职位':$user_info['occupation']?></span>
             <br/>
@@ -44,7 +44,7 @@
             <br/>
             <input class="user_name" type="text" value="<?=$user_info['user_name']?>" placeholder="输入用户名"/>
             <input class="occupation" type="text" value="<?=$user_info['occupation']?>" id="job" placeholder="输入职位" />
-            <input class="occupation" type="text" value="" id="job" placeholder="输入大学" />
+            <input class="user_school" type="text" value="<?=$user_info['school']?>" id="job" placeholder="输入大学" />
             <input class="self_intro" type="text" value="<?=$user_info['self_intro']?>" placeholder="输入个人介绍" />
                 <a href="javascript:void 0;" id="btn_user_cancle" style="margin-top: 10px;"><i class="fa fa-times ired"></i></a>
             <a href="javascript:void 0;" id="btn_user_submit" style="margin-top: 10px;" data-url="<?=BASE_URL?>api/userinfo_change.php"><i class="fa fa-check ired"></i></a>
@@ -203,6 +203,7 @@
             $('#my_info_edit .user_name').val( $('#my_info_view .user_name').text());
             $('#my_info_edit .occupation').val( $('#my_info_view .occupation').text());
             $('#my_info_edit .self_intro').val( $('#my_info_view .self_intro').text());
+            $('#my_info_edit .user_school').val( $('#my_info_view .user_school').text());
             $('#head_pic_url').val($('#my_info_view .head').attr('src'));
             
         }
@@ -362,6 +363,7 @@
                 var user_name = $('#my_info_edit .user_name').val();
                 var user_occupation = $('#my_info_edit .occupation').val();
                 var user_introduction = $('#my_info_edit .self_intro').val();
+                var user_school = $('#my_info_edit .user_school').val();
                 
                 var user_id = <?=$user_info['user_id']?>;
                 
@@ -373,7 +375,8 @@
                     'head_url':head_url,
                     'user_name':user_name,
                     'user_occupation':user_occupation,
-                    'user_introduction':user_introduction
+                    'user_introduction':user_introduction,
+                    'user_school':user_school
                     }, function(data, textStatus){
                     if (data.status == "success"){
                         
@@ -381,6 +384,7 @@
                         $('#my_info_view .user_name').text( user_name );
                         $('#my_info_view .occupation').text( user_occupation );
                         $('#my_info_view .self_intro').text( user_introduction );
+                        $('#my_info_view .user_school').text( user_school );
 
                     }else{
                         
