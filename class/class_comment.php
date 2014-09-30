@@ -144,10 +144,14 @@ class class_comment
     {
          $user_id=$this->db->escape($user_id);
         $comment_id=$this->db->escape($comment_id);
-        $sql="SELECT * from `comment_like` where `comment_id`=".$comment_id." and liker_id=".$user_id;
+        $sql="SELECT * from `comment_like` where `comment_id`=".$comment_id." and liker_id=".$user_id." and like_type=0";
         $res=$this->db->get_results($sql,ARRAY_A);
         ;
-        return count($res);
+        if(count($res)>0)
+            return true;
+        else {
+            return false;
+        }
     }
 }
 ?>
