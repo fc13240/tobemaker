@@ -85,7 +85,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="pendant left" style="height: 600px;">
-                                                            <ul class="js-pin" style="margin-top: 100px;">
+                                                            <ul style="margin-top: 100px;">
                                                                 <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
                                                                     <div id="sharein"><i id="weixinbtn">微信</i><i id="weibobtn">微博</i>
                                                                         

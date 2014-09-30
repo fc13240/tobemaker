@@ -18,7 +18,7 @@
 					<img src="./asset/21.jpg" style="width:1000px;height: auto;"/>
 
                     <div class="pendant left" style="height: 600px;">
-                        <ul class="js-pin" style="margin-top: 200px;">
+                        <ul style="margin-top: 100px;">
                             <li><a href="javascript:void 0" class="red" id="share">分&nbsp;&nbsp;&nbsp;&nbsp;享</a>
                                 <div id="sharein"></div>
                             </li>
