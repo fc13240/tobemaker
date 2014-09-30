@@ -65,16 +65,17 @@ include_once ROOT_PATH."class/class_user.php";
         $i=0;
         foreach($data as $k => &  $v){
             
-            if($v['comment_like_sum']>=$top3_min)
+            if($v['comment_like_sum']>=$top3_min&&$i<3)
             {
                 $v['is_digest']=1;
+                $i++;
             }
             else {
                 $v['is_digest']=0;
             }
             $v['is_like']=$class_comment->check_comment_like($user_id,$v['id']);
             $v['abstract'] = mb_substr(trim(strip_tags($v['context'])), 0, 200);
-            $i++;
+            
         }
        
         $arr['num_of_all']=$num;

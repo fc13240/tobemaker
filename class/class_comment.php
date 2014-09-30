@@ -110,7 +110,7 @@ class class_comment
     {
         $comment_id = $this->db->escape($idea_id);
         //$sql="SELECT * from idea_comment where `idea_id`=".$idea_id." and `comment_like_sum`>0 order by `comment_like_sum` desc limit 0,2";
-        $sql="SELECT `idea_comment`.*,`idea_info`.`name`,`user_info`.`user_name` ,`user_info`.`head_pic_url` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." and `idea_comment`.`comment_like_sum`>0 order by `idea_comment`.`comment_like_sum` desc limit 0,2";
+        $sql="SELECT `idea_comment`.*,`idea_info`.`name`,`user_info`.`user_name` ,`user_info`.`head_pic_url` from `idea_comment`,`idea_info`,`user_info` where `idea_comment`.`idea_id`=`idea_info`.`idea_id` and `idea_comment`.`sender_id`=`user_info`.`user_id` and `idea_comment`.`idea_id`=".$idea_id." and `idea_comment`.`comment_like_sum`>0 order by `idea_comment`.`comment_like_sum` desc limit 0,3";
         $result=$this->db->get_results($sql,ARRAY_A);
         return $result;
     }

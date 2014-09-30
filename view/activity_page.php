@@ -15,7 +15,17 @@
             <div class="middle">
                 <div class="item">
                     <a href="<?= $new_activity['activity_url']; ?>">
-                        <img src="<?= $new_activity['pic_url']; ?>" style="width:1000px;height: auto;"/>
+                        <img src="<?= $new_activity['pic_url']; ?>" style="width:1000px;height: auto;" alt=
+                             <?php 
+                             if(strlen($new_activity['pic_url'])>0)
+                             {
+                                 echo '""';
+                             }
+                             else {
+                                 echo '"无活动"';
+                             }
+                             ?>
+                             />
                     </a>
                     <div class="pendant left" style="height: 600px;">
                         <ul style="margin-top: 100px;">
