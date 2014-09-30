@@ -306,8 +306,8 @@ ul li{
     float: right;
 }
 .top .lgn a img{
-    width: 40px;
-    margin: 10px;
+    width: 22px;
+    margin: 19px;
 }
 .top .lgn a:first-child{
     margin-right: 30px;
@@ -1773,16 +1773,14 @@ i#weixinbtn {
 	color: #fff;
 }
 .huifu {
-	display: block;
-	position: absolute;
-	right: 200px;
-	bottom: 145px;
+	position: relative;
+	right: -600px;
+	bottom: 80px;
 }
 .zantong {
-	display: block;
-	position: absolute;
-	right: 100px;
-	bottom: 145px;
+	position: relative;
+	right: -650px;
+	bottom: 80px;
 }
 
 .search--input {
@@ -1799,7 +1797,7 @@ i#weixinbtn {
 	transition: width 0.3s;
 	position: relative;
 	left: 20px;
-	padding: 10px;
+	padding: 5px 20px 5px 10px;
 	line-height: 10px;
 	font-size: 10px;
 	
