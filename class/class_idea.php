@@ -297,14 +297,12 @@ class class_idea
       $key_word=$key;
 
 
-        $sql="SELECT * from `idea_info` where ".$rule." and (`idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `user_name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."') limit ".$start.",".$length;
+        $sql="SELECT `idea_info`.*,`user_info`.`head_pic_url` from `idea_info`,`user_info` where ".$rule." and `idea_info`.`user_id`=`user_info`.`user_id` and (`idea_info`.`idea_id` like '".$key_word."' or `idea_info`.`name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."' or `idea_info`.`user_name` like '".$key_word."' or `idea_info`.`content` like '".$key_word."') limit ".$start.",".$length;
+        
         $res=$this->db->get_results($sql,ARRAY_A);
-      
-        $res=$this->db->get_results($sql,ARRAY_A);
-      
+//        $this->db->debug();
         $class_user = new class_user();
         
-	  
         for($i=0;$i<count($res);$i++)
         {
             $sql='select * from `idea_comment` where `idea_id`=\''.$res[$i]["idea_id"].'\'';
