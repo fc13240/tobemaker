@@ -171,9 +171,9 @@
                                                                 var $container = $('#comment-list-content');
                                                                 $container.html('');
 
-                                                                for (var i = 0; data.data != undefined && i < data.data.length; i++) {
-                                                                    var item = data.data[i];
-
+                                                                
+                                                                $.each(data.data,function(){
+                                                                    var item = this;
                                                                     $container.append('\
                                                                 <li>\
                                                                     <div class="commenter">\
@@ -186,7 +186,7 @@
                                                             <a href="javascript:;" class="huifu" data-msg="引用@'+item['user_name']+' 的话：' + item['abstract'] + '">回复</a>\
                                                             <a href="javascript:;" data-commentid="'+item['id']+'" class="zantong '+ (item['is_like'] != 0 ? 'red':'') +'">赞同('+ item['comment_like_sum'] +')</a>\
                                                                 </li>');
-                                                                }
+                                                                });
 
                                                                 // set up page nav
                                                                 var $pageNav = $('#comment-pagenum');
