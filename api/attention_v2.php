@@ -14,6 +14,7 @@ class attention_v2{
         
         return array(
             'status' => 'success',
+            'amount' => count($result),
             'data' => $result,
         );
     }
@@ -26,9 +27,24 @@ class attention_v2{
         
         return array(
             'status' => 'success',
+            'amount' => count($result),
             'data' => $result,
         );
         
+        
+    }
+    
+    function count($user_id){
+        
+        $class_attention = new class_Attentionv2();
+        $result_from_me = $class_attention->select_from_me($user_id);
+        $result_to_me = $class_attention->select_to_me($user_id);
+        
+        return array(
+            'status' => 'success',
+            'to_me_count' => count($result_to_me),
+            'from_me_count' => count($result_from_me),
+        );
         
     }
 }

@@ -11,6 +11,9 @@ if(!$class_session->check_login())
    $class_session->changePage(BASE_URL."error.php");
 }
 
+$current_page = 'activity';
+$page_level = explode('-', $current_page);
+
 $class_user=new class_user();
 
 $current_user = $class_user->get_current_user();

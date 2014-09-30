@@ -22,7 +22,7 @@
             <br/>
             <p class="self_intro"><?=$user_info['self_intro']==''?'还没有输入您的个人介绍，点击下方的“笔”来添加':$user_info['self_intro']?></p>
             <br/>
-            <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none">粉丝数</a>
+            <a id="btn-cancel" class="delete" data-url="<?=BASE_URL?>api/attention.php" style="display:none"><?=$to_me_count?></a>
             <a id="btn-follow" class="add" data-url="<?=BASE_URL?>api/attention.php"><i class="fa fa-plus" ></i></a>
             <a id="btn-msg" href="<?=BASE_URL?>msg_send_2.php?to_user=<?=@$user_info['user_id']?>"><i class="fa fa-envelope-o ired"></i></a>
             
@@ -383,8 +383,16 @@
 
                     }else{
                         
+                        if (data.status == 'user_name_length'){
+                            alert("个人信息修改失败！用户名长度应在1-16字符之间");
+                        }else if (data.status == "user_occupation_length"){
+                            alert("个人信息修改失败！职位长度应在1-16字符之间");
+                        }else if (data.status == "user_introduction_length"){
+                            alert("个人信息修改失败！个人介绍长度应在200字符之间");
+                        }
+                        
                         rollBack();
-                        alert("个人信息修改失败！"+data.status);
+//                        alert("个人信息修改失败！"+data.status);
                         
                     }
                 },'json');
