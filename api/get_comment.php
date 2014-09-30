@@ -59,7 +59,7 @@ include_once ROOT_PATH."class/class_user.php";
         }
         
         //合并top3并且去重
-        $data_tmp2=  array_merge($data_tmp1,$top3_data);   
+        $data_tmp2=  array_merge($top3_data,$data_tmp1);   
         $data = array_map('unserialize', array_unique(array_map('serialize', $data_tmp2)));
         //判断是否加精和是否点赞过
         $i=0;
