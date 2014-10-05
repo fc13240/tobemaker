@@ -189,11 +189,7 @@
                             <div class="person-img-shield">\
                                 <p class="state">'+ item.status_name +'</p>\
                                 <a href="project.php?idea_id='+ item.idea_id +'"><p class="title">'+item.name+'</p></a>\
-                                <p class="justify">\
-                                    <a href="project.php?idea_id='+ item.idea_id +'">\
-                                        <i class="fa fa-info"></i>\
-                                    </a>\
-                                </p>\
+                                \
                             </div>\
                         </dd>\
                     </dl>\
