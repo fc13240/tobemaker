@@ -895,7 +895,7 @@ form.lgn {
 .delete {
 	/*width: 60px!important;*/
 	height: 40px;
-	line-height: 14px!important;
+	line-height: 16px!important;
 }
 .mine a.active{
     color: #ff1400;
@@ -1819,7 +1819,7 @@ i#weixinbtn {
 } 
 #btn-cancel {
 	/*font-size: 12px;*/
-	font-family: "microsoft yahei";
+	font-family: "simsun","microsoft yahei","Hiragino Sans GB";
 }
 #btn-cancel, btn-follow {
 	cursor: pointer;
