@@ -1818,7 +1818,8 @@ i#weixinbtn {
 	width: 150px;
 } 
 #btn-cancel {
-	font-size: 12px;
+	/*font-size: 12px;*/
+	font-family: "microsoft yahei";
 }
 #btn-cancel, btn-follow {
 	cursor: pointer;
