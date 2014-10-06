@@ -893,7 +893,7 @@ form.lgn {
         vertical-align: middle;
 }
 .delete {
-	width: 60px!important;
+	/*width: 60px!important;*/
 	height: 40px;
 	line-height: 14px!important;
 }
@@ -1817,3 +1817,9 @@ i#weixinbtn {
 .search--input:focus {
 	width: 150px;
 } 
+#btn-cancel, btn-follow {
+	cursor: pointer;
+}
+#btn-cancel:hover, #btn-follow:hover {
+	color:red;
+}

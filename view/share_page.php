@@ -6,6 +6,11 @@
     <?php include "top_css.php" ?>
     <link rel="stylesheet" type="text/css" href="css/redactor.css">
     <link rel="stylesheet" type="text/css" href="css/simditor.css"/>
+    <style type="text/css">
+    	.fa.fa-search {
+    		top: -4px;
+    	}
+    </style>
 </head>
 <body>
 <div id="top">
